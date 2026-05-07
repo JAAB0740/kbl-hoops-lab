@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    @apply bg-court-950 text-ink-50;
+    font-feature-settings: "ss01", "cv11", "tnum";
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(245, 158, 11, 0.08), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 90% 10%, rgba(14, 165, 233, 0.06), transparent 60%);
+  }
+
+  /* 숫자/스탯에 tabular numerals */
+  .stat-num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-court-700/80 bg-court-800/60 backdrop-blur-sm;
+  }
+
+  .card-elevated {
+    @apply rounded-xl border border-court-700 bg-court-700/50;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-court-700 bg-court-800/80
+           px-2.5 py-1 text-[11px] font-medium text-ink-300;
+  }
+
+  .divider-y > * + * {
+    @apply border-t border-court-700/60;
+  }
+}

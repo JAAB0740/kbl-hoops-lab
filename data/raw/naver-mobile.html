@@ -1,0 +1,243 @@
+
+
+
+
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="">
+<title>네이버 스포츠</title>
+<link rel='stylesheet' type='text/css' href='https://ssl.pstatic.net/static.sports/resources/mobile/232323/52/07/423114949/css/error.css'>
+
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="decorator" content="error">
+
+
+
+
+
+
+    
+    
+        <script type='text/javascript' src='https://ssl.pstatic.net/static.sports/resources/mobile/232323/52/07/423114949/js/generated/baseJsTop.js'></script>
+
+    
+
+<script>
+	var naverAdBaseUrl = '';
+	var deployPhase = '';
+    var proxyGwUrl = '';
+
+	if (deployPhase === 'release') {
+		JEagleEyeClient.attachOnError();
+
+	} else if (deployPhase === 'dev') {
+		JEagleEyeClient.setDebugOnly(true);
+		JEagleEyeClient.attachOnError();
+
+	} else {
+		// local
+		// JEagleEyeClient.attachOnError();
+    }
+
+	var imageCategoryMappingObject = ;
+</script>
+
+
+
+<script type='text/javascript' src='https://ssl.pstatic.net/static.sports/resources/mobile/232323/52/07/423114949/js/src/common/naver.sports.m.common.DisplayGladAd.js'></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var gladSdkLoaded = false;
+
+	function loadGladSdk() {
+		if(!gladSdkLoaded) {
+			var script = document.createElement("script");
+			script.async = true;
+			script.type = "text/javascript";
+			script.src = 'https://ssl.pstatic.net/tveta/libs/glad/prod/gfp-core.js';
+			var target = document.getElementsByTagName("head")[0];
+			target.insertBefore(script, target.firstChild);
+
+			gladSdkLoaded = true;
+		}
+	}
+
+	$(window).on('load', function () {
+		setTimeout($.proxy(loadGladSdk, window), 0);
+	})
+
+	window.displaySspAd = window.displaySspAd || new naver.sports.m.common.DisplayGladAd({
+		sportsAdConfig: []
+		, enablePersist : true
+	});
+</script>
+
+
+
+
+</head>
+<body class="page_error" id="body">
+	<div class="u_skip">
+		<a href="#ct">본문 바로가기</a>
+	</div>
+	<div class="dimmed2" id="_dimmed_layer2"></div>
+	
+
+
+
+
+    
+        
+            
+            
+            
+            
+        
+    
+
+
+    
+    
+    
+
+    
+        
+            
+            
+            
+        
+            
+            
+            
+        
+
+        
+            
+            
+            
+
+            
+
+            
+        
+
+        
+            
+            
+            
+
+            
+        
+    
+
+	<header class="error_header">
+		<div class="header_inner">
+			<h1 class="logo_area">
+				<a href="https://m.naver.com" class="link_naver"><span class="blind">네이버</span></a>
+				<a href="/index" class="link_sports"><span class="blind">스포츠</span></a>
+			</h1>
+			<button type="button" class="button_close" id="sportsCloseButton">
+				<span class="blind">닫기</span>
+			</button>
+		</div>
+	</header>
+	<hr>
+	<!-- ct -->
+	<div id="ct" class="error_wrap">
+		<div class="text_area">
+		
+		
+			
+			
+				<strong class="highlight">
+					페이지를 찾을 수 없습니다.
+				</strong>
+				<p class="text">
+					요청하신 페이지가 제거되었거나,<br>
+					이름이 변경 되었습니다.<br>
+					일시적으로 사용이 중단 되었습니다.
+				</p>
+			
+			
+			
+			
+			
+		
+		</div>
+		<div class="link_area">
+			<a href="javascript:history.back(-1);" class="link_page">이전</a>
+			<a href="/index" class="link_page">스포츠 메인</a>
+		</div>
+	</div>
+	<!-- //ct -->
+    <script>
+        exeJs.pop(lcs_do);
+    </script>
+	
+
+
+
+<footer id="footer" class="sports_footer">
+    <div class="inner">
+        <div class="sports_info">
+            <div class="link_area">
+                <div class="main_area">
+                    <a href="javascript:moveToLoginForm();" class="link" onClick="nclk(this, 'fot.login', '', '');" id="login_status">로그인</a>
+                    <a href="https://m.naver.com/services.html?f=svc.sports" class="link sitemap" onClick="nclk(this, 'fot.sitemap', '', '');">전체서비스</a>
+                    <a href="https://help.naver.com/alias/contents2/sports/sports_2.naver" class="link" onClick="nclk(this, 'fot.help', '', '');">고객센터</a>
+                    <a href="https://help.naver.com/alias/contents2/sports/sports_6.naver" class="link" onClick="nclk(this, 'fot.119', '', '');">문제신고</a>
+                    <a href="https://policy.naver.com/policy-mobile/privacy.html" class="link" onClick="nclk(this, 'fot.privacy', '', '');"><strong>개인정보처리방침</strong></a>
+                </div>
+                <div class="sub_area">
+                    <a href="https://m.news.naver.com/ombudsman/index?mode=rule&open=edit" class="link">기사배열 책임자 : 김수향</a>
+                    <span class="link">청소년 보호 책임자 : 이정규</span>
+                </div>
+            </div>
+            <p class="copyright">본 콘텐츠의 저작권은 제공처 또는 네이버에 있으며, 이를 무단 이용하는 경우 저작권법 등에 따라 법적책임을 질 수 있습니다.</p>
+            <span class="naver">&copy; <a href="https://www.navercorp.com/"  onClick="nclk(this, 'fot.navercorp', '', '');">NAVER Corp.</a></span>
+        </div>
+    </div>
+
+    
+</footer>
+
+<script>
+function checkLogin() {
+    var sNidCookie = $.cookie('NID_SES');
+    if( typeof sNidCookie != 'undefined' && sNidCookie != '') {
+        var $loginElement = $("#login_status");
+        $loginElement.html("로그아웃");
+        $loginElement.attr("href", "javascript:naverLogout();");
+        $loginElement.attr("onClick", "nclk(this, 'fot.logout', '', '');");
+    }
+}
+exeJs.push(checkLogin);
+</script>
+
+    
+
+<script>lazyloadjs('https://ssl.pstatic.net/static.sports/resources/mobile/232323/52/07/423114949/js/generated/baseJsBottomLazy.js');</script>
+
+	
+
+
+</body>
+
+	
+
+</html>

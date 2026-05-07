@@ -1,0 +1,200 @@
+{
+  "findings": {
+    "getAccessToken": [
+      {
+        "pos": 290145,
+        "snippet": "=()=>getCookie(loginStay),setAccessToken=o=>{setCookie(accessTokenCookieKey,o)},getAccessToken=()=>getCookie(accessTokenCookieKey),setRefreshToken=o=>{setCookie(refreshTokenC"
+      },
+      {
+        "pos": 290820,
+        "snippet": "[1],teamCode:getTeamCodeByDomain(),appVersion:et[2],device:et[3],accessToken:`${getAccessToken()}`,refreshToken:`${getRefreshToken()}`}},getQueryStringFromObject=(o={})=>\"?\"+"
+      },
+      {
+        "pos": 345123,
+        "snippet": "=null&&tt!==\"undefined\"&&($.headers.Authorization=`Bearer ${tt}`)}else{const tt=getAccessToken();tt&&($.headers.Authorization=`${tt}`),$.headers.Channel=\"WEB\",$.headers.TeamC"
+      },
+      {
+        "pos": 346767,
+        "snippet": "................ WEB \"),rt.Authorization=`${getRefreshToken()}`,st={accessToken:getAccessToken(),refreshToken:getRefreshToken()});try{processAwait=axios.create({headers:rt})."
+      },
+      {
+        "pos": 347474,
+        "snippet": "rceptor ] :: ERR :: [/reissue] : 엑세스 토큰 갱신\"),processAwait=null,rt.Authorization=getAccessToken();const ft=axios.create({headers:rt});if(nt.method===\"get\")return ft.get(nt.url"
+      },
+      {
+        "pos": 348113,
+        "snippet": "else{await processAwait;let st=tt.config,nt=st.headers;st.headers.Authorization=getAccessToken();const rt=axios.create({headers:nt});if(st.method===\"get\")return rt.get(st.url"
+      },
+      {
+        "pos": 348798,
+        "snippet": "EN REMOVE -> go login\"),console.log(\"[500 error -]\"+tt),tt.data.object===-1002)(getAccessToken()!==null||getAccessToken()!==void 0)&&(removeAuthTokens$1(),isReadyFlutter()||("
+      },
+      {
+        "pos": 348823,
+        "snippet": "onsole.log(\"[500 error -]\"+tt),tt.data.object===-1002)(getAccessToken()!==null||getAccessToken()!==void 0)&&(removeAuthTokens$1(),isReadyFlutter()||(location.href=\"/login\"));"
+      }
+    ],
+    "Authorization": [
+      {
+        "pos": 211292,
+        "snippet": "essor([\"Content-Type\",\"Content-Length\",\"Accept\",\"Accept-Encoding\",\"User-Agent\",\"Authorization\"]);utils$2.reduceDescriptors(AxiosHeaders$1.prototype,({value:o},$)=>{let et=$["
+      },
+      {
+        "pos": 216432,
+        "snippet": "h($.baseURL,$.url,$.allowAbsoluteUrls),o.params,o.paramsSerializer),ot&&rt.set(\"Authorization\",\"Basic \"+btoa((ot.username||\"\")+\":\"+(ot.password?unescape(encodeURIComponent(o"
+      },
+      {
+        "pos": 345079,
+        "snippet": "Device=et.device;const tt=et.accessToken;tt!=null&&tt!==\"undefined\"&&($.headers.Authorization=`Bearer ${tt}`)}else{const tt=getAccessToken();tt&&($.headers.Authorization=`${"
+      },
+      {
+        "pos": 345155,
+        "snippet": "ers.Authorization=`Bearer ${tt}`)}else{const tt=getAccessToken();tt&&($.headers.Authorization=`${tt}`),$.headers.Channel=\"WEB\",$.headers.TeamCode=getTeamCodeByDomain()}retur"
+      },
+      {
+        "pos": 346392,
+        "snippet": "ceptor ] response.data.object..................................... mobile \"),rt.Authorization=`Bearer ${ot.refreshToken}`,rt.Channel=`${ot.channel}`,rt.Device=`${ot.device}`"
+      },
+      {
+        "pos": 346714,
+        "snippet": "terceptor ] response.data.object..................................... WEB \"),rt.Authorization=`${getRefreshToken()}`,st={accessToken:getAccessToken(),refreshToken:getRefresh"
+      },
+      {
+        "pos": 347460,
+        "snippet": "(\"[ Axios.interceptor ] :: ERR :: [/reissue] : 엑세스 토큰 갱신\"),processAwait=null,rt.Authorization=getAccessToken();const ft=axios.create({headers:rt});if(nt.method===\"get\")retur"
+      },
+      {
+        "pos": 348099,
+        "snippet": "e.reject(ct)}}else{await processAwait;let st=tt.config,nt=st.headers;st.headers.Authorization=getAccessToken();const rt=axios.create({headers:nt});if(st.method===\"get\")retur"
+      }
+    ],
+    "Bearer": [
+      {
+        "pos": 345094,
+        "snippet": "e;const tt=et.accessToken;tt!=null&&tt!==\"undefined\"&&($.headers.Authorization=`Bearer ${tt}`)}else{const tt=getAccessToken();tt&&($.headers.Authorization=`${tt}`),$."
+      },
+      {
+        "pos": 346407,
+        "snippet": "se.data.object..................................... mobile \"),rt.Authorization=`Bearer ${ot.refreshToken}`,rt.Channel=`${ot.channel}`,rt.Device=`${ot.device}`,rt.AppV"
+      }
+    ],
+    "accessToken": [
+      {
+        "pos": 289644,
+        "snippet": ",storage:createJSONStorage(()=>isReadyFlutter()?localStorage:sessionStorage)})),accessTokenCookieKey=\"__KBL_ACCESS_TOKEN\",refreshTokenCookieKey=\"__KBL_REFRESH_TOKEN\",login"
+      },
+      {
+        "pos": 290120,
+        "snippet": "ntCookieKey),getLoginStay=()=>getCookie(loginStay),setAccessToken=o=>{setCookie(accessTokenCookieKey,o)},getAccessToken=()=>getCookie(accessTokenCookieKey),setRefreshToken"
+      },
+      {
+        "pos": 290174,
+        "snippet": "AccessToken=o=>{setCookie(accessTokenCookieKey,o)},getAccessToken=()=>getCookie(accessTokenCookieKey),setRefreshToken=o=>{setCookie(refreshTokenCookieKey,o)},getRefreshTok"
+      },
+      {
+        "pos": 290342,
+        "snippet": "Token=()=>getCookie(refreshTokenCookieKey),removeAuthTokens$1=()=>{removeCookie(accessTokenCookieKey),removeCookie(refreshTokenCookieKey),removeCookie(\"UID\"),loginStore.pe"
+      },
+      {
+        "pos": 290805,
+        "snippet": "ull:{channel:et[1],teamCode:getTeamCodeByDomain(),appVersion:et[2],device:et[3],accessToken:`${getAccessToken()}`,refreshToken:`${getRefreshToken()}`}},getQueryStringFromO"
+      },
+      {
+        "pos": 345028,
+        "snippet": "mCode,$.headers.AppVersion=et.appVersion,$.headers.Device=et.device;const tt=et.accessToken;tt!=null&&tt!==\"undefined\"&&($.headers.Authorization=`Bearer ${tt}`)}else{const"
+      },
+      {
+        "pos": 346552,
+        "snippet": "${ot.device}`,rt.AppVersion=`${ot.appVersion}`,rt.TeamCode=`${ot.teamCode}`,st={accessToken:ot.accessToken,refreshToken:ot.refreshToken}):(console.log(\"[ Axios interceptor"
+      },
+      {
+        "pos": 346567,
+        "snippet": "t.AppVersion=`${ot.appVersion}`,rt.TeamCode=`${ot.teamCode}`,st={accessToken:ot.accessToken,refreshToken:ot.refreshToken}):(console.log(\"[ Axios interceptor ] response.dat"
+      }
+    ],
+    "/auth/": [
+      {
+        "pos": 1294232,
+        "snippet": "gout\",o)),idCheckRequest=async o=>(console.log(\"test.getIdCheckRequest\"),get$3(`/auth/check/id/${o}`)),passwordChangeRequest=async o=>(console.log(\"test.passwordChang"
+      },
+      {
+        "pos": 1294334,
+        "snippet": ",passwordChangeRequest=async o=>(console.log(\"test.passwordChangeRequest\"),put(\"/auth/password/reset\",o)),callCheckUserIdExists=async o=>(console.log(\"test.callCheckU"
+      },
+      {
+        "pos": 1294724,
+        "snippet": "gnup\",o)),pushForeignerSMS=async o=>(console.log(\"test.pushForeignerSMS\"),post(\"/auth/web-cert/foreigner/phone/call\",o)),checkForeignerSMS=async o=>(console.log(\"Memb"
+      },
+      {
+        "pos": 1294847,
+        "snippet": "eckForeignerSMS=async o=>(console.log(\"Member.service:checkForeignerSMS\"),post(\"/auth/web-cert/foreigner/phone/check\",o)),selectPlayerList=async o=>(console.log(\"test"
+      },
+      {
+        "pos": 1999435,
+        "snippet": "rtsPopup,{}):null]})}const optRequest=async o=>(console.log(\"optRequest\"),post(\"/auth/otp\",o)),otpCheckRequest=async o=>(console.log(\"optRequest\"),post(\"/auth/otp/con"
+      },
+      {
+        "pos": 1999508,
+        "snippet": ",post(\"/auth/otp\",o)),otpCheckRequest=async o=>(console.log(\"optRequest\"),post(\"/auth/otp/confirm\",o));var sha256={exports:{}};const __viteBrowserExternal={},__viteBr"
+      },
+      {
+        "pos": 4164238,
+        "snippet": ".finally()}),ws=()=>{const Zs=getMobileAppHeaderData(),rn=`https://api.kbl.or.kr/auth/web-cert/phone/call?channel=WEB&device=${Zs==null?\"WEB\":Zs.device}&certType=MODI"
+      },
+      {
+        "pos": 4165127,
+        "snippet": "ssage))}}))},As=()=>{const Zs=getMobileAppHeaderData(),rn=`https://api.kbl.or.kr/auth/web-cert/phone/call?adultYn=N&channel=WEB&device=${Zs==null?\"WEB\":Zs.device}&cer"
+      }
+    ],
+    "channel:": [
+      {
+        "pos": 290730,
+        "snippet": "With(appUserAgentKey)&&($=tt)});const et=$.split(\";\");return et.length!=4?null:{channel:et[1],teamCode:getTeamCodeByDomain(),appVersion:et[2],device:et[3],accessToken:`"
+      },
+      {
+        "pos": 4016822,
+        "snippet": "turn}let Pt=\"https://api.kbl.or.kr/paymentCard/request\",At=new URLSearchParams({channel:\"APP\",device:Ct==null?\"WEB\":Ct.device,teamCode:\"XX\",accessToken:getAccessToken()"
+      },
+      {
+        "pos": 4017967,
+        "snippet": "rdSq);if(Ct.length===0){vt(\"결제 목록을 확인해주세요.\");return}let Pt=new URLSearchParams({channel:\"APP\",device:kt==null?\"WEB\":kt.device,teamCode:\"XX\",accessToken:getAccessToken()"
+      }
+    ],
+    "device:": [
+      {
+        "pos": 241958,
+        "snippet": "arm(?=v([1-7]|[5-7]1)l?|;|eabi)|(irix|mips|sparc)(64)?\\b|pa-risc)/i],[[Et,xn]]],device:[[/\\b(sch-i[89]0\\d|shw-m380s|sm-[ptx]\\w{2,4}|gt-[pn]\\d{2,4}|sgh-t8[56]9|nexus 10"
+      },
+      {
+        "pos": 255214,
+        "snippet": ":this.getUA(),browser:this.getBrowser(),engine:this.getEngine(),os:this.getOS(),device:this.getDevice(),cpu:this.getCPU()}},this.getUA=function(){return en},this.setUA"
+      },
+      {
+        "pos": 256601,
+        "snippet": "urn}var et=new UAParser($);return{UA:et,browser:et.getBrowser(),cpu:et.getCPU(),device:et.getDevice(),engine:et.getEngine(),os:et.getOS(),ua:et.getUA(),setUserAgent:fu"
+      },
+      {
+        "pos": 271029,
+        "snippet": "evice,st=et.browser,nt=et.os,rt=et.engine,ot=et.ua;return buildSelectorsObject({device:tt,browser:st,os:nt,engine:rt,ua:ot})},AndroidView=function($){var et=$.renderWi"
+      },
+      {
+        "pos": 290792,
+        "snippet": "t.length!=4?null:{channel:et[1],teamCode:getTeamCodeByDomain(),appVersion:et[2],device:et[3],accessToken:`${getAccessToken()}`,refreshToken:`${getRefreshToken()}`}},ge"
+      },
+      {
+        "pos": 1327089,
+        "snippet": "tring.parse(window.location.search),Ft=getMobileAppHeaderData();Ft?Dt.device=Ft.device:Dt.device=\"WEB\",Dt.type=\"redirect\",Dt.site=\"youth.kbl.or.kr\",window.ntmEvent(\"ou"
+      },
+      {
+        "pos": 1806282,
+        "snippet": ")}const events$1=(o,$)=>{const et=getDocument$1(),{params:tt,el:st,wrapperEl:nt,device:rt}=o,ot=!!tt.nested,ct=$===\"on\"?\"addEventListener\":\"removeEventListener\",ut=$;!"
+      },
+      {
+        "pos": 1810454,
+        "snippet": "t)}),et}function addClasses(){const o=this,{classNames:$,params:et,rtl:tt,el:st,device:nt}=o,rt=prepareClasses([\"initialized\",et.direction,{\"free-mode\":o.params.freeMo"
+      }
+    ]
+  },
+  "headerObjects": [],
+  "calls": []
+}

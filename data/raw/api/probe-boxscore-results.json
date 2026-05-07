@@ -1,0 +1,249 @@
+{
+  "successes": [],
+  "interesting": [
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?gameCode=S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?gameCode=S47G01N256&gameDate=20260401",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?matchCode=S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?matchCode=S47G01N256&matchDate=20260401",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?id=S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?gameId=S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?seasonCode=47&gameCode=S47G01N256",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G01N256?seasonCode=47&matchCode=S47G01N256&gameDate=20260401",
+      "sample": {
+        "code": "S47G01N256",
+        "date": "20260401",
+        "desc": "정규 N256 (4월 1일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?gameCode=S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?gameCode=S47G04N001&gameDate=20260505",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?matchCode=S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?matchCode=S47G04N001&matchDate=20260505",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?id=S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?gameId=S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?seasonCode=47&gameCode=S47G04N001",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N001?seasonCode=47&matchCode=S47G04N001&gameDate=20260505",
+      "sample": {
+        "code": "S47G04N001",
+        "date": "20260505",
+        "desc": "챔결 G1 추정 (5월 5일)"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?gameCode=S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?gameCode=S47G04N1&gameDate=20260505",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?matchCode=S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?matchCode=S47G04N1&matchDate=20260505",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?id=S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?gameId=S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?seasonCode=47&gameCode=S47G04N1",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    },
+    {
+      "url": "https://api.kbl.or.kr/match/S47G04N1?seasonCode=47&matchCode=S47G04N1&gameDate=20260505",
+      "sample": {
+        "code": "S47G04N1",
+        "date": "20260505",
+        "desc": "챔결 G1 N1 형식"
+      },
+      "status": 200
+    }
+  ],
+  "attempted": 2784
+}

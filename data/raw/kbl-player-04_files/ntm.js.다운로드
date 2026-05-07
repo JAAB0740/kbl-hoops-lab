@@ -1,0 +1,1750 @@
+var Ntm = window.Ntm || {};
+
+Ntm.Settings = {"tags":[{"type":"PLUGIN","id":"TAG-10001","name":"PAGE : 페이지로드","enabled":true,"operator":"AND","triggers":["TRG-00001"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"tagType":"VAR-10001","ViewNm":"VAR-10005","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10005","name":"CLICK : 탭클릭","enabled":true,"operator":"AND","triggers":["TRG-10004"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"tagType":"VAR-10004","ViewNm":"VAR-10005","tabNm":"VAR-00011","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10013","name":"CLICK : Select Box","enabled":true,"operator":"AND","triggers":["TRG-10011"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"tagType":"VAR-10004","ckText":"VAR-10013","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10014","name":"CLICK : 메인배너","enabled":true,"operator":"AND","triggers":["TRG-10012"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"tagType":"VAR-10004","ckText":"VAR-10014","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10012","name":"CLICK : 예매버튼클릭","enabled":true,"operator":"AND","triggers":["TRG-10018"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"teamNm":"VAR-10023","tagType":"VAR-10004","url_keyid":"VAR-10015","btnName":"VAR-00011"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10016","name":"PAGE : 서브도메인전환","enabled":true,"operator":"AND","triggers":["TRG-10013"],"exceptions":[],"pluginType":"nlogger","logType":"CUSTOM","path":"outlink","parameters":{"tagType":"VAR-10003","ViewNm":"VAR-10020","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10018","name":"PAGE : 화면전환","enabled":true,"operator":"AND","triggers":["TRG-10014"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"tagType":"VAR-10001","ViewNm":"VAR-10005","url_keyid":"VAR-10015"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10019","name":"메인배너클릭","enabled":false,"operator":"AND","triggers":["TRG-10015"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"Test":"VAR-10021"},"cookies":{}},{"type":"PLUGIN","id":"TAG-10020","name":"CLICK : 예매버튼클릭_APP","enabled":true,"operator":"AND","triggers":["TRG-10019"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"teamNm":"VAR-10023","tagType":"VAR-10004","url_keyid":"VAR-10015","btnName":"VAR-00011"},"cookies":{"nth_sessionid":"VAR-10002"}},{"type":"PLUGIN","id":"TAG-10021","name":"특정 배너 클릭","enabled":false,"operator":"AND","triggers":["TRG-10016"],"exceptions":[],"pluginType":"nlogger","logType":"EVENT","path":"","parameters":{"TEST":"VAR-10025"},"cookies":{}}],"triggers":[{"type":"GENERAL","id":"TRG-00001","name":"PAGE : 윈도우로드","event":"WINDOWLOADED","desc":"","conditions":[]},{"type":"ELEMENTCLICK","id":"TRG-10004","name":"UCK : Tab 클릭","event":"ELEMENTCLICKED","desc":"","conditions":[],"selector":"ul.tab-style01 li"},{"type":"ELEMENTCLICK","id":"TRG-10010","name":"EX_예매버튼클릭 - 메인화면(bak)","event":"ELEMENTCLICKED","desc":".reserve-list button 선택자 추가(2024-01-25)","conditions":[],"selector":"div.play-swiper-wrap.active div.btn > button.sm.navy"},{"type":"ELEMENTCLICK","id":"TRG-10011","name":"UCK : Select Box","event":"ELEMENTCLICKED","desc":"","conditions":[{"operator":"NOTEQUALS","variable":"VAR-10013","value":"FALSE"}],"selector":"ul.filter-wrap select"},{"type":"ELEMENTCLICK","id":"TRG-10012","name":"UCK : 메인배너클릭","event":"ELEMENTCLICKED","desc":"","conditions":[],"selector":"#container div.main-banner-desktop-swiper01 div.swiper-wrapper [data-url]"},{"type":"CUSTOM","id":"TRG-10013","name":"PAGE : 서브도메인전환","event":"CUSTOM","desc":"","conditions":[],"eventName":"out_page"},{"type":"GENERAL","id":"TRG-10014","name":"URL주소변경","event":"URLCHANGED","desc":"","conditions":[]},{"type":"ELEMENTCLICK","id":"TRG-10015","name":"main_btn_click","event":"ELEMENTCLICKED","desc":"","conditions":[],"selector":"#container > div > div:nth-child(5) > div"},{"type":"ELEMENTCLICK","id":"TRG-10016","name":"EX_예매버튼클릭_bak","event":"ELEMENTCLICKED","desc":".reserve-list button 선택자 추가(2024-01-25)","conditions":[{"operator":"MATCHES","variable":"VAR-00003","value":"/ticket/reservation|/game/schedule-list|^\\/$"}],"selector":"div.reserve-table tbody td button, ul.game-schedule-list-wrap li button[data-url*='facility.ticketlink.co.kr'], ul.btn li button[data-url*='facility.ticketlink.co.kr'], .reserve-list button"},{"type":"ELEMENTCLICK","id":"TRG-10017","name":"EX_예매버튼클릭_App (bak)","event":"ELEMENTCLICKED","desc":"","conditions":[],"selector":"div.schedule-info > div.play-swiper-wrap.active > div.swiper.swiper-initialized.swiper-horizontal.play-swiper.swiper-backface-hidden > div > div.swiper-slide.swiper-slide-active > div.btn > button.sm.navy"},{"type":"ELEMENTCLICK","id":"TRG-10018","name":"EX_예매버튼 클릭 상세","event":"ELEMENTCLICKED","desc":"예매 상세 페이지에서 버튼 클릭","conditions":[],"selector":"div.cont-box > ul > li > div> div> button.navy"},{"type":"ELEMENTCLICK","id":"TRG-10019","name":"EX_예매버튼 클릭 상세 app","event":"ELEMENTCLICKED","desc":"app 예매 상세 페이지에서 버튼 클릭","conditions":[],"selector":"div.cont-box > ul > li > div> div> button.navy"},{"type":"ELEMENTCLICK","id":"TRG-10020","name":"Test_Btn_click","event":"ELEMENTCLICKED","desc":"챌린지 배너 버튼 클릭","conditions":[],"selector":"#root > main > div > div.side > div:nth-child(3) > a > img"}],"variables":[{"type":"BUILTIN","id":"VAR-00001","name":"url","description":"페이지 전체 URL"},{"type":"BUILTIN","id":"VAR-00002","name":"host","description":"페이지 URL 호스트"},{"type":"BUILTIN","id":"VAR-00003","name":"path","description":"페이지 URL 경로"},{"type":"BUILTIN","id":"VAR-00004","name":"params","description":"페이지 URL 파라미터"},{"type":"BUILTIN","id":"VAR-00005","name":"paramDict","description":"페이지 URL 파라미터 (객체)"},{"type":"BUILTIN","id":"VAR-00006","name":"hash","description":"페이지 URL 해시"},{"type":"BUILTIN","id":"VAR-00007","name":"referrer","description":"이전 방문 페이지 주소"},{"type":"BUILTIN","id":"VAR-00008","name":"title","description":"페이지 제목"},{"type":"BUILTIN","id":"VAR-00009","name":"clickId","description":"클릭 항목 ID"},{"type":"BUILTIN","id":"VAR-00010","name":"clickClass","description":"클릭 항목 클래스명"},{"type":"BUILTIN","id":"VAR-00011","name":"clickText","description":"클릭 항목 텍스트"},{"type":"BUILTIN","id":"VAR-00012","name":"clickTag","description":"클릭 항목 태그명"},{"type":"BUILTIN","id":"VAR-00013","name":"clickElement","description":"클릭 항목 DOM 요소"},{"type":"BUILTIN","id":"VAR-00014","name":"customData","description":"커스텀 이벤트 변수"},{"type":"PLUGIN","id":"VAR-00015","name":"nlogger","description":"넷스루 로깅 모듈"},{"type":"STRING","id":"VAR-10001","name":"tagType::page_06","description":null,"value":"page"},{"type":"SCRIPT","id":"VAR-10002","name":"nth_sessionid_04","description":null,"code":"function() {\n  var new_sessid = Ntm.Plugin.nlogger.generateUuid();\n  var get_sessid = Ntm.Cookie.get(\"nth_sessionid\");\n  //var get_sessid = sessionStorage.getItem('nth_sessionid');\n  //var get_sessid = localStorage.getItem('nth_sessionid');\n  var ret = '';\n  if (get_sessid){\n    ret = get_sessid;\n  }else{\n    Ntm.Cookie.set('nth_sessionid', new_sessid, {path:\"/\", domain:\".kbl.or.kr\"});\n    //sessionStorage.setItem('nth_sessionid', new_sessid);\n    //localStorage.setItem('nth_sessionid', new_sessid);\n    ret = new_sessid;\n  }\n  return ret;\n}","approval":"DONE","logs":[{"time":1689297714946,"userId":"admin","action":"CONFIRM","comment":""}]},{"type":"STRING","id":"VAR-10003","name":"tagType::api_06","description":null,"value":"api"},{"type":"STRING","id":"VAR-10004","name":"tagType::click_06","description":null,"value":"click"},{"type":"SCRIPT","id":"VAR-10005","name":"ViewNm_09","description":null,"code":"function() {\n\t/*  \n  if(Ntm.Cookie.get(\"ntm_show\") == \"1\") {\n  \tdebugger;\n  }*/\n  var pathnameMap = {\n    '/auth/login': '로그인',\n    '/login': '로그인',\n    //KBL\n    '/intro/greeting': 'KBL 소개',\n    '/intro/organization': 'KBL 조직도',\n    '/intro/history': 'KBL 연혁',\n    '/intro/governor': 'KBL 역대총재',\n    '/intro/emblem': 'KBL 엠블럼',\n    '/intro/partner': 'KBL 파트너',\n    '/intro/sns': 'KBL SNS',\n    '/intro/book': '가이드북·연감',\n    //경기\n    '/match/schedule': '일정 및 결과',\n    '/match/team-ranking': '팀 순위',\n    //기록\n    '/record/seasonLeader': '시즌리더',\n    '/record/player': '선수기록',\n    '/record/team': '팀 기록',\n    '/record/mvp': '라운드MVP',\n    '/record/award': '역대수상현황',\n    '/record/crowd': '관중현황',\n    '/record/compare': '팀 기록 비교',\n    '/match/preview' : '경기프리뷰',\n    '/match/record' : '경기상세',\n    //선수\n    '/player/player': '선수',\n    '/player/draft': '드래프트',\n    '/player/playerRecord': '선수기록',\n    //팀\n    '/team/team': '팀 순위',\n    '/team/coach': '코칭 스태프',\n    '/team/support': '지원 스태프',\n    '/team/cheerleader': '응원단',\n    '/team/teamRecord': '팀 기록',\n    '/team/greeting': '소개·인사말',\n    '/team/history': '연혁',\n    '/team/emblem': '엠블럼‧CI',\n    '/team/stadium': '경기장',\n    '/team/contribute': '사회공헌활동',\n    '/team/honors': '명예의 전당',\n    '/team/scholarship': '농구장학금',\n    '/team/office': '사무국',\n    '/team/partner': '스폰서',\n    '/team/organization': '프론트‧조직',\n    //소식\n    '/board/notice': '공지사항',\n    '/board/announce': '입찰공고',\n    '/board/recruit': '채용안내',\n    '/board/community': '커뮤니티',\n    '/board/cheering': '응원방',\n    //미디어\n    '/media/highlight': '하이라이트',\n    '/media/project': '기획영상',\n    '/media/shorts': 'KBL Shorts',\n    '/media/photo': '사진',\n    '/media/gamenote': '게임노트',\n    //게임\n    '/game/challenge': 'KBL Challenge',\n    '/game/challenge/stats': 'StatsKing',\n    '/game/challenge/daily-picks': 'Daily Picks',\n    '/game/challenge/weekly6': 'Weekly 6',\n    '/game/ranking': '포인트랭킹',\n    //이벤트\n    '/event/polls': 'Polls',\n    '/event/draw': 'Draw',\n    '/event/event': 'Event',\n    //티켓\n    '/ticket/info': '티켓안내',\n    '/ticket/ticketDetail': '가격안내', //로그인필요\n    '/ticket/regular': '정규시즌', //로그인필요\n    '/ticket/cup': '컵대회', //로그인필요\n    '/ticket/allstar': '올스타전', //로그인필요\n    '/ticket/eas-league': '동아시아 슈퍼리그', //로그인필요\n    //스토어\n    '/store/point-card': '포인트카드',\n    '/store/auction': '옥션',\n    '/story/history': '히스토리',\n    '/story/review-season': '시즌리뷰',\n    '/story/record': '주요기록',\n    '/story/draft': '드래프트',\n    '/story/rule': '제도 및 규칙',\n    '/story/ebook': 'E-Book',\n    '/story/clean-basket': '클린바스켓센터',\n    '/intro/greeting': '소개·인사말',\n    '/intro/organization': '프론트·조직',\n    '/intro/history': '연혁',\n    '/intro/emblem': '엠블럼·CI',\n    '/intro/sponsor': '스폰서',\n    //로그인필요\n    '/ticket/info': '티켓',\n    '/ticket/membership': '티켓', //멤버십인데 텍스트는 티켓인 상황 확인 필요\n    '/ticket/guidance': '티켓', //위와 동일\n    '/ticket/reservation': '티켓',\n    //마이페이지\n    '/mypage': '마이페이지',\n    '/mypage/reward': '직관인증리워드',\n    '/mypage/inquiry': '문의 및 제안 내역',\n    '/mypage/direct': '직관현황',\n    'mypage/ticket/history': '구매내역',\n    '/mypage/ticket/mobileSeason': '모바일 시즌권',\n    '/mypage/ticket/gift': '선물함',\n    '/mypage/ticket/coupon': '쿠폰함',\n    '/mypage/store/pointCard': '포인트카드',\n    '/mypage/participation/polls': '참여내역',\n    '/mypage/pointCard': '내 포인트카드',\n    '/mypage/myPlayer': 'MY PLAYER',\n    '/mypage/bookmark': '관심경기',\n    '/contact/inquiry': '문의 및 제안하기',\n    // 유소년\n    '/youth/kblyouth': '유소년 소개',\n    '/youth/business': '유소년 사업',\n    '/youth/club': '유소년 클럽 소개',\n    '/youth/game/club': '유소년 클럽 대회',\n    '/youth/game/weekend': '유소년 주말 대회',\n    '/youth/measurement': '유소년 측정데이터 소개',\n    '/youth/measurement/record': '유소년 평균기록',\n    '/youth/measurement/percent': '유소년 퍼센타일 확인',\n    '/youth/measurement/member': '유소년 내 기록 확인', //로그인 필요\n    '/youth/community/notice': '유소년 공지',\n    '/youth/community/inquiry': '유소년 1:1문의', //로그인 필요 \n    '/youth/community/news': '유소년 뉴스',\n    '/youth/contents/video': '유소년 경기 다시보기',\n    '/youth/contents/edu': '유소년 교육자료',\n    '/youth/contents/photo': '유소년 사진자료',\n    '/youth/member/regist': '유소년 등록', //로그인필요\n\t'/youth/player': '유소년 대회 선수정보',\n    '/member/mypage': '유소년 마이페이지'\n};\n\nfunction getPathValue(path) {\n  if (path == '/') \n  {\n  \treturn '메인';\n  } \n  else \n  {\n    for (let key in pathnameMap) \n    {\n        if (path.includes(key)) \n        {\n            return pathnameMap[key];\n        }\n    }\n    return '정의된 값 없음';\n\t}\n}\nvar currentPathname = window.location.pathname;\ntxt = getPathValue(currentPathname);\nreturn txt;\n\n}","approval":"DONE","logs":[{"time":1691028291986,"userId":"admin","action":"CONFIRM","comment":""}]},{"type":"SCRIPT","id":"VAR-10013","name":"ckText_SelectBox(선택명)_08","description":null,"code":"function() {\n  try{\n    var el = Ntm.Variable.get(\"clickElement\");\n    // var $this = $(Ntm.Variable.get(\"clickElement\"));\n    // var team  = document.querySelector(\"#container > div > ul > li > select\");\n    // console.log(event);\n    // console.log(event.pointerId);\n    if(event.pointerId == \"0\"){\n      // console.log(\"SELECT 구단선택 :: \" + el.options[el.selectedIndex].innerText);\n      return el.options[el.selectedIndex].innerText;\n    }else{\n      return \"FALSE\";\n    }\n  }catch(err){\n    console.log(err);\n  }\n}","approval":"DONE","logs":[{"time":1692145896751,"userId":"admin","action":"CONFIRM","comment":""}]},{"type":"ELEMENT","id":"VAR-10014","name":"ckText_메인배너(링크주소)_08","description":null,"selector":"CLICK","value":null,"attribute":"data-url","order":0},{"type":"SCRIPT","id":"VAR-10015","name":"url_keyId_컨텐츠정보_08","description":null,"code":"function() {\n  var lpn = window.location.pathname;\n  var arr = lpn.split('/');\n  var contId = '';\n  if(arr[3]){\n    contId = arr[3];\n  }else{\n  \tcontId = '';\n  }\n  return contId;\n}","approval":"DONE","logs":[{"time":1693206933513,"userId":"admin","action":"CONFIRM","comment":""}]},{"type":"SCRIPT","id":"VAR-10016","name":"예매_구단이름_10","description":null,"code":"function() {\n  try{\n    var el = Ntm.Variable.get(\"clickElement\");\n    var pth = {{path}};\n\t\t/*  \n  if(Ntm.Cookie.get(\"ntm_show\") == \"1\") {\n  \tdebugger;\n  }*/\n    \nif (pth.includes(\"/ticket/reservation\")) {\n    if (el.matches(\"div.reserve-table tbody td button\")) {\n        cls = el && el.closest(\"tbody tr\");\n        qs = cls && cls.querySelector(\"ul.versus li p\");\n        txt = qs && qs.innerText;\n    } else if (el.matches(\".reserve-list button\")) {\n        var cls = el && el.closest(\".reserve-list\");\n        var qs = cls && cls.querySelector(\"i[class*='emblem']\");\n        txt = qs && qs.getAttribute(\"class\");\n    }\n} else if (pth.includes(\"/game/schedule-list\")) {\n    if (el.matches(\"ul.game-schedule-list-wrap li button[data-url*='facility.ticketlink.co.kr']\")) {\n        cls = el && el.closest(\"ul.game-schedule-list-wrap li\");\n        qs = cls && cls.querySelector(\"div.team p\");\n        txt = qs && qs.innerText;\n    }\n\n} else if (pth.match(/^\\/$/)) {\n    if (el.matches(\"ul.btn li button[data-url*='facility.ticketlink.co.kr']\")) {\n        cls = el && el.closest(\"div.swiper-slide\");\n        qs = cls && cls.querySelector(\"div.team-name p\");\n        txt = qs && qs.innerText;\n    }\n}\n    txt = txt.replace(/\\s*/g,'');\n    return txt;\n  } \n  catch(err){\n    console.log(err);\n  }\n}","approval":"DONE","logs":[{"time":1697441593464,"userId":"cloocus","action":"CONFIRM","comment":""}]},{"type":"SCRIPT","id":"VAR-10020","name":"임시_서브도메인전환ID","description":null,"code":"function() {\n   var cd = {{customData}};\n\tvar txt = cd.id;\n\treturn txt;\n}","approval":"DONE","logs":[{"time":1697508448429,"userId":"admin","action":"CONFIRM","comment":""}]},{"type":"STRING","id":"VAR-10021","name":"main_Click","description":null,"value":"Test_Main_Click"},{"type":"SCRIPT","id":"VAR-10022","name":"ViewNm_09_Bak","description":null,"code":"function() {\n\t/*  \n  if(Ntm.Cookie.get(\"ntm_show\") == \"1\") {\n  \tdebugger;\n  }*/\n  var pathnameMap = {\n    '/auth/login': '로그인',\n    '/login': '로그인',\n    '/game/schedule-list': '일정 및 결과',\n    '/game/team-rank': '팀 순위',\n    '/game/player-rank-top5': '선수 순위',\n    '/game/archive-team': '팀 기록실',\n    '/game/archive-player': '선수 기록실',\n    '/game/compare-team': '팀 기록 비교',\n    '/game/compare-offence-defence': '공수력 비교',\n    '/game/record': '경기 기록 보기',\n    '/player-staff/player': '선수',\n    '/player-staff/coaching-staff': '코칭 스태프',\n    '/player-staff/support-staff': '지원 스태프',\n    '/player-staff/cheerleader': '응원단',\n    '/fan/kblpoll': 'KBL Polls',\n    '/fan/kblchallenge': 'KBL Challenge',\n    //로그인필요\n    '/fan/kbldraw': 'KBL Draw',\n    //로그인필요\n    '/fan/faq': 'FAQ',\n    //로그인필요\n    '/fan/sns': 'SNS 채널',\n    '/media/live': 'LIVE·다시보기',\n    '/media/highlight': '하이라이트·TV',\n    '/media/notice': '공지사항',\n    '/media/press': '보도자료',\n    '/media/gamenote': '게임노트',\n    '/media/photo': '사진',\n    '/media/understanding': '농구 이해하기',\n    '/media/video-rule-book': '비디오 룰북',\n    '/story/history': '히스토리',\n    '/story/review-season': '시즌리뷰',\n    '/story/record': '주요기록',\n    '/story/draft': '드래프트',\n    '/story/rule': '제도 및 규칙',\n    '/story/ebook': 'E-Book',\n    '/story/clean-basket': '클린바스켓센터',\n    '/intro/greeting': '소개·인사말',\n    '/intro/organization': '프론트·조직',\n    '/intro/history': '연혁',\n    '/intro/emblem': '엠블럼·CI',\n    '/intro/sponsor': '스폰서',\n    //로그인필요\n    '/ticket/info': '티켓',\n    '/ticket/membership': '티켓', //멤버십인데 텍스트는 티켓인 상황 확인 필요\n    '/ticket/guidance': '티켓', //위와 동일\n    '/ticket/reservation': '티켓',\n    // 유소년\n    '/youth/kblyouth': '유소년 소개',\n    '/youth/business': '유소년 사업',\n    '/youth/club': '유소년 클럽 소개',\n    '/youth/game/club': '유소년 클럽 대회',\n    '/youth/game/weekend': '유소년 주말 대회',\n    '/youth/community/notice': '유소년 공지',\n    '/youth/community/inquiry': '유소년 문의',\n    '/youth/community/news': '유소년 뉴스',\n    '/youth/contents/video': '유소년 경기 다시보기',\n    '/youth/contents/edu': '유소년 교육자료',\n    '/youth/contents/photo': '유소년 사진자료',\n    '/youth/member/regist': '유소년 등록'\n    //로그인필요\n    //로그인필요\n    \n};\n\nfunction getPathValue(path) {\n  if (path == '/') \n  {\n  \treturn '메인';\n  } \n  else \n  {\n    for (let key in pathnameMap) \n    {\n        if (path.includes(key)) \n        {\n            return pathnameMap[key];\n        }\n    }\n    return '정의된 값 없음';\n\t}\n}\nvar currentPathname = window.location.pathname;\ntxt = getPathValue(currentPathname);\nreturn txt;\n\n}","approval":"INITIAL","logs":[]},{"type":"SCRIPT","id":"VAR-10023","name":"예매구단Name","description":null,"code":"function() {\n  try {\n    // 클릭된 요소를 저장\n    var el = event.target;\n\n    // 예매하기 버튼을 클릭했는지 확인\n    if (el.matches(\"button.navy\")) {\n        // 클릭된 버튼이 속한 swiper-slide 요소를 찾음\n        var cls = el.closest(\"div.cont-box > ul\");\n\n        // 상단에 있는 팀 이름의 텍스트를 가져옴\n        var teamNameElement = cls && cls.querySelector(\" li > div > ul > li > p\");\n\n        // 팀 이름을 가져옴 (공백 제거)\n        var teamName = teamNameElement && teamNameElement.innerText.trim();\n\n        // 팀 이름에서 불필요한 공백 제거 후 텍스트 반환\n        var txt = teamName.replace(/\\s*/g, '');\n        return txt;\n    }\n  } catch (err) {\n    console.log(err);\n  }\n}","approval":"DONE","logs":[{"time":1727317315558,"userId":"cloocus","action":"CONFIRM","comment":""}]},{"type":"SCRIPT","id":"VAR-10024","name":"예매구단Name(bak)","description":null,"code":"function() {\n  try {\n    // 클릭된 요소를 저장\n    var el = event.target;\n\n    // 예매하기 버튼을 클릭했는지 확인\n    if (el.matches(\"button.sm.navy\")) {\n        // 클릭된 버튼이 속한 swiper-slide 요소를 찾음\n        var cls = el.closest(\"div.swiper-slide\");\n\n        // 상단에 있는 팀 이름의 텍스트를 가져옴\n        var teamNameElement = cls && cls.querySelector(\"ul > li:nth-child(1) > div > p\");\n\n        // 팀 이름을 가져옴 (공백 제거)\n        var teamName = teamNameElement && teamNameElement.innerText.trim();\n\n        // 팀 이름에서 불필요한 공백 제거 후 텍스트 반환\n        var txt = teamName.replace(/\\s*/g, '');\n        return txt;\n    }\n  } catch (err) {\n    console.log(err);\n  }\n}","approval":"INITIAL","logs":[]},{"type":"STRING","id":"VAR-10025","name":"Test_Ch_Banner","description":null,"value":"ch_banner"}],"variableGroups":[],"lastModified":"2026-01-07 13:40:02","plugins":[{"type":"PLUGIN","id":"VAR-00015","name":"nlogger","description":"넷스루 로깅 모듈"}]};
+
+Ntm.Console = function() {
+    var _this = {};
+
+    _this.log = function() {
+        if(!Ntm.Preview.isPreviewMode()) return;
+        console.log.apply(this, arguments);
+    };
+
+    return {
+        log: _this.log
+    }
+}();
+
+Ntm.Cookie = function() {
+    var _this = {};
+
+    _this.get = function(key, decode) {
+        var map = _this.map(decode);
+        var value = map[key];
+
+        return value ? value : "";
+    };
+
+    _this.set = function(key, value, options) {
+        if(!options) options = {};
+
+        document.cookie = key + '=' + encodeURIComponent(value) + ';' +
+            (options.expires ? 'expires=' + options.expires + ';' : '') +
+            (options.path ? 'path=' + options.path + ';' : '') +
+            (options.domain ? 'domain=' + options.domain : '');
+    };
+
+    _this.remove = function(key, options) {
+        _this.set(key, "", Ntm.Helper.extend({
+            expires: "Thu, 01-Jan-1970 00:00:01 GMT",
+            path: "/"
+        }, options));
+    };
+
+    _this.map = function(decode) {
+        var cookies = document.cookie.split(';');
+        var cookieMap = {};
+
+        for (var index = 0; index < cookies.length; index++) {
+            var cookie = cookies[index].trim();
+            if(cookie.length === 0) continue;
+
+            var token = cookie.split('=');
+            var key = token.shift();
+            var value = token.join("=");
+
+            if(decode) value = decodeURIComponent(value);
+
+            cookieMap[key] = value;
+        }
+
+        return cookieMap;
+    };
+
+    return {
+        get: _this.get,
+        set: _this.set,
+        remove: _this.remove
+    }
+}();
+
+Ntm.Variable = function() {
+    var _this = {};
+
+    _this.activeTag = null;
+    _this.clickEvent = {};
+    _this.customData = {};
+    _this.addOnData = {
+        param: {},
+        cookie: {}
+    };
+
+    _this.setActiveTag = function(tag) {
+        _this.activeTag = tag;
+    };
+
+    _this.getActiveTriggers = function() {
+        if(!_this.activeTag) return [];
+
+        return _this.activeTag.triggers.map(function(id) {
+                return Ntm.Trigger.getById(id);
+            }).filter(function(trigger) {
+                return trigger.fired;
+            });
+    };
+
+    _this.setClickEvent = function(event, target, noOverride) {
+        if(noOverride && _this.clickEvent.target) return;
+
+        _this.clickEvent = Ntm.Helper.extend(event, {
+            target: target
+        });
+    };
+
+    _this.setClickTarget = function(target) {
+        _this.clickEvent = Ntm.Helper.extend(_this.clickEvent, {
+            target: target
+        });
+    };
+
+    _this.setCustomData = function(customData) {
+        _this.customData = customData;
+    };
+
+    _this.clearClickEvent = function() {
+        _this.clickEvent = {};
+    };
+
+    _this.clearCustomData = function() {
+        _this.customData = {};
+    };
+
+    _this.getBuiltinVariable = function(name) {
+        switch(name) {
+            case "url":
+                return window.location.href;
+
+            case "host":
+                return window.location.origin;
+
+            case "path":
+                return window.location.pathname;
+
+            case "referrer":
+                return _this.getReferer();
+
+            case "params":
+                return _this.getUrlParams();
+
+            case "paramDict":
+                return _this.getUrlParamsAsDict();
+
+            case "title":
+                return document.title;
+
+            case "clickElement":
+                return _this.getClickElement();
+
+            case "clickId":
+                return _this.getClickId();
+
+            case "clickClass":
+                return _this.getClickClass();
+
+            case "clickText":
+                return _this.getClickText();
+
+            case "clickTag":
+                return _this.getClickTag();
+
+            case "hash":
+                return window.location.hash;
+
+            case "activeTag":
+                return _this.activeTag;
+
+            case "activeTriggers":
+                return _this.getActiveTriggers();
+
+            case "customData":
+                return _this.customData;
+        }
+
+        return null;
+    };
+
+    _this.getReferer = function() {
+        var ref = self.document.referrer;
+        var parentHref = "";
+        var parentRef = "";
+
+        try {
+            parentHref = top.document.location.href;
+            parentRef = top.document.referrer;
+        } catch (e) {
+            return ref;
+        }
+
+        if(ref === parentHref) return parentRef;
+
+        return ref;
+    };
+
+    _this.getPlugin = function(name) {
+        return "Ntm.Plugin." + name;
+    };
+
+    _this.getUrlParams = function() {
+        return decodeURI(window.location.search.substr(1));
+    };
+
+    _this.getUrlParamsAsDict = function() {
+        var urlParams = _this.getUrlParams();
+        return urlParams ? JSON.parse('{"' + decodeURI(urlParams).replace(/&/g, '","').replace(/=/g, '":"') + '"}') : ''
+    };
+
+    _this.getCookie = function(key, decode) {
+        return Ntm.Cookie.get(key, decode);
+    };
+
+    _this.getClickElement = function() {
+        return _this.clickEvent.target;
+    };
+
+    _this.getClickId = function() {
+        if(_this.clickEvent.target) return _this.clickEvent.target.id || "";
+        return "";
+    };
+
+    _this.getClickClass = function() {
+        if(_this.clickEvent.target) return _this.clickEvent.target.className || "";
+        return "";
+    };
+
+    _this.getClickText = function() {
+        if(_this.clickEvent.target) return _this.clickEvent.target.innerText || "";
+        return "";
+    };
+
+    _this.getClickTag = function() {
+        if(_this.clickEvent.target) return _this.clickEvent.target.tagName || "";
+        return "";
+    };
+
+    _this.getElementValue = function(variable) {
+        var element;
+        var clickTarget = _this.clickEvent.target;
+
+        switch (variable.selector) {
+            case "CLICK":
+                element = clickTarget;
+                break;
+
+            case "ENTIRE":
+                element = document.querySelector(variable.value);
+                break;
+
+            case "DESCENDANT":
+                if(clickTarget) element = clickTarget.querySelector(variable.value);
+                break;
+
+            case "ASCENDANT":
+                if(clickTarget) {
+                    var tagName = variable.value.toUpperCase();
+                    var target = clickTarget.parentElement;
+                    var order = 0;
+
+                    while(target) {
+                        if(target.tagName.toUpperCase() === tagName) {
+                            order++;
+
+                            if(order == variable.order) {
+                                element = target;
+                                break;
+                            }
+                        }
+
+                        target = target.parentElement;
+                    }
+                }
+                break;
+        }
+
+        return element ? (variable.attribute ? element.getAttribute(variable.attribute) : element.innerText) : undefined;
+    };
+
+    _this.addOnParam = function(data) {
+        _this.addOnData.param = Ntm.Helper.extend(_this.addOnData.param, data);
+    };
+
+    _this.addOnCookie = function(data) {
+        _this.addOnData.cookie = Ntm.Helper.extend(_this.addOnData.cookie, data);
+    };
+
+    _this.getAddOnData = function() {
+        return _this.addOnData;
+    };
+
+    _this.clearAddOnData = function() {
+        _this.addOnData = {
+            param: {},
+            cookie: {}
+        };
+    };
+
+    return {
+        get: _this.getBuiltinVariable,
+        getPlugin: _this.getPlugin,
+        getCookie: _this.getCookie,
+        getElementValue: _this.getElementValue,
+        setActiveTag: _this.setActiveTag,
+        setClickEvent: _this.setClickEvent,
+        setClickTarget: _this.setClickTarget,
+        setCustomData: _this.setCustomData,
+        clearClickEvent: _this.clearClickEvent,
+        clearCustomData: _this.clearCustomData,
+        addOnParam: _this.addOnParam,
+        addOnCookie: _this.addOnCookie,
+        getAddOnData: _this.getAddOnData,
+        clearAddOnData: _this.clearAddOnData
+    }
+}();
+
+Ntm.Helper = function() {
+    var _this = {};
+
+    _this.stringify = function(obj) {
+        return obj.toJSON ? obj.toJSON() : JSON.stringify(obj);
+    };
+
+    _this.find = function (values, key, match) {
+        for (var index = 0; index < values.length; index++) {
+            var value = values[index];
+            if (value[key] === match) {
+                return value;
+            }
+        }
+
+        return undefined;
+    };
+
+    _this.getVariableById = function (id) {
+        return _this.find(Ntm.Settings.variables, "id", id);
+    };
+
+    _this.getVariableByName = function(name) {
+        return _this.find(Ntm.Settings.variables, "name", name);
+    };
+
+    _this.copy = function(obj) {
+        if(obj === null || typeof obj !== 'object') return obj;
+
+        const cloned = Array.isArray(obj) ? [] : {};
+
+        for(var key in obj) {
+            if(Object.prototype.hasOwnProperty.call(obj, key)) {
+                cloned[key] = _this.copy(obj[key]);
+            }
+        }
+
+        return cloned;
+    };
+
+    _this.extend = function() {
+        var extended = {};
+
+        for(var index = 0; index < arguments.length; index++) {
+            var source = arguments[index];
+
+            for(var prop in source) {
+                if(Object.prototype.hasOwnProperty.call(source, prop))
+                    extended[prop] = source[prop];
+            }
+        }
+
+        return extended;
+    };
+
+    _this.length = function(obj) {
+        var count = 0;
+
+        for(key in obj) {
+            count++;
+        }
+
+        return count;
+    };
+
+    _this.replaceAll = function(text, find, replace) {
+        return text ? text.split(find).join(replace) : text;
+    };
+
+    _this.isValidSettings = function() {
+        return Ntm.Settings.hasOwnProperty("tags") &&
+            Ntm.Settings.hasOwnProperty("triggers") &&
+            Ntm.Settings.hasOwnProperty("variables");
+    };
+
+    return {
+        stringify: _this.stringify,
+        extend: _this.extend,
+        copy: _this.copy,
+        length: _this.length,
+        find: _this.find,
+        replaceAll: _this.replaceAll,
+        getVariableById: _this.getVariableById,
+        getVariableByName: _this.getVariableByName,
+        isValidSettings: _this.isValidSettings
+    }
+}();
+
+Ntm.Evaluator = function() {
+    var _this = {};
+
+    _this.forbiddenChars = "";
+
+    _this.evaluate = function(variable) {
+        switch(variable.type) {
+            case "BUILTIN":
+                return Ntm.Variable.get(variable.name);
+
+            case "PLUGIN":
+                return Ntm.Variable.getPlugin(variable.name);
+
+            case "STRING":
+            case "NUMBER":
+                return variable.value;
+
+            case "COOKIE":
+                return Ntm.Variable.getCookie(variable.key);
+
+            case "ELEMENT":
+                return Ntm.Variable.getElementValue(variable);
+
+            case "SCRIPT": {
+                var result = _this.runScript(_this.evaluateNested(variable.code));
+                if(variable.approval && _this.forbiddenChars) {
+                    result = result.replace(new RegExp(_this.forbiddenChars, "g"), "");
+                }
+                return result;
+            }
+
+            case "VARIABLE":
+                return _this.runScript('function(){return ' + variable.value + '}');
+        }
+
+        return null;
+    };
+
+    _this.evaluateNested = function(script) {
+        var variables = _this.gatherAllVariables(script);
+
+        if(Ntm.Helper.length(variables) > 0) {
+            script = _this.replaceVariables(script, variables);
+        }
+
+        return script;
+    };
+
+    _this.gatherAllVariables = function(script) {
+        var regex = /{{([^{}]+)}}/g;
+        var variables = {};
+
+        while(true) {
+            var match = regex.exec(script);
+            if(!match) break;
+
+            var expression = match[0];
+            if(variables[expression]) continue;
+            var name = match[1];
+
+            variables[expression] = Ntm.Helper.getVariableByName(name) ? name : "";
+        }
+
+        return variables;
+    };
+
+    _this.replaceVariables = function(script, variables) {
+        for(var key in variables) {
+            var name = variables[key];
+            var expression = name ? ("Ntm.Evaluator.evaluate(Ntm.Helper.getVariableByName('" + name + "'))") : "undefined";
+            var variable = Ntm.Helper.getVariableByName(name);
+
+            if(variable && variable.type == "PLUGIN") expression = Ntm.Evaluator.evaluate(variable);
+            script = Ntm.Helper.replaceAll(script, key, expression);
+        }
+
+        return script;
+    };
+
+    _this.runScript = function(script) {
+        try {
+            return eval("(" + script + ")()");
+        }
+        catch(e) {
+            Ntm.Console.log(e, script);
+        }
+    };
+
+    return {
+        evaluate: _this.evaluate,
+        parse: _this.gatherAllVariables
+    }
+}();
+
+Ntm.Matcher = function() {
+    var _this = {};
+
+    _this.matchAll = function(conditions) {
+        return !conditions.some(function(condition) {
+            var variable = Ntm.Helper.getVariableById(condition.variable);
+            var operand1 = Ntm.Evaluator.evaluate(variable);
+            var operand2 = condition.value;
+
+            return !_this.match(condition.operator, operand1, operand2);
+        });
+    };
+
+    _this.match = function(operator, operand1, operand2) {
+        switch (operator) {
+            case "EQUALS":
+                return equals(operand1, operand2);
+
+            case "NOTEQUALS":
+                return !equals(operand1, operand2);
+
+            case "CONTAINS":
+                return contains(operand1, operand2);
+
+            case "NOTCONTAINS":
+                return !contains(operand1, operand2);
+
+            case "STARTSWITH":
+                return startsWith(operand1, operand2);
+
+            case "NOTSTARTSWITH":
+                return !startsWith(operand1, operand2);
+
+            case "ENDSWITH":
+                return endsWith(operand1, operand2);
+
+            case "NOTENDSWITH":
+                return !endsWith(operand1, operand2);
+
+            case "MATCHES":
+                return match(operand1, operand2);
+
+            case "NOTMATCHES":
+                return !match(operand1, operand2);
+
+            case "LESSTHAN":
+                return lessThan(operand1, operand2);
+
+            case "LESSTHANOREQUALS":
+                return lessThan(operand1, operand2) || equals(operand1, operand2);
+
+            case "GREATERTHAN":
+                return greaterThan(operand1, operand2);
+
+            case "GREATERTHANOREQUALS":
+                return greaterThan(operand1, operand2) || equals(operand1, operand2);
+
+            case "VALID":
+                return !isInvalid(operand1);
+
+            case "INVALID":
+                return isInvalid(operand1);
+
+            default:
+                return false;
+        }
+
+        function equals(operand1, operand2) {
+            switch(typeof operand1) {
+                case "number":
+                    return isNumber(operand2) && operand1 === Number(operand2);
+
+                case "string":
+                    return isString(operand2) && operand1.toUpperCase() === operand2.toUpperCase();
+
+                case "boolean":
+                    return isBoolean(operand2) && operand1 === toBoolean(operand2);
+            }
+
+            return false;
+        }
+
+        function contains(operand1, operand2) {
+            return isString(operand1) && isString(operand2) &&
+                operand1.toUpperCase().indexOf(operand2.toUpperCase()) >= 0;
+        }
+
+        function startsWith(operand1, operand2) {
+            return isString(operand1) && isString(operand2) &&
+                operand1.toUpperCase().indexOf(operand2.toUpperCase()) == 0;
+        }
+
+        function endsWith(operand1, operand2) {
+            return isString(operand1) && isString(operand2) &&
+                operand1.toUpperCase().lastIndexOf(operand2.toUpperCase()) == operand1.length - operand2.length;
+        }
+
+        function match(operand1, operand2) {
+            if(isNumber(operand1)) operand1 = operand1 + "";
+            return isString(operand1) && isString(operand2) && operand1.match(operand2);
+        }
+
+        function lessThan(operand1, operand2) {
+            return isNumber(operand1) && isNumber(operand2) && Number(operand1) < Number(operand2);
+        }
+
+        function greaterThan(operand1, operand2) {
+            return isNumber(operand1) && isNumber(operand2) && Number(operand1) > Number(operand2);
+        }
+
+        function isNumber(operand) {
+            return !isNaN(Number(operand));
+        }
+
+        function isString(operand) {
+            return typeof operand === "string";
+        }
+
+        function isBoolean(operand) {
+            return operand === "true" || operand === "false";
+        }
+
+        function toBoolean(operand) {
+            return operand === "true";
+        }
+
+        function isInvalid(operand) {
+            return operand === undefined || operand === null || operand.trim() === "";
+        }
+    };
+
+    return {
+        matchAll: _this.matchAll
+    }
+}();
+
+Ntm.Tag = function() {
+    var _this = {};
+
+    _this.isExecutable = function(tag) {
+        var triggersFired;
+
+        if (tag.operator === "OR") {
+            triggersFired = tag.triggers.some(function (id) {
+                return Ntm.Trigger.getById(id).fired;
+            });
+        } else {
+            triggersFired = tag.triggers.every(function (id) {
+                return Ntm.Trigger.getById(id).fired;
+            });
+        }
+
+        var allExceptionsNotFired = tag.exceptions.every(function(id) {
+            return !Ntm.Trigger.getById(id).fired;
+        });
+
+        return triggersFired && allExceptionsNotFired;
+    };
+
+    _this.run = function(tag) {
+        if(!tag.enabled || !_this.isExecutable(tag)) return;
+
+        switch(tag.type) {
+            case "PLUGIN":
+                _this.runPlugin(tag);
+                break;
+
+            case "SCRIPT":
+                Ntm.Variable.setActiveTag(tag);
+                Ntm.Evaluator.evaluate({
+                    type: "SCRIPT",
+                    code: tag.code
+                });
+                Ntm.Variable.clearAddOnData();
+                break;
+        }
+    };
+
+    _this.runPlugin = function(t) {
+        var tag = Ntm.Helper.copy(t);
+        var addOnData = Ntm.Variable.getAddOnData();
+        var parameters = variable(Ntm.Helper.extend(tag.parameters, addOnData.param));
+        var cookies = variable(Ntm.Helper.extend(tag.cookies, addOnData.cookie));
+
+        tag.type = "SCRIPT";
+        tag.code = "function() { {{" + tag.pluginType + "}}.";
+
+        switch(tag.logType) {
+            case "EVENT":
+                tag.code += "event(" + parameters + "," + cookies + ");";
+                break;
+
+            case "USER":
+                tag.code += "user(" + parameters + ");";
+                break;
+
+            case "ORDER":
+                tag.code += "order(" + parameters + ");";
+                break;
+
+            case "CANCEL":
+                tag.code += "cancel(" + parameters + ");";
+                break;
+
+            case "CANCELALL":
+                tag.code += "cancelAll(" + parameters + ");";
+                break;
+
+            case "CUSTOM":
+                tag.code += "log('" + evaluate(tag.path) + "'," + parameters + "," + cookies + ");";
+                break;
+        }
+
+        tag.code += "}";
+
+        _this.run(tag);
+
+        function variable(obj) {
+            var result = '{';
+
+            for(key in obj) {
+                var v = Ntm.Helper.getVariableById(obj[key]);
+                result += result.length > 1 ? ',' : '';
+                result += '"' + key + '":';
+                result += v ? ('{{' + v.name + '}}') : Ntm.Helper.stringify(obj[key]);
+            }
+
+            result += '}';
+
+            return result;
+        }
+
+        function evaluate(script) {
+            var variables = Ntm.Evaluator.parse(script);
+
+            for(var key in variables) {
+                var variable = Ntm.Helper.getVariableByName(variables[key]);
+
+                if(variable) {
+                    var expression = Ntm.Evaluator.evaluate(variable);
+                    script = Ntm.Helper.replaceAll(script, key, expression);
+                }
+            }
+
+            return script;
+        }
+    };
+
+    _this.runAll = function() {
+        Ntm.Settings.tags.forEach(function(tag) {
+            _this.run(tag);
+        });
+    };
+
+    _this.hasTriggerByType = function(tag, event) {
+        return tag.triggers.some(function(id) {
+            return Ntm.Trigger.getById(id).event === event;
+        });
+    };
+
+    _this.hasTriggerByField = function(tag, key, value) {
+        return tag.triggers.some(function(id) {
+            var trigger = Ntm.Trigger.getById(id);
+            return trigger[key] == value;
+        });
+    };
+
+    _this.getAllTriggerIds = function(tag) {
+        var result = tag.exceptions ? tag.exceptions : [];
+        return result.concat(tag.triggers);
+    };
+
+    return {
+        run: _this.run,
+        runAll: _this.runAll,
+        hasTriggerByType: _this.hasTriggerByType,
+        hasTriggerByField: _this.hasTriggerByField,
+        getAllTriggerIds: _this.getAllTriggerIds
+    }
+}();
+
+Ntm.Trigger = function() {
+    var _this = {};
+
+    _this.settings = Ntm.Settings;
+
+    _this.init = function(event) {
+        _this.settings.triggers.forEach(function(trigger) {
+            if(event && event !== trigger.event) return;
+            trigger.fired = false;
+        });
+    };
+
+    _this.getById = function(id) {
+        return Ntm.Helper.find(_this.settings.triggers, "id", id);
+    };
+
+    _this.listByEvent = function(event) {
+        var result = [];
+
+        _this.settings.triggers.forEach(function(trigger) {
+            if(trigger.event === event) result.push(trigger);
+        });
+
+        return result;
+    };
+
+    return {
+        init: _this.init,
+        getById: _this.getById,
+        listByEvent: _this.listByEvent
+    }
+}();
+
+Ntm.Event = function() {
+    var _this = {};
+
+    _this.NTM_READY = "NTMREADY";
+    _this.PAGE_LOADED = "PAGELOADED";
+    _this.WINDOW_LOADED = "WINDOWLOADED";
+    _this.DOM_READY = "DOMREADY";
+    _this.ELEMENT_CLICKED = "ELEMENTCLICKED";
+    _this.CLICKED = "CLICKED";
+    _this.URL_CHANGED = "URLCHANGED";
+    _this.HASH_CHANGED = "HASHCHANGED";
+    _this.CUSTOM = "CUSTOM";
+
+    _this.CUSTOM_HANDLING_DELAY = 100;
+    _this.clickHandlingDelay = 0;
+
+    _this.eventBindings = [];
+    _this.rebindTimer = null;
+    _this.timoutId = null;
+
+    _this.init = function() {
+        _this.register();
+
+        if(document.readyState === 'interactive' || document.readyState === 'complete') _this.onDomReady();
+        else {
+            document.addEventListener("DOMContentLoaded", function() {
+                _this.onDomReady();
+            });
+        }
+
+        window.addEventListener("load", function() {
+            _this.onWindowLoaded();
+        });
+
+        window.addEventListener("unload", function() {
+            _this.onWindowUnloaded();
+        });
+
+        window.addEventListener("hashchange", function(event) {
+            _this.onHashChanged(event);
+        });
+
+        window.addEventListener("pushstate", function(event) {
+            _this.onUrlChanged(event);
+        });
+
+        window.addEventListener("popstate", function(event) {
+            _this.onUrlChanged(event);
+        });
+    };
+
+    _this.register = function() {
+        window.history.pushState = overrideHistoryState(window.history.pushState);
+        window.history.replaceState = overrideHistoryState(window.history.replaceState);
+
+        function overrideHistoryState(func) {
+            var _func = func;
+
+            return function(state, title, url) {
+                var result = _func.apply(history, arguments);
+                var event = new CustomEvent("pushstate", {
+                    detail: {
+                        state: state,
+                        title: title,
+                        url: url
+                    }
+                });
+
+                window.dispatchEvent(event);
+                return result;
+            };
+        }
+    };
+
+    _this.registerObserver = function() {
+        var interval = 0;
+        
+        if(interval <= 0 && window.MutationObserver) {
+            var observer = new MutationObserver(function(mutations) {
+                clearTimeout(_this.rebindTimer);
+                _this.rebindTimer = setTimeout(_this.rebind, 100);
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+        else setInterval(_this.rebind, interval > 0 ? interval : 1000);
+    };
+
+    _this.bind = function() {
+        document.addEventListener("click", function(event) {
+            _this.handleForClick(event, event.target);
+        });
+    };
+
+    _this.rebind = function() {
+        _this.eventBindings.forEach(function(binding) {
+            binding.handler(null, binding.target);
+        });
+
+        _this.eventBindings = [];
+
+        var triggers = Ntm.Trigger.listByEvent(_this.ELEMENT_CLICKED);
+
+        triggers.forEach(function(trigger) {
+            var elements = _this.querySelectorAll(trigger.selector);
+
+            for (var i = 0; i < elements.length; i++) {
+                var handler = function(event, target) {
+                    if(target) target.removeEventListener("click", arguments.callee);
+                    else _this.handleForElementClick(event, event.currentTarget, trigger);
+                };
+
+                elements[i].addEventListener("click", handler);
+
+                _this.eventBindings.push({
+                    "target": elements[i],
+                    "handler": handler
+                });
+            }
+        });
+
+        //Ntm.Console.log("rebinded: " + _this.eventBindings.length);
+    };
+
+    _this.querySelectorAll = function(selector) {
+        var elements = [];
+
+
+        _this.querySelectorAllAsArray(document, selector).forEach(function(element) {
+            elements.push(element);
+        });
+
+        _this.querySelectorAllAsArray(document, "iframe").forEach(function(iframe) {
+            try {
+                _this.querySelectorAllAsArray(iframe.contentWindow.document, selector).forEach(function (element) {
+                    elements.push(element);
+                });
+            }
+            catch(e) {
+                Ntm.Console.log("cannot bind events because of CORS problems");
+            }
+        });
+
+        return elements;
+    };
+
+    _this.querySelectorAllAsArray = function(documentBase, selector) {
+        var elements = documentBase.querySelectorAll(selector);
+        if(elements.forEach === undefined) elements = Array.prototype.slice.call(elements);
+        return elements ? elements : [];
+    };
+
+    _this.onNtmReady = function() {
+        Ntm.Console.log('%c EVENT >> NTMREADY ', 'background:#2196F3;color:white');
+        window.dispatchEvent(new Event(_this.NTM_READY));
+    };
+
+    _this.onPageLoaded = function() {
+        Ntm.Console.log('%c EVENT >> PAGELOADED ', 'background:#2196F3;color:white');
+        _this.handle(_this.PAGE_LOADED);
+    };
+
+    _this.onDomReady = function() {
+        Ntm.Console.log('%c EVENT >> DOMREADY ', 'background:#2196F3;color:white');
+        _this.registerObserver();
+        _this.bind();
+        _this.rebind();
+        _this.handle(_this.DOM_READY);
+    };
+
+    _this.onWindowLoaded = function() {
+        Ntm.Console.log('%c EVENT >> WINDOWLOADED ', 'background:#2196F3;color:white');
+        _this.handle(_this.WINDOW_LOADED);
+    };
+
+    _this.onWindowUnloaded = function() {
+        Ntm.Console.log('%c EVENT >> WINDOWUNLOADED ', 'background:#2196F3;color:white');
+        Ntm.Event.windowUnloaded = true;
+    };
+
+    _this.onUrlChanged = function() {
+        Ntm.Console.log('%c EVENT >> URLCHANGED ', 'background:#2196F3;color:white');
+        _this.handle(_this.URL_CHANGED);
+    };
+
+    _this.onHashChanged = function() {
+        Ntm.Console.log('%c EVENT >> HASHCHANGED ', 'background:#2196F3;color:white');
+        _this.handle(_this.HASH_CHANGED);
+    };
+
+    _this.handle = function(eventType, trigger) {
+        var triggers = trigger ? [trigger] : Ntm.Trigger.listByEvent(eventType);
+
+        triggers.forEach(function(trigger) {
+            if(Ntm.Matcher.matchAll(trigger.conditions)) trigger.fired = true;
+        });
+
+        if(!trigger) {
+            Ntm.Settings.tags.forEach(function(tag) {
+                if(!Ntm.Tag.hasTriggerByType(tag, eventType)) return;
+                Ntm.Tag.run(tag);
+            });
+        }
+    };
+
+    _this.handleForElementClick = function(event, target, trigger) {
+        Ntm.Console.log('%c EVENT >> %s ', 'background:#2196F3;color:white', _this.ELEMENT_CLICKED, event.clientX, event.clientY, target);
+
+        Ntm.Variable.setClickEvent(event, target);
+        _this.handle(_this.ELEMENT_CLICKED, trigger);
+
+        if(_this.clickHandlingDelay > 0) _this.timoutId = setTimeout(_this.runForClick, _this.clickHandlingDelay);
+        else _this.runForClick();
+    };
+
+    _this.handleForClick = function(event, target) {
+        Ntm.Console.log('%c EVENT >> %s ', 'background:#2196F3;color:white', _this.CLICKED, event.clientX, event.clientY, target);
+
+        Ntm.Variable.setClickEvent(event, target, true);
+
+        Ntm.Settings.tags.forEach(function(tag) {
+            Ntm.Tag.getAllTriggerIds(tag).forEach(function(triggerId) {
+                var trigger = Ntm.Trigger.getById(triggerId);
+
+                if(!trigger.event || trigger.event !== _this.CLICKED) return;
+                if(_this.match(trigger.target) && Ntm.Matcher.matchAll(trigger.conditions)) trigger.fired = true;
+            });
+        });
+
+        _this.runForClick();
+    };
+
+    _this.runForClick = function() {
+        if(_this.timoutId) {
+            clearTimeout(_this.timoutId);
+            _this.timoutId = null;
+        }
+
+        Ntm.Settings.tags.forEach(function(tag) {
+            if(!Ntm.Tag.hasTriggerByType(tag, _this.CLICKED) && !Ntm.Tag.hasTriggerByType(tag, _this.ELEMENT_CLICKED)) return;
+            Ntm.Tag.run(tag);
+        });
+
+        Ntm.Trigger.init(_this.CLICKED);
+        Ntm.Trigger.init(_this.ELEMENT_CLICKED);
+        Ntm.Variable.clearClickEvent();
+    };
+
+    _this.handleForUserDefined = function(name, data) {
+        Ntm.Console.log('%c EVENT >> CUSTOM : ', 'background:#2196F3;color:white', name, data);
+
+        Ntm.Trigger.init(_this.CUSTOM);
+        Ntm.Variable.setCustomData(data);
+
+        Ntm.Trigger.listByEvent(_this.CUSTOM).forEach(function(trigger) {
+            if(trigger.eventName === name && Ntm.Matcher.matchAll(trigger.conditions)) trigger.fired = true;
+        });
+
+        Ntm.Settings.tags.forEach(function(tag) {
+            if(!Ntm.Tag.hasTriggerByField(tag, "eventName", name)) return;
+            Ntm.Tag.run(tag);
+        });
+
+        Ntm.Variable.clearCustomData();
+    };
+
+    _this.match = function(tagName) {
+        if(tagName) {
+            var target = Ntm.Variable.get("clickElement");
+
+            while(target) {
+                if(target.tagName.toUpperCase() === tagName.toUpperCase()) {
+                    Ntm.Variable.setClickTarget(target);
+                    return true;
+                }
+
+                target = target.parentElement;
+            }
+
+            return false;
+        }
+
+        return true;
+    };
+
+    return {
+        init: _this.init,
+        fireNtmReady: _this.onNtmReady,
+        firePageLoaded: _this.onPageLoaded,
+        fireClicked: function(event) {
+            _this.handleForClick(event, event.target);
+        },
+        fireUserDefined: function(name, data) {
+            setTimeout(function() {
+                _this.handleForUserDefined(name, data);
+            }, _this.CUSTOM_HANDLING_DELAY);
+        }
+    }
+}();
+
+Ntm.Preview = function() {
+    var _this = {
+        previewMode: false,
+        containerId: ""
+    };
+
+    _this.init = function(preview, id) {
+        if(!preview) Ntm.Cookie.remove(id);
+
+        _this.previewMode = preview;
+        _this.containerId = id;
+
+        if(!preview) return;
+
+        _this.showPreviewBanner();
+    };
+
+    _this.showPreviewBanner = function() {
+        var frame = _this.makeFrame();
+
+        var lastNode = document.body && document.body.lastChild || document.body || document.head;
+        lastNode.parentNode.insertBefore(frame, lastNode);
+
+        var frameDocument = frame.document;
+        if (frame.contentDocument) frameDocument = frame.contentDocument;
+        else if (frame.contentWindow) frameDocument = frame.contentWindow.document;
+
+        if(frameDocument) {
+            var html =
+                '<p style="float:left; padding-left:20px; font-size:15px; font-weight: bold; margin-top:12px">미리보기 모드</p>' +
+                '<p style="float:right; padding-right:20px; font-size:12px; margin-top:15px">최근 수정: ' + Ntm.Settings.lastModified + '</p>';
+
+            frameDocument.open();
+            frameDocument.writeln(html);
+            frameDocument.close();
+        }
+
+        Ntm.Console.log('%c PREVIEW MODE ', 'background:#F44336;color:white');
+    };
+
+    _this.isPreviewMode = function() {
+        return _this.previewMode;
+    };
+
+    _this.getContainerId = function() {
+        return _this.containerId;
+    };
+
+    _this.makeFrame = function() {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'about:blank';
+        iframe.style.position = 'fixed';
+        iframe.style.width = '100%';
+        iframe.style.height = '60px';
+        iframe.style.bottom = '0';
+        iframe.style.borderTop = '1px solid #eee';
+        iframe.style.borderRight = '0';
+        iframe.style.borderLeft = '0';
+        iframe.style.borderBottom = '0';
+        iframe.style.margin = '0';
+        iframe.style.padding = '0';
+        iframe.style.visibility = 'visible';
+        iframe.style.backgroundColor = '#fffacc';
+        iframe.style.visible = '1';
+        iframe.style.zIndex = '2147483647';
+        return iframe;
+    };
+
+    return {
+        init: _this.init,
+        isPreviewMode: _this.isPreviewMode,
+        getContainerId: _this.getContainerId
+    }
+}();
+
+Ntm.Plugin = {};
+
+Ntm.Plugin.nlogger = (function() {
+    var _this = {};
+
+    _this.serviceId = "wc.kbl.or.kr";
+    _this.baseUrlHttp = "http://log.kbl.or.kr/nlog";
+    _this.baseUrlHttps = "https://log.kbl.or.kr/nlog";
+    _this.previewServiceId = "wcpreview";
+    _this.previewCotainerKey = "nth_cid";
+    _this.previewTimeKey = "nth_time";
+    _this.cookieKeys = [ {
+  "cookie" : "PCID",
+  "logging" : "nth_pcid",
+  "removable" : false,
+  "required" : true,
+  "always" : false,
+  "builtin" : false
+}, {
+  "cookie" : "UID",
+  "logging" : "nth_uid",
+  "removable" : false,
+  "required" : false,
+  "always" : false,
+  "builtin" : false
+}, {
+  "cookie" : null,
+  "logging" : "nth_sdk",
+  "removable" : false,
+  "required" : true,
+  "always" : false,
+  "builtin" : true
+}, {
+  "cookie" : null,
+  "logging" : "nth_locale_lang",
+  "removable" : false,
+  "required" : true,
+  "always" : false,
+  "builtin" : true
+}, {
+  "cookie" : null,
+  "logging" : "nth_locale_country",
+  "removable" : false,
+  "required" : true,
+  "always" : false,
+  "builtin" : true
+}, {
+  "cookie" : null,
+  "logging" : "nth_resolution",
+  "removable" : false,
+  "required" : true,
+  "always" : false,
+  "builtin" : true
+}, {
+  "cookie" : null,
+  "logging" : "nth_screen_id",
+  "removable" : false,
+  "required" : false,
+  "always" : false,
+  "builtin" : true
+}, {
+  "cookie" : null,
+  "logging" : "nth_screen_title",
+  "removable" : false,
+  "required" : false,
+  "always" : false,
+  "builtin" : true
+} ];
+    _this.cookieDomain = "kbl.or.kr";
+
+    _this.loggingByXhr = true;
+    _this.withCredentials = false;
+    _this.requestMethod = "get";
+    _this.requestTimeout = 1000;
+    _this.requestDelay = 20;
+    _this.requestQueueSize = 10;
+    _this.requestRetry = true;
+    _this.sessionStorageKey = "__nlogger__";
+
+    _this.log = function(path, params, cookies, options, serviceId) {
+        _this.send(_this.makeUrl("/log/event", path, params, cookies, serviceId), options);
+    };
+
+    _this.event = function(params, cookies, serviceId) {
+        _this.send(_this.makeUrl("/log/event", null, params, cookies, serviceId));
+    };
+
+    _this.user = function(params) {
+        _this.send(_this.makeUrl("/user", null, params));
+    };
+
+    _this.order = function(params) {
+        _this.send(_this.makeUrl("/order/request", null, params));
+    };
+
+    _this.cancel = function(params) {
+        _this.send(_this.makeUrl("/order/cancel", null, params));
+    };
+
+    _this.cancelAll = function(params) {
+        _this.send(_this.makeUrl("/order/cancel-all", null, params));
+    };
+
+    _this.send = function(url, options) {
+        
+        if(_this.loggingByXhr) _this.sendByXhr(url);
+        else {
+            options = _this.extend({
+                async: true,
+                onSuccess: null,
+                onError: null,
+                callBackTimeOutAsMillis: 400
+            }, options);
+
+            _this.sendByTag(url, options);
+        }
+    };
+
+    _this.makeUrl = function(action, path, params, cookies, serviceId) {
+        var preview = Ntm.Preview.isPreviewMode();
+        var baseUrl = window.location.protocol === "https:" ? _this.baseUrlHttps : _this.baseUrlHttp;
+        var query = _this.toQueryString(params, true);
+        var url = window.location.protocol + "//" + _this.getDomainWithPort();
+        var hash;
+
+        if(path) url += "/" + path;
+        else {
+            url += window.location.pathname + window.location.search;
+
+            if(window.location.hash) {
+                if(!window.location.search || window.location.hash.indexOf("?") >=0) url = window.location.href;
+                else hash = window.location.hash;
+            }
+        }
+
+        if(query) {
+            url += url.indexOf("?") < 0 ? "?" : "&";
+            url += query;
+        }
+
+        if(hash) url += hash;
+
+        cookies = _this.extend(cookies, _this.getCookies());
+
+        addCookie('nth_sdk', 'WEB');
+        addCookie('nth_locale_lang', _this.getLocaleLanguage());
+        addCookie('nth_locale_country', _this.getLocaleCountry());
+        addCookie('nth_resolution', _this.getResolution());
+        addCookie('nth_screen_id', document.location.pathname);
+        addCookie('nth_screen_title', document.title);
+
+        
+
+        if(preview) {
+            addCookie(_this.previewCotainerKey, Ntm.Preview.getContainerId());
+            addCookie(_this.previewTimeKey, new Date().getTime());
+        }
+
+        params = {
+            s: preview ? _this.previewServiceId : (serviceId ? serviceId : _this.serviceId),
+            u: url,
+            r: _this.getReferer(),
+            a: navigator.userAgent.replace(/\"/gi, ""),
+            c: _this.toCookieString(cookies, true),
+            v: _this.cacheBuster()
+        };
+
+        return baseUrl + action + "?" + _this.toQueryString(params, true);
+
+        function addCookie(key, value) {
+            if(!isReserved(key) && !isRequired(key)) return;
+
+            var cookie = {};
+            cookie[key] = value;
+
+            cookies = _this.extend(cookie, cookies);
+        }
+
+        function isReserved(loggingKey) {
+            return loggingKey === _this.previewCotainerKey || loggingKey === _this.previewTimeKey;
+        }
+
+        function isRequired(loggingKey) {
+            for (var index = 0; index < _this.cookieKeys.length; index++) {
+                var cookieKey = _this.cookieKeys[index];
+                if (cookieKey.logging === loggingKey) return cookieKey.required;
+            }
+
+            return false;
+        }
+    };
+
+    _this.getReferer = function() {
+        var ref = self.document.referrer;
+        var parentHref = "";
+        var parentRef = "";
+
+        try {
+            parentHref = top.document.location.href;
+            parentRef = top.document.referrer;
+        } catch (e) {
+            return ref;
+        }
+
+        if(ref === parentHref) return parentRef;
+
+        return ref;
+    };
+
+    _this.getDomainWithPort = function() {
+        var port = location.port;
+        if (port === undefined || port === "" || port === "0" || port === 0) return document.domain;
+        return document.domain + ":" + port;
+    };
+
+    _this.getDomain = function() {
+        var domain = document.domain;
+        if(_this.isIpType(domain)) return domain;
+
+        var tokens = domain.split('.');
+        var length = tokens.length;
+        if(length !== 4 && length !== 3) return domain;
+
+        var dm = tokens[length - 2] + '.' + tokens[length - 1];
+        return tokens[length - 1].length === 2 ? tokens[length - 3] + '.' + dm : dm;
+    };
+
+    _this.isIpType = function(domain) {
+        var ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        return ipRegex.test(domain);
+    };
+
+    _this.getResolution = function() {
+        var screenSize = "";
+        var screen = window.screen;
+
+        if(screen != null && typeof screen === "object") {
+            screenSize = screen.width + "x" + screen.height;
+        }
+
+        return screenSize;
+    };
+
+    _this.getLocaleLanguage = function() {
+        var tokens = _this.getLanguage().split("-");
+        return tokens.length > 0 ? tokens[0] : "";
+    };
+
+    _this.getLocaleCountry = function() {
+        var tokens = _this.getLanguage().split("-");
+        return tokens.length > 1 ? tokens[1] : "";
+    };
+
+    _this.getLanguage = function() {
+        var language = "-";
+        var navigator = window.navigator;
+
+        if(navigator.language) language = navigator.language.toLowerCase();
+        else if(navigator.userLanguage) language = navigator.userLanguage.toLowerCase();
+
+        return language;
+    };
+
+    _this.getCookies = function() {
+        var result = {};
+
+        for(var index = 0; index < _this.cookieKeys.length; index++) {
+            var keyPair = _this.cookieKeys[index];
+
+            if(keyPair.builtin) continue;
+
+            var value = _this.getCookie(keyPair.cookie);
+
+            if(!value) {
+                if(!keyPair.required) continue;
+                value = _this.generateUuid();
+                setUuid(keyPair.cookie, value);
+                if(!keyPair.always) continue;
+            }
+
+            result[keyPair.logging] = value;
+        }
+
+        return result;
+
+        function setUuid(key, value) {
+            var date = new Date();
+            var options = {
+                path: "/",
+                expires: date
+            };
+
+            if(!_this.cookieDomain) options.domain = _this.getDomain();
+            else if(_this.cookieDomain !== "default") options.domain = _this.cookieDomain;
+
+            date.setFullYear(date.getFullYear() + 10);
+            _this.setCookie(key, value, options);
+        }
+    };
+
+    _this.getCookie = function(key) {
+        var result = new RegExp('(?:^|; )' + key + '=([^;]*)').exec(document.cookie);
+        return (result != null) ? decodeURIComponent(result[1]) : null;
+    };
+
+    _this.setCookie = function(key, value, options) {
+        if(!options) options = {};
+
+        var expires = options.expires;
+        var path = options.path;
+        var domain = options.domain;
+
+        document.cookie = key + '=' + encodeURIComponent(value) + ';' +
+            (expires ? 'expires=' + expires.toUTCString() + ';' : '') +
+            (path ? 'path=' + path + ';' : '') +
+            (domain ? 'domain=' + domain : '');
+    };
+
+    _this.deleteCookie = function(key) {
+        document.cookie = key + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
+    };
+
+    _this.generateUuid = function() {
+        var result = "";
+
+        if(typeof window.crypto != 'undefined' && typeof window.crypto.getRandomValues != 'undefined') {
+            var buf = new Uint16Array(8);
+            window.crypto.getRandomValues(buf);
+            var S4 = function (num) {
+                var ret = num.toString(16);
+                while (ret.length < 4) {
+                    ret = "0" + ret;
+                }
+                return ret;
+            };
+
+            result = (S4(buf[0]) + S4(buf[1]) + "-" + S4(buf[2]) + "-"
+            + S4(buf[3]) + "-" + S4(buf[4]) + "-" + S4(buf[5])
+            + S4(buf[6]) + S4(buf[7]));
+        }
+        else {
+            result = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+                function (c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r
+                        : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+        }
+
+        return result + '-' + new Date().getTime();
+    };
+
+    _this.sendByTag = function(url, options) {
+        var element = _this.createScriptElement(url, options);
+        _this.appendElement(element);
+        _this.removeElement(element);
+    };
+
+    _this.sendByXhr = function(url) {
+        try {
+            _this.addRequest(url);
+            _this.sendAllRequests();
+        } catch(e) {
+            console.log("send error", e);
+        }
+    };
+
+    _this.createScriptElement = function(src, options) {
+        var element = document.createElement('script');
+        element.type = 'text/javascript';
+        element.src = src;
+        element.async = options.async;
+        element.charset = 'UTF-8';
+
+        if(options.onSuccess) {
+            if(typeof element.onreadystatechange !== 'undefined') {
+                element.onreadystatechange = function() {
+                    if(this.readyState === 'complete' || this.readyState === 'loaded')
+                        setTimeout(options.onSuccess, options.callBackTimeOutAsMillis);
+                };
+            }
+            else {
+                element.onload = function() {
+                    setTimeout(options.onSuccess, options.callBackTimeOutAsMillis);
+                };
+            }
+        }
+
+        if(options.onError) {
+            element.onerror = function() {
+                setTimeout(options.onError, options.callBackTimeOutAsMillis);
+            };
+        }
+
+        return element;
+    };
+
+    _this.appendElement = function(element) {
+        var ssc = document.getElementsByTagName('script')[0];
+        ssc.parentNode.insertBefore(element, ssc);
+    };
+
+    _this.removeElement = function(element) {
+        if(typeof element.remove === 'function') element.remove();
+        else element.parentNode.removeChild(element);   // For IE
+    };
+
+    _this.sendAllRequests = function() {
+        setTimeout(function() {
+            if(Ntm.Event.windowUnloaded) return;
+
+            var requests = _this.getRequests();
+
+            for(var i = 0; i < requests.length; i++) {
+                _this.sendRequest(requests[i]);
+            }
+
+            _this.clearRequests();
+        }, _this.requestDelay);
+    };
+
+    _this.sendRequest = function(url) {
+        var xhr = _this.createXmlHttpRequest();
+        if (!xhr) return false;
+
+        xhr.withCredentials = _this.withCredentials;
+
+        var timer = setTimeout(function() {
+            xhr.abort();
+        }, _this.requestTimeout);
+
+        if(_this.requestMethod.trim().toLowerCase() === "post") {
+            var parts = url.split("?");
+            xhr.open("POST", parts[0], true);
+            if(xhr.setRequestHeader) xhr.setRequestHeader("Content-type", "text/plain");
+            xhr.send(parts[1]);
+        }
+        else {
+            xhr.open("GET", url, true);
+            xhr.send(null);
+        }
+
+        xhr.onload = function () {
+            clearTimeout(timer);
+        };
+
+        xhr.onerror = xhr.onabort = function () {
+            clearTimeout(timer);
+            if(_this.requestRetry) _this.addRequest(url);
+        };
+    };
+
+    _this.createXmlHttpRequest = function() {
+        var xhr;
+        var xhrs = [
+            function() {return new XDomainRequest()},
+            function() {return new XMLHttpRequest()},
+            function() {return new ActiveXObject("Msxml2.XMLHTTP")},
+            function() {return new ActiveXObject("Msxml3.XMLHTTP")},
+            function() {return new ActiveXObject("Microsoft.XMLHTTP")}
+        ];
+
+        for (var i = 0; i < xhrs.length; i++) {
+            try {
+                xhr = xhrs[i]();
+            }
+            catch (e) {
+                continue;
+            }
+            break;
+        }
+
+        return xhr;
+    };
+
+    _this.addRequest = function(url) {
+        var requests = _this.getRequests();
+        if(requests instanceof Array === false || requests.length >= _this.requestQueueSize) return;
+        requests.push(url);
+        _this.setRequests(requests);
+    };
+
+    _this.clearRequests = function() {
+        _this.setRequests([]);
+    };
+
+    _this.getRequests = function() {
+        var data = sessionStorage.getItem(_this.sessionStorageKey);
+        return JSON.parse(data ? data : "[]");
+    };
+
+    _this.setRequests = function(requests) {
+        sessionStorage.setItem(_this.sessionStorageKey, Ntm.Helper.stringify(requests));
+    };
+
+    _this.cacheBuster = function() {
+        return Math.round(Math.random() * 1999083012);
+    };
+
+    _this.extend = function() {
+        var extended = {};
+
+        for(var index = 0; index < arguments.length; index++) {
+            var source = arguments[index];
+
+            for(var prop in source) {
+                if(Object.prototype.hasOwnProperty.call(source, prop))
+                    extended[prop] = source[prop];
+            }
+        }
+
+        return extended;
+    };
+
+    _this.toQueryString = function(obj, skipNull) {
+        return _this.objectToString(obj, "&", skipNull);
+    };
+
+    _this.toCookieString = function(obj, skipNull) {
+        return _this.objectToString(obj, "; ", skipNull);
+    };
+
+    _this.objectToString = function(obj, delimeter, skipNull) {
+        var result = "";
+
+        for(var prop in obj) {
+            if(Object.prototype.hasOwnProperty.call(obj, prop)) {
+                if(skipNull && !obj[prop]) continue;
+
+                if(result.length > 0) result += delimeter;
+                result += prop + "=" + encodeURIComponent(obj[prop]);
+            }
+        }
+
+        return result;
+    };
+
+    return {
+        
+        log: _this.log,
+        event: _this.event,
+        user: _this.user,
+        order: _this.order,
+        cancel: _this.cancel,
+        cancelAll: _this.cancelAll,
+        generateUuid: _this.generateUuid
+    };
+})();
+
+
+
+Ntm.Main = function() {
+    var disabled = false;
+    var preview = false;
+    var id = 10004;
+
+    if(disabled) return;
+    if(!Ntm.Helper.isValidSettings()) return;
+
+    Ntm.Preview.init(preview, id);
+    Ntm.Event.fireNtmReady();
+    Ntm.Event.firePageLoaded();
+    Ntm.Event.init();
+}();

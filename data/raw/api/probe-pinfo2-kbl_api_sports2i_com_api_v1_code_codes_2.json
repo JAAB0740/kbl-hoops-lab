@@ -1,0 +1,20 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "pos": "C",
+      "posName1": "Center",
+      "posName2": ""
+    },
+    {
+      "pos": "FD",
+      "posName1": "Forward",
+      "posName2": ""
+    },
+    {
+      "pos": "GD",
+      "posName1": "Guard",
+      "posName2": ""
+    }
+  ]
+}
