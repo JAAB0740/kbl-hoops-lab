@@ -255,11 +255,11 @@ async function callKBL(extra: Record<string, string>) {
   const [tradRes, advRes] = await Promise.all([
     fetch(tradURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 },
+      cache: "no-store", // PO 진행 중 — 캐시 없이 매번 fresh (PO 종료 후 revalidate: 60*60 으로 복귀 권장)
     }),
     fetch(advURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 },
+      cache: "no-store", // PO 진행 중 — 캐시 없이 매번 fresh (PO 종료 후 revalidate: 60*60 으로 복귀 권장)
     }),
   ]);
   if (!tradRes.ok) throw new Error(`KBL traditional ${tradRes.status}`);
