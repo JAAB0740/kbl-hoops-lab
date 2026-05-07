@@ -248,11 +248,11 @@ async function callKBL(extra: Record<string, string>) {
   const [tradRes, advRes] = await Promise.all([
     fetch(tradURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 * 6 }, // 6시간 캐싱
+      next: { revalidate: 60 * 60 }, // 1시간 캐싱 (PO 진행 중 빠른 반영용)
     }),
     fetch(advURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 * 6 },
+      next: { revalidate: 60 * 60 },
     }),
   ]);
   if (!tradRes.ok) throw new Error(`KBL traditional ${tradRes.status}`);

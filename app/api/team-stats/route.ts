@@ -6,7 +6,7 @@
  * 다중 라운드는 각각 KBL API에 호출 후 games 가중평균으로 결합.
  * traditional + advanced 모두 받아 FilteredTeam 형식으로 반환.
  *
- * 캐싱: Next.js fetch revalidate 6시간
+ * 캐싱: Next.js fetch revalidate 1시간 (PO 진행 중 빠른 반영용 — 정규시즌 종료 후 다시 6시간으로 늘려도 됨)
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -255,11 +255,11 @@ async function callKBL(extra: Record<string, string>) {
   const [tradRes, advRes] = await Promise.all([
     fetch(tradURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 * 6 },
+      next: { revalidate: 60 * 60 },
     }),
     fetch(advURL, {
       headers: KBL_HEADERS,
-      next: { revalidate: 60 * 60 * 6 },
+      next: { revalidate: 60 * 60 },
     }),
   ]);
   if (!tradRes.ok) throw new Error(`KBL traditional ${tradRes.status}`);
