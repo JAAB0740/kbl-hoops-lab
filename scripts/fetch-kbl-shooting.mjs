@@ -117,11 +117,11 @@ console.log(`[1/2] 선수/팀 영역별 야투 수집`);
 // 정규시즌
 console.log(`\n선수:`);
 const playerRegular = await fetchOne("정규 평균", PLAYER_BASE, { gameCode: "01" }, normPlayer);
-const playerPlayoff = await fetchOne("PO 평균", PLAYER_BASE, { gameCode: "03" }, normPlayer);
+const playerPlayoff = await fetchOne("PO 평균", PLAYER_BASE, { gameCode: "03,04" }, normPlayer); // 03 PO + 04 챔결 합산
 
 console.log(`\n팀:`);
 const teamRegular = await fetchOne("정규 평균", TEAM_BASE, { gameCode: "01" }, normTeam);
-const teamPlayoff = await fetchOne("PO 평균", TEAM_BASE, { gameCode: "03" }, normTeam);
+const teamPlayoff = await fetchOne("PO 평균", TEAM_BASE, { gameCode: "03,04" }, normTeam); // 03 PO + 04 챔결 합산
 
 mkdirSync("data", { recursive: true });
 writeFileSync(

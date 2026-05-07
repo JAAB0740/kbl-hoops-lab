@@ -205,8 +205,8 @@ const FETCHES = [
   // 전후반
   { key: "h1",   label: "전반",     params: { quarterSc: "Q1,Q2" } },
   { key: "h2",   label: "후반",     params: { quarterSc: "Q3,Q4" } },
-  // 플레이오프 (gameCode=03 override)
-  { key: "po",   label: "PO",       params: { gameCode: "03" } },
+  // 플레이오프 — gameCode=03 (6강·4강) + 04 (챔피언결정전) 합산. KBL 공식 사이트와 동일한 호출.
+  { key: "po",   label: "PO",       params: { gameCode: "03,04" } },
   // 홈 × 라운드
   { key: "home_r1", label: "홈 R1",  params: { homeAwaySc: "1", partSc: "ROUND", partIfList: "1" } },
   { key: "home_r2", label: "홈 R2",  params: { homeAwaySc: "1", partSc: "ROUND", partIfList: "2" } },

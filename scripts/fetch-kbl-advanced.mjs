@@ -150,7 +150,7 @@ const TEAM_FETCHES = [
   { key: "q4",   label: "4쿼터",   params: { gameCode: "01", partIfList: "0", quarterSc: "Q4" } },
   { key: "h1",   label: "전반",     params: { gameCode: "01", partIfList: "0", quarterSc: "Q1,Q2" } },
   { key: "h2",   label: "후반",     params: { gameCode: "01", partIfList: "0", quarterSc: "Q3,Q4" } },
-  { key: "po",   label: "PO",       params: { gameCode: "03", partIfList: "0" } },
+  { key: "po",   label: "PO",       params: { gameCode: "03,04", partIfList: "0" } }, // 03 PO + 04 챔결 합산
   // 홈 × 라운드
   { key: "home_r1", label: "홈 R1",  params: { gameCode: "01", homeAwaySc: "1", partSc: "ROUND", partIfList: "1" } },
   { key: "home_r2", label: "홈 R2",  params: { gameCode: "01", homeAwaySc: "1", partSc: "ROUND", partIfList: "2" } },
@@ -199,8 +199,8 @@ console.log(`\n[2/2] 선수 advanced 수집`);
 
 const PLAYER_FETCHES = [
   { key: "regularSeason", label: "정규 평균", params: { gameCode: "01", partIfList: "0" } },
-  { key: "playoff",       label: "PO 평균",   params: { gameCode: "03", partIfList: "0" } },
-  { key: "championship",  label: "CF 평균",   params: { gameCode: "04", partIfList: "0" } },
+  { key: "playoff",       label: "PO 평균",   params: { gameCode: "03,04", partIfList: "0" } }, // 03 PO + 04 챔결 합산
+  { key: "championship",  label: "CF 평균",   params: { gameCode: "04", partIfList: "0" } },     // 챔결만 별도
   ...Array.from({ length: 6 }, (_, i) => ({
     key: `r${i + 1}`,
     label: `${i + 1}라운드`,

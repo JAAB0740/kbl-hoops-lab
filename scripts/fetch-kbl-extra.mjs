@@ -69,7 +69,7 @@ const clutchRegular = await fetchJSON(
   buildUrl("/player/clutch/traditional", { gameCode: "01" }),
 ).catch(() => []);
 const clutchPlayoff = await fetchJSON(
-  buildUrl("/player/clutch/traditional", { gameCode: "03" }),
+  buildUrl("/player/clutch/traditional", { gameCode: "03,04" }), // 03 PO + 04 챔결 합산
 ).catch(() => []);
 
 function normClutchPlayer(r) {
@@ -119,7 +119,7 @@ const hustleRegular = await fetchJSON(
   buildUrl("/player/hustle", { gameCode: "01" }),
 ).catch(() => []);
 const hustlePlayoff = await fetchJSON(
-  buildUrl("/player/hustle", { gameCode: "03" }),
+  buildUrl("/player/hustle", { gameCode: "03,04" }), // 03 PO + 04 챔결 합산
 ).catch(() => []);
 
 function normHustlePlayer(r) {
@@ -161,7 +161,7 @@ const ffRegular = await fetchJSON(
   buildUrl("/team/general/four-factors", { gameCode: "01" }),
 ).catch(() => []);
 const ffPlayoff = await fetchJSON(
-  buildUrl("/team/general/four-factors", { gameCode: "03" }),
+  buildUrl("/team/general/four-factors", { gameCode: "03,04" }), // 03 PO + 04 챔결 합산
 ).catch(() => []);
 
 function normFFTeam(r) {

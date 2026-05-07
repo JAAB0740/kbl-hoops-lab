@@ -61,10 +61,10 @@ const FETCHES = [
   // 전후반
   { key: "h1",   label: "전반",  params: { gameCode: "01", quarterSc: "Q1,Q2" } },
   { key: "h2",   label: "후반",  params: { gameCode: "01", quarterSc: "Q3,Q4" } },
-  // 플레이오프
-  { key: "playoff",       label: "PO 평균",  params: { gameCode: "03" } },
-  { key: "playoffTotal",  label: "PO 합산",  params: { gameCode: "03", perCn: "0" } },
-  // 챔피언결정전 (있을 경우)
+  // 플레이오프 — 03 (6강·4강) + 04 (챔결) 합산
+  { key: "playoff",       label: "PO 평균",  params: { gameCode: "03,04" } },
+  { key: "playoffTotal",  label: "PO 합산",  params: { gameCode: "03,04", perCn: "0" } },
+  // 챔피언결정전만 별도 (CF 화면용 백업)
   { key: "championship",  label: "CF 평균",  params: { gameCode: "04" } },
 ];
 
