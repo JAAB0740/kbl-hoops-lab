@@ -1,0 +1,54 @@
+name: Auto Fetch KBL Data
+
+on:
+  schedule:
+    # 평일 21:30 KST (UTC 12:30, 월~금)
+    - cron: '30 12 * * 1-5'
+    # 주말 16:30 KST (UTC 07:30, 토,일)
+    - cron: '30 7 * * 0,6'
+  # GitHub 웹에서 수동 실행도 가능
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch all KBL data
+        env:
+          # KBL API 가 일부 SSL 체인 이슈가 있어 로컬과 동일하게 무시
+          NODE_TLS_REJECT_UNAUTHORIZED: '0'
+        run: npm run fetch:all
+        continue-on-error: true
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit & push if data changed
+        run: |
+          # 파싱된 JSON 만 커밋 (raw HTML 덤프는 제외)
+          git add -A data/*.json
+          if git diff --staged --quiet; then
+            echo "✅ No data changes — skip commit"
+          else
+            git commit -m "chore(data): auto-update $(date -u -d '+9 hours' +'%Y-%m-%d %H:%M KST')"
+            git push
+            echo "✅ Pushed updated data — Vercel will redeploy"
+          fi
