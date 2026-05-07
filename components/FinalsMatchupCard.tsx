@@ -30,9 +30,10 @@ export function FinalsMatchupCard({
   const topColor = TEAM_COLORS[top] ?? "#94a3b8";
   const botColor = TEAM_COLORS[bot] ?? "#94a3b8";
 
+  // 23번 라인 narrowing 후에는 t/b 모두 NonNullable. 타입 명시 (typeof t 만으로는 undefined 포함됨).
   const ROWS: {
     label: string;
-    pick: (x: typeof t) => number;
+    pick: (x: NonNullable<typeof t>) => number;
     fmt: (v: number) => string;
     higherIsBetter: boolean;
   }[] = [
@@ -46,7 +47,7 @@ export function FinalsMatchupCard({
 
   const ADV_ROWS: {
     label: string;
-    pick: (x: typeof t) => number | undefined;
+    pick: (x: NonNullable<typeof t>) => number | undefined;
     fmt: (v: number) => string;
     higherIsBetter: boolean;
   }[] = [
