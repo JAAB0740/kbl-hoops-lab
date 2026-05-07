@@ -294,13 +294,20 @@ function Header({ profile }: { profile: PlayerProfile }) {
               label="드래프트"
               value={fmtDraft(info.draft) ?? "—"}
             />
-            <Meta
-              label="시즌차"
-              value={(() => {
-                const s = getSeasonsExperience(info);
-                return s != null ? `${s}년차` : "—";
-              })()}
-            />
+            {info.flag === "국내" ? (
+              <Meta
+                label="시즌차"
+                value={(() => {
+                  const s = getSeasonsExperience(info);
+                  return s != null ? `${s}년차` : "—";
+                })()}
+              />
+            ) : (
+              // 외국선수 / 아시아쿼터 — KBL API의 inSeason 신뢰 불가
+              // (예: 자밀 워니 35, 대릴 먼로 33 등 비현실적 값) →
+              // 시즌차 대신 선수 구분을 명시
+              <Meta label="선수 구분" value={info.flag} />
+            )}
           </div>
         )}
       </div>
