@@ -104,6 +104,51 @@ export function fmtPos(pos: string): string {
   return map[pos] ?? pos;
 }
 
+/**
+ * 시즌차 — KBL API 의 inSeason 값을 그대로 쓰면 가끔 비정상값 (39, 99 등) 이 들어옴.
+ * 드래프트 연도 기반 계산값 + API 값 비교 후 안전한 값을 반환.
+ *
+ * 규칙:
+ *  1) 드래프트 연도가 있으면 (currentSeasonStart - draftYear + 1) 로 시즌차 계산
+ *  2) API 의 inSeason 이 합리적 범위 (1 ~ KBL 출범 후 시즌 수) 안이면 사용 후보
+ *  3) 두 값이 ±2 이내로 비슷하면 API 값 우선 (KBL 공식 표시와 동일)
+ *  4) 두 값이 크게 다르면 드래프트 기반 계산값 우선 (API 오류 방지)
+ *  5) 외국인선수 등 드래프트 없는 경우 합리적 범위의 API 값만 사용
+ */
+const KBL_FIRST_SEASON_START_YEAR = 1997; // 1997-98 = 1시즌차
+
+/** 현재 KBL 시즌 시작 연도 (예: 2025-26 시즌이면 2025). 10월 이후면 해당 연도, 그 이전이면 -1년. */
+function currentSeasonStartYear(): number {
+  const now = new Date();
+  return now.getMonth() >= 9 ? now.getFullYear() : now.getFullYear() - 1;
+}
+
+export function getSeasonsExperience(info: PlayerInfoEntry): number | null {
+  const seasonStart = currentSeasonStartYear();
+  const maxReasonable = seasonStart - KBL_FIRST_SEASON_START_YEAR + 1;
+
+  // 드래프트 기반 계산
+  const fromDraft =
+    info.draft?.year &&
+    info.draft.year >= KBL_FIRST_SEASON_START_YEAR &&
+    info.draft.year <= seasonStart + 1
+      ? seasonStart - info.draft.year + 1
+      : null;
+
+  // API inSeason — 합리적 범위만
+  const fromApi =
+    info.inSeason != null && info.inSeason > 0 && info.inSeason <= maxReasonable
+      ? info.inSeason
+      : null;
+
+  // 둘 다 있으면 비교
+  if (fromApi != null && fromDraft != null) {
+    return Math.abs(fromApi - fromDraft) <= 2 ? fromApi : fromDraft;
+  }
+
+  return fromApi ?? fromDraft;
+}
+
 /** 국적 표기 — country 코드/이름 → 정규화 */
 export function fmtCountry(country: string, flag: PlayerFlag): string {
   if (flag === "국내") return "대한민국";

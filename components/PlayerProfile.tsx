@@ -19,6 +19,7 @@ import {
   fmtDraft,
   fmtPos,
   getPlayerInfo,
+  getSeasonsExperience,
   topSchool,
 } from "@/lib/playerInfo";
 import type {
@@ -295,7 +296,10 @@ function Header({ profile }: { profile: PlayerProfile }) {
             />
             <Meta
               label="시즌차"
-              value={info.inSeason ? `${info.inSeason}년차` : "—"}
+              value={(() => {
+                const s = getSeasonsExperience(info);
+                return s != null ? `${s}년차` : "—";
+              })()}
             />
           </div>
         )}
