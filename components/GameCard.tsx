@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { TEAM_COLORS } from "@/lib/data";
+import { QuarterScoreBox } from "@/components/QuarterScoreBox";
 import {
   countdownTo,
   fmtDate,
@@ -137,6 +138,18 @@ export function GameCard({ game }: { game: RawGame }) {
       {/* 펼침 영역 */}
       {open && (
         <div className="border-t border-court-700/60 bg-court-900/40 p-4">
+          {/* 쿼터별 스코어 박스 (final 게임만, 데이터 있을 때만) */}
+          {isFinal && (
+            <div className="mb-4 rounded-md border border-court-700/40 bg-court-800/30 p-2">
+              <QuarterScoreBox
+                gmkey={game.gmkey}
+                homeShort={game.homeShort}
+                awayShort={game.awayShort}
+                size="sm"
+              />
+            </div>
+          )}
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {/* 홈팀 정보 */}
             <div>

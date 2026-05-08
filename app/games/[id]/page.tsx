@@ -18,6 +18,8 @@ import {
   type PlayerSeasonAvg,
 } from "@/lib/boxscores";
 import { BoxScoreTable } from "@/components/BoxScoreTable";
+import { QuarterScoreBox } from "@/components/QuarterScoreBox";
+import { getMatchDetail, fmtKblTime } from "@/lib/matchDetails";
 
 interface Props {
   params: { id: string };
@@ -189,6 +191,33 @@ export default function GameDetailPage({ params }: Props) {
             />
           </div>
         </header>
+
+        {/* 쿼터별 스코어 + 관중 (final 게임만, 데이터 있을 때만) */}
+        {isFinal && getMatchDetail(game.gmkey) && (
+          <section className="card mb-6 p-5">
+            <div className="mb-3 flex items-end justify-between gap-3">
+              <h3 className="text-sm font-semibold text-ink-50">쿼터별 스코어</h3>
+              <div className="flex items-center gap-3 text-[11px] text-ink-500">
+                {(() => {
+                  const md = getMatchDetail(game.gmkey)!;
+                  const parts: string[] = [];
+                  if (md.gameStart) parts.push(`시작 ${fmtKblTime(md.gameStart)}`);
+                  if (md.gameEnd)   parts.push(`종료 ${fmtKblTime(md.gameEnd)}`);
+                  if (md.crowds != null) parts.push(`관중 ${md.crowds.toLocaleString()}명`);
+                  return parts.length > 0 ? <span>{parts.join(" · ")}</span> : null;
+                })()}
+              </div>
+            </div>
+            <QuarterScoreBox
+              gmkey={game.gmkey}
+              homeShort={game.homeShort}
+              awayShort={game.awayShort}
+              homeFull={game.homeTeam}
+              awayFull={game.awayTeam}
+              size="md"
+            />
+          </section>
+        )}
 
         {/* 시리즈 게임 리스트 (PO일 때) */}
         {seriesGames.length > 1 && (
