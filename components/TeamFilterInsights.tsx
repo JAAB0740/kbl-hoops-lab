@@ -93,7 +93,7 @@ export function TeamFilterInsights({
     <div className="card p-5">
       <div className="mb-3">
         <h3 className="text-sm font-semibold text-ink-50">필터 변화 인사이트</h3>
-        <p className="mt-0.5 text-[12px] text-ink-500">
+        <p className="mt-0.5 text-[13px] text-ink-500">
           {label} vs 정규시즌 전체 비교 · 가장 큰 변화
         </p>
       </div>
@@ -114,15 +114,15 @@ export function TeamFilterInsights({
                     : "bg-ink-500",
               ].join(" ")}
             />
-            <div className="text-[11px] uppercase tracking-[0.1em] text-ink-500">
+            <div className="text-[12px] uppercase tracking-[0.1em] text-ink-500">
               {c.label}
             </div>
-            <div className="mt-1.5 text-[14px] font-semibold text-ink-50">
+            <div className="mt-1.5 text-[15px] font-semibold text-ink-50">
               {c.team.name}
             </div>
             <div
               className={[
-                "stat-num mt-1 text-[13px] font-medium",
+                "stat-num mt-1 text-[14px] font-medium",
                 c.tone === "up"
                   ? "text-hoop-400"
                   : c.tone === "down"

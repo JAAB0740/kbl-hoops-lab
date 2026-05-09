@@ -98,7 +98,7 @@ export default function GameDetailPage({ params }: Props) {
         {/* 뒤로가기 */}
         <Link
           href="/games"
-          className="mb-4 inline-flex items-center gap-1 text-[13px] text-ink-400 hover:text-ink-100"
+          className="mb-4 inline-flex items-center gap-1 text-[14px] text-ink-400 hover:text-ink-100"
         >
           ← 경기 목록
         </Link>
@@ -124,7 +124,7 @@ export default function GameDetailPage({ params }: Props) {
                   G{myIndex + 1} / {seriesGames.length}
                 </span>
               )}
-              <span className="text-[13px] text-ink-400">
+              <span className="text-[14px] text-ink-400">
                 {fmtDate(game.date)} · {game.time}
                 {game.stadium && (
                   <>
@@ -169,7 +169,7 @@ export default function GameDetailPage({ params }: Props) {
                 <div className="stat-num text-2xl text-ink-300">VS</div>
               )}
               {seriesGames.length > 1 && (
-                <div className="mt-3 text-[13px] text-ink-400">
+                <div className="mt-3 text-[14px] text-ink-400">
                   시리즈:{" "}
                   <span className="font-semibold" style={{ color: homeColor }}>
                     {seriesHomeWins}
@@ -197,7 +197,7 @@ export default function GameDetailPage({ params }: Props) {
           <section className="card mb-6 p-5">
             <div className="mb-3 flex items-end justify-between gap-3">
               <h3 className="text-sm font-semibold text-ink-50">쿼터별 스코어</h3>
-              <div className="flex items-center gap-3 text-[12px] text-ink-500">
+              <div className="flex items-center gap-3 text-[13px] text-ink-500">
                 {(() => {
                   const md = getMatchDetail(game.gmkey)!;
                   const parts: string[] = [];
@@ -239,7 +239,7 @@ export default function GameDetailPage({ params }: Props) {
                     key={i}
                     href={`/games/${gameToId(g)}`}
                     className={[
-                      "flex items-center justify-between rounded-md border px-3 py-2 text-[13px] transition",
+                      "flex items-center justify-between rounded-md border px-3 py-2 text-[14px] transition",
                       isCurrent
                         ? "border-flame-500/40 bg-flame-500/10"
                         : "border-court-700 bg-court-800/40 hover:border-court-600",
@@ -292,7 +292,7 @@ export default function GameDetailPage({ params }: Props) {
                 <h3 className="text-sm font-semibold text-ink-50">
                   경기 직전까지의 평균
                 </h3>
-                <p className="mt-0.5 text-[12px] text-ink-500">
+                <p className="mt-0.5 text-[13px] text-ink-500">
                   이 경기 직전까지 치른 모든 경기의 평균 ·{" "}
                   <span style={{ color: homeColor }}>{game.homeShort}</span>{" "}
                   {homeSeasonScoring.games}경기 ·{" "}
@@ -303,7 +303,7 @@ export default function GameDetailPage({ params }: Props) {
 
               <div className="space-y-2">
                 {/* 시즌 누적 평균 */}
-                <div className="text-[11px] uppercase tracking-wider text-ink-500 mt-1">
+                <div className="text-[12px] uppercase tracking-wider text-ink-500 mt-1">
                   시즌 누적 평균
                 </div>
                 <CompareRow
@@ -335,7 +335,7 @@ export default function GameDetailPage({ params }: Props) {
                 {/* 최근 5경기 */}
                 {homeRecent5.games > 0 && awayRecent5.games > 0 && (
                   <>
-                    <div className="text-[11px] uppercase tracking-wider text-ink-500 mt-3 pt-2 border-t border-court-700/40">
+                    <div className="text-[12px] uppercase tracking-wider text-ink-500 mt-3 pt-2 border-t border-court-700/40">
                       최근 5경기 평균 (이 경기 직전)
                     </div>
                     <CompareRow
@@ -366,7 +366,7 @@ export default function GameDetailPage({ params }: Props) {
                   </>
                 )}
               </div>
-              <p className="mt-3 text-[11px] text-ink-500">
+              <p className="mt-3 text-[12px] text-ink-500">
                 ※ 게임 단위 점수만 사용 (KBL API 박스스코어가 없어서 RPG/APG/FG% 등은 시점 기준 계산 불가).
               </p>
             </section>
@@ -381,7 +381,7 @@ export default function GameDetailPage({ params }: Props) {
             {/* H2H */}
             <div className="mb-4 grid grid-cols-3 items-end gap-2">
               <div className="text-right">
-                <div className="text-[11px] uppercase tracking-wider text-ink-500">
+                <div className="text-[12px] uppercase tracking-wider text-ink-500">
                   {game.homeShort}
                 </div>
                 <div
@@ -391,16 +391,16 @@ export default function GameDetailPage({ params }: Props) {
                   {h2h.aWins}
                 </div>
               </div>
-              <div className="text-center text-[13px] text-ink-500">
+              <div className="text-center text-[14px] text-ink-500">
                 이전 H2H<br />
                 {h2h.games.length === 0 ? (
-                  <span className="text-[11px] text-ink-600">맞대결 없음</span>
+                  <span className="text-[12px] text-ink-600">맞대결 없음</span>
                 ) : (
                   <>({h2h.games.length}회)</>
                 )}
               </div>
               <div className="text-left">
-                <div className="text-[11px] uppercase tracking-wider text-ink-500">
+                <div className="text-[12px] uppercase tracking-wider text-ink-500">
                   {game.awayShort}
                 </div>
                 <div
@@ -436,7 +436,7 @@ export default function GameDetailPage({ params }: Props) {
                 <h3 className="text-sm font-semibold text-ink-50">
                   이 경기 이전 맞대결 ({h2h.games.length}경기)
                 </h3>
-                <p className="mt-0.5 text-[12px] text-ink-500">
+                <p className="mt-0.5 text-[13px] text-ink-500">
                   이 경기 직전까지의 시즌 H2H ·{" "}
                   <span className="stat-num">
                     <span style={{ color: TEAM_COLORS[game.homeShort] }}>
@@ -460,7 +460,7 @@ export default function GameDetailPage({ params }: Props) {
                     <Link
                       key={i}
                       href={`/games/${gameToId(g)}`}
-                      className="flex items-center justify-between rounded-md border border-court-700 bg-court-800/40 px-3 py-2 text-[13px] transition hover:border-court-600"
+                      className="flex items-center justify-between rounded-md border border-court-700 bg-court-800/40 px-3 py-2 text-[14px] transition hover:border-court-600"
                     >
                       <span className="text-ink-400">
                         {fmtDate(g.date)} · {g.tag}
@@ -502,7 +502,7 @@ export default function GameDetailPage({ params }: Props) {
               <h3 className="text-sm font-semibold text-ink-50">
                 박스스코어
               </h3>
-              <p className="mt-0.5 text-[12px] text-ink-500">
+              <p className="mt-0.5 text-[13px] text-ink-500">
                 ★ = 선발 · MIN = 출장시간 (분:초) · REB 옆 (공/수) · KBL 공식 데이터
               </p>
             </div>
@@ -523,7 +523,7 @@ export default function GameDetailPage({ params }: Props) {
               <h3 className="text-sm font-semibold text-ink-50">
                 주목할 선수
               </h3>
-              <p className="mt-0.5 text-[12px] text-ink-500">
+              <p className="mt-0.5 text-[13px] text-ink-500">
                 이 경기 직전까지의 누적 평균 (박스스코어 기반) · 클릭 시 선수 프로필
               </p>
             </div>
@@ -544,7 +544,7 @@ export default function GameDetailPage({ params }: Props) {
           </section>
         )}
 
-        <p className="mt-8 text-center text-[12px] text-ink-500">
+        <p className="mt-8 text-center text-[13px] text-ink-500">
           {game.gmkey ? (
             <>
               KBL 공식 데이터 · 게임 코드 {game.gmkey}
@@ -636,7 +636,7 @@ function KeyPlayersBlock({
         style={{ flexDirection: align === "right" ? "row-reverse" : "row" }}
       >
         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
-        <span className="text-[13px] font-semibold" style={{ color }}>
+        <span className="text-[14px] font-semibold" style={{ color }}>
           {shortName}
         </span>
       </div>
@@ -645,11 +645,11 @@ function KeyPlayersBlock({
           <div
             key={it.label}
             className={[
-              "flex items-baseline gap-2 text-[13px]",
+              "flex items-baseline gap-2 text-[14px]",
               align === "right" ? "md:justify-end" : "",
             ].join(" ")}
           >
-            <span className="text-[11px] uppercase tracking-wider text-ink-500 w-16 shrink-0">
+            <span className="text-[12px] uppercase tracking-wider text-ink-500 w-16 shrink-0">
               {it.label}
             </span>
             {it.entry ? (
@@ -667,10 +667,10 @@ function KeyPlayersBlock({
                 <span className={`font-semibold ${it.tone}`}>
                   {(it.entry.avg[it.valueKey] as number).toFixed(1)}
                 </span>
-                <span className="ml-0.5 text-[11px] text-ink-500">
+                <span className="ml-0.5 text-[12px] text-ink-500">
                   {it.unit}
                 </span>
-                <span className="ml-1 text-[11px] text-ink-600">
+                <span className="ml-1 text-[12px] text-ink-600">
                   ({it.entry.avg.games}G)
                 </span>
               </span>
@@ -705,15 +705,15 @@ function TeamHeader({
 }) {
   return (
     <div className={align === "right" ? "text-right" : "text-left"}>
-      <div className="text-[11px] uppercase tracking-[0.15em] text-ink-500">
+      <div className="text-[12px] uppercase tracking-[0.15em] text-ink-500">
         {role}
       </div>
       <div className="mt-1 text-lg font-bold" style={{ color }}>
         {full}
       </div>
-      <div className="mt-0.5 text-[13px] text-ink-400">{short}</div>
+      <div className="mt-0.5 text-[14px] text-ink-400">{short}</div>
       {standing && (
-        <div className="mt-2 stat-num text-[12px] text-ink-300">
+        <div className="mt-2 stat-num text-[13px] text-ink-300">
           {standing.rank == null
             ? "개막 전"
             : `경기 시점 ${standing.rank}위`}
@@ -752,7 +752,7 @@ function CompareRow({
   const rBetter = invert ? r < l : r > l;
   const max = Math.max(l, r) || 1;
   return (
-    <div className="grid grid-cols-[60px_1fr_60px_1fr_60px] items-center gap-2 text-[12px]">
+    <div className="grid grid-cols-[60px_1fr_60px_1fr_60px] items-center gap-2 text-[13px]">
       <span
         className={[
           "stat-num text-right font-semibold",
@@ -809,11 +809,11 @@ function FormBlock({
   const losses = form.length - wins;
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="text-[13px] font-medium" style={{ color }}>
+      <span className="text-[14px] font-medium" style={{ color }}>
         {short}
       </span>
       <div className="flex items-center gap-2">
-        <span className="stat-num text-[12px] text-ink-400">
+        <span className="stat-num text-[13px] text-ink-400">
           {wins}-{losses}
         </span>
         <div className="flex gap-0.5">
@@ -822,7 +822,7 @@ function FormBlock({
               <span
                 key={i}
                 className={[
-                  "inline-flex h-5 w-5 items-center justify-center rounded text-[11px] font-bold",
+                  "inline-flex h-5 w-5 items-center justify-center rounded text-[12px] font-bold",
                   r === "W"
                     ? "bg-hoop-500/30 text-hoop-300"
                     : "bg-buzzer-500/30 text-buzzer-300",
@@ -832,7 +832,7 @@ function FormBlock({
               </span>
             ))
           ) : (
-            <span className="text-[11px] text-ink-500">최근 폼 없음</span>
+            <span className="text-[12px] text-ink-500">최근 폼 없음</span>
           )}
         </div>
       </div>

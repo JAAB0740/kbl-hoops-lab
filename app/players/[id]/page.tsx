@@ -52,7 +52,7 @@ export default function PlayerProfilePage({ params }: Props) {
     <div className="min-h-screen">
       <main className="mx-auto max-w-7xl px-6 py-8">
         {/* 브레드크럼 */}
-        <nav className="mb-6 flex items-center gap-2 text-[12px] text-ink-500">
+        <nav className="mb-6 flex items-center gap-2 text-[13px] text-ink-500">
           <Link href="/players" className="hover:text-ink-300">
             선수
           </Link>
@@ -69,7 +69,7 @@ export default function PlayerProfilePage({ params }: Props) {
           </section>
         )}
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
           데이터 출처: KBL 공식 API (api-stats.kbl.or.kr) · 마지막 갱신 {fetchedDate}
         </footer>
       </main>

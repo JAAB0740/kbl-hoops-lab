@@ -10,7 +10,7 @@ export function TodayGames({ games }: { games: GameEvent[] }) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">다음 경기</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">{subtitle}</p>
+          <p className="mt-0.5 text-[13px] text-ink-500">{subtitle}</p>
         </div>
         <span className="chip border-buzzer-500/40 bg-buzzer-500/10 text-buzzer-400">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-buzzer-500" />
@@ -25,26 +25,26 @@ export function TodayGames({ games }: { games: GameEvent[] }) {
             className="group grid grid-cols-[1fr_auto_1fr] items-center gap-4 rounded-lg border border-court-700/60 bg-court-900/40 p-3 transition hover:border-court-600 hover:bg-court-800/60"
           >
             <div className="flex flex-col items-end">
-              <span className="text-[14px] font-semibold text-ink-50">
+              <span className="text-[15px] font-semibold text-ink-50">
                 {g.home.name}
               </span>
-              <span className="text-[12px] text-ink-500">HOME</span>
+              <span className="text-[13px] text-ink-500">HOME</span>
             </div>
 
             <div className="flex flex-col items-center gap-1 px-3">
               <span className="stat-num text-sm font-bold text-flame-400">
                 {g.when}
               </span>
-              <span className="chip border-flame-500/30 bg-flame-500/10 px-2 py-0.5 text-[11px] text-flame-400">
+              <span className="chip border-flame-500/30 bg-flame-500/10 px-2 py-0.5 text-[12px] text-flame-400">
                 {g.tag}
               </span>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-[14px] font-semibold text-ink-50">
+              <span className="text-[15px] font-semibold text-ink-50">
                 {g.away.name}
               </span>
-              <span className="text-[12px] text-ink-500">AWAY</span>
+              <span className="text-[13px] text-ink-500">AWAY</span>
             </div>
           </li>
         ))}

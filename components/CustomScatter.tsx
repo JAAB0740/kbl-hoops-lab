@@ -109,11 +109,11 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
       <div className="mb-4 flex items-end justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">선수 스탯 탐색기</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">
+          <p className="mt-0.5 text-[13px] text-ink-500">
             X·Y·점 크기를 각각 다른 스탯으로 조합해서 선수 분포 탐색. 출장 5경기 이상만.
           </p>
         </div>
-        <div className="text-[12px] text-ink-500">
+        <div className="text-[13px] text-ink-500">
           <span className="stat-num text-ink-300">{totalPlayers}</span>명
         </div>
       </div>
@@ -245,13 +245,13 @@ function StatSelector({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <label className="shrink-0 text-[11px] font-medium uppercase tracking-wider text-ink-500">
+      <label className="shrink-0 text-[12px] font-medium uppercase tracking-wider text-ink-500">
         {label}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as StatKey)}
-        className="flex-1 rounded-md border border-court-700 bg-court-800 px-2 py-1 text-[13px] text-ink-100 focus:border-flame-500 focus:outline-none"
+        className="flex-1 rounded-md border border-court-700 bg-court-800 px-2 py-1 text-[14px] text-ink-100 focus:border-flame-500 focus:outline-none"
       >
         {STAT_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>

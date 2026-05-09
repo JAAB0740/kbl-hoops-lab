@@ -33,7 +33,7 @@ export default function PlayersPage() {
           byKey={PLAYERS_BY_KEY}
         />
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
           데이터 출처: KBL 공식 API · 모든 스탯은 경기당 평균값
         </footer>
       </main>

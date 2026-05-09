@@ -163,7 +163,7 @@ export function CompareClient({ standings, players }: Props) {
             key={m}
             onClick={() => setMode(m)}
             className={[
-              "rounded px-4 py-1.5 text-[14px] font-medium transition",
+              "rounded px-4 py-1.5 text-[15px] font-medium transition",
               mode === m
                 ? "bg-court-700 text-ink-50"
                 : "text-ink-300 hover:text-ink-100",
@@ -212,7 +212,7 @@ export function CompareClient({ standings, players }: Props) {
       <div className="card p-5">
         <div className="mb-3">
           <h3 className="text-sm font-semibold text-ink-50">레이더 비교</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">
+          <p className="mt-0.5 text-[13px] text-ink-500">
             각 축은 리그 최댓값 대비 비율 (%) · 바깥쪽일수록 강함
           </p>
         </div>
@@ -282,7 +282,7 @@ export function CompareClient({ standings, players }: Props) {
       </div>
 
       {mode === "team" && (
-        <p className="mt-3 text-[12px] text-ink-500">
+        <p className="mt-3 text-[13px] text-ink-500">
           {HAS_REAL_TEAM_STATS
             ? "* Daum 기록 순위에서 추출한 팀 평균 실데이터."
             : "* 팀 스탯은 출장시간 상위 5인의 개인 스탯을 합산한 근사치. (npm run parse:team-stats 실행하면 실데이터로 교체)"}
@@ -312,11 +312,11 @@ function Selector({
         className="h-3 w-3 rounded-full shrink-0"
         style={{ backgroundColor: color }}
       />
-      <span className="text-[12px] uppercase tracking-wider text-ink-500">{label}</span>
+      <span className="text-[13px] uppercase tracking-wider text-ink-500">{label}</span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="flex-1 rounded-md border border-court-700 bg-court-900 px-2.5 py-1.5 text-[14px] text-ink-100 focus:border-flame-500 focus:outline-none"
+        className="flex-1 rounded-md border border-court-700 bg-court-900 px-2.5 py-1.5 text-[15px] text-ink-100 focus:border-flame-500 focus:outline-none"
       >
         {options.map((o) => (
           <option key={o.id} value={o.id}>
@@ -350,7 +350,7 @@ function StatSummaryCard({
       <div className="grid grid-cols-3 gap-3">
         {AXES.map((a) => (
           <div key={a.key}>
-            <div className="text-[11px] uppercase tracking-wider text-ink-500">
+            <div className="text-[12px] uppercase tracking-wider text-ink-500">
               {a.label}
             </div>
             <div className="stat-num mt-1 text-[15px] font-semibold text-ink-50">
@@ -360,7 +360,7 @@ function StatSummaryCard({
         ))}
       </div>
       {mode === "team" && (
-        <div className="mt-3 text-[11px] text-ink-500">
+        <div className="mt-3 text-[12px] text-ink-500">
           주전 5인 합산 · FG%는 평균
         </div>
       )}

@@ -30,7 +30,7 @@ export function Headlines({ items }: { items: Headline[] }) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">주요 뉴스</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">
+          <p className="mt-0.5 text-[13px] text-ink-500">
             전체 {items.length}건 · 데이터 기반 자동 생성 · 클릭 시 관련 페이지 이동
           </p>
         </div>
@@ -52,10 +52,10 @@ export function Headlines({ items }: { items: Headline[] }) {
                 {h.badge}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="line-clamp-2 text-[14px] font-medium leading-snug text-ink-100 transition group-hover:text-flame-400">
+                <p className="line-clamp-2 text-[15px] font-medium leading-snug text-ink-100 transition group-hover:text-flame-400">
                   {h.title}
                 </p>
-                <p className="mt-1 text-[12px] text-ink-500">{h.time}</p>
+                <p className="mt-1 text-[13px] text-ink-500">{h.time}</p>
               </div>
             </>
           );
@@ -86,7 +86,7 @@ export function Headlines({ items }: { items: Headline[] }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={`"${h.searchQuery}" 네이버 뉴스 검색`}
-                  className="shrink-0 inline-flex h-6 w-6 items-center justify-center rounded-md border border-court-700 bg-court-800/70 text-[12px] text-ink-400 transition hover:border-[#03C75A]/50 hover:bg-[#03C75A]/10 hover:text-[#03C75A]"
+                  className="shrink-0 inline-flex h-6 w-6 items-center justify-center rounded-md border border-court-700 bg-court-800/70 text-[13px] text-ink-400 transition hover:border-[#03C75A]/50 hover:bg-[#03C75A]/10 hover:text-[#03C75A]"
                   onClick={(e) => e.stopPropagation()}
                 >
                   🔍

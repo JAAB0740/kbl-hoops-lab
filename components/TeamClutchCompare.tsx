@@ -133,11 +133,11 @@ export function TeamClutchCompare({
       <div className="mb-3 flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">
+          <p className="mt-0.5 text-[13px] text-ink-500">
             클러치 = 4쿼터 마지막 5분 + 5점차 이내 · 정규시즌 기준 · 막대 = 클러치 - 시즌 차이
           </p>
         </div>
-        <div className="flex gap-3 text-[12px]">
+        <div className="flex gap-3 text-[13px]">
           <div>
             <div className="text-ink-500">클러치 강자</div>
             <div className="stat-num mt-0.5 font-medium text-hoop-400">
@@ -157,7 +157,7 @@ export function TeamClutchCompare({
       </div>
 
       {/* 헤더 */}
-      <div className="mb-2 grid grid-cols-[110px_70px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 px-1 text-[11px] uppercase tracking-wider text-ink-500">
+      <div className="mb-2 grid grid-cols-[110px_70px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 px-1 text-[12px] uppercase tracking-wider text-ink-500">
         <span>팀</span>
         <span className="text-right">클러치 W-L</span>
         <span>승률 (vs 시즌)</span>
@@ -174,11 +174,11 @@ export function TeamClutchCompare({
               key={r.team.code}
               className="grid grid-cols-[110px_70px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] items-center gap-3"
             >
-              <span className="flex items-center gap-2 truncate text-[14px] font-medium text-ink-100">
+              <span className="flex items-center gap-2 truncate text-[15px] font-medium text-ink-100">
                 <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: color }} />
                 {r.team.name}
               </span>
-              <span className="stat-num text-right text-[13px] text-ink-300">
+              <span className="stat-num text-right text-[14px] text-ink-300">
                 {r.clutch.wins}-{r.clutch.losses}
               </span>
               <DiffBar
@@ -214,7 +214,7 @@ export function TeamClutchCompare({
         })}
       </div>
 
-      <p className="mt-4 text-[11px] text-ink-500">
+      <p className="mt-4 text-[12px] text-ink-500">
         ※ 클러치 PPG는 한 경기 클러치 시간(약 5분) 동안의 득점이라 시즌 PPG보다 작은 게 정상.
         승률·슛 효율 차이가 진짜 클러치 능력의 지표.
       </p>
@@ -267,7 +267,7 @@ function DiffBar({
           />
         )}
       </div>
-      <div className="stat-num whitespace-nowrap text-right text-[12px]">
+      <div className="stat-num whitespace-nowrap text-right text-[13px]">
         <span className="text-ink-100">{fmtCurr(value)}</span>
         <span
           className={[

@@ -7,6 +7,11 @@
     color-scheme: dark;
   }
 
+  /* Base font-size 16 → 17. Tailwind 의 rem 값이 모두 ~6% 비례 커짐 — 가독성 향상. */
+  html {
+    font-size: 17px;
+  }
+
   html,
   body {
     @apply bg-court-950 text-ink-50;

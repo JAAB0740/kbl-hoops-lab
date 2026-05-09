@@ -65,7 +65,7 @@ export default function DashboardPage() {
               </h1>
               <p className="mt-1.5 text-sm text-ink-300">{hero.subtitle}</p>
             </div>
-            <div className="flex items-center gap-2 text-[12px] text-ink-500">
+            <div className="flex items-center gap-2 text-[13px] text-ink-500">
               <span>마지막 갱신</span>
               <span className="stat-num text-ink-300">
                 {fmtFetchedAt((gamesJson as { fetchedAt?: string }).fetchedAt)}
@@ -197,7 +197,7 @@ export default function DashboardPage() {
           <CreatorCard />
         </section>
 
-        <footer className="border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
+        <footer className="border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
           <p>
             데이터 출처: KBL 공식 API · 평일 21:30 / 주말 16:30 자동 갱신
           </p>

@@ -179,7 +179,7 @@ export function PlayersExplorer({
             <h3 className="text-sm font-semibold tracking-tight text-ink-50">
               필터
             </h3>
-            <p className="mt-1 text-[12px] text-ink-500">
+            <p className="mt-1 text-[13px] text-ink-500">
               스코프·라운드·스탯 모드를 조합. 정규시즌일 때만 라운드 다중 선택 가능.
             </p>
           </div>
@@ -358,13 +358,13 @@ export function PlayersExplorer({
               <>
                 <button
                   onClick={() => setRoundSet(new Set([1, 2, 3, 4, 5, 6]))}
-                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[12px] text-ink-400 hover:border-court-500 hover:text-ink-100"
+                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[13px] text-ink-400 hover:border-court-500 hover:text-ink-100"
                 >
                   전체 선택
                 </button>
                 <button
                   onClick={() => setRoundSet(new Set())}
-                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[12px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400"
+                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[13px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400"
                 >
                   해제
                 </button>
@@ -412,7 +412,7 @@ function FilterRow({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="w-12 shrink-0 text-[12px] uppercase tracking-wider text-ink-500">
+      <span className="w-12 shrink-0 text-[13px] uppercase tracking-wider text-ink-500">
         {label}
       </span>
       <div className="flex flex-wrap gap-1.5">{children}</div>
@@ -442,7 +442,7 @@ function Chip({
       onClick={onClick}
       disabled={!available}
       className={[
-        "rounded-md px-3 py-1.5 text-[13px] font-medium transition",
+        "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
         active
           ? activeClass
           : available

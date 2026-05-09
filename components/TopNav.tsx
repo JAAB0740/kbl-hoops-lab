@@ -45,7 +45,7 @@ export function TopNav() {
                   key={item.href}
                   href={item.href}
                   className={[
-                    "rounded-md px-3 py-1.5 text-[14px] font-medium transition-colors",
+                    "rounded-md px-3 py-1.5 text-[15px] font-medium transition-colors",
                     isActive(pathname, item.href)
                       ? "bg-court-700/70 text-ink-50"
                       : "text-ink-300 hover:bg-court-700/40 hover:text-ink-50",
@@ -58,12 +58,12 @@ export function TopNav() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="hidden text-[12px] font-medium tracking-widest text-ink-500 sm:inline">
+            <span className="hidden text-[13px] font-medium tracking-widest text-ink-500 sm:inline">
               2025-26 정규리그
             </span>
             <div className="flex items-center gap-1.5 rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1.5">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-buzzer-500" />
-              <span className="text-[12px] font-medium text-ink-100">{status.shortChip}</span>
+              <span className="text-[13px] font-medium text-ink-100">{status.shortChip}</span>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function TopNav() {
                 key={item.href}
                 href={item.href}
                 className={[
-                  "shrink-0 rounded-md px-2.5 py-1 text-[13px] font-medium transition-colors",
+                  "shrink-0 rounded-md px-2.5 py-1 text-[14px] font-medium transition-colors",
                   isActive(pathname, item.href)
                     ? "bg-flame-500/15 text-flame-400 ring-1 ring-flame-500/30"
                     : "text-ink-300 hover:bg-court-700/40 hover:text-ink-50",

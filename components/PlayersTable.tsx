@@ -215,9 +215,9 @@ export function PlayersTable({
     return (
       <div className="card p-8 text-center">
         <h3 className="text-sm font-semibold text-ink-50">선수 데이터 없음</h3>
-        <p className="mt-2 text-[14px] text-ink-300">
-          아직 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[13px]">data/players.json</code>이 비어있어요.
-          PowerShell에서 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[13px]">npm run parse:players</code>를 먼저 실행해주세요.
+        <p className="mt-2 text-[15px] text-ink-300">
+          아직 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[14px]">data/players.json</code>이 비어있어요.
+          PowerShell에서 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[14px]">npm run parse:players</code>를 먼저 실행해주세요.
         </p>
       </div>
     );
@@ -236,15 +236,15 @@ export function PlayersTable({
             options={teams.map((t) => ({ value: t, label: t }))}
           />
           <div className="flex items-center gap-2">
-            <label className="text-[12px] uppercase tracking-wider text-ink-500">검색</label>
+            <label className="text-[13px] uppercase tracking-wider text-ink-500">검색</label>
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="이름 (한글/영문)"
-              className="w-44 rounded-md border border-court-700 bg-court-800 px-2.5 py-1.5 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-flame-500 focus:outline-none"
+              className="w-44 rounded-md border border-court-700 bg-court-800 px-2.5 py-1.5 text-[15px] text-ink-100 placeholder:text-ink-500 focus:border-flame-500 focus:outline-none"
             />
           </div>
-          <div className="ml-auto text-[12px] text-ink-500">
+          <div className="ml-auto text-[13px] text-ink-500">
             <span className="stat-num text-ink-300">{sorted.length}</span>명 표시 중
           </div>
         </div>
@@ -329,14 +329,14 @@ function ChipFilterRow({
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="w-16 shrink-0 text-[12px] uppercase tracking-wider text-ink-500">
+      <span className="w-16 shrink-0 text-[13px] uppercase tracking-wider text-ink-500">
         {label}
       </span>
       <div className="flex flex-wrap gap-1.5">
         <button
           onClick={onClear}
           className={[
-            "rounded-md px-3 py-1.5 text-[13px] font-medium transition",
+            "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
             selected.size === 0
               ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
               : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -351,7 +351,7 @@ function ChipFilterRow({
               key={o.value}
               onClick={() => onToggle(o.value)}
               className={[
-                "rounded-md px-3 py-1.5 text-[13px] font-medium transition",
+                "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
                 toneClass(o.tone, active),
               ].join(" ")}
             >
@@ -377,11 +377,11 @@ function FilterSelect({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <label className="text-[12px] uppercase tracking-wider text-ink-500">{label}</label>
+      <label className="text-[13px] uppercase tracking-wider text-ink-500">{label}</label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="rounded-md border border-court-700 bg-court-800 px-2.5 py-1.5 text-[14px] text-ink-100 focus:border-flame-500 focus:outline-none"
+        className="rounded-md border border-court-700 bg-court-800 px-2.5 py-1.5 text-[15px] text-ink-100 focus:border-flame-500 focus:outline-none"
       >
         <option value="">전체</option>
         {options.map((o) => (
@@ -412,7 +412,7 @@ function StatTable({
   return (
     <table className="w-full text-sm">
       <thead>
-        <tr className="bg-court-900/80 text-[12px] uppercase tracking-[0.1em] text-ink-500">
+        <tr className="bg-court-900/80 text-[13px] uppercase tracking-[0.1em] text-ink-500">
           <th className="py-2.5 pl-3 text-left font-medium">#</th>
           <th className="py-2.5 text-left font-medium">선수</th>
           <th className="py-2.5 text-left font-medium">팀</th>
@@ -444,8 +444,8 @@ function StatTable({
             key={`${p.name}-${p.team}-${i}`}
             className="group transition hover:bg-court-700/30"
           >
-            <td className="stat-num py-2 pl-3 text-[13px] text-ink-500">{i + 1}</td>
-            <td className="py-2 text-[14px] font-medium text-ink-50">
+            <td className="stat-num py-2 pl-3 text-[14px] text-ink-500">{i + 1}</td>
+            <td className="py-2 text-[15px] font-medium text-ink-50">
               <div className="flex items-center gap-1.5">
                 {p.playerNo ? (
                   <Link
@@ -497,7 +497,7 @@ function StatTable({
         ))}
         {rows.length === 0 && (
           <tr>
-            <td colSpan={3 + cols.length} className="py-8 text-center text-[14px] text-ink-500">
+            <td colSpan={3 + cols.length} className="py-8 text-center text-[15px] text-ink-500">
               조건에 맞는 선수가 없어요.
             </td>
           </tr>
@@ -541,7 +541,7 @@ function RegistryTable({
   return (
     <table className="w-full text-sm">
       <thead>
-        <tr className="bg-court-900/80 text-[12px] uppercase tracking-[0.1em] text-ink-500">
+        <tr className="bg-court-900/80 text-[13px] uppercase tracking-[0.1em] text-ink-500">
           <th className="py-2.5 pl-3 text-left font-medium">#</th>
           <th className="py-2.5 text-left font-medium">선수</th>
           <th className="py-2.5 text-left font-medium">팀</th>
@@ -575,8 +575,8 @@ function RegistryTable({
             key={`${p.name}-${p.team}-${i}`}
             className="group transition hover:bg-court-700/30"
           >
-            <td className="stat-num py-2 pl-3 text-[13px] text-ink-500">{i + 1}</td>
-            <td className="py-2 text-[14px] font-medium text-ink-50">
+            <td className="stat-num py-2 pl-3 text-[14px] text-ink-500">{i + 1}</td>
+            <td className="py-2 text-[15px] font-medium text-ink-50">
               {p.playerNo ? (
                 <Link
                   href={`/players/${p.playerNo}`}
@@ -588,7 +588,7 @@ function RegistryTable({
                 p.name
               )}
               {info?.ename && (
-                <span className="ml-1.5 text-[11px] text-ink-500">
+                <span className="ml-1.5 text-[12px] text-ink-500">
                   {info.ename}
                 </span>
               )}
@@ -607,40 +607,40 @@ function RegistryTable({
               )}
             </td>
             {/* 포지션 */}
-            <td className="py-2 text-[13px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info?.pos ? fmtPos(info.pos) : "—"}
             </td>
             {/* 등번호 */}
-            <td className="stat-num py-2 text-[13px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.backNum ?? "—"}
             </td>
             {/* 신장 */}
-            <td className="stat-num py-2 text-[13px] text-ink-100">
+            <td className="stat-num py-2 text-[14px] text-ink-100">
               {info?.pHeight ? `${info.pHeight}cm` : "—"}
             </td>
             {/* 체중 */}
-            <td className="stat-num py-2 text-[13px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.pWeight ? `${info.pWeight}kg` : "—"}
             </td>
             {/* 나이 */}
-            <td className="stat-num py-2 text-[13px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.birthday && ageOf(info.birthday) != null
                 ? `만 ${ageOf(info.birthday)}세`
                 : "—"}
             </td>
             {/* 학교 */}
-            <td className="py-2 text-[13px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info ? topSchool(info.schools) ?? "—" : "—"}
             </td>
             {/* 드래프트 */}
-            <td className="py-2 text-[13px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info ? fmtDraft(info.draft) ?? "—" : "—"}
             </td>
           </tr>
         ))}
         {rows.length === 0 && (
           <tr>
-            <td colSpan={3 + cols.length} className="py-8 text-center text-[14px] text-ink-500">
+            <td colSpan={3 + cols.length} className="py-8 text-center text-[15px] text-ink-500">
               조건에 맞는 선수가 없어요.
             </td>
           </tr>

@@ -27,11 +27,11 @@ export function TeamReboundBars({ teams, title = "팀 리바운드 분해" }: { 
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[12px] text-ink-500">
+          <p className="mt-0.5 text-[13px] text-ink-500">
             왼쪽 주황 = 공격 리바운드 · 오른쪽 시안 = 수비 리바운드 · 경기당 평균
           </p>
         </div>
-        <div className="flex gap-3 text-[12px]">
+        <div className="flex gap-3 text-[13px]">
           <div>
             <div className="text-ink-500">공격 리바 1위</div>
             <div className="stat-num mt-0.5 font-medium text-flame-400">
@@ -62,7 +62,7 @@ export function TeamReboundBars({ teams, title = "팀 리바운드 분해" }: { 
               key={d.team.code}
               className="grid grid-cols-[110px_minmax(0,1fr)_140px] items-center gap-3"
             >
-              <span className="truncate text-[14px] font-medium text-ink-100">
+              <span className="truncate text-[15px] font-medium text-ink-100">
                 {d.team.name}
               </span>
               <div className="relative h-4 min-w-0 overflow-hidden rounded bg-court-700/40">
@@ -71,7 +71,7 @@ export function TeamReboundBars({ teams, title = "팀 리바운드 분해" }: { 
                   <div className="h-full bg-neon-500/80" style={{ width: `${dPct}%` }} />
                 </div>
               </div>
-              <div className="stat-num whitespace-nowrap text-right text-[13px] text-ink-300">
+              <div className="stat-num whitespace-nowrap text-right text-[14px] text-ink-300">
                 <span className="text-flame-400">{d.oReb.toFixed(1)}</span>
                 <span className="mx-1 text-ink-500">+</span>
                 <span className="text-neon-400">{d.dReb.toFixed(1)}</span>

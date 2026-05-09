@@ -22,14 +22,14 @@ export function StatCard({
     <div className="group relative overflow-hidden card p-4 transition hover:border-court-600 hover:shadow-card-hover">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${accent}`} />
       <div className="flex items-center justify-between">
-        <span className="text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
+        <span className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
           {label}
         </span>
         {trend && <TrendIcon trend={trend} />}
       </div>
       <div className="mt-2 text-lg font-semibold text-ink-50">{title}</div>
       <div className="mt-1 stat-num text-2xl font-bold text-ink-50">{value}</div>
-      {caption && <div className="mt-2 text-[13px] text-ink-300">{caption}</div>}
+      {caption && <div className="mt-2 text-[14px] text-ink-300">{caption}</div>}
     </div>
   );
 }
@@ -41,5 +41,5 @@ function TrendIcon({ trend }: { trend: "up" | "down" | "flat" }) {
     flat: { color: "text-ink-500", symbol: "—" },
   } as const;
   const m = map[trend];
-  return <span className={`text-[11px] font-semibold ${m.color}`}>{m.symbol}</span>;
+  return <span className={`text-[12px] font-semibold ${m.color}`}>{m.symbol}</span>;
 }

@@ -37,7 +37,7 @@ export function ShootingRangeChart({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           영역별 야투
         </h3>
-        <p className="mt-3 text-[13px] text-ink-500">
+        <p className="mt-3 text-[14px] text-ink-500">
           데이터 없음 — npm run fetch:kbl-shooting 실행 필요
         </p>
       </div>
@@ -53,11 +53,11 @@ export function ShootingRangeChart({
           <h3 className="text-sm font-semibold tracking-tight text-ink-50">
             영역별 야투
           </h3>
-          <p className="mt-1 text-[12px] text-ink-500">
+          <p className="mt-1 text-[13px] text-ink-500">
             KBL 공식 6분할 · 정규시즌 평균 (코트 맵과 동일 색상)
           </p>
         </div>
-        <div className="text-right text-[12px] text-ink-500">
+        <div className="text-right text-[13px] text-ink-500">
           <span className="stat-num text-ink-300">{totalAtt.toFixed(1)}</span>회 시도
         </div>
       </div>
@@ -70,14 +70,14 @@ export function ShootingRangeChart({
           return (
             <div key={r.range} className="space-y-1">
               <div className="flex items-baseline justify-between gap-2">
-                <span className="text-[13px] font-medium text-ink-100 inline-flex items-center gap-1.5">
+                <span className="text-[14px] font-medium text-ink-100 inline-flex items-center gap-1.5">
                   <span
                     className="inline-block h-2.5 w-2.5 rounded-sm"
                     style={{ backgroundColor: barColor }}
                   />
                   {RANGE_LABELS[r.range] ?? `Range ${r.range}`}
                 </span>
-                <span className="stat-num text-[13px]">
+                <span className="stat-num text-[14px]">
                   <span className="text-ink-50 font-semibold">
                     {r.pct.toFixed(1)}%
                   </span>
@@ -105,7 +105,7 @@ export function ShootingRangeChart({
                   />
                 )}
               </div>
-              <div className="flex items-baseline justify-between text-[11px] text-ink-500">
+              <div className="flex items-baseline justify-between text-[12px] text-ink-500">
                 <span>시도 비율 {sharePct.toFixed(1)}%</span>
                 {poRow && poRow.att > 0 && (
                   <span>PO: {poRow.pct.toFixed(1)}% · {poRow.att.toFixed(1)} 시도</span>
@@ -117,7 +117,7 @@ export function ShootingRangeChart({
       </div>
 
       {playoff && playoff.length > 0 && (
-        <p className="mt-4 text-[11px] text-ink-500">
+        <p className="mt-4 text-[12px] text-ink-500">
           흰 세로선 = PO 평균 위치
         </p>
       )}

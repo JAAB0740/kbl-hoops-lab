@@ -56,9 +56,9 @@ export default function StandingsPage() {
           <FilterableStandings filters={STANDINGS_FILTERS} />
         ) : (
           <section className="card p-5">
-            <p className="text-[14px] text-ink-300">
+            <p className="text-[15px] text-ink-300">
               필터 데이터가 없어요. PowerShell에서{" "}
-              <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[13px]">
+              <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[14px]">
                 npm run fetch:kbl-api
               </code>
               를 먼저 실행해주세요.
@@ -66,7 +66,7 @@ export default function StandingsPage() {
           </section>
         )}
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
           데이터 출처: KBL 공식 API · 2025-26 정규리그 54경기 기준
         </footer>
       </main>
@@ -89,13 +89,13 @@ function SummaryCard({
   return (
     <div className="relative overflow-hidden card p-4">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${barColor}`} />
-      <div className="text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
       <div className="mt-2 text-base font-semibold text-ink-50">{team.name}</div>
       <div
         className={[
-          "mt-1 stat-num text-[13px]",
+          "mt-1 stat-num text-[14px]",
           highlight === "danger" ? "text-buzzer-500" : "text-ink-300",
         ].join(" ")}
       >

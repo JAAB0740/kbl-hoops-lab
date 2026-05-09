@@ -167,7 +167,7 @@ export function BoxScoreTable({
     <div className="space-y-4">
       {/* 모드 토글 */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-[12px] uppercase tracking-wider text-ink-500">스탯 모드</span>
+        <span className="text-[13px] uppercase tracking-wider text-ink-500">스탯 모드</span>
         <div className="flex flex-wrap gap-1">
           {(["basic", "advanced", "hustle"] as Mode[]).map((m) => {
             const active = mode === m;
@@ -176,7 +176,7 @@ export function BoxScoreTable({
                 key={m}
                 onClick={() => setMode(m)}
                 className={[
-                  "rounded-md px-3 py-1 text-[13px] font-medium transition",
+                  "rounded-md px-3 py-1 text-[14px] font-medium transition",
                   active
                     ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                     : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -268,28 +268,28 @@ function TeamBoxTable({
       <div className="flex items-center justify-between gap-2 bg-court-900/70 px-3 py-2">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
-          <span className="text-[13px] font-semibold" style={{ color }}>
+          <span className="text-[14px] font-semibold" style={{ color }}>
             {title}
           </span>
-          <span className="text-[11px] uppercase tracking-wider text-ink-500">
+          <span className="text-[12px] uppercase tracking-wider text-ink-500">
             {side === "home" ? "홈" : "원정"}
           </span>
         </div>
         {teamRecord && mode === "basic" && (
-          <div className="stat-num text-[12px] text-ink-300">
+          <div className="stat-num text-[13px] text-ink-300">
             FG {teamRecord.records.fgt}/{teamRecord.records.fgtA} ·{" "}
             3P {teamRecord.records.threep}/{teamRecord.records.threepA} ·{" "}
             FT {teamRecord.records.ft}/{teamRecord.records.ftA}
           </div>
         )}
         {teamRecord && mode === "advanced" && (
-          <div className="stat-num text-[12px] text-ink-300">
+          <div className="stat-num text-[13px] text-ink-300">
             ORtg {fmt1(teamRecord.records.offrtg)} · DRtg {fmt1(teamRecord.records.defrtg)} ·
             {" "}eFG% {fmtPct(teamRecord.records.efgRt)} · Pace {fmt1(teamRecord.records.pace)}
           </div>
         )}
         {teamRecord && mode === "hustle" && (
-          <div className="stat-num text-[12px] text-ink-300">
+          <div className="stat-num text-[13px] text-ink-300">
             팀 페인트 {teamRecord.records.pp} · 속공 {teamRecord.records.fbScoreCn ?? teamRecord.records.fb} ·
             {" "}TO 득점 {teamRecord.records.turnoverScoreCn ?? "—"} · 벤치 {teamRecord.records.benchScoreCn ?? "—"}
           </div>
@@ -297,9 +297,9 @@ function TeamBoxTable({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/40 text-[11px] uppercase tracking-wider text-ink-500">
+            <tr className="bg-court-900/40 text-[12px] uppercase tracking-wider text-ink-500">
               <th className="py-2 px-2 text-left font-medium w-8">#</th>
               <th className="py-2 text-left font-medium">선수</th>
               <th className="py-2 text-left font-medium w-12">포지션</th>

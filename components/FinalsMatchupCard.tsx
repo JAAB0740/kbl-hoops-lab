@@ -74,13 +74,13 @@ export function FinalsMatchupCard({
             <h3 className="mt-2 text-base font-bold tracking-tight text-ink-50">
               챔피언결정전 — 7전 4선승
             </h3>
-            <p className="mt-0.5 text-[12px] text-ink-500">
+            <p className="mt-0.5 text-[13px] text-ink-500">
               정규시즌 기반 매치업 분석
             </p>
           </div>
           {daysToNext != null && daysToNext >= 0 && (
             <div className="text-right">
-              <div className="text-[11px] uppercase tracking-[0.15em] text-ink-500">
+              <div className="text-[12px] uppercase tracking-[0.15em] text-ink-500">
                 Tip-off
               </div>
               <div className="stat-num text-2xl font-bold text-flame-400">
@@ -111,7 +111,7 @@ export function FinalsMatchupCard({
 
       {/* 비교 표 */}
       <div className="border-t border-court-700/60">
-        <div className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+        <div className="px-5 py-3 text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
           1차 (정규시즌 평균)
         </div>
         <div className="divider-y px-5 pb-4">
@@ -137,7 +137,7 @@ export function FinalsMatchupCard({
 
         {t.advanced && b.advanced && (
           <>
-            <div className="px-5 pt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+            <div className="px-5 pt-2 text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
               2차 (Advanced)
             </div>
             <div className="divider-y px-5 pb-4">
@@ -167,7 +167,7 @@ export function FinalsMatchupCard({
         {/* 플레이오프 평균 — 6강·4강 합산 PO 데이터 */}
         {hasPo && (
           <>
-            <div className="border-t border-court-700/60 px-5 py-3 text-[11px] font-medium uppercase tracking-[0.12em] text-flame-400">
+            <div className="border-t border-court-700/60 px-5 py-3 text-[12px] font-medium uppercase tracking-[0.12em] text-flame-400">
               이번 PO 흐름 ({tPo!.games}G / {bPo!.games}G)
             </div>
             <div className="divider-y px-5 pb-4">
@@ -192,7 +192,7 @@ export function FinalsMatchupCard({
             </div>
             {tPo!.advanced && bPo!.advanced && (
               <>
-                <div className="px-5 pt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+                <div className="px-5 pt-2 text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
                   2차 (PO Advanced)
                 </div>
                 <div className="divider-y px-5 pb-4">
@@ -243,7 +243,7 @@ function TeamPanel({
       <div className="flex items-center justify-center gap-2">
         {seed != null && (
           <span
-            className="stat-num inline-flex h-6 w-6 items-center justify-center rounded text-[12px] font-bold"
+            className="stat-num inline-flex h-6 w-6 items-center justify-center rounded text-[13px] font-bold"
             style={{ backgroundColor: color, color: "#07080a" }}
           >
             {seed}
@@ -251,7 +251,7 @@ function TeamPanel({
         )}
         <span className="text-[16px] font-semibold text-ink-50">{name}</span>
       </div>
-      <div className="stat-num mt-1 text-[13px] text-ink-300">{record}</div>
+      <div className="stat-num mt-1 text-[14px] text-ink-300">{record}</div>
     </div>
   );
 }
@@ -277,19 +277,19 @@ function CompareRow({
     <div className="grid grid-cols-[1fr_60px_1fr] items-center gap-3 py-2">
       <div
         className={[
-          "stat-num text-right text-[14px]",
+          "stat-num text-right text-[15px]",
           leftHigh ? "font-bold" : "text-ink-300",
         ].join(" ")}
         style={{ color: leftHigh ? leftColor : undefined }}
       >
         {left}
       </div>
-      <div className="text-center text-[11px] uppercase tracking-[0.1em] text-ink-500">
+      <div className="text-center text-[12px] uppercase tracking-[0.1em] text-ink-500">
         {label}
       </div>
       <div
         className={[
-          "stat-num text-left text-[14px]",
+          "stat-num text-left text-[15px]",
           rightHigh ? "font-bold" : "text-ink-300",
         ].join(" ")}
         style={{ color: rightHigh ? rightColor : undefined }}

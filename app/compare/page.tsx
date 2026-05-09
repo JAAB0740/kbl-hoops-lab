@@ -23,7 +23,7 @@ export default function ComparePage() {
 
         <CompareClient standings={STANDINGS} players={ALL_PLAYERS} />
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
           데이터 출처: Daum 스포츠 (사용자 로컬 파싱)
         </footer>
       </main>

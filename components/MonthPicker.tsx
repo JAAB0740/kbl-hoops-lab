@@ -33,7 +33,7 @@ export function MonthPicker({
             key={ym}
             onClick={() => onSelect(ym)}
             className={[
-              "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[13px] font-medium transition",
+              "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[14px] font-medium transition",
               active
                 ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                 : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -43,7 +43,7 @@ export function MonthPicker({
             {count > 0 && (
               <span
                 className={[
-                  "stat-num text-[11px]",
+                  "stat-num text-[12px]",
                   active ? "text-flame-300/80" : "text-ink-500",
                 ].join(" ")}
               >

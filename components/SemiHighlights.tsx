@@ -19,13 +19,13 @@ export function SemiHighlights({
             <h3 className="text-sm font-semibold tracking-tight text-ink-50">
               4강 플레이오프 하이라이트
             </h3>
-            <p className="mt-1 text-[12px] text-ink-500">
+            <p className="mt-1 text-[13px] text-ink-500">
               두 시리즈 결과와 분기점이 된 경기
             </p>
           </div>
           <a
             href="/playoffs"
-            className="text-[12px] text-ink-500 hover:text-flame-400"
+            className="text-[13px] text-ink-500 hover:text-flame-400"
           >
             브래킷 →
           </a>
@@ -92,14 +92,14 @@ function SeriesCard({ series }: { series: PlayoffSeries }) {
       {/* 분기점 경기 */}
       {sum.bestGame && (
         <div className="mt-4 rounded-md border border-court-700/60 bg-court-900/40 p-3">
-          <div className="text-[11px] uppercase tracking-[0.12em] text-ink-500">
+          <div className="text-[12px] uppercase tracking-[0.12em] text-ink-500">
             가장 큰 점수차 경기
           </div>
           <div className="mt-1 flex items-baseline justify-between gap-2">
-            <span className="stat-num text-[13px] text-ink-300">
+            <span className="stat-num text-[14px] text-ink-300">
               G{sum.bestGame.no} · {fmtMd(sum.bestGame.date)}
             </span>
-            <span className="stat-num text-[14px] font-semibold text-ink-50">
+            <span className="stat-num text-[15px] font-semibold text-ink-50">
               {sum.bestGame.homeShort}{" "}
               <span className="text-flame-400">{sum.bestGame.homeScore}</span>
               <span className="mx-1 text-ink-500">:</span>
@@ -140,7 +140,7 @@ function TeamLine({
       <div className="flex items-center gap-2">
         {seed != null && (
           <span
-            className="stat-num inline-flex h-5 w-5 items-center justify-center rounded text-[11px] font-bold"
+            className="stat-num inline-flex h-5 w-5 items-center justify-center rounded text-[12px] font-bold"
             style={{
               backgroundColor: isWinner ? color : "#1b1e24",
               color: isWinner ? "#07080a" : "#a1a1aa",
@@ -151,7 +151,7 @@ function TeamLine({
         )}
         <span
           className={[
-            "text-[14px]",
+            "text-[15px]",
             isWinner ? "font-semibold text-ink-50" : "text-ink-300",
           ].join(" ")}
         >
@@ -160,7 +160,7 @@ function TeamLine({
       </div>
       <span
         className={[
-          "stat-num text-[14px] font-bold",
+          "stat-num text-[15px] font-bold",
           isWinner ? "text-flame-400" : "text-ink-500",
         ].join(" ")}
       >
