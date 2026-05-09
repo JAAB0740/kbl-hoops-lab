@@ -162,7 +162,7 @@ export function TeamRoundTrend({
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">{metric.desc}</p>
+          <p className="mt-0.5 text-[12px] text-ink-500">{metric.desc}</p>
         </div>
         <div className="flex flex-wrap gap-1.5">
           {METRICS.map((m) => {
@@ -172,7 +172,7 @@ export function TeamRoundTrend({
                 key={m.key}
                 onClick={() => setMetricKey(m.key)}
                 className={[
-                  "rounded-md px-2.5 py-1 text-[11px] font-medium transition",
+                  "rounded-md px-2.5 py-1 text-[12px] font-medium transition",
                   active
                     ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                     : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -335,7 +335,7 @@ export function TeamRoundTrend({
         </svg>
       </div>
 
-      <p className="mt-2 text-[10px] text-ink-500">
+      <p className="mt-2 text-[11px] text-ink-500">
         ※ 마우스를 라인 위에 올리면 해당 팀 강조. {metric.invert ? "이 메트릭은 낮을수록 좋음." : ""}
       </p>
     </div>

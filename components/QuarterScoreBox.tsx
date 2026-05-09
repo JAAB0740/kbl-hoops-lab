@@ -48,9 +48,9 @@ export function QuarterScoreBox({
 
   // 패딩/폰트
   const cellPad = size === "sm" ? "px-1.5 py-1" : "px-2.5 py-1.5";
-  const cellFont = size === "sm" ? "text-[11px]" : "text-[13px]";
-  const totalFont = size === "sm" ? "text-[13px]" : "text-[16px]";
-  const labelFont = size === "sm" ? "text-[9px]" : "text-[10px]";
+  const cellFont = size === "sm" ? "text-[12px]" : "text-[14px]";
+  const totalFont = size === "sm" ? "text-[14px]" : "text-[16px]";
+  const labelFont = size === "sm" ? "text-[9px]" : "text-[11px]";
 
   function row(short: string, full: string | undefined, q: number[], eq: number[], total: number, color: string, won: boolean) {
     const cells = [...q, ...eq];

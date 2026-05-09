@@ -109,7 +109,7 @@ export function DateStrip({
         {selectedDate !== todayKey && (
           <button
             onClick={() => onSelect(todayKey)}
-            className="rounded-md border border-flame-500/40 bg-flame-500/10 px-2.5 py-1 text-[11px] font-medium text-flame-400 hover:bg-flame-500/20"
+            className="rounded-md border border-flame-500/40 bg-flame-500/10 px-2.5 py-1 text-[12px] font-medium text-flame-400 hover:bg-flame-500/20"
           >
             오늘
           </button>
@@ -177,7 +177,7 @@ export function DateStrip({
                 )}
                 <span
                   className={[
-                    "text-[10px] uppercase tracking-wider",
+                    "text-[11px] uppercase tracking-wider",
                     isToday
                       ? "text-flame-400 font-bold"
                       : dow === 0
@@ -216,7 +216,7 @@ export function DateStrip({
         </div>
       </div>
 
-      <p className="mt-2 text-[10px] text-ink-500">
+      <p className="mt-2 text-[11px] text-ink-500">
         ← / → 화살표를 누르거나 가로로 드래그/스와이프해서 다른 날짜로 이동
       </p>
     </div>

@@ -160,7 +160,7 @@ export function GamesExplorer() {
             >
               <div
                 className={[
-                  "text-[11px] uppercase tracking-wider",
+                  "text-[12px] uppercase tracking-wider",
                   active ? "text-flame-300" : "text-ink-500",
                 ].join(" ")}
               >
@@ -195,7 +195,7 @@ export function GamesExplorer() {
             {lastFinalDate && lastFinalDate !== selectedDate && (
               <button
                 onClick={() => setSelectedDate(lastFinalDate)}
-                className="rounded-md border border-court-700 bg-court-800/70 px-3 py-1.5 text-[11px] text-ink-300 hover:border-court-600 hover:text-ink-100"
+                className="rounded-md border border-court-700 bg-court-800/70 px-3 py-1.5 text-[12px] text-ink-300 hover:border-court-600 hover:text-ink-100"
               >
                 ← 최근 종료 ({fmtDate(lastFinalDate)})
               </button>
@@ -203,7 +203,7 @@ export function GamesExplorer() {
             {nextScheduledDate && nextScheduledDate !== selectedDate && (
               <button
                 onClick={() => setSelectedDate(nextScheduledDate)}
-                className="rounded-md border border-court-700 bg-court-800/70 px-3 py-1.5 text-[11px] text-ink-300 hover:border-court-600 hover:text-ink-100"
+                className="rounded-md border border-court-700 bg-court-800/70 px-3 py-1.5 text-[12px] text-ink-300 hover:border-court-600 hover:text-ink-100"
               >
                 다음 예정 ({fmtDate(nextScheduledDate)}) →
               </button>
@@ -219,7 +219,7 @@ export function GamesExplorer() {
             <h3 className="text-sm font-semibold tracking-tight text-ink-50">
               월 선택
             </h3>
-            <span className="text-[11px] text-ink-500">
+            <span className="text-[12px] text-ink-500">
               칩의 작은 숫자 = 해당 월 경기 수 (필터 적용)
             </span>
           </div>
@@ -256,7 +256,7 @@ export function GamesExplorer() {
 
         {/* 팀 — KBL 정식 10팀만 */}
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <span className="w-12 shrink-0 text-[11px] uppercase tracking-wider text-ink-500">
+          <span className="w-12 shrink-0 text-[12px] uppercase tracking-wider text-ink-500">
             팀
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -277,7 +277,7 @@ export function GamesExplorer() {
 
         {/* 구분 — 정규/PO/EASL/올스타 모두 표시 */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="w-12 shrink-0 text-[11px] uppercase tracking-wider text-ink-500">
+          <span className="w-12 shrink-0 text-[12px] uppercase tracking-wider text-ink-500">
             구분
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -308,13 +308,13 @@ export function GamesExplorer() {
       ) : mode === "byday" ? (
         bydayGames.length === 0 ? (
           <div className="card p-8 text-center">
-            <p className="text-[13px] text-ink-300">
+            <p className="text-[14px] text-ink-300">
               <span className="font-semibold text-ink-100">
                 {fmtDate(selectedDate)}
               </span>
               에 경기가 없어요.
             </p>
-            <p className="mt-1 text-[11px] text-ink-500">
+            <p className="mt-1 text-[12px] text-ink-500">
               위쪽 strip에서 다른 날짜를 선택하거나 필터를 조정해보세요.
             </p>
           </div>
@@ -329,13 +329,13 @@ export function GamesExplorer() {
         // 월별 모드
         monthGames.length === 0 ? (
           <div className="card p-8 text-center">
-            <p className="text-[13px] text-ink-300">
+            <p className="text-[14px] text-ink-300">
               <span className="font-semibold text-ink-100">
                 {parseInt(selectedMonth.split("-")[1], 10)}월
               </span>
               에 경기가 없어요.
             </p>
-            <p className="mt-1 text-[11px] text-ink-500">
+            <p className="mt-1 text-[12px] text-ink-500">
               다른 월을 선택하거나 필터를 조정해보세요.
             </p>
           </div>
@@ -360,7 +360,7 @@ export function GamesExplorer() {
                         오늘
                       </span>
                     )}
-                    <span className="text-[11px] text-ink-500">
+                    <span className="text-[12px] text-ink-500">
                       {games.length}경기
                     </span>
                   </div>
@@ -392,7 +392,7 @@ function Chip({
     <button
       onClick={onClick}
       className={[
-        "rounded-md px-3 py-1.5 text-[12px] font-medium transition",
+        "rounded-md px-3 py-1.5 text-[13px] font-medium transition",
         active
           ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
           : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",

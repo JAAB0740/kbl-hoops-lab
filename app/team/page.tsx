@@ -26,9 +26,9 @@ export default function TeamPage() {
           <TeamAnalytics filters={STANDINGS_FILTERS} />
         ) : (
           <section className="card p-5">
-            <p className="text-[13px] text-ink-300">
+            <p className="text-[14px] text-ink-300">
               필터 데이터가 없어요. PowerShell에서{" "}
-              <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[12px]">
+              <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[13px]">
                 npm run fetch:kbl-api
               </code>
               를 먼저 실행해주세요.
@@ -36,7 +36,7 @@ export default function TeamPage() {
           </section>
         )}
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[11px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[12px] text-ink-500">
           데이터 출처: KBL 공식 API · 정규리그 기준
         </footer>
       </main>

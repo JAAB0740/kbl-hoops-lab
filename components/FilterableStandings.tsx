@@ -51,7 +51,7 @@ export function FilterableStandings({ filters }: Props) {
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-ink-50">전체 순위 (10팀)</h2>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             {FILTER_META[filter].sub} · 필터 변경 시 순위가 재정렬됨
           </p>
         </div>
@@ -63,7 +63,7 @@ export function FilterableStandings({ filters }: Props) {
                 key={f}
                 onClick={() => setFilter(f)}
                 className={[
-                  "rounded px-3 py-1.5 text-[12px] font-medium transition",
+                  "rounded px-3 py-1.5 text-[13px] font-medium transition",
                   active
                     ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                     : "text-ink-300 hover:text-ink-100",
@@ -78,7 +78,7 @@ export function FilterableStandings({ filters }: Props) {
 
       {/* 인사이트 배너 — 필터 변경 시 가장 큰 순위 변화 보여줌 */}
       {biggestMover && biggestMover.delta !== 0 && (
-        <div className="mb-3 rounded-md border border-court-700/60 bg-court-900/40 px-3 py-2 text-[12px] text-ink-300">
+        <div className="mb-3 rounded-md border border-court-700/60 bg-court-900/40 px-3 py-2 text-[13px] text-ink-300">
           <span className="font-medium text-ink-100">{biggestMover.team.name}</span>{" "}
           {biggestMover.delta > 0 ? (
             <span>
@@ -102,7 +102,7 @@ export function FilterableStandings({ filters }: Props) {
       <div className="overflow-hidden rounded-lg border border-court-700/70">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-court-900/70 text-[11px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/70 text-[12px] uppercase tracking-[0.1em] text-ink-500">
               <th className="py-2.5 pl-3 text-left font-medium">#</th>
               <th className="py-2.5 text-left font-medium">팀</th>
               <th className="py-2.5 text-right font-medium">경기</th>
@@ -123,7 +123,7 @@ export function FilterableStandings({ filters }: Props) {
                 <tr key={t.code} className="group transition hover:bg-court-700/30">
                   <td className="py-2.5 pl-3">
                     <span
-                      className="stat-num text-[13px] font-semibold"
+                      className="stat-num text-[14px] font-semibold"
                       style={{ color }}
                     >
                       {t.rank}
@@ -135,7 +135,7 @@ export function FilterableStandings({ filters }: Props) {
                         className="h-2 w-2 shrink-0 rounded-full"
                         style={{ backgroundColor: color }}
                       />
-                      <span className="text-[13px] font-medium text-ink-50">
+                      <span className="text-[14px] font-medium text-ink-50">
                         {t.name}
                       </span>
                     </div>

@@ -200,7 +200,7 @@ function Header({ profile }: { profile: PlayerProfile }) {
               />
             )}
             <div>
-              <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+              <div className="flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
                 <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">
                   {profile.team.short}
                 </span>
@@ -224,7 +224,7 @@ function Header({ profile }: { profile: PlayerProfile }) {
                   </span>
                 )}
               </h1>
-              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 stat-num text-[12px] text-ink-300">
+              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 stat-num text-[13px] text-ink-300">
                 <span>#{profile.playerNo}</span>
                 {info?.backNum && (
                   <span>
@@ -244,7 +244,7 @@ function Header({ profile }: { profile: PlayerProfile }) {
           {/* 우: 시즌 평균 */}
           {season && (
             <div className="flex items-baseline gap-1">
-              <span className="text-[11px] uppercase tracking-[0.12em] text-ink-500">
+              <span className="text-[12px] uppercase tracking-[0.12em] text-ink-500">
                 정규 평균
               </span>
               <span className="ml-3 stat-num text-2xl font-bold text-flame-400">
@@ -318,10 +318,10 @@ function Header({ profile }: { profile: PlayerProfile }) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[11px] uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
-      <div className="mt-0.5 text-[13px] font-medium text-ink-100">{value}</div>
+      <div className="mt-0.5 text-[14px] font-medium text-ink-100">{value}</div>
     </div>
   );
 }
@@ -344,15 +344,15 @@ function BigStat({
   return (
     <div className="relative overflow-hidden card p-4">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${color}`} />
-      <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
       <div className="mt-2 flex items-baseline gap-1.5">
         <span className="stat-num text-2xl font-bold text-ink-50">{value}</span>
-        <span className="text-[11px] text-ink-500">{unit}</span>
+        <span className="text-[12px] text-ink-500">{unit}</span>
       </div>
       {subtitle && (
-        <div className="mt-1 text-[11px] text-ink-300">{subtitle}</div>
+        <div className="mt-1 text-[12px] text-ink-300">{subtitle}</div>
       )}
     </div>
   );
@@ -361,13 +361,13 @@ function BigStat({
 // ─── 슈팅 패널 ──────────────────────────────────
 
 function ShootingPanel({ row }: { row: PlayerDetailRow | null }) {
-  if (!row) return <div className="card p-5 text-[13px] text-ink-500">정규 시즌 데이터 없음</div>;
+  if (!row) return <div className="card p-5 text-[14px] text-ink-500">정규 시즌 데이터 없음</div>;
   return (
     <div className="card p-5">
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         슈팅 효율 — 정규 시즌
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">경기당 평균</p>
+      <p className="mt-1 text-[12px] text-ink-500">경기당 평균</p>
 
       <div className="mt-4 space-y-3">
         <ShotBar
@@ -426,8 +426,8 @@ function ShotBar({
   return (
     <div>
       <div className="flex items-baseline justify-between">
-        <span className="text-[12px] text-ink-300">{label}</span>
-        <span className="stat-num text-[12px] text-ink-300">
+        <span className="text-[13px] text-ink-300">{label}</span>
+        <span className="stat-num text-[13px] text-ink-300">
           <span className="text-ink-50 font-medium">{fmt(made)}</span>
           <span className="text-ink-500"> / {fmt(att)}</span>
           <span className="ml-2 text-flame-400">{fmt1(pct)}%</span>
@@ -444,7 +444,7 @@ function MiniStat({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <div className="stat-num text-base font-semibold text-ink-50">{value}</div>
-      <div className="mt-0.5 text-[10px] uppercase tracking-wider text-ink-500">
+      <div className="mt-0.5 text-[11px] uppercase tracking-wider text-ink-500">
         {label}
       </div>
     </div>
@@ -482,7 +482,7 @@ function RoundTrendPanel({ trend }: { trend: Props["trend"] }) {
           <h3 className="text-sm font-semibold tracking-tight text-ink-50">
             라운드별 추이
           </h3>
-          <p className="mt-1 text-[11px] text-ink-500">정규시즌 1~6라운드</p>
+          <p className="mt-1 text-[12px] text-ink-500">정규시즌 1~6라운드</p>
         </div>
         <div className="flex flex-wrap gap-1">
           {TREND_OPTIONS.map((o) => (
@@ -490,7 +490,7 @@ function RoundTrendPanel({ trend }: { trend: Props["trend"] }) {
               key={o.key}
               onClick={() => setStatKey(o.key)}
               className={[
-                "rounded-md border px-2 py-1 text-[11px] transition",
+                "rounded-md border px-2 py-1 text-[12px] transition",
                 statKey === o.key
                   ? "border-flame-500/50 bg-flame-500/10 text-flame-400"
                   : "border-court-700 bg-court-800/50 text-ink-300 hover:border-court-500",
@@ -545,7 +545,7 @@ function RoundTrendPanel({ trend }: { trend: Props["trend"] }) {
             </LineChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex h-full items-center justify-center text-[12px] text-ink-500">
+          <div className="flex h-full items-center justify-center text-[13px] text-ink-500">
             라운드 데이터 없음
           </div>
         )}
@@ -571,7 +571,7 @@ function ClutchPanel({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           클러치 (박빙 시 stats)
         </h3>
-        <p className="mt-3 text-[12px] text-ink-500">
+        <p className="mt-3 text-[13px] text-ink-500">
           박빙 시 출장 기록 없음 (4Q 마지막 5분 + 5점차 이내)
         </p>
       </div>
@@ -598,7 +598,7 @@ function ClutchPanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         클러치 (박빙 시 stats)
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">
+      <p className="mt-1 text-[12px] text-ink-500">
         4Q 마지막 5분 + 5점차 이내 · {regular.games}경기 출장
       </p>
 
@@ -612,9 +612,9 @@ function ClutchPanel({
       </div>
 
       <div className="mt-4 overflow-hidden rounded-md border border-court-700/60">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/60 text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/60 text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="px-3 py-2 text-left font-medium">스탯</th>
               <th className="px-3 py-2 text-right font-medium text-buzzer-400">박빙</th>
               <th className="px-3 py-2 text-right font-medium">시즌 평균</th>
@@ -658,7 +658,7 @@ function ClutchPanel({
       </div>
 
       {playoff && playoff.games > 0 && (
-        <p className="mt-3 text-[11px] text-ink-500">
+        <p className="mt-3 text-[12px] text-ink-500">
           PO 박빙: {playoff.games}G · {playoff.points.toFixed(1)}점 · FG {playoff.fgPct.toFixed(1)}%
         </p>
       )}
@@ -678,7 +678,7 @@ function BigClutchStat({
   return (
     <div className="relative overflow-hidden rounded-md border border-court-700/60 bg-court-900/40 p-3">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${accent}`} />
-      <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
       <div className="stat-num mt-1 text-lg font-bold text-ink-50">{value}</div>
@@ -701,7 +701,7 @@ function HustlePanel({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           허슬 stats
         </h3>
-        <p className="mt-3 text-[12px] text-ink-500">데이터 없음</p>
+        <p className="mt-3 text-[13px] text-ink-500">데이터 없음</p>
       </div>
     );
   }
@@ -711,7 +711,7 @@ function HustlePanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         허슬 stats
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">
+      <p className="mt-1 text-[12px] text-ink-500">
         스탯 시트에 잘 안 보이는 영향력 · {regular.games}경기 평균
       </p>
 
@@ -735,10 +735,10 @@ function HustlePanel({
 
       {playoff && playoff.games > 0 && (
         <div className="mt-4 rounded-md border border-court-700/60 bg-court-900/40 p-3">
-          <div className="text-[10px] uppercase tracking-wider text-ink-500">
+          <div className="text-[11px] uppercase tracking-wider text-ink-500">
             플레이오프 ({playoff.games}G)
           </div>
-          <div className="stat-num mt-1 text-[12px] text-ink-300">
+          <div className="stat-num mt-1 text-[13px] text-ink-300">
             스크린 어시 <span className="font-semibold text-ink-50">{playoff.screenAssists.toFixed(2)}</span> · 디플렉션{" "}
             <span className="font-semibold text-ink-50">{playoff.deflections.toFixed(2)}</span>
           </div>
@@ -766,13 +766,13 @@ function HustleStat({
   return (
     <div className="relative overflow-hidden rounded-md border border-court-700/60 bg-court-900/40 p-3">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${color}`} />
-      <div className="text-[11px] font-medium text-ink-100">{label}</div>
-      {hint && <div className="text-[10px] text-ink-500">{hint}</div>}
+      <div className="text-[12px] font-medium text-ink-100">{label}</div>
+      {hint && <div className="text-[11px] text-ink-500">{hint}</div>}
       <div className="mt-2 flex items-baseline gap-1">
         <span className="stat-num text-xl font-bold text-ink-50">{value}</span>
-        <span className="text-[10px] text-ink-500">{unit}</span>
+        <span className="text-[11px] text-ink-500">{unit}</span>
       </div>
-      {subValue && <div className="mt-1 text-[10px] text-ink-300">{subValue}</div>}
+      {subValue && <div className="mt-1 text-[11px] text-ink-300">{subValue}</div>}
     </div>
   );
 }
@@ -806,7 +806,7 @@ function QuarterBreakdownPanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         쿼터별 평균 득점
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">
+      <p className="mt-1 text-[12px] text-ink-500">
         총 {totalPts.toFixed(1)}점 · 정규시즌 누적 평균
       </p>
 
@@ -821,7 +821,7 @@ function QuarterBreakdownPanel({
                 key={q.label}
                 className="grid grid-cols-[40px_minmax(0,1fr)_120px] items-center gap-3"
               >
-                <span className="text-[11px] font-medium uppercase tracking-wider text-ink-500">
+                <span className="text-[12px] font-medium uppercase tracking-wider text-ink-500">
                   {q.label}
                 </span>
                 <div className="relative h-5 overflow-hidden rounded bg-court-700/40">
@@ -830,7 +830,7 @@ function QuarterBreakdownPanel({
                     style={{ width: `${pct}%` }}
                   />
                 </div>
-                <div className="stat-num text-right text-[12px]">
+                <div className="stat-num text-right text-[13px]">
                   <span className="font-semibold text-ink-50">
                     {pts.toFixed(1)}
                   </span>
@@ -843,7 +843,7 @@ function QuarterBreakdownPanel({
           })}
         </div>
       ) : (
-        <p className="mt-4 text-[12px] text-ink-500">쿼터별 데이터 없음</p>
+        <p className="mt-4 text-[13px] text-ink-500">쿼터별 데이터 없음</p>
       )}
 
       {/* 전후반 비교 */}
@@ -867,22 +867,22 @@ function HalfStat({
   if (!row) {
     return (
       <div className="rounded-md border border-court-700/60 bg-court-900/40 p-3">
-        <div className="text-[10px] uppercase tracking-wider text-ink-500">
+        <div className="text-[11px] uppercase tracking-wider text-ink-500">
           {label}
         </div>
-        <div className="stat-num mt-1 text-[13px] text-ink-500">—</div>
+        <div className="stat-num mt-1 text-[14px] text-ink-500">—</div>
       </div>
     );
   }
   return (
     <div className="rounded-md border border-court-700/60 bg-court-900/40 p-3">
-      <div className="text-[10px] uppercase tracking-wider text-ink-500">
+      <div className="text-[11px] uppercase tracking-wider text-ink-500">
         {label}
       </div>
       <div className="stat-num mt-1 text-base font-bold text-ink-50">
         {row.points.toFixed(1)}점
       </div>
-      <div className="stat-num mt-0.5 text-[11px] text-ink-300">
+      <div className="stat-num mt-0.5 text-[12px] text-ink-300">
         {row.rebounds.toFixed(1)}리바 · {row.assists.toFixed(1)}어시 · FG{" "}
         {row.fgPct.toFixed(1)}%
       </div>
@@ -908,7 +908,7 @@ function VenueBreakdownPanel({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           홈 / 원정 패턴
         </h3>
-        <p className="mt-3 text-[12px] text-ink-500">데이터 없음</p>
+        <p className="mt-3 text-[13px] text-ink-500">데이터 없음</p>
       </div>
     );
   }
@@ -930,14 +930,14 @@ function VenueBreakdownPanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         홈 / 원정 패턴
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">
+      <p className="mt-1 text-[12px] text-ink-500">
         같은 선수의 환경별 평균 비교
       </p>
 
       <div className="mt-4 overflow-hidden rounded-md border border-court-700/60">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/60 text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/60 text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="px-3 py-2 text-left font-medium">스탯</th>
               <th className="px-3 py-2 text-right font-medium">홈</th>
               <th className="px-3 py-2 text-right font-medium">원정</th>
@@ -983,7 +983,7 @@ function VenueBreakdownPanel({
       </div>
 
       {home && away && (
-        <p className="mt-3 text-[11px] text-ink-500">
+        <p className="mt-3 text-[12px] text-ink-500">
           홈 {home.games}G · 원정 {away.games}G
         </p>
       )}
@@ -1006,7 +1006,7 @@ function AdvancedPanel({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           2차 스탯 (Advanced)
         </h3>
-        <p className="mt-1 text-[11px] text-ink-500">
+        <p className="mt-1 text-[12px] text-ink-500">
           {playoff ? "정규 / 플레이오프 비교" : "정규 시즌 평균"}
         </p>
       </div>
@@ -1041,9 +1041,9 @@ function AdvancedPanel({
 
       {/* 상세 표 */}
       <div className="overflow-x-auto border-t border-court-700/60">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/50 text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/50 text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="px-5 py-2 text-left font-medium">스탯</th>
               <th className="px-3 py-2 text-right font-medium text-flame-400">정규</th>
               {playoff && (
@@ -1064,7 +1064,7 @@ function AdvancedPanel({
                   <td className="px-5 py-2 text-ink-300" title={d.hint}>
                     <span className="font-medium text-ink-100">{d.label}</span>
                     {d.hint && (
-                      <span className="ml-2 text-[10px] text-ink-500">
+                      <span className="ml-2 text-[11px] text-ink-500">
                         {d.hint}
                       </span>
                     )}
@@ -1147,11 +1147,11 @@ function BigAdvCard({
   return (
     <div className="relative overflow-hidden card p-4">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${color}`} />
-      <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500" title={hint}>
+      <div className="text-[12px] font-medium uppercase tracking-[0.12em] text-ink-500" title={hint}>
         {label}
       </div>
       <div className="stat-num mt-2 text-2xl font-bold text-ink-50">{value}</div>
-      {hint && <div className="mt-1 text-[10px] text-ink-500">{hint}</div>}
+      {hint && <div className="mt-1 text-[11px] text-ink-500">{hint}</div>}
     </div>
   );
 }
@@ -1222,7 +1222,7 @@ function RoundCompare({ profile }: { profile: PlayerProfile }) {
             <h3 className="text-sm font-semibold tracking-tight text-ink-50">
               라운드 조합 비교
             </h3>
-            <p className="mt-1 text-[11px] text-ink-500">
+            <p className="mt-1 text-[12px] text-ink-500">
               임의의 라운드를 다중 선택해 평균을 보거나, 두 조합을 비교
             </p>
           </div>
@@ -1235,7 +1235,7 @@ function RoundCompare({ profile }: { profile: PlayerProfile }) {
                   setBSet(new Set(p.b));
                   setBEnabled(true);
                 }}
-                className="rounded-md border border-court-700 bg-court-800/50 px-2.5 py-1 text-[11px] text-ink-300 transition hover:border-flame-500/50 hover:text-flame-400"
+                className="rounded-md border border-court-700 bg-court-800/50 px-2.5 py-1 text-[12px] text-ink-300 transition hover:border-flame-500/50 hover:text-flame-400"
               >
                 {p.label}
               </button>
@@ -1268,9 +1268,9 @@ function RoundCompare({ profile }: { profile: PlayerProfile }) {
 
       {/* 비교 표 */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/60 text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/60 text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="px-5 py-2 text-left font-medium">스탯</th>
               <th className="px-3 py-2 text-right font-medium text-flame-400">
                 A · {aLabel}
@@ -1369,7 +1369,7 @@ function RoundSetPicker({
       ].join(" ")}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-300">
+        <span className="text-[12px] font-medium uppercase tracking-[0.12em] text-ink-300">
           {label}
           <span className="ml-2 stat-num text-ink-500">
             {roundsLabel(set)}
@@ -1377,7 +1377,7 @@ function RoundSetPicker({
           </span>
         </span>
         {onToggle && (
-          <label className="flex cursor-pointer items-center gap-1.5 text-[11px] text-ink-300">
+          <label className="flex cursor-pointer items-center gap-1.5 text-[12px] text-ink-300">
             <input
               type="checkbox"
               checked={enabled}
@@ -1404,7 +1404,7 @@ function RoundSetPicker({
               }}
               disabled={!enabled}
               className={[
-                "rounded-md px-2.5 py-1 text-[12px] font-medium transition",
+                "rounded-md px-2.5 py-1 text-[13px] font-medium transition",
                 active
                   ? activeChip
                   : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -1418,14 +1418,14 @@ function RoundSetPicker({
         <button
           onClick={() => enabled && onChange(new Set([1, 2, 3, 4, 5, 6]))}
           disabled={!enabled}
-          className="ml-1 rounded-md border border-court-700 bg-court-800/30 px-2 py-1 text-[10px] text-ink-400 hover:border-court-500 hover:text-ink-100 disabled:opacity-50"
+          className="ml-1 rounded-md border border-court-700 bg-court-800/30 px-2 py-1 text-[11px] text-ink-400 hover:border-court-500 hover:text-ink-100 disabled:opacity-50"
         >
           전체
         </button>
         <button
           onClick={() => enabled && onChange(new Set())}
           disabled={!enabled}
-          className="rounded-md border border-court-700 bg-court-800/30 px-2 py-1 text-[10px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400 disabled:opacity-50"
+          className="rounded-md border border-court-700 bg-court-800/30 px-2 py-1 text-[11px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400 disabled:opacity-50"
         >
           비움
         </button>
@@ -1449,7 +1449,7 @@ function PostseasonPanel({
         <h3 className="text-sm font-semibold tracking-tight text-ink-50">
           포스트시즌
         </h3>
-        <p className="mt-3 text-[12px] text-ink-500">
+        <p className="mt-3 text-[13px] text-ink-500">
           이 선수는 이번 PO에 출장하지 않았어요.
         </p>
       </div>
@@ -1471,14 +1471,14 @@ function PostseasonPanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         정규 vs 플레이오프
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">
+      <p className="mt-1 text-[12px] text-ink-500">
         정규 평균 {season?.games ?? 0}G · PO 평균 {playoff.games}G
       </p>
 
       <div className="mt-4 overflow-hidden rounded-md border border-court-700/60">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="bg-court-900/60 text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/60 text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="px-3 py-2 text-left font-medium">스탯</th>
               <th className="px-3 py-2 text-right font-medium">정규</th>
               <th className="px-3 py-2 text-right font-medium">PO</th>
@@ -1537,17 +1537,17 @@ function TeammatesPanel({
       <h3 className="text-sm font-semibold tracking-tight text-ink-50">
         같은 팀 동료 — 득점 TOP {teammates.length}
       </h3>
-      <p className="mt-1 text-[11px] text-ink-500">{teamShort} 소속, 클릭으로 이동</p>
+      <p className="mt-1 text-[12px] text-ink-500">{teamShort} 소속, 클릭으로 이동</p>
 
       <div className="mt-4 divider-y">
         {teammates.length === 0 && (
-          <div className="py-4 text-[12px] text-ink-500">동료 데이터 없음</div>
+          <div className="py-4 text-[13px] text-ink-500">동료 데이터 없음</div>
         )}
         {teammates.map((t) => (
           <a
             key={t.playerNo}
             href={`/players/${t.playerNo}`}
-            className="flex items-center justify-between py-2.5 text-[13px] transition hover:text-flame-400"
+            className="flex items-center justify-between py-2.5 text-[14px] transition hover:text-flame-400"
           >
             <span className="font-medium text-ink-50">{t.kname}</span>
             <span className="stat-num text-ink-300">
@@ -1571,9 +1571,9 @@ function RoundTable({ rounds }: { rounds: Record<string, PlayerDetailRow | null>
         </h3>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-[12px]">
+        <table className="w-full text-[13px]">
           <thead>
-            <tr className="text-[10px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="text-[11px] uppercase tracking-[0.1em] text-ink-500">
               <th className="pl-5 pr-3 py-2 text-left">라운드</th>
               <th className="px-3 py-2 text-right">G</th>
               <th className="px-3 py-2 text-right">분</th>

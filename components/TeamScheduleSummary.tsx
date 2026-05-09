@@ -71,11 +71,11 @@ export function TeamScheduleSummary({ teamShort }: { teamShort: string }) {
           <h3 className="text-sm font-semibold tracking-tight text-ink-50">
             <span style={{ color }}>{teamShort}</span> 시즌 일정 요약
           </h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             정규+PO 전체 · 총 {games.length}경기 · 종료 {finals.length}경기
           </p>
         </div>
-        <div className="flex flex-wrap gap-3 text-[11px]">
+        <div className="flex flex-wrap gap-3 text-[12px]">
           <Stat label="전체" value={`${wins}-${losses}`} accent={color} />
           <Stat label="승률" value={winPct.toFixed(3).replace(/^0/, "")} />
           <Stat label="홈" value={`${homeW}-${homeL}`} />
@@ -107,7 +107,7 @@ export function TeamScheduleSummary({ teamShort }: { teamShort: string }) {
           ))}
         </div>
       </div>
-      <p className="mt-2 text-[10px] text-ink-500">
+      <p className="mt-2 text-[11px] text-ink-500">
         왼쪽 = 시즌 시작 · 색칠된 칸 = 종료 경기 · 회색 = 예정 · 호버하면 상세 정보,
         클릭하면 경기 페이지로 이동
       </p>
@@ -130,7 +130,7 @@ function Stat({
         {label}
       </div>
       <div
-        className="stat-num mt-0.5 text-[12px] font-semibold"
+        className="stat-num mt-0.5 text-[13px] font-semibold"
         style={{ color: accent ?? undefined }}
       >
         {value}

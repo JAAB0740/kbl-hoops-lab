@@ -55,11 +55,11 @@ export function TeamShotProfile({
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             시도 비중 (100%) · 시안 = 2점 · 자홍 = 3점 · 노랑 = 자유투
           </p>
         </div>
-        <div className="flex gap-3 text-[11px]">
+        <div className="flex gap-3 text-[12px]">
           <div>
             <div className="text-ink-500">3점 의존도 1위</div>
             <div className="stat-num mt-0.5 font-medium text-buzzer-400">
@@ -95,7 +95,7 @@ export function TeamShotProfile({
               key={d.team.code}
               className="grid grid-cols-[110px_minmax(0,1fr)_220px] items-center gap-3"
             >
-              <span className="truncate text-[13px] font-medium text-ink-100">
+              <span className="truncate text-[14px] font-medium text-ink-100">
                 {d.team.name}
               </span>
               <div className="relative h-4 min-w-0 overflow-hidden rounded bg-court-700/40">
@@ -117,7 +117,7 @@ export function TeamShotProfile({
                   />
                 </div>
               </div>
-              <div className="stat-num whitespace-nowrap text-right text-[12px] text-ink-300">
+              <div className="stat-num whitespace-nowrap text-right text-[13px] text-ink-300">
                 <span className="text-neon-400">{twoPct.toFixed(0)}%</span>
                 <span className="mx-1 text-ink-500">·</span>
                 <span className="text-buzzer-400">{threePct.toFixed(0)}%</span>

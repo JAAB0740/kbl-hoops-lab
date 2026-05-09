@@ -68,14 +68,14 @@ export function TeamFourFactors({
       <div className="mb-3 flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             Dean Oliver 4팩터 — 막대는 리그 평균 대비 위치 · 초록=평균↑, 빨강=평균↓ (TOV%만 반대)
           </p>
         </div>
       </div>
 
       {/* 헤더 */}
-      <div className="mb-2 grid grid-cols-[110px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 px-1 text-[10px] uppercase tracking-wider text-ink-500">
+      <div className="mb-2 grid grid-cols-[110px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 px-1 text-[11px] uppercase tracking-wider text-ink-500">
         <span>팀</span>
         <FactorHeader
           name="eFG%"
@@ -109,7 +109,7 @@ export function TeamFourFactors({
             key={d.team.code}
             className="grid grid-cols-[110px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] items-center gap-3"
           >
-            <span className="truncate text-[13px] font-medium text-ink-100">
+            <span className="truncate text-[14px] font-medium text-ink-100">
               {d.team.name}
             </span>
             <FactorCell value={d.efg}   avg={avgEfg}  range={efgR}  invert={false} />
@@ -138,7 +138,7 @@ function FactorHeader({
     <div>
       <span className="font-semibold text-ink-300">{name}</span>{" "}
       <span className="text-ink-500">· {desc}</span>
-      <div className="text-[10px] normal-case tracking-normal text-ink-600">
+      <div className="text-[11px] normal-case tracking-normal text-ink-600">
         리그 평균 {avg.toFixed(1)} · {better}
       </div>
     </div>
@@ -180,7 +180,7 @@ function FactorCell({
           title={`평균 ${avg.toFixed(1)}`}
         />
       </div>
-      <div className="stat-num whitespace-nowrap text-right text-[11px]">
+      <div className="stat-num whitespace-nowrap text-right text-[12px]">
         <span className={above ? "font-semibold text-hoop-400" : "font-semibold text-buzzer-400"}>
           {value.toFixed(1)}
         </span>

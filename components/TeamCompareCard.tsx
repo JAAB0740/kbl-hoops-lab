@@ -12,7 +12,7 @@ export function TeamCompareCard({ leftName, rightName, rows }: Props) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">팀 비교</h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             주요 지표 side-by-side
           </p>
         </div>
@@ -23,7 +23,7 @@ export function TeamCompareCard({ leftName, rightName, rows }: Props) {
 
       <div className="mb-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
         <TeamPill name={leftName} align="right" color="text-neon-400" />
-        <span className="text-[10px] font-medium tracking-widest text-ink-500">VS</span>
+        <span className="text-[11px] font-medium tracking-widest text-ink-500">VS</span>
         <TeamPill name={rightName} align="left" color="text-flame-400" />
       </div>
 
@@ -72,7 +72,7 @@ function CompareRow({ row }: { row: TeamCompareRow }) {
         >
           {row.leftValue}
         </span>
-        <span className="text-[10px] font-medium uppercase tracking-wider text-ink-500">
+        <span className="text-[11px] font-medium uppercase tracking-wider text-ink-500">
           {row.label}
         </span>
         <span

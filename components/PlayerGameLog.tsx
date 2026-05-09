@@ -243,9 +243,9 @@ export function PlayerGameLog({
     return (
       <div className="card p-5">
         <h3 className="text-sm font-semibold text-ink-50">게임로그</h3>
-        <p className="mt-2 text-[12px] text-ink-500">
+        <p className="mt-2 text-[13px] text-ink-500">
           이 선수의 박스스코어 데이터가 아직 없어요.{" "}
-          <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[11px]">
+          <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[12px]">
             npm run fetch:kbl-boxscores
           </code>
           가 먼저 실행되어야 합니다.
@@ -259,7 +259,7 @@ export function PlayerGameLog({
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">게임로그</h3>
-          <p className="mt-0.5 text-[11px] text-ink-500">
+          <p className="mt-0.5 text-[12px] text-ink-500">
             {playerName} · 박스스코어 기반 출장 경기 ({log.length}경기)
           </p>
         </div>
@@ -273,7 +273,7 @@ export function PlayerGameLog({
                   key={t.key}
                   onClick={() => setTagFilter(t.key)}
                   className={[
-                    "rounded-md px-2.5 py-1 text-[11px] font-medium transition",
+                    "rounded-md px-2.5 py-1 text-[12px] font-medium transition",
                     active
                       ? "bg-neon-500/20 text-neon-400 ring-1 ring-neon-500/40"
                       : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -293,7 +293,7 @@ export function PlayerGameLog({
                   key={m}
                   onClick={() => setMode(m)}
                   className={[
-                    "rounded-md px-2.5 py-1 text-[11px] font-medium transition",
+                    "rounded-md px-2.5 py-1 text-[12px] font-medium transition",
                     active
                       ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                       : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -309,7 +309,7 @@ export function PlayerGameLog({
 
       {/* 필터별 평균 요약 */}
       {avg && mode === "basic" && (
-        <div className="mb-3 flex flex-wrap gap-4 rounded-md border border-court-700/60 bg-court-900/40 px-3 py-2 text-[11px]">
+        <div className="mb-3 flex flex-wrap gap-4 rounded-md border border-court-700/60 bg-court-900/40 px-3 py-2 text-[12px]">
           <Stat label="경기" v={`${avg.n}G`} />
           <Stat label="MPG" v={avg.mpg.toFixed(1)} />
           <Stat label="PPG" v={avg.ppg.toFixed(1)} />
@@ -324,9 +324,9 @@ export function PlayerGameLog({
       )}
 
       <div className="overflow-x-auto rounded-lg border border-court-700/70">
-        <table className="w-full text-[11px]">
+        <table className="w-full text-[12px]">
           <thead>
-            <tr className="bg-court-900/70 text-[10px] uppercase tracking-wider text-ink-500">
+            <tr className="bg-court-900/70 text-[11px] uppercase tracking-wider text-ink-500">
               <SortableHead
                 onClick={() => toggleMetaSort("date")}
                 active={isSortedMeta("date")}
@@ -433,7 +433,7 @@ export function PlayerGameLog({
                     >
                       {entry.result}
                     </span>
-                    <span className="ml-1 text-[10px] text-ink-500">
+                    <span className="ml-1 text-[11px] text-ink-500">
                       {entry.myScore}-{entry.oppScore}
                     </span>
                   </td>
@@ -463,7 +463,7 @@ export function PlayerGameLog({
         </table>
       </div>
 
-      <p className="mt-2 text-[10px] text-ink-500">
+      <p className="mt-2 text-[11px] text-ink-500">
         ※ 출장 0초인 경기 (DNP) 는 제외 · 날짜 클릭 시 경기 상세
       </p>
     </div>
