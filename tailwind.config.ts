@@ -47,10 +47,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          // next/font/local 이 layout.tsx 에서 등록한 CSS 변수 (Pretendard)
+          "var(--font-pretendard)",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
-          "Pretendard",
           "Inter",
           "sans-serif",
         ],
