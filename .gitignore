@@ -5,6 +5,7 @@ out
 *.log
 .env*.local
 next-env.d.ts
+tsconfig.tsbuildinfo
 
 # KBL 페이지 raw HTML/JS 덤프 (probe 단계 산출물 — 빌드/배포에 불필요, 5MB+ 차지)
 data/raw/
