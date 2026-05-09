@@ -68,7 +68,7 @@ export default function PlayoffsPage() {
           <PlayoffBracketView bracket={bracket} />
         </section>
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
+        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
           데이터 출처: KBL 공식 일정 · 자동 fetch (npm run parse:kbl-schedule)
         </footer>
       </main>
@@ -103,11 +103,11 @@ function SummaryStat({
   return (
     <div className="relative overflow-hidden card p-4">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${accent}`} />
-      <div className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
       <div className="stat-num mt-2 text-xl font-bold text-ink-50">{value}</div>
-      <div className="mt-0.5 text-[13px] text-ink-300">{caption}</div>
+      <div className="mt-0.5 text-[14px] text-ink-300">{caption}</div>
     </div>
   );
 }

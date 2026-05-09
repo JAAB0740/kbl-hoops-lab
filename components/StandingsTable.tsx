@@ -14,7 +14,7 @@ export function StandingsTable({ rows, take = 6 }: Props) {
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">정규리그 TOP {take}</h3>
-          <p className="mt-0.5 text-[13px] text-ink-500">
+          <p className="mt-0.5 text-[14px] text-ink-500">
             2025-26 · 주황색은 4강 직행, 청록은 6강 PO
           </p>
         </div>
@@ -29,7 +29,7 @@ export function StandingsTable({ rows, take = 6 }: Props) {
       <div className="overflow-hidden rounded-lg border border-court-700/70">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-court-900/70 text-[13px] uppercase tracking-[0.1em] text-ink-500">
+            <tr className="bg-court-900/70 text-[14px] uppercase tracking-[0.1em] text-ink-500">
               <th className="py-2.5 pl-3 text-left font-medium">#</th>
               <th className="py-2.5 text-left font-medium">팀</th>
               <th className="py-2.5 text-right font-medium">승</th>
@@ -45,14 +45,14 @@ export function StandingsTable({ rows, take = 6 }: Props) {
                 className="group transition hover:bg-court-700/30"
               >
                 <td className="py-2.5 pl-3 align-middle">
-                  <span className={`stat-num text-[15px] font-semibold ${t.accent}`}>
+                  <span className={`stat-num text-[16px] font-semibold ${t.accent}`}>
                     {t.rank}
                   </span>
                 </td>
                 <td className="py-2.5 align-middle">
                   <div className="flex items-center gap-2.5">
                     <TeamBadge code={t.code} />
-                    <span className="text-[15px] font-medium text-ink-50">
+                    <span className="text-[16px] font-medium text-ink-50">
                       {t.name}
                     </span>
                     {t.status === "regular-champ" && (
@@ -86,7 +86,7 @@ export function StandingsTable({ rows, take = 6 }: Props) {
 
 function TeamBadge({ code }: { code: string }) {
   return (
-    <span className="flex h-7 w-7 items-center justify-center rounded-md border border-court-700 bg-court-900 text-[12px] font-bold tracking-wider text-ink-100">
+    <span className="flex h-7 w-7 items-center justify-center rounded-md border border-court-700 bg-court-900 text-[13px] font-bold tracking-wider text-ink-100">
       {code.slice(0, 3)}
     </span>
   );
@@ -97,7 +97,7 @@ function StreakChip({ streak }: { streak: string }) {
   return (
     <span
       className={[
-        "inline-flex min-w-[2.25rem] justify-center rounded-md px-2 py-0.5 text-[13px] font-semibold stat-num",
+        "inline-flex min-w-[2.25rem] justify-center rounded-md px-2 py-0.5 text-[14px] font-semibold stat-num",
         isWin
           ? "bg-hoop-500/15 text-hoop-400 ring-1 ring-inset ring-hoop-500/30"
           : "bg-buzzer-500/15 text-buzzer-400 ring-1 ring-inset ring-buzzer-500/30",

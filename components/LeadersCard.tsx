@@ -27,7 +27,7 @@ export function LeadersCard({ title, subtitle, leaders, accent = "flame" }: Prop
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
           {subtitle && (
-            <p className="mt-0.5 text-[13px] text-ink-500">{subtitle}</p>
+            <p className="mt-0.5 text-[14px] text-ink-500">{subtitle}</p>
           )}
         </div>
         <Link
@@ -46,7 +46,7 @@ export function LeadersCard({ title, subtitle, leaders, accent = "flame" }: Prop
             <li key={`${p.name}-${p.rank}`} className="flex items-center gap-3">
               <span
                 className={[
-                  "stat-num w-5 text-right text-[14px] font-semibold",
+                  "stat-num w-5 text-right text-[15px] font-semibold",
                   isTop ? c.topText : "text-ink-500",
                 ].join(" ")}
               >
@@ -55,13 +55,13 @@ export function LeadersCard({ title, subtitle, leaders, accent = "flame" }: Prop
 
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="truncate text-[15px] font-medium text-ink-50">
+                  <span className="truncate text-[16px] font-medium text-ink-50">
                     {p.name}
-                    <span className="text-[13px] font-normal text-ink-500"> · {p.team}</span>
+                    <span className="text-[14px] font-normal text-ink-500"> · {p.team}</span>
                   </span>
-                  <span className="stat-num text-[15px] font-semibold text-ink-50">
+                  <span className="stat-num text-[16px] font-semibold text-ink-50">
                     {p.value.toFixed(1)}
-                    <span className="ml-1 text-[12px] font-normal text-ink-500">
+                    <span className="ml-1 text-[13px] font-normal text-ink-500">
                       {p.unit}
                     </span>
                   </span>

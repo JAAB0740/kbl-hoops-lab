@@ -45,7 +45,7 @@ function statusChip(g: RawGame) {
 
 function FormPill({ form }: { form: ("W" | "L")[] }) {
   if (form.length === 0) {
-    return <span className="text-[12px] text-ink-500">최근 폼 없음</span>;
+    return <span className="text-[13px] text-ink-500">최근 폼 없음</span>;
   }
   return (
     <span className="inline-flex gap-0.5">
@@ -97,7 +97,7 @@ export function GameCard({ game }: { game: RawGame }) {
             <span className={["chip", tagToneClass].join(" ")}>{game.tag}</span>
             {statusChip(game)}
             {!isFinal && game.status !== "live" && (
-              <span className="text-[12px] text-ink-500">
+              <span className="text-[13px] text-ink-500">
                 {countdownTo(game.date, game.time)}
               </span>
             )}
@@ -153,7 +153,7 @@ export function GameCard({ game }: { game: RawGame }) {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {/* 홈팀 정보 */}
             <div>
-              <div className="text-[12px] uppercase tracking-wider text-ink-500">
+              <div className="text-[13px] uppercase tracking-wider text-ink-500">
                 홈
               </div>
               <div
@@ -162,7 +162,7 @@ export function GameCard({ game }: { game: RawGame }) {
               >
                 {game.homeTeam}
               </div>
-              <div className="mt-2 flex items-center gap-2 text-[13px] text-ink-400">
+              <div className="mt-2 flex items-center gap-2 text-[14px] text-ink-400">
                 <span>최근 5경기</span>
                 <FormPill form={homeForm} />
               </div>
@@ -170,7 +170,7 @@ export function GameCard({ game }: { game: RawGame }) {
 
             {/* 가운데: H2H */}
             <div className="text-center">
-              <div className="text-[12px] uppercase tracking-wider text-ink-500">
+              <div className="text-[13px] uppercase tracking-wider text-ink-500">
                 이전 상대전적
               </div>
               <div className="mt-1 stat-num text-sm font-semibold text-ink-50">
@@ -178,7 +178,7 @@ export function GameCard({ game }: { game: RawGame }) {
                 <span className="mx-2 text-ink-500">vs</span>
                 <span style={{ color: awayColor }}>{h2h.bWins}</span>
               </div>
-              <div className="mt-1 text-[13px] text-ink-500">
+              <div className="mt-1 text-[14px] text-ink-500">
                 {h2h.games.length === 0
                   ? "이전 맞대결 없음"
                   : `이전 ${h2h.games.length}회 만남`}
@@ -208,7 +208,7 @@ export function GameCard({ game }: { game: RawGame }) {
 
             {/* 원정팀 정보 */}
             <div className="md:text-right">
-              <div className="text-[12px] uppercase tracking-wider text-ink-500">
+              <div className="text-[13px] uppercase tracking-wider text-ink-500">
                 원정
               </div>
               <div
@@ -217,7 +217,7 @@ export function GameCard({ game }: { game: RawGame }) {
               >
                 {game.awayTeam}
               </div>
-              <div className="mt-2 flex items-center gap-2 text-[13px] text-ink-400 md:justify-end">
+              <div className="mt-2 flex items-center gap-2 text-[14px] text-ink-400 md:justify-end">
                 <FormPill form={awayForm} />
                 <span>최근 5경기</span>
               </div>
@@ -228,7 +228,7 @@ export function GameCard({ game }: { game: RawGame }) {
           <div className="mt-4 flex justify-end">
             <Link
               href={`/games/${gameToId(game)}`}
-              className="rounded-md border border-flame-500/40 bg-flame-500/10 px-3 py-1.5 text-[14px] font-medium text-flame-400 hover:bg-flame-500/20"
+              className="rounded-md border border-flame-500/40 bg-flame-500/10 px-3 py-1.5 text-[15px] font-medium text-flame-400 hover:bg-flame-500/20"
             >
               경기 상세 →
             </Link>
@@ -237,7 +237,7 @@ export function GameCard({ game }: { game: RawGame }) {
           {/* 이전 맞대결 결과 */}
           {h2h.games.length > 0 && (
             <div className="mt-4 border-t border-court-700/40 pt-3">
-              <div className="text-[12px] uppercase tracking-wider text-ink-500">
+              <div className="text-[13px] uppercase tracking-wider text-ink-500">
                 이전 맞대결
               </div>
               <div className="mt-1.5 space-y-1">
@@ -249,7 +249,7 @@ export function GameCard({ game }: { game: RawGame }) {
                   return (
                     <div
                       key={i}
-                      className="flex items-center justify-between text-[13px]"
+                      className="flex items-center justify-between text-[14px]"
                     >
                       <span className="text-ink-500">
                         {fmtDate(g.date)} · {g.tag}
@@ -320,11 +320,11 @@ function TeamRow({
           className="h-2 w-2 shrink-0 rounded-full"
           style={{ backgroundColor: color }}
         />
-        <span className="text-[12px] font-medium uppercase tracking-wider text-ink-500 w-7 shrink-0">
+        <span className="text-[13px] font-medium uppercase tracking-wider text-ink-500 w-7 shrink-0">
           {isHome ? "홈" : "원정"}
         </span>
         <span
-          className="truncate text-[15px] font-semibold"
+          className="truncate text-[16px] font-semibold"
           style={{ color: isWinner ? color : undefined }}
         >
           {full}
@@ -342,7 +342,7 @@ function TeamRow({
             {score}
           </span>
         ) : (
-          <span className="text-[14px] text-ink-500">—</span>
+          <span className="text-[15px] text-ink-500">—</span>
         )}
       </div>
     </div>

@@ -82,7 +82,7 @@ export function ShotChartCourt({
             {title}
           </h3>
           {subtitle && (
-            <p className="mt-1 text-[13px] text-ink-500">{subtitle}</p>
+            <p className="mt-1 text-[14px] text-ink-500">{subtitle}</p>
           )}
         </div>
       </div>
@@ -389,7 +389,7 @@ export function ShotChartCourt({
       </div>
 
       {/* 범례 */}
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-[12px] text-ink-500">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-[13px] text-ink-500">
         <span className="font-medium text-ink-300">성공률:</span>
         {[
           { c: "#7f1d1d", l: "<25%" },

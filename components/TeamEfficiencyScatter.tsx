@@ -49,11 +49,11 @@ export function TeamEfficiencyScatter({
       <div className="mb-3 flex items-baseline justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-ink-50">{title}</h3>
-          <p className="mt-0.5 text-[13px] text-ink-500">
+          <p className="mt-0.5 text-[14px] text-ink-500">
             우상단 = 강팀 (공격 효율 ↑ · 실점 ↓) · 점 크기 = 승수
           </p>
         </div>
-        <div className="text-[13px] text-ink-500">
+        <div className="text-[14px] text-ink-500">
           <span className="stat-num text-ink-300">{withAdv.length}</span>팀
         </div>
       </div>

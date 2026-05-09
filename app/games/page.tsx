@@ -110,7 +110,7 @@ export default function GamesPage() {
         {/* 메인 — 날짜 strip + 필터 + 리스트 */}
         <GamesExplorer />
 
-        <footer className="mt-10 border-t border-court-700/60 pt-6 text-center text-[13px] text-ink-500">
+        <footer className="mt-10 border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
           데이터 출처: KBL 공식 일정 API
           {fetchedKst && (
             <>
@@ -146,12 +146,12 @@ function SummaryCard({
   return (
     <div className="relative overflow-hidden card p-4">
       <span className={`absolute left-0 top-0 h-full w-[3px] ${bar}`} />
-      <div className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
       <div className="mt-2 text-base font-semibold text-ink-50">{value}</div>
       {sub && (
-        <div className="mt-1 text-[14px] text-ink-300 truncate">{sub}</div>
+        <div className="mt-1 text-[15px] text-ink-300 truncate">{sub}</div>
       )}
     </div>
   );

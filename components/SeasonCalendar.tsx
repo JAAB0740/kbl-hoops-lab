@@ -68,7 +68,7 @@ export function SeasonCalendar({
   if (months.length === 0 || !currentYm) {
     return (
       <div className="card p-8 text-center">
-        <p className="text-[15px] text-ink-300">표시할 경기가 없어요.</p>
+        <p className="text-[16px] text-ink-300">표시할 경기가 없어요.</p>
       </div>
     );
   }
@@ -104,7 +104,7 @@ export function SeasonCalendar({
           <button
             disabled={!prevYm}
             onClick={() => prevYm && setCurrentYm(prevYm)}
-            className="rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1 text-[14px] text-ink-300 hover:border-court-600 hover:text-ink-100 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1 text-[15px] text-ink-300 hover:border-court-600 hover:text-ink-100 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             ← 이전
           </button>
@@ -114,7 +114,7 @@ export function SeasonCalendar({
           <button
             disabled={!nextYm}
             onClick={() => nextYm && setCurrentYm(nextYm)}
-            className="rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1 text-[14px] text-ink-300 hover:border-court-600 hover:text-ink-100 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1 text-[15px] text-ink-300 hover:border-court-600 hover:text-ink-100 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             다음 →
           </button>
@@ -127,7 +127,7 @@ export function SeasonCalendar({
               key={ym}
               onClick={() => setCurrentYm(ym)}
               className={[
-                "rounded-md px-2.5 py-1 text-[13px] font-medium transition",
+                "rounded-md px-2.5 py-1 text-[14px] font-medium transition",
                 ym === currentYm
                   ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
                   : "border border-court-700 bg-court-800/40 text-ink-400 hover:text-ink-100",
@@ -145,7 +145,7 @@ export function SeasonCalendar({
           <div
             key={d}
             className={[
-              "border-b border-r border-court-700/60 px-2 py-1.5 text-[12px] uppercase tracking-wider",
+              "border-b border-r border-court-700/60 px-2 py-1.5 text-[13px] uppercase tracking-wider",
               i === 0
                 ? "text-buzzer-400"
                 : i === 6
@@ -184,7 +184,7 @@ export function SeasonCalendar({
               <div className="mb-1 flex items-center justify-between">
                 <span
                   className={[
-                    "stat-num text-[13px] font-semibold",
+                    "stat-num text-[14px] font-semibold",
                     isToday
                       ? "text-flame-400"
                       : isWeekend
@@ -219,7 +219,7 @@ export function SeasonCalendar({
         })}
       </div>
 
-      <p className="mt-3 text-[12px] text-ink-500">
+      <p className="mt-3 text-[13px] text-ink-500">
         칸 안의 미니 카드를 클릭하면 경기 상세 페이지로 이동.
       </p>
     </div>
@@ -256,7 +256,7 @@ function CalendarGameMini({
     <Link
       href={`/games/${gameToId(g)}`}
       className={[
-        "block rounded-sm px-1 py-0.5 text-[12px] ring-1 transition hover:bg-court-700/60",
+        "block rounded-sm px-1 py-0.5 text-[13px] ring-1 transition hover:bg-court-700/60",
         wlBg,
       ].join(" ")}
       title={`${g.tag} · ${g.homeShort} ${isFinal ? g.homeScore : ""} - ${isFinal ? g.awayScore : ""} ${g.awayShort}`}

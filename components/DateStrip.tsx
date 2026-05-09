@@ -109,7 +109,7 @@ export function DateStrip({
         {selectedDate !== todayKey && (
           <button
             onClick={() => onSelect(todayKey)}
-            className="rounded-md border border-flame-500/40 bg-flame-500/10 px-2.5 py-1 text-[13px] font-medium text-flame-400 hover:bg-flame-500/20"
+            className="rounded-md border border-flame-500/40 bg-flame-500/10 px-2.5 py-1 text-[14px] font-medium text-flame-400 hover:bg-flame-500/20"
           >
             오늘
           </button>
@@ -125,7 +125,7 @@ export function DateStrip({
           className="absolute left-0 top-0 bottom-1 z-10 flex items-center pl-0.5 pr-2 bg-gradient-to-r from-court-900 via-court-900/85 to-transparent"
           aria-label="이전 날짜"
         >
-          <span className="rounded-md border border-court-700 bg-court-800/95 px-2 py-3 text-[15px] text-ink-300 hover:border-court-500 hover:text-ink-50 shadow-md">
+          <span className="rounded-md border border-court-700 bg-court-800/95 px-2 py-3 text-[16px] text-ink-300 hover:border-court-500 hover:text-ink-50 shadow-md">
             ←
           </span>
         </button>
@@ -137,7 +137,7 @@ export function DateStrip({
           className="absolute right-0 top-0 bottom-1 z-10 flex items-center pl-2 pr-0.5 bg-gradient-to-l from-court-900 via-court-900/85 to-transparent"
           aria-label="다음 날짜"
         >
-          <span className="rounded-md border border-court-700 bg-court-800/95 px-2 py-3 text-[15px] text-ink-300 hover:border-court-500 hover:text-ink-50 shadow-md">
+          <span className="rounded-md border border-court-700 bg-court-800/95 px-2 py-3 text-[16px] text-ink-300 hover:border-court-500 hover:text-ink-50 shadow-md">
             →
           </span>
         </button>
@@ -177,7 +177,7 @@ export function DateStrip({
                 )}
                 <span
                   className={[
-                    "text-[12px] uppercase tracking-wider",
+                    "text-[13px] uppercase tracking-wider",
                     isToday
                       ? "text-flame-400 font-bold"
                       : dow === 0
@@ -216,7 +216,7 @@ export function DateStrip({
         </div>
       </div>
 
-      <p className="mt-2 text-[12px] text-ink-500">
+      <p className="mt-2 text-[13px] text-ink-500">
         ← / → 화살표를 누르거나 가로로 드래그/스와이프해서 다른 날짜로 이동
       </p>
     </div>

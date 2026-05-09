@@ -7,9 +7,9 @@
     color-scheme: dark;
   }
 
-  /* Base font-size 16 → 17. Tailwind 의 rem 값이 모두 ~6% 비례 커짐 — 가독성 향상. */
+  /* Base font-size 16 → 19. Tailwind 의 rem 값이 모두 ~19% 비례 커짐 — 강한 가독성 향상. */
   html {
-    font-size: 17px;
+    font-size: 19px;
   }
 
   html,

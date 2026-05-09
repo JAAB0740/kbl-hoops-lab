@@ -188,7 +188,7 @@ export function TeamAnalytics({
             <h3 className="text-sm font-semibold tracking-tight text-ink-50">
               필터
             </h3>
-            <p className="mt-1 text-[13px] text-ink-500">
+            <p className="mt-1 text-[14px] text-ink-500">
               스코프·홈/원정·쿼터/전후반·라운드를 자유롭게 조합. time + venue/round 조합 시 KBL API에서 동적 fetch.
             </p>
           </div>
@@ -367,13 +367,13 @@ export function TeamAnalytics({
               <>
                 <button
                   onClick={() => setRoundSet(new Set([1, 2, 3, 4, 5, 6]))}
-                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[13px] text-ink-400 hover:border-court-500 hover:text-ink-100"
+                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[14px] text-ink-400 hover:border-court-500 hover:text-ink-100"
                 >
                   전체 선택
                 </button>
                 <button
                   onClick={() => setRoundSet(new Set())}
-                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[13px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400"
+                  className="rounded-md border border-court-700 bg-court-800/30 px-2.5 py-1.5 text-[14px] text-ink-400 hover:border-buzzer-500/50 hover:text-buzzer-400"
                 >
                   해제
                 </button>
@@ -382,7 +382,7 @@ export function TeamAnalytics({
           </FilterRow>
 
           {isRoundMode && (
-            <p className="ml-14 text-[13px] text-ink-500">
+            <p className="ml-14 text-[14px] text-ink-500">
               선택된 라운드들의 가중평균(경기수 기준). 비율은 made/att를 다시 합산해 계산합니다.
             </p>
           )}
@@ -406,7 +406,7 @@ export function TeamAnalytics({
 
       {isEmpty ? (
         <div className="card p-8 text-center">
-          <p className="text-[15px] text-ink-300">
+          <p className="text-[16px] text-ink-300">
             {loading
               ? "데이터 로딩 중…"
               : "이 필터 조합 데이터가 없어요. 필터를 조정하거나 잠시 후 다시 시도해주세요."}
@@ -421,7 +421,7 @@ export function TeamAnalytics({
                 <h3 className="text-sm font-semibold text-ink-50">
                   {activeLabel} 기준 팀 랭킹
                 </h3>
-                <p className="mt-0.5 text-[13px] text-ink-500">
+                <p className="mt-0.5 text-[14px] text-ink-500">
                   {scope === "playoff"
                     ? "플레이오프 출장팀 · 경기당 평균"
                     : scope === "all"
@@ -443,7 +443,7 @@ export function TeamAnalytics({
                     : "원정 경기만 · 팀당 27경기 · 승률순"}
                 </p>
               </div>
-              <div className="text-[13px] text-ink-500">
+              <div className="text-[14px] text-ink-500">
                 <span className="stat-num text-ink-300">{teams.length}</span>팀
               </div>
             </div>
@@ -451,7 +451,7 @@ export function TeamAnalytics({
             <div className="overflow-x-auto rounded-lg border border-court-700/70">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-court-900/70 text-[13px] uppercase tracking-[0.1em] text-ink-500">
+                  <tr className="bg-court-900/70 text-[14px] uppercase tracking-[0.1em] text-ink-500">
                     <th className="py-2.5 pl-3 text-left font-medium">#</th>
                     <th className="py-2.5 text-left font-medium">팀</th>
                     <th className="py-2.5 text-right font-medium">경기</th>
@@ -492,7 +492,7 @@ export function TeamAnalytics({
                       >
                         <td className="py-2.5 pl-3">
                           <span
-                            className="stat-num text-[15px] font-semibold"
+                            className="stat-num text-[16px] font-semibold"
                             style={{ color }}
                           >
                             {t.rank}
@@ -504,7 +504,7 @@ export function TeamAnalytics({
                               className="h-2 w-2 shrink-0 rounded-full"
                               style={{ backgroundColor: color }}
                             />
-                            <span className="text-[15px] font-medium text-ink-50">
+                            <span className="text-[16px] font-medium text-ink-50">
                               {t.name}
                             </span>
                           </div>
@@ -543,7 +543,7 @@ export function TeamAnalytics({
                             <td className="stat-num py-2.5 pr-3 text-right text-ink-300">{a.astTo.toFixed(2)}</td>
                           </>
                         ) : (
-                          <td colSpan={8} className="stat-num py-2.5 text-center text-[13px] text-ink-500">
+                          <td colSpan={8} className="stat-num py-2.5 text-center text-[14px] text-ink-500">
                             2차 스탯 데이터 없음 — npm run fetch:kbl-advanced 실행 필요
                           </td>
                         )}
@@ -616,7 +616,7 @@ function FilterRow({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="w-12 shrink-0 text-[13px] uppercase tracking-wider text-ink-500">
+      <span className="w-12 shrink-0 text-[14px] uppercase tracking-wider text-ink-500">
         {label}
       </span>
       <div className="flex flex-wrap gap-1.5">{children}</div>
@@ -646,7 +646,7 @@ function Chip({
       onClick={onClick}
       disabled={!available}
       className={[
-        "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
+        "rounded-md px-3 py-1.5 text-[15px] font-medium transition",
         active
           ? activeClass
           : available

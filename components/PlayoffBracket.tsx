@@ -339,7 +339,7 @@ function SeriesBox({
 }) {
   if (!series) {
     return (
-      <div className="card flex h-full flex-col justify-center p-3 text-center text-[13px] text-ink-500">
+      <div className="card flex h-full flex-col justify-center p-3 text-center text-[14px] text-ink-500">
         매치업 미정
       </div>
     );
@@ -385,7 +385,7 @@ function SeriesBox({
     >
       <div className="flex items-center justify-between">
         {stateChip}
-        <span className="stat-num text-[12px] text-ink-500">
+        <span className="stat-num text-[13px] text-ink-500">
           {series.bestOf}전 {Math.ceil(series.bestOf / 2)}선승
         </span>
       </div>
@@ -413,7 +413,7 @@ function SeriesBox({
 
       {/* 챔피언 표시 */}
       {isFinal && champion && (
-        <div className="mt-1 flex items-center justify-center rounded-md bg-gradient-to-r from-flame-500/20 via-flame-500/30 to-flame-500/20 py-1.5 text-[13px] font-semibold text-flame-400">
+        <div className="mt-1 flex items-center justify-center rounded-md bg-gradient-to-r from-flame-500/20 via-flame-500/30 to-flame-500/20 py-1.5 text-[14px] font-semibold text-flame-400">
           🏆 {champion} 우승
         </div>
       )}
@@ -448,7 +448,7 @@ function TeamRow({
         {seed != null ? (
           <span
             className={[
-              "stat-num inline-flex h-5 w-5 flex-none items-center justify-center rounded text-[12px] font-bold",
+              "stat-num inline-flex h-5 w-5 flex-none items-center justify-center rounded text-[13px] font-bold",
               isWinner
                 ? "bg-flame-500 text-court-950"
                 : "bg-court-700 text-ink-300",
@@ -457,13 +457,13 @@ function TeamRow({
             {seed}
           </span>
         ) : (
-          <span className="stat-num inline-flex h-5 w-5 flex-none items-center justify-center rounded bg-court-700/40 text-[12px] text-ink-500">
+          <span className="stat-num inline-flex h-5 w-5 flex-none items-center justify-center rounded bg-court-700/40 text-[13px] text-ink-500">
             ·
           </span>
         )}
         <span
           className={[
-            "truncate text-[15px]",
+            "truncate text-[16px]",
             isTBD
               ? "italic text-ink-500"
               : isWinner
@@ -476,7 +476,7 @@ function TeamRow({
       </div>
       <span
         className={[
-          "stat-num ml-2 inline-flex h-6 min-w-6 flex-none items-center justify-center rounded px-1.5 text-[14px] font-bold",
+          "stat-num ml-2 inline-flex h-6 min-w-6 flex-none items-center justify-center rounded px-1.5 text-[15px] font-bold",
           isWinner
             ? "bg-flame-500/20 text-flame-400"
             : isLoser
@@ -501,7 +501,7 @@ function SeriesDetail({ series }: { series: PlayoffSeries }) {
       <div className="border-b border-court-700/60 bg-court-800/40 px-5 py-4">
         <div className="flex items-baseline justify-between gap-2">
           <div>
-            <div className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
+            <div className="text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
               {series.roundLabel} · {series.bestOf}전 {need}선승
             </div>
             <h3 className="mt-1 text-lg font-bold tracking-tight text-ink-50">
@@ -520,7 +520,7 @@ function SeriesDetail({ series }: { series: PlayoffSeries }) {
 
       {/* 게임 리스트 */}
       {series.games.length === 0 ? (
-        <div className="p-8 text-center text-[15px] text-ink-500">
+        <div className="p-8 text-center text-[16px] text-ink-500">
           이 시리즈는 이전 라운드 결과를 기다리고 있어요.
         </div>
       ) : (
@@ -611,10 +611,10 @@ function GameRow({
       className="grid grid-cols-[60px_1fr_auto_24px] items-center gap-3 px-5 py-3 transition hover:bg-court-700/20"
     >
       <div className="flex flex-col">
-        <span className="text-[13px] font-medium uppercase tracking-[0.1em] text-ink-500">
+        <span className="text-[14px] font-medium uppercase tracking-[0.1em] text-ink-500">
           G{game.no}
         </span>
-        <span className="stat-num text-[13px] text-ink-300">{dateLabel}</span>
+        <span className="stat-num text-[14px] text-ink-300">{dateLabel}</span>
       </div>
 
       <div className="flex flex-col gap-1">
@@ -685,7 +685,7 @@ function ScoreLine({
         </span>
         <span
           className={[
-            "text-[15px]",
+            "text-[16px]",
             won ? "font-semibold text-ink-50" : "text-ink-300",
           ].join(" ")}
         >
@@ -694,7 +694,7 @@ function ScoreLine({
       </div>
       <span
         className={[
-          "stat-num text-[15px] font-semibold tabular-nums",
+          "stat-num text-[16px] font-semibold tabular-nums",
           isFinal && won
             ? "text-flame-400"
             : isFinal
