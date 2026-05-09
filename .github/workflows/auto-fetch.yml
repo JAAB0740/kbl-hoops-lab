@@ -2,10 +2,14 @@ name: Auto Fetch KBL Data
 
 on:
   schedule:
-    # 평일 21:30 KST (UTC 12:30, 월~금)
+    # 평일 21:30 KST (UTC 12:30, 월~금) — 평일 저녁 경기 종료 직후
     - cron: '30 12 * * 1-5'
-    # 주말 16:30 KST (UTC 07:30, 토,일)
+    # 주말 16:30 KST (UTC 07:30, 토,일) — 주말 오후 경기 종료 직후
     - cron: '30 7 * * 0,6'
+    # 매일 23:00 KST (UTC 14:00) — 모든 경기 확실히 끝난 후 백업
+    - cron: '0 14 * * *'
+    # 매일 06:00 KST (UTC 21:00) — 새벽 백업 (전날 schedule 지연/실패 대비)
+    - cron: '0 21 * * *'
   # GitHub 웹에서 수동 실행도 가능
   workflow_dispatch:
 
