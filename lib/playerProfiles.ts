@@ -41,7 +41,8 @@ interface DetailFile {
   splits: PlayerDetailSplits;
 }
 
-const detail = detailJson as DetailFile;
+// detailJson 의 실제 구조와 DetailFile 타입이 약간 다를 수 있어 (legacy 필드 차이) unknown 경유.
+const detail = detailJson as unknown as DetailFile;
 
 export const PLAYERS_DETAIL_META = {
   fetchedAt: detail?.fetchedAt ?? null,

@@ -251,7 +251,8 @@ function detailRowToRaw(p: DetailRow): RawPlayer {
   };
 }
 
-const detailSplits = (playersDetailJson as {
+// JSON 의 실제 구조와 DetailRow 타입이 약간 다를 수 있어 (예: 일부 필드 누락) unknown 경유.
+const detailSplits = (playersDetailJson as unknown as {
   splits?: {
     regularSeason?: DetailRow[];
     playoff?: DetailRow[];
@@ -450,7 +451,8 @@ export function combinePlayerLists(...lists: RawPlayer[][]): RawPlayer[] {
   return out;
 }
 
-const rawPlayersFromHtml = (playersJson as { players: RawPlayer[] }).players ?? [];
+// playersJson 구조와 RawPlayer 타입이 100% 일치하지 않을 수 있어 (legacy 필드 차이) unknown 경유.
+const rawPlayersFromHtml = (playersJson as unknown as { players: RawPlayer[] }).players ?? [];
 
 // detail이 있으면 그걸 우선 사용
 const rawPlayers: RawPlayer[] =
