@@ -10,6 +10,28 @@ import boxscoresJson from "../data/boxscores.json";
 import { STANDINGS_FILTERS } from "@/lib/data";
 import { REGULAR_POPULATION } from "@/lib/playerProfiles";
 
+/**
+ * PlayerDetailRow.teamName4 가 "SONO", "KGC", "MOBIS" 같이 영어로 들어올 수 있어
+ * 사이트 다른 곳들과 같은 한글 표기로 정규화. TEAM_COLORS 의 key 와 일치시키기 위함.
+ */
+const NAME4_TO_KO: Record<string, string> = {
+  LG: "LG", DB: "DB", SK: "SK", KCC: "KCC", KT: "KT",
+  SONO: "소노",
+  KGC: "정관장", "JUNG KWAN JANG": "정관장", JUNGKWANJANG: "정관장",
+  MOBIS: "현대모비스", "HYUNDAI MOBIS": "현대모비스", HYUNDAIMOBIS: "현대모비스",
+  GASCO: "가스공사", KOGAS: "가스공사", PEGA: "가스공사", KG: "가스공사",
+  SAMSUNG: "삼성", SS: "삼성",
+  // 이미 한글이면 그대로 매핑
+  "정관장": "정관장", "소노": "소노", "현대모비스": "현대모비스",
+  "가스공사": "가스공사", "삼성": "삼성",
+};
+
+function normTeamShort(s: string | undefined): string {
+  if (!s) return "";
+  const t = String(s).trim();
+  return NAME4_TO_KO[t] ?? t;
+}
+
 interface BoxRecords {
   score: number;
   ast: number;
@@ -160,7 +182,7 @@ export function detectStandouts(gmkey: string | undefined, limit = 5): Standout[
     const season = SEASON_BY_CODE.get(t.tcode);
     if (!season) continue;
     const r = t.records;
-    const teamShort = season.shortName;
+    const teamShort = normTeamShort(season.shortName);
 
     function push(stat: string, kind: Standout["kind"], gameValue: number, seasonAvg: number, result: ReturnType<typeof checkCount>, fmtValue: (v: number) => string, captionTemplate: string) {
       if (!result) return;
@@ -335,7 +357,7 @@ export function detectPlayerStandouts(gmkey: string | undefined, limit = 9): Pla
     const seasonMinutesPerGame = season.minutes / 60;
     if (seasonMinutesPerGame > 0 && minutes < seasonMinutesPerGame * 0.5) continue;
 
-    const teamShort = season.teamName4 || ps.player.tcode;
+    const teamShort = normTeamShort(season.teamName4 || ps.player.tcode);
     const pname = ps.player.pname || season.kname;
 
     const r = ps.records;

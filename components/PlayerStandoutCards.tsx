@@ -74,9 +74,9 @@ function PlayerStandoutCard({ standout: s }: { standout: PlayerStandout }) {
           <span className="text-[14px] font-medium text-ink-300">{s.stat}</span>
         </div>
         <span
-          className="chip"
+          className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-[14px] font-bold tracking-wide"
           style={{
-            borderColor: teamColor + "60",
+            borderColor: teamColor + "80",
             backgroundColor: teamColor + "20",
             color: teamColor,
           }}
