@@ -262,6 +262,41 @@ export function teamScoringBefore(
  * 특정 시점 기준 KBL 10팀 순위 (정규시즌 W-L).
  * 모든 팀의 기록이 0-0 이면(시즌 개막 전) 모두 rank=null.
  */
+/** 정규리그 H2H 만 카운트 (PO 제외). KBL 공식 타이브레이커 룰.
+ *  aMargin = a 입장에서 두 팀끼리 게임 점수 합 - 실점 합 (골득실).
+ */
+function h2hRegularBefore(
+  a: string,
+  b: string,
+  beforeDate: string,
+  beforeTime?: string,
+): { aWins: number; bWins: number; aMargin: number } {
+  const cutoff = beforeDate + (beforeTime ?? "99:99");
+  let aWins = 0;
+  let bWins = 0;
+  let aMargin = 0;
+  for (const g of ALL_GAMES) {
+    if (g.tag !== "정규리그") continue;
+    if (g.status !== "final") continue;
+    if (g.date + g.time >= cutoff) continue;
+    const ab = g.homeShort === a && g.awayShort === b;
+    const ba = g.homeShort === b && g.awayShort === a;
+    if (!ab && !ba) continue;
+    if (g.homeScore == null || g.awayScore == null) continue;
+
+    // a 입장에서 점수 - 실점 누적
+    const aScore = ab ? g.homeScore : g.awayScore;
+    const bScore = ab ? g.awayScore : g.homeScore;
+    aMargin += aScore - bScore;
+
+    if (g.homeScore === g.awayScore) continue;
+    const homeWon = g.homeScore > g.awayScore;
+    if (ab) homeWon ? aWins++ : bWins++;
+    else homeWon ? bWins++ : aWins++;
+  }
+  return { aWins, bWins, aMargin };
+}
+
 export function standingsAsOf(
   beforeDate: string,
   beforeTime?: string,
@@ -275,10 +310,20 @@ export function standingsAsOf(
     // 시즌 개막 전 — 순위 없음
     return records.map((r) => ({ ...r, rank: null }));
   }
-  // 승률 desc → 승수 desc 로 정렬, 동률은 alphabetical (단순화)
-  const sorted = [...records].sort(
-    (a, b) => b.winPct - a.winPct || b.wins - a.wins || a.team.localeCompare(b.team),
-  );
+  // 정렬 타이브레이커 — KBL 공식 룰:
+  //  1) 승률 desc
+  //  2) 승수 desc
+  //  3) 상대 전적 (정규리그 한정) — 승수
+  //  4) 상대 전적 골득실 — 두 팀끼리 게임의 점수차 합
+  //  5) 알파벳 (최후 fallback)
+  const sorted = [...records].sort((a, b) => {
+    if (b.winPct !== a.winPct) return b.winPct - a.winPct;
+    if (b.wins !== a.wins) return b.wins - a.wins;
+    const h2h = h2hRegularBefore(a.team, b.team, beforeDate, beforeTime);
+    if (h2h.aWins !== h2h.bWins) return h2h.bWins - h2h.aWins;
+    if (h2h.aMargin !== 0) return -h2h.aMargin; // a 입장 마진 +이면 a가 위
+    return a.team.localeCompare(b.team);
+  });
   return sorted.map((r, i) => ({ ...r, rank: i + 1 }));
 }
 
