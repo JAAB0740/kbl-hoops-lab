@@ -21,7 +21,8 @@ import { BoxScoreTable } from "@/components/BoxScoreTable";
 import { QuarterScoreBox } from "@/components/QuarterScoreBox";
 import { getMatchDetail, fmtKblTime } from "@/lib/matchDetails";
 import { StandoutCards } from "@/components/StandoutCards";
-import { detectStandouts } from "@/lib/standout";
+import { PlayerStandoutCards } from "@/components/PlayerStandoutCards";
+import { detectStandouts, detectPlayerStandouts } from "@/lib/standout";
 
 interface Props {
   params: { id: string };
@@ -221,17 +222,27 @@ export default function GameDetailPage({ params }: Props) {
           </section>
         )}
 
-        {/* What stood out — 시즌 평균 대비 비정상치 자동 감지 */}
+        {/* What stood out — 시즌 평균 대비 비정상치 자동 감지 (팀 + 선수) */}
         {isFinal && (() => {
-          const standouts = detectStandouts(game.gmkey, 6);
-          if (standouts.length === 0) return null;
+          const teamStandouts = detectStandouts(game.gmkey, 6);
+          const playerStandouts = detectPlayerStandouts(game.gmkey, 9);
+          if (teamStandouts.length === 0 && playerStandouts.length === 0) return null;
           return (
-            <div className="mb-6">
-              <StandoutCards
-                items={standouts}
-                title="What Stood Out — 평소와 달랐던 지표"
-                subtitle="이 경기의 박스스코어를 정규시즌 평균과 비교 · intensity 큰 순"
-              />
+            <div className="mb-6 space-y-6">
+              {teamStandouts.length > 0 && (
+                <StandoutCards
+                  items={teamStandouts}
+                  title="What Stood Out — 팀 단위"
+                  subtitle="이 경기의 박스스코어를 정규시즌 평균과 비교 · intensity 큰 순"
+                />
+              )}
+              {playerStandouts.length > 0 && (
+                <PlayerStandoutCards
+                  items={playerStandouts}
+                  title="What Stood Out — 주목할 개인 활약"
+                  subtitle="출장 5분 이상 + 시즌 5경기 이상 선수 중, 평소 대비 크게 달랐던 활약"
+                />
+              )}
             </div>
           );
         })()}

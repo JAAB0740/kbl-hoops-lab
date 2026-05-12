@@ -8,6 +8,7 @@
 
 import boxscoresJson from "../data/boxscores.json";
 import { STANDINGS_FILTERS } from "@/lib/data";
+import { REGULAR_POPULATION } from "@/lib/playerProfiles";
 
 interface BoxRecords {
   score: number;
@@ -33,8 +34,21 @@ interface BoxScoreTeam {
   records: BoxRecords;
 }
 
+interface BoxPlayerLike {
+  player: {
+    pcode: string;
+    pname: string;
+    tcode: string;
+  };
+  records: BoxRecords & {
+    playMin?: number;
+    playSec?: number;
+  };
+}
+
 interface BoxScoreLike {
   team: BoxScoreTeam[];
+  players?: BoxPlayerLike[];
 }
 
 const RAW_BOX = (boxscoresJson as { byGmkey?: Record<string, BoxScoreLike> }).byGmkey ?? {};
@@ -266,5 +280,181 @@ export function detectStandouts(gmkey: string | undefined, limit = 5): Standout[
   }
 
   // intensity 큰 순으로 정렬 후 상위 limit개
+  return out.sort((a, b) => b.intensity - a.intensity).slice(0, limit);
+}
+
+// ─── 개인 선수 standout ────────────────────────────────────────
+
+export interface PlayerStandout {
+  playerNo: string;
+  pname: string;
+  teamCode: string;
+  teamShort: string;
+  kind: Standout["kind"];
+  stat: string;
+  gameValue: number;
+  seasonAvg: number;
+  delta: number;
+  direction: "up" | "down";
+  goodOrBad: "good" | "bad";
+  fmtValue: (v: number) => string;
+  intensity: number;
+  caption: string;
+  /** 게임 출장 시간 (분 단위) */
+  minutes: number;
+}
+
+/** 게임에서의 출장 분(분 단위, 소수점). */
+function gameMinutes(r: BoxPlayerLike["records"]): number {
+  return (r.playMin ?? 0) + (r.playSec ?? 0) / 60;
+}
+
+/**
+ * 한 게임의 개인 선수 standout 감지.
+ *  - 출장 5분 미만 skip
+ *  - 시즌 5경기 미만 (sample 부족) skip
+ *  - 출장 시간이 시즌 평균의 50% 미만이면 skip (부상/벤치 강등 — 비교 의미 없음)
+ */
+export function detectPlayerStandouts(gmkey: string | undefined, limit = 9): PlayerStandout[] {
+  if (!gmkey) return [];
+  const box = RAW_BOX[gmkey];
+  if (!box || !Array.isArray(box.players)) return [];
+
+  const out: PlayerStandout[] = [];
+
+  for (const ps of box.players) {
+    const minutes = gameMinutes(ps.records);
+    if (minutes < 5) continue;
+
+    // 시즌 평균 row 매칭 (REGULAR_POPULATION 은 PlayerDetailRow[])
+    const season = REGULAR_POPULATION.find((p) => p.playerNo === ps.player.pcode);
+    if (!season || season.games < 5) continue;
+
+    // 시즌 평균 출장 시간 — REGULAR_POPULATION.minutes 는 평균(분 단위로 가정)
+    // 만약 초 단위면 분으로 변환 필요. PlayerDetailRow 타입 주석에 "평균 시 분 단위 가능 (raw)" 라 일단 분 단위로.
+    // 매우 짧게 뛴 경우 skip
+    if (season.minutes > 0 && minutes < season.minutes * 0.5) continue;
+
+    const teamShort = season.teamName4 || ps.player.tcode;
+    const pname = ps.player.pname || season.kname;
+
+    const r = ps.records;
+    const fmt1 = (v: number) => v.toFixed(1);
+
+    interface RuleArgs {
+      stat: string;
+      kind: Standout["kind"];
+      gameVal: number;
+      avgVal: number;
+      thresholdAbs: number;
+      lowerIsBetter?: boolean;
+      caption: string; // {delta} 사용
+    }
+    function check(args: RuleArgs) {
+      const delta = args.gameVal - args.avgVal;
+      if (Math.abs(delta) < args.thresholdAbs) return;
+      const direction: "up" | "down" = delta > 0 ? "up" : "down";
+      const goodOrBad: "good" | "bad" =
+        direction === "up"
+          ? args.lowerIsBetter ? "bad" : "good"
+          : args.lowerIsBetter ? "good" : "bad";
+      const intensity = Math.abs(delta) / args.thresholdAbs;
+      const caption = args.caption
+        .replace("{name}", pname)
+        .replace("{delta}", (direction === "up" ? "+" : "") + fmt1(delta))
+        .replace("{avg}", fmt1(args.avgVal))
+        .replace("{game}", fmt1(args.gameVal));
+      out.push({
+        playerNo: ps.player.pcode,
+        pname,
+        teamCode: ps.player.tcode,
+        teamShort,
+        kind: args.kind,
+        stat: args.stat,
+        gameValue: args.gameVal,
+        seasonAvg: args.avgVal,
+        delta,
+        direction,
+        goodOrBad,
+        fmtValue: fmt1,
+        intensity,
+        caption,
+        minutes,
+      });
+    }
+
+    // 1) 득점
+    check({
+      stat: "득점",
+      kind: "scoring",
+      gameVal: r.score,
+      avgVal: season.points,
+      thresholdAbs: 8,
+      caption: "{name} 평소 {avg} → 이 경기 {game} ({delta})",
+    });
+
+    // 2) 리바운드
+    check({
+      stat: "리바운드",
+      kind: "defense",
+      gameVal: r.rb,
+      avgVal: season.rebounds,
+      thresholdAbs: 4,
+      caption: "{name} 리바 {delta}",
+    });
+
+    // 3) 어시스트
+    check({
+      stat: "어시스트",
+      kind: "playmaking",
+      gameVal: r.ast,
+      avgVal: season.assists,
+      thresholdAbs: 3,
+      caption: "{name} 어시 {delta}",
+    });
+
+    // 4) 스틸
+    check({
+      stat: "스틸",
+      kind: "defense",
+      gameVal: r.stl,
+      avgVal: season.steals,
+      thresholdAbs: 2,
+      caption: "{name} 스틸 {delta}",
+    });
+
+    // 5) 블록
+    check({
+      stat: "블록",
+      kind: "defense",
+      gameVal: r.bs,
+      avgVal: season.blocks,
+      thresholdAbs: 2,
+      caption: "{name} 블록 {delta}",
+    });
+
+    // 6) 턴오버 (적을수록 좋음)
+    check({
+      stat: "턴오버",
+      kind: "carelessness",
+      gameVal: r.to,
+      avgVal: season.turnovers,
+      thresholdAbs: 2,
+      lowerIsBetter: true,
+      caption: "{name} 턴오버 {delta}",
+    });
+
+    // 7) 3점 성공 — 평소 안 쏘는데 폭격 또는 평소 쏘는데 cold
+    const season3M = (season as unknown as { threeMade?: number }).threeMade ?? 0;
+    check({
+      stat: "3점 성공",
+      kind: "shooting",
+      gameVal: r.threep,
+      avgVal: season3M,
+      thresholdAbs: 3,
+      caption: "{name} 3점 평소 {avg} → 이 경기 {game} ({delta})",
+    });
+  }
+
   return out.sort((a, b) => b.intensity - a.intensity).slice(0, limit);
 }
