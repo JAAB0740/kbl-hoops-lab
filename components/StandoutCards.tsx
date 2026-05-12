@@ -9,13 +9,18 @@ import type { Standout } from "@/lib/standout";
  * SNS 캡처 시 자연스럽게 공유될 수 있는 임팩트 강조.
  */
 
-const KIND_TONES: Record<Standout["kind"], { emoji: string; bg: string; ring: string; label: string }> = {
-  scoring:      { emoji: "🔥", bg: "bg-flame-500/10",  ring: "border-flame-500/40",  label: "득점" },
-  shooting:     { emoji: "🎯", bg: "bg-flame-500/10",  ring: "border-flame-500/40",  label: "슈팅" },
-  defense:      { emoji: "🛡️", bg: "bg-hoop-500/10",   ring: "border-hoop-500/40",   label: "수비/허슬" },
-  playmaking:   { emoji: "🎭", bg: "bg-neon-500/10",   ring: "border-neon-500/40",   label: "리딩" },
-  carelessness: { emoji: "💥", bg: "bg-buzzer-500/10", ring: "border-buzzer-500/40", label: "실책" },
-  tempo:        { emoji: "⚡", bg: "bg-neon-500/10",   ring: "border-neon-500/40",   label: "효율" },
+/**
+ * goodEmoji = 팀에게 긍정적 방향 (예: 슈팅 ↑, 턴오버 ↓)
+ * badEmoji  = 팀에게 부정적 방향 (예: 슈팅 ↓, 턴오버 ↑)
+ * 카드 배경은 goodOrBad 기준으로 초록/빨강 — 한눈에 좋은/나쁜 standout 구분.
+ */
+const KIND_TONES: Record<Standout["kind"], { goodEmoji: string; badEmoji: string; label: string }> = {
+  scoring:      { goodEmoji: "🔥",  badEmoji: "🥶",  label: "득점" },
+  shooting:     { goodEmoji: "🎯",  badEmoji: "🌧️", label: "슈팅" },
+  defense:      { goodEmoji: "🛡️", badEmoji: "🔓",  label: "수비/허슬" },
+  playmaking:   { goodEmoji: "🎭",  badEmoji: "🤷",  label: "리딩" },
+  carelessness: { goodEmoji: "✨",  badEmoji: "💥",  label: "실책" },
+  tempo:        { goodEmoji: "⚡",  badEmoji: "🐌",  label: "효율" },
 };
 
 export function StandoutCards({
@@ -53,10 +58,14 @@ function StandoutCard({ standout: s }: { standout: Standout }) {
   const tone = KIND_TONES[s.kind];
   const teamColor = TEAM_COLORS[s.teamShort] ?? "#94a3b8";
   const deltaArrow = s.direction === "up" ? "↑" : "↓";
-  const deltaColor =
-    s.goodOrBad === "good"
-      ? "text-hoop-400"
-      : "text-buzzer-400";
+
+  // 좋은/나쁜 standout — 카드 배경 + 링 + delta + 이모지 모두 통일
+  const isGood = s.goodOrBad === "good";
+  const emoji = isGood ? tone.goodEmoji : tone.badEmoji;
+  const deltaColor = isGood ? "text-hoop-400" : "text-buzzer-400";
+  const cardBg = isGood
+    ? "border-hoop-500/30 bg-hoop-500/[0.06]"
+    : "border-buzzer-500/30 bg-buzzer-500/[0.06]";
 
   // 비교 막대 — 게임값 / max(게임값, 시즌평균) 비율로 길이 결정
   const maxVal = Math.max(s.gameValue, s.seasonAvg, 1);
@@ -64,7 +73,7 @@ function StandoutCard({ standout: s }: { standout: Standout }) {
   const seasonWidth = Math.min(100, (s.seasonAvg / maxVal) * 100);
 
   return (
-    <div className={`relative overflow-hidden rounded-lg border ${tone.ring} ${tone.bg} p-4`}>
+    <div className={`relative overflow-hidden rounded-lg border ${cardBg} p-4`}>
       {/* 좌측 컬러 바 — 팀 색 */}
       <span
         className="absolute left-0 top-0 h-full w-[3px]"
@@ -74,7 +83,7 @@ function StandoutCard({ standout: s }: { standout: Standout }) {
       {/* 헤더: 이모지 + stat 이름 + 팀 */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <span className="text-xl">{tone.emoji}</span>
+          <span className="text-xl">{emoji}</span>
           <span className="text-[15px] font-semibold text-ink-100">{s.stat}</span>
         </div>
         <span
