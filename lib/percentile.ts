@@ -35,12 +35,15 @@ export function percentileOf(value: number, sortedValues: number[]): number {
 /**
  * 여러 stat 키에 대해 한 번에 percentile 계산.
  *
+ * 타입 제약을 느슨하게 (Record<string, unknown>) — string 필드 포함된
+ * row 타입(PlayerDetailRow 등) 도 받기 위해. 실제 numeric 변환은 Number() 가 처리.
+ *
  * @param target 대상 (선수/팀) 의 stat 객체
  * @param population 모집단 (전체 선수/팀) 의 stat 객체 배열
  * @param keys percentile 계산할 stat 키들
  * @returns 같은 순서로 0~100 배열
  */
-export function percentilesOf<T extends Record<string, number | null | undefined>>(
+export function percentilesOf<T>(
   target: T,
   population: T[],
   keys: (keyof T)[],
