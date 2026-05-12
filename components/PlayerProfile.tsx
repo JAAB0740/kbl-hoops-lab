@@ -107,7 +107,12 @@ export function PlayerProfileView({ profile, trend, teammates }: Props) {
       {/* 8축 Spider Chart — 리그 분포 대비 어디에 강한지 */}
       {season && (
         <section>
-          <PlayerSpiderPanel season={season} playoff={playoff ?? null} />
+          <PlayerSpiderPanel
+            season={season}
+            playoff={playoff ?? null}
+            kname={profile.kname}
+            teamShort={profile.team.short}
+          />
         </section>
       )}
 
@@ -337,19 +342,29 @@ function Meta({ label, value }: { label: string; value: string }) {
 
 // ─── 8축 Spider Chart 패널 ──────────────────────────────
 
-/** Radar 8축 — 선수 강점 한 눈에. percentile 기반 (리그 분포 대비 위치). */
-const RADAR_AXES = ["PPG", "RPG", "APG", "STL", "BLK", "FG%", "3P%", "FT%"] as const;
+/**
+ * Radar 8축 — 시계방향 그룹화 배치:
+ *   12시(상단) 부터 우반구 (PPG, FG%, 3P%, FT%) = 득점/슈팅 그룹
+ *   6시(하단) 부터 좌반구 (APG, RPG, BLK, STL)  = 어시/리바/디펜시브 그룹
+ *
+ * → 차트 모양 만으로 "슈터" / "블루워커" 즉시 파악 가능.
+ */
+const RADAR_AXES = ["PPG", "FG%", "3P%", "FT%", "APG", "RPG", "BLK", "STL"] as const;
 const RADAR_KEYS: (keyof PlayerDetailRow)[] = [
-  "points", "rebounds", "assists", "steals", "blocks",
-  "fgPct", "threePct", "ftPct",
+  "points", "fgPct", "threePct", "ftPct",
+  "assists", "rebounds", "blocks", "steals",
 ];
 
 function PlayerSpiderPanel({
   season,
   playoff,
+  kname,
+  teamShort,
 }: {
   season: PlayerDetailRow;
   playoff: PlayerDetailRow | null;
+  kname: string;
+  teamShort: string;
 }) {
   // 정규시즌 percentile 계산
   const regularPctls = percentilesOf(season, REGULAR_POPULATION, RADAR_KEYS);
@@ -360,17 +375,17 @@ function PlayerSpiderPanel({
       ? percentilesOf(playoff, PLAYOFF_POPULATION, RADAR_KEYS)
       : null;
 
-  // raw 값 라벨 (tooltip 용)
+  // raw 값 라벨 (tooltip 용) — RADAR_KEYS 와 같은 순서
   function rawLabels(row: PlayerDetailRow): string[] {
     return [
       row.points.toFixed(1),
-      row.rebounds.toFixed(1),
-      row.assists.toFixed(1),
-      row.steals.toFixed(1),
-      row.blocks.toFixed(1),
       `${row.fgPct.toFixed(1)}%`,
       `${row.threePct.toFixed(1)}%`,
       `${row.ftPct.toFixed(1)}%`,
+      row.assists.toFixed(1),
+      row.rebounds.toFixed(1),
+      row.blocks.toFixed(1),
+      row.steals.toFixed(1),
     ];
   }
 
@@ -391,13 +406,15 @@ function PlayerSpiderPanel({
     });
   }
 
+  // 캡처/공유 시 컨텍스트 보이게 — 선수 + 팀 + 시즌 제목에 포함
+  const title = `${kname} · ${teamShort} · 8축 강점 비교`;
   const subtitle = playoff
-    ? "정규시즌 vs 플레이오프 — 리그 분포 기준 percentile"
-    : "리그 분포 대비 8축 강점 비교";
+    ? "2025-26 시즌 · 정규시즌(주황) vs 플레이오프(시안) · 리그 분포 기준 percentile"
+    : "2025-26 시즌 · 리그 분포 기준 percentile";
 
   return (
     <StatRadar
-      title="8축 강점 비교"
+      title={title}
       subtitle={subtitle}
       axes={[...RADAR_AXES]}
       series={series}

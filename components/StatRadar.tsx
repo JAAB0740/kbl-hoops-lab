@@ -90,7 +90,8 @@ export function StatRadar({
           />
           <PolarRadiusAxis
             domain={[0, 100]}
-            tick={false}
+            tickCount={5}
+            tick={{ fill: "#525c6c", fontSize: 10 }}
             axisLine={false}
             stroke="#1b1e24"
           />
