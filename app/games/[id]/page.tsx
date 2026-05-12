@@ -20,6 +20,8 @@ import {
 import { BoxScoreTable } from "@/components/BoxScoreTable";
 import { QuarterScoreBox } from "@/components/QuarterScoreBox";
 import { getMatchDetail, fmtKblTime } from "@/lib/matchDetails";
+import { StandoutCards } from "@/components/StandoutCards";
+import { detectStandouts } from "@/lib/standout";
 
 interface Props {
   params: { id: string };
@@ -218,6 +220,21 @@ export default function GameDetailPage({ params }: Props) {
             />
           </section>
         )}
+
+        {/* What stood out — 시즌 평균 대비 비정상치 자동 감지 */}
+        {isFinal && (() => {
+          const standouts = detectStandouts(game.gmkey, 6);
+          if (standouts.length === 0) return null;
+          return (
+            <div className="mb-6">
+              <StandoutCards
+                items={standouts}
+                title="What Stood Out — 평소와 달랐던 지표"
+                subtitle="이 경기의 박스스코어를 정규시즌 평균과 비교 · intensity 큰 순"
+              />
+            </div>
+          );
+        })()}
 
         {/* 시리즈 게임 리스트 (PO일 때) */}
         {seriesGames.length > 1 && (
