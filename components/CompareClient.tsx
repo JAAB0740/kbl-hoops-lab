@@ -1,19 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-  Legend,
-  Tooltip,
-} from "recharts";
 import { HAS_REAL_TEAM_STATS, TEAM_STATS } from "@/lib/data";
 import type { RawPlayer } from "@/lib/data";
 import type { TeamStanding } from "@/lib/types";
+import { StatRadar, type RadarSeries } from "@/components/StatRadar";
+import { percentilesOf } from "@/lib/percentile";
 
 type Mode = "team" | "player";
 
@@ -22,13 +14,20 @@ interface Props {
   players: RawPlayer[];
 }
 
+/**
+ * 8축 — 시계방향 그룹화:
+ *   12시→6시 (우반구) = 슈팅 그룹 (PPG, FG%, 3P%, FT%)
+ *   6시→12시 (좌반구) = 어시/리바/디펜시브 그룹 (APG, RPG, BLK, STL)
+ */
 const AXES: { key: keyof Stats; label: string; fmt: (v: number) => string }[] = [
-  { key: "points",   label: "득점",   fmt: (v) => v.toFixed(1) },
-  { key: "rebounds", label: "리바",   fmt: (v) => v.toFixed(1) },
-  { key: "assists",  label: "어시",   fmt: (v) => v.toFixed(1) },
-  { key: "steals",   label: "스틸",   fmt: (v) => v.toFixed(1) },
-  { key: "blocks",   label: "블록",   fmt: (v) => v.toFixed(1) },
-  { key: "fgPct",    label: "FG%",    fmt: (v) => v.toFixed(1) },
+  { key: "points",   label: "PPG", fmt: (v) => v.toFixed(1) },
+  { key: "fgPct",    label: "FG%", fmt: (v) => v.toFixed(1) + "%" },
+  { key: "threePct", label: "3P%", fmt: (v) => v.toFixed(1) + "%" },
+  { key: "ftPct",    label: "FT%", fmt: (v) => v.toFixed(1) + "%" },
+  { key: "assists",  label: "APG", fmt: (v) => v.toFixed(1) },
+  { key: "rebounds", label: "RPG", fmt: (v) => v.toFixed(1) },
+  { key: "blocks",   label: "BPG", fmt: (v) => v.toFixed(1) },
+  { key: "steals",   label: "SPG", fmt: (v) => v.toFixed(1) },
 ];
 
 type Stats = {
@@ -38,6 +37,8 @@ type Stats = {
   steals: number;
   blocks: number;
   fgPct: number;
+  threePct: number;
+  ftPct: number;
 };
 
 const COLOR_A = "#f59e0b"; // flame
@@ -49,12 +50,14 @@ function teamStatsFrom(players: RawPlayer[], teamShort: string): Stats {
   const real = TEAM_STATS[teamShort];
   if (real) {
     return {
-      points: real.points,
+      points:   real.points,
       rebounds: real.rebounds,
-      assists: real.assists,
-      steals: real.steals,
-      blocks: real.blocks,
-      fgPct: real.fgPct,
+      assists:  real.assists,
+      steals:   real.steals,
+      blocks:   real.blocks,
+      fgPct:    real.fgPct,
+      threePct: real.threePct,
+      ftPct:    real.ftPct,
     };
   }
   // Fallback: 주전 5인 합산
@@ -67,12 +70,14 @@ function teamStatsFrom(players: RawPlayer[], teamShort: string): Stats {
   const avg = (k: keyof RawPlayer["stats"]) =>
     teamPlayers.length ? sum(k) / teamPlayers.length : 0;
   return {
-    points: sum("points"),
+    points:   sum("points"),
     rebounds: sum("rebounds"),
-    assists: sum("assists"),
-    steals: sum("steals"),
-    blocks: sum("blocks"),
-    fgPct: avg("fgPct"),
+    assists:  sum("assists"),
+    steals:   sum("steals"),
+    blocks:   sum("blocks"),
+    fgPct:    avg("fgPct"),
+    threePct: avg("threePct"),
+    ftPct:    avg("ftPct"),
   };
 }
 
@@ -101,12 +106,25 @@ export function CompareClient({ standings, players }: Props) {
   const [playerB, setPlayerB] = useState(playerOptions[1]?.id ?? "");
 
   // ─── 스탯 계산 ─────────────────────────────────────
+  function playerToStats(p: RawPlayer): Stats {
+    return {
+      points:   p.stats.points,
+      rebounds: p.stats.rebounds,
+      assists:  p.stats.assists,
+      steals:   p.stats.steals,
+      blocks:   p.stats.blocks,
+      fgPct:    p.stats.fgPct,
+      threePct: p.stats.threePct,
+      ftPct:    p.stats.ftPct,
+    };
+  }
+
   const aStats: Stats | null = useMemo(() => {
     if (mode === "team") {
       return teamA ? teamStatsFrom(players, teamA) : null;
     }
     const p = playerOptions.find((o) => o.id === playerA);
-    return p ? (p.ref.stats as Stats) : null;
+    return p ? playerToStats(p.ref) : null;
   }, [mode, teamA, playerA, players, playerOptions]);
 
   const bStats: Stats | null = useMemo(() => {
@@ -114,7 +132,7 @@ export function CompareClient({ standings, players }: Props) {
       return teamB ? teamStatsFrom(players, teamB) : null;
     }
     const p = playerOptions.find((o) => o.id === playerB);
-    return p ? (p.ref.stats as Stats) : null;
+    return p ? playerToStats(p.ref) : null;
   }, [mode, teamB, playerB, players, playerOptions]);
 
   const aLabel =
@@ -126,33 +144,37 @@ export function CompareClient({ standings, players }: Props) {
       ? teamOptions.find((t) => t.id === teamB)?.label ?? "B"
       : playerOptions.find((p) => p.id === playerB)?.label ?? "B";
 
-  // ─── 정규화 (각 축의 리그 최댓값 대비 %) ─────────────
-  const maxByAxis: Stats = useMemo(() => {
+  // ─── percentile 정규화 — 모집단(전체 선수/팀) 분포 대비 위치 ─────────
+  const population: Stats[] = useMemo(() => {
     if (mode === "team") {
-      const allTeams = teamOptions.map((t) => teamStatsFrom(players, t.id));
-      return AXES.reduce((acc, a) => {
-        (acc as any)[a.key] = Math.max(...allTeams.map((s) => s[a.key]), 1);
-        return acc;
-      }, {} as Stats);
-    } else {
-      return AXES.reduce((acc, a) => {
-        (acc as any)[a.key] = Math.max(...players.map((p) => p.stats[a.key] ?? 0), 1);
-        return acc;
-      }, {} as Stats);
+      return teamOptions.map((t) => teamStatsFrom(players, t.id));
     }
+    return players.map(playerToStats);
   }, [mode, teamOptions, players]);
 
-  const radarData = useMemo(
-    () =>
-      AXES.map((a) => ({
-        axis: a.label,
-        A: aStats ? Math.round(((aStats[a.key] ?? 0) / maxByAxis[a.key]) * 100) : 0,
-        B: bStats ? Math.round(((bStats[a.key] ?? 0) / maxByAxis[a.key]) * 100) : 0,
-        rawA: aStats ? aStats[a.key] ?? 0 : 0,
-        rawB: bStats ? bStats[a.key] ?? 0 : 0,
-      })),
-    [aStats, bStats, maxByAxis]
-  );
+  const RADAR_KEYS = AXES.map((a) => a.key);
+
+  const series: RadarSeries[] = useMemo(() => {
+    const out: RadarSeries[] = [];
+    if (aStats) {
+      out.push({
+        label: aLabel,
+        color: COLOR_A,
+        values: percentilesOf(aStats, population, RADAR_KEYS),
+        rawLabels: AXES.map((a) => a.fmt(aStats[a.key] ?? 0)),
+      });
+    }
+    if (bStats) {
+      out.push({
+        label: bLabel,
+        color: COLOR_B,
+        values: percentilesOf(bStats, population, RADAR_KEYS),
+        rawLabels: AXES.map((a) => a.fmt(bStats[a.key] ?? 0)),
+      });
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [aStats, bStats, aLabel, bLabel, population]);
 
   return (
     <>
@@ -208,78 +230,16 @@ export function CompareClient({ standings, players }: Props) {
         />
       </div>
 
-      {/* 레이더 */}
-      <div className="card p-5">
-        <div className="mb-3">
-          <h3 className="text-sm font-semibold text-ink-50">레이더 비교</h3>
-          <p className="mt-0.5 text-[14px] text-ink-500">
-            각 축은 리그 최댓값 대비 비율 (%) · 바깥쪽일수록 강함
-          </p>
-        </div>
-        <div style={{ width: "100%", height: 420 }}>
-          {mounted && (
-            <ResponsiveContainer>
-              <RadarChart data={radarData} outerRadius="75%">
-                <PolarGrid stroke="#262a33" />
-                <PolarAngleAxis
-                  dataKey="axis"
-                  tick={{ fill: "#ececec", fontSize: 12 }}
-                />
-                <PolarRadiusAxis
-                  domain={[0, 100]}
-                  angle={30}
-                  tick={{ fill: "#71717a", fontSize: 10 }}
-                  stroke="#262a33"
-                />
-                <Radar
-                  name={aLabel}
-                  dataKey="A"
-                  stroke={COLOR_A}
-                  strokeWidth={2}
-                  fill={COLOR_A}
-                  fillOpacity={0.25}
-                />
-                <Radar
-                  name={bLabel}
-                  dataKey="B"
-                  stroke={COLOR_B}
-                  strokeWidth={2}
-                  fill={COLOR_B}
-                  fillOpacity={0.25}
-                />
-                <Tooltip
-                  content={({ active, payload, label }) => {
-                    if (!active || !payload?.length) return null;
-                    const d = payload[0].payload;
-                    return (
-                      <div
-                        style={{
-                          background: "#131519",
-                          border: "1px solid #262a33",
-                          borderRadius: 8,
-                          padding: "8px 12px",
-                        }}
-                      >
-                        <div style={{ fontSize: 13, fontWeight: 500, color: "#fafafa" }}>
-                          {label}
-                        </div>
-                        <div style={{ marginTop: 6, fontSize: 12 }}>
-                          <div style={{ color: COLOR_A }}>A · {d.rawA.toFixed(1)}</div>
-                          <div style={{ color: COLOR_B }}>B · {d.rawB.toFixed(1)}</div>
-                        </div>
-                      </div>
-                    );
-                  }}
-                />
-                <Legend
-                  wrapperStyle={{ fontSize: 12, paddingTop: 12, color: "#a1a1aa" }}
-                  iconType="circle"
-                />
-              </RadarChart>
-            </ResponsiveContainer>
-          )}
-        </div>
-      </div>
+      {/* 8축 Spider 레이더 — 새 StatRadar 컴포넌트 (선수 프로필과 같은 톤) */}
+      {mounted && series.length > 0 && (
+        <StatRadar
+          title={`${aLabel}  vs  ${bLabel}`}
+          subtitle={`2025-26 시즌 · ${mode === "team" ? "팀" : "선수"} 비교 · 리그 분포 기준 percentile (바깥쪽 = 강함)`}
+          axes={AXES.map((a) => a.label)}
+          series={series}
+          height={420}
+        />
+      )}
 
       {mode === "team" && (
         <p className="mt-3 text-[14px] text-ink-500">
