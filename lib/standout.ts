@@ -330,10 +330,10 @@ export function detectPlayerStandouts(gmkey: string | undefined, limit = 9): Pla
     const season = REGULAR_POPULATION.find((p) => p.playerNo === ps.player.pcode);
     if (!season || season.games < 5) continue;
 
-    // 시즌 평균 출장 시간 — REGULAR_POPULATION.minutes 는 평균(분 단위로 가정)
-    // 만약 초 단위면 분으로 변환 필요. PlayerDetailRow 타입 주석에 "평균 시 분 단위 가능 (raw)" 라 일단 분 단위로.
-    // 매우 짧게 뛴 경우 skip
-    if (season.minutes > 0 && minutes < season.minutes * 0.5) continue;
+    // 시즌 평균 출장 시간 — PlayerDetailRow.minutes 는 초 단위 (PlayerProfile 에서 /60 하는 거 확인됨).
+    // 분으로 변환 후 비교. 출장 시간이 평소의 50% 미만이면 비교 의미 없으니 skip.
+    const seasonMinutesPerGame = season.minutes / 60;
+    if (seasonMinutesPerGame > 0 && minutes < seasonMinutesPerGame * 0.5) continue;
 
     const teamShort = season.teamName4 || ps.player.tcode;
     const pname = ps.player.pname || season.kname;
