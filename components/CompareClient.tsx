@@ -244,8 +244,8 @@ export function CompareClient({ standings, players }: Props) {
       {mode === "team" && (
         <p className="mt-3 text-[14px] text-ink-500">
           {HAS_REAL_TEAM_STATS
-            ? "* Daum 기록 순위에서 추출한 팀 평균 실데이터."
-            : "* 팀 스탯은 출장시간 상위 5인의 개인 스탯을 합산한 근사치. (npm run parse:team-stats 실행하면 실데이터로 교체)"}
+            ? "* KBL 공식 API 의 팀 평균 실데이터."
+            : "* 팀 스탯은 출장시간 상위 5인의 개인 스탯을 합산한 근사치."}
         </p>
       )}
     </>
