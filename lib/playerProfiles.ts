@@ -49,6 +49,14 @@ export const PLAYERS_DETAIL_META = {
   seasonCode: detail?.seasonCode ?? "47",
 };
 
+/** 모집단 — Radar/percentile 계산용. 정규시즌 평균 row 들. 시즌 1경기 이상만. */
+export const REGULAR_POPULATION: PlayerDetailRow[] =
+  (detail?.splits?.regularSeason ?? []).filter((p) => (p.games ?? 0) >= 1);
+
+/** 모집단 — PO 평균 row 들. PO 1경기 이상만. */
+export const PLAYOFF_POPULATION: PlayerDetailRow[] =
+  (detail?.splits?.playoff ?? []).filter((p) => (p.games ?? 0) >= 1);
+
 /** 모든 선수 (정규 평균 기반) */
 export function getAllPlayerSeasons(): PlayerDetailRow[] {
   return detail?.splits?.regularSeason ?? [];

@@ -10,9 +10,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { aggregateRoundSet } from "@/lib/playerProfiles";
+import { aggregateRoundSet, REGULAR_POPULATION, PLAYOFF_POPULATION } from "@/lib/playerProfiles";
 import { ShootingRangeChart } from "@/components/ShootingRangeChart";
 import { ShotChartCourt } from "@/components/ShotChartCourt";
+import { StatRadar, type RadarSeries } from "@/components/StatRadar";
+import { percentilesOf } from "@/lib/percentile";
 import {
   ageOf,
   fmtCountry,
@@ -101,6 +103,13 @@ export function PlayerProfileView({ profile, trend, teammates }: Props) {
         <ShootingPanel row={season} />
         <RoundTrendPanel trend={trend} />
       </section>
+
+      {/* 8축 Spider Chart — 리그 분포 대비 어디에 강한지 */}
+      {season && (
+        <section>
+          <PlayerSpiderPanel season={season} playoff={playoff ?? null} />
+        </section>
+      )}
 
       {/* 2차 스탯 (Advanced) */}
       {profile.advanced?.season && (
@@ -323,6 +332,77 @@ function Meta({ label, value }: { label: string; value: string }) {
       </div>
       <div className="mt-0.5 text-[16px] font-medium text-ink-100">{value}</div>
     </div>
+  );
+}
+
+// ─── 8축 Spider Chart 패널 ──────────────────────────────
+
+/** Radar 8축 — 선수 강점 한 눈에. percentile 기반 (리그 분포 대비 위치). */
+const RADAR_AXES = ["PPG", "RPG", "APG", "STL", "BLK", "FG%", "3P%", "FT%"] as const;
+const RADAR_KEYS: (keyof PlayerDetailRow)[] = [
+  "points", "rebounds", "assists", "steals", "blocks",
+  "fgPct", "threePct", "ftPct",
+];
+
+function PlayerSpiderPanel({
+  season,
+  playoff,
+}: {
+  season: PlayerDetailRow;
+  playoff: PlayerDetailRow | null;
+}) {
+  // 정규시즌 percentile 계산
+  const regularPctls = percentilesOf(season, REGULAR_POPULATION, RADAR_KEYS);
+
+  // PO 가 있고 모집단도 있을 때만 PO 시리즈 추가
+  const playoffPctls =
+    playoff && PLAYOFF_POPULATION.length > 0
+      ? percentilesOf(playoff, PLAYOFF_POPULATION, RADAR_KEYS)
+      : null;
+
+  // raw 값 라벨 (tooltip 용)
+  function rawLabels(row: PlayerDetailRow): string[] {
+    return [
+      row.points.toFixed(1),
+      row.rebounds.toFixed(1),
+      row.assists.toFixed(1),
+      row.steals.toFixed(1),
+      row.blocks.toFixed(1),
+      `${row.fgPct.toFixed(1)}%`,
+      `${row.threePct.toFixed(1)}%`,
+      `${row.ftPct.toFixed(1)}%`,
+    ];
+  }
+
+  const series: RadarSeries[] = [
+    {
+      label: "정규시즌",
+      color: "#f59e0b",
+      values: regularPctls,
+      rawLabels: rawLabels(season),
+    },
+  ];
+  if (playoff && playoffPctls) {
+    series.push({
+      label: "플레이오프",
+      color: "#0ea5e9",
+      values: playoffPctls,
+      rawLabels: rawLabels(playoff),
+    });
+  }
+
+  const subtitle = playoff
+    ? "정규시즌 vs 플레이오프 — 리그 분포 기준 percentile"
+    : "리그 분포 대비 8축 강점 비교";
+
+  return (
+    <StatRadar
+      title="8축 강점 비교"
+      subtitle={subtitle}
+      axes={[...RADAR_AXES]}
+      series={series}
+      height={360}
+    />
   );
 }
 
