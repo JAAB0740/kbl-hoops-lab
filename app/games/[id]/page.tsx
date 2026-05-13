@@ -38,6 +38,8 @@ export default function GameDetailPage({ params }: Props) {
   const awayColor = TEAM_COLORS[game.awayShort] ?? "#94a3b8";
 
   // 이 경기 시점 이전의 폼 / H2H (시즌 개막전 등에서 미래 경기 끌어오지 않게)
+  // 폼 = 전체 최근 5경기 (모든 상대) — 팀 컨디션 정보.
+  // H2H = 이 두 팀끼리 누적 승수 — 상대전적 정보.
   const homeForm = teamRecentForm(game.homeShort, 5, game.date, game.time);
   const awayForm = teamRecentForm(game.awayShort, 5, game.date, game.time);
   const h2h = headToHead(
@@ -400,14 +402,18 @@ export default function GameDetailPage({ params }: Props) {
             </section>
           )}
 
-          {/* H2H + 최근 폼 — 모두 이 경기 시점 이전 기준 */}
-          <section className="card p-5">
-            <h3 className="mb-3 text-sm font-semibold text-ink-50">
-              경기 직전 상대전적 &amp; 폼
-            </h3>
+          {/* 상대전적 + 최근 폼 — 두 정보를 상하로 명확히 분리 (각 섹션 자체 카드, 한 column 안에 stack) */}
+          <div className="space-y-6">
 
-            {/* H2H */}
-            <div className="mb-4 grid grid-cols-3 items-end gap-2">
+          {/* 1) 이전 상대전적 (H2H 누적 + 승패 시퀀스) */}
+          <section className="card p-5">
+            <div className="mb-3 flex items-baseline gap-2">
+              <h3 className="text-sm font-semibold text-ink-50">이전 상대전적</h3>
+              <span className="text-[12px] text-ink-500">
+                {h2h.games.length === 0 ? "맞대결 없음" : `H2H ${h2h.games.length}회 · 시간순`}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 items-end gap-2">
               <div className="text-right">
                 <div className="text-[13px] uppercase tracking-wider text-ink-500">
                   {game.homeShort}
@@ -419,14 +425,7 @@ export default function GameDetailPage({ params }: Props) {
                   {h2h.aWins}
                 </div>
               </div>
-              <div className="text-center text-[15px] text-ink-500">
-                이전 H2H<br />
-                {h2h.games.length === 0 ? (
-                  <span className="text-[13px] text-ink-600">맞대결 없음</span>
-                ) : (
-                  <>({h2h.games.length}회)</>
-                )}
-              </div>
+              <div className="text-center text-[15px] text-ink-500">vs</div>
               <div className="text-left">
                 <div className="text-[13px] uppercase tracking-wider text-ink-500">
                   {game.awayShort}
@@ -440,8 +439,35 @@ export default function GameDetailPage({ params }: Props) {
               </div>
             </div>
 
-            {/* 최근 폼 */}
-            <div className="space-y-3 border-t border-court-700/40 pt-3">
+            {/* H2H 승패 시퀀스 — 시간순 (좌측이 가장 오래된, 우측이 가장 최근) */}
+            {h2h.games.length > 0 && (() => {
+              const homeSeq = h2h.games.map<"W" | "L">((g) => {
+                const isHome = g.homeShort === game.homeShort;
+                const my = isHome ? g.homeScore : g.awayScore;
+                const opp = isHome ? g.awayScore : g.homeScore;
+                if (my == null || opp == null) return "L";
+                return my > opp ? "W" : "L";
+              });
+              const awaySeq = homeSeq.map((r) => (r === "W" ? "L" : "W") as "W" | "L");
+              return (
+                <div className="mt-4 space-y-2 border-t border-court-700/40 pt-3">
+                  <H2HSequence short={game.homeShort} color={homeColor} seq={homeSeq} />
+                  <H2HSequence short={game.awayShort} color={awayColor} seq={awaySeq} />
+                  <p className="mt-1 text-[10px] text-ink-500 text-center">
+                    ← 오래된 ····· 최근 →
+                  </p>
+                </div>
+              );
+            })()}
+          </section>
+
+          {/* 2) 최근 5경기 폼 (전체 — 모든 상대 포함, 컨디션 정보) */}
+          <section className="card p-5">
+            <div className="mb-3 flex items-baseline gap-2">
+              <h3 className="text-sm font-semibold text-ink-50">최근 5경기 폼</h3>
+              <span className="text-[12px] text-ink-500">전체 (모든 상대) · 컨디션 지표</span>
+            </div>
+            <div className="space-y-3">
               <FormBlock
                 short={game.homeShort}
                 color={homeColor}
@@ -454,6 +480,7 @@ export default function GameDetailPage({ params }: Props) {
               />
             </div>
           </section>
+          </div> {/* /space-y-6 wrapper */}
         </div>
 
         {/* 이전 맞대결 — h2h.games 는 이미 game.date+time 기준 필터됨 */}
@@ -863,6 +890,40 @@ function FormBlock({
             <span className="text-[13px] text-ink-500">최근 폼 없음</span>
           )}
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** H2H 승패 시퀀스 — 시간순 박스. 양 팀 입장 각각 표시. */
+function H2HSequence({
+  short,
+  color,
+  seq,
+}: {
+  short: string;
+  color: string;
+  seq: ("W" | "L")[];
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="w-12 shrink-0 text-[13px] font-medium" style={{ color }}>
+        {short}
+      </span>
+      <div className="flex flex-wrap gap-0.5">
+        {seq.map((r, i) => (
+          <span
+            key={i}
+            className={[
+              "inline-flex h-5 w-5 items-center justify-center rounded text-[11px] font-bold",
+              r === "W"
+                ? "bg-hoop-500/30 text-hoop-300"
+                : "bg-buzzer-500/30 text-buzzer-300",
+            ].join(" ")}
+          >
+            {r}
+          </span>
+        ))}
       </div>
     </div>
   );
