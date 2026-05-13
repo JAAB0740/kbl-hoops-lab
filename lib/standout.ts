@@ -9,6 +9,7 @@
 import boxscoresJson from "../data/boxscores.json";
 import { STANDINGS_FILTERS } from "@/lib/data";
 import { REGULAR_POPULATION } from "@/lib/playerProfiles";
+import { ALL_GAMES } from "@/lib/gamesUtil";
 
 /**
  * PlayerDetailRow.teamName4 가 "SONO", "KGC", "MOBIS" 같이 영어로 들어올 수 있어
@@ -479,4 +480,103 @@ export function detectPlayerStandouts(gmkey: string | undefined, limit = 9): Pla
   }
 
   return out.sort((a, b) => b.intensity - a.intensity).slice(0, limit);
+}
+
+// ─── 최근 경기 standout 합산 (홈 페이지용) ────────────────
+
+export interface PlayerStandoutWithGame extends PlayerStandout {
+  /** 어떤 게임에서 나온 standout 인지 — 카드에 컨텍스트 표시 + 클릭 시 게임 상세 이동 */
+  gameContext: {
+    gmkey: string;
+    date: string;
+    opponent: string;
+    tag: string;
+    isHome: boolean;
+  };
+}
+
+export interface TeamStandoutWithGame extends Standout {
+  gameContext: {
+    gmkey: string;
+    date: string;
+    opponent: string;
+    tag: string;
+    isHome: boolean;
+  };
+}
+
+/** 최근 final 경기 N개에서의 모든 선수 standout 합산, intensity 큰 순 상위 limit개.
+ *  같은 선수 중복 방지 (한 선수당 1개만). */
+export function recentPlayerStandouts(lastN = 6, limit = 6): PlayerStandoutWithGame[] {
+  const finals = ALL_GAMES.filter((g) => g.status === "final" && g.gmkey)
+    .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time))
+    .slice(0, lastN);
+
+  const all: PlayerStandoutWithGame[] = [];
+  for (const g of finals) {
+    const standouts = detectPlayerStandouts(g.gmkey!, 5);
+    for (const s of standouts) {
+      const isHome =
+        s.teamShort === normTeamShort(g.homeShort);
+      const opponent = isHome ? g.awayShort : g.homeShort;
+      all.push({
+        ...s,
+        gameContext: {
+          gmkey: g.gmkey!,
+          date: g.date,
+          opponent,
+          tag: g.tag,
+          isHome,
+        },
+      });
+    }
+  }
+
+  const seen = new Set<string>();
+  const dedup: PlayerStandoutWithGame[] = [];
+  for (const s of all.sort((a, b) => b.intensity - a.intensity)) {
+    if (seen.has(s.playerNo)) continue;
+    seen.add(s.playerNo);
+    dedup.push(s);
+    if (dedup.length >= limit) break;
+  }
+  return dedup;
+}
+
+/** 최근 final 경기 N개에서의 모든 팀 standout 합산. 같은 (team, stat) 중복 방지. */
+export function recentTeamStandouts(lastN = 6, limit = 4): TeamStandoutWithGame[] {
+  const finals = ALL_GAMES.filter((g) => g.status === "final" && g.gmkey)
+    .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time))
+    .slice(0, lastN);
+
+  const all: TeamStandoutWithGame[] = [];
+  for (const g of finals) {
+    const standouts = detectStandouts(g.gmkey!, 3);
+    for (const s of standouts) {
+      const teamSh = normTeamShort(s.teamShort);
+      const isHome = teamSh === normTeamShort(g.homeShort);
+      const opponent = isHome ? g.awayShort : g.homeShort;
+      all.push({
+        ...s,
+        gameContext: {
+          gmkey: g.gmkey!,
+          date: g.date,
+          opponent,
+          tag: g.tag,
+          isHome,
+        },
+      });
+    }
+  }
+
+  const seen = new Set<string>();
+  const dedup: TeamStandoutWithGame[] = [];
+  for (const s of all.sort((a, b) => b.intensity - a.intensity)) {
+    const key = `${s.teamShort}-${s.stat}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    dedup.push(s);
+    if (dedup.length >= limit) break;
+  }
+  return dedup;
 }

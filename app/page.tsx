@@ -2,6 +2,7 @@ import { CreatorCard } from "@/components/CreatorCard";
 import { FinalsMatchupCard } from "@/components/FinalsMatchupCard";
 import { Headlines } from "@/components/Headlines";
 import { LeadersCard } from "@/components/LeadersCard";
+import { RecentStandoutsHighlight } from "@/components/RecentStandoutsHighlight";
 import { SemiHighlights } from "@/components/SemiHighlights";
 import { StandingsTable } from "@/components/StandingsTable";
 import { StatCard } from "@/components/StatCard";
@@ -14,6 +15,7 @@ import {
 } from "@/lib/data";
 import { generateHeadlines } from "@/lib/autoHeadlines";
 import { getHeroCopy, getSeasonStatus } from "@/lib/seasonStatus";
+import { recentPlayerStandouts } from "@/lib/standout";
 import gamesJson from "../data/games.json";
 
 export default function DashboardPage() {
@@ -38,6 +40,9 @@ export default function DashboardPage() {
   const semiHero = [...PLAYERS_PLAYOFF]
     .filter((p) => semiWinners.includes(p.team))
     .sort((a, b) => (b.stats.points ?? 0) - (a.stats.points ?? 0))[0];
+
+  // 최근 경기 standout 하이라이트 (홈에 임팩트)
+  const recentStandouts = recentPlayerStandouts(6, 6);
 
   // 자동 헤드라인 (시즌 단계 + 4강 결과 + 시즌 베스트 등)
   const headlines = generateHeadlines().map((h) => ({
@@ -160,6 +165,13 @@ export default function DashboardPage() {
               finalSeries={status.finalSeries}
               daysToNext={status.daysToNext}
             />
+          </section>
+        )}
+
+        {/* 최근 경기 What Stood Out — 자동 분석 시그니처 */}
+        {recentStandouts.length > 0 && (
+          <section className="mb-8">
+            <RecentStandoutsHighlight items={recentStandouts} />
           </section>
         )}
 
