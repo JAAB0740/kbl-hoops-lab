@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-05-13T00:15:54.024Z",
+  "fetchedAt": "2026-05-13T19:16:45.133Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=47&fromDate=20251001&toDate=20260630",
-  "totalGames": 305,
+  "totalGames": 303,
   "games": [
     {
       "gmkey": "S47G01N1",
@@ -4240,37 +4240,9 @@
       "homeShort": "소노",
       "awayTeam": "부산 KCC 이지스",
       "awayShort": "KCC",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
-      "stadium": "고양소노아레나"
-    },
-    {
-      "gmkey": "S47G04N6",
-      "date": "2026-05-15",
-      "time": "19:00",
-      "tag": "챔피언결정전",
-      "homeTeam": "부산 KCC 이지스",
-      "homeShort": "KCC",
-      "awayTeam": "고양 소노 스카이거너스",
-      "awayShort": "소노",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
-      "stadium": "부산사직체육관"
-    },
-    {
-      "gmkey": "S47G04N7",
-      "date": "2026-05-17",
-      "time": "14:00",
-      "tag": "챔피언결정전",
-      "homeTeam": "고양 소노 스카이거너스",
-      "homeShort": "소노",
-      "awayTeam": "부산 KCC 이지스",
-      "awayShort": "KCC",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 68,
+      "awayScore": 76,
+      "status": "final",
       "stadium": "고양소노아레나"
     }
   ]
