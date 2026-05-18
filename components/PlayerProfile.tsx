@@ -11,9 +11,11 @@ import {
   YAxis,
 } from "recharts";
 import { aggregateRoundSet, REGULAR_POPULATION, PLAYOFF_POPULATION } from "@/lib/playerProfiles";
+import { PlayerArchetypeCard } from "@/components/PlayerArchetypeCard";
 import { ShootingRangeChart } from "@/components/ShootingRangeChart";
 import { ShotChartCourt } from "@/components/ShotChartCourt";
 import { StatRadar, type RadarSeries } from "@/components/StatRadar";
+import { archetypeChipClass, classifyArchetype } from "@/lib/archetype";
 import { percentilesOf } from "@/lib/percentile";
 import {
   ageOf,
@@ -36,6 +38,8 @@ interface Props {
   profile: PlayerProfile;
   trend: ReturnType<typeof import("@/lib/playerProfiles").getRoundTrend>;
   teammates: PlayerDetailRow[];
+  /** 소속팀 로고 파일 경로 — 있으면 상단 영역 배경 워터마크로 노출 */
+  teamLogoSrc?: string | null;
 }
 
 type TrendKey = "points" | "rebounds" | "assists" | "fgPct" | "threePct" | "minutes";
@@ -49,14 +53,30 @@ const TREND_OPTIONS: { key: TrendKey; label: string; color: string; fmt: (v: num
   { key: "minutes",  label: "출장 분", color: "#a1a1aa", fmt: (v) => (v / 60).toFixed(1) },
 ];
 
-export function PlayerProfileView({ profile, trend, teammates }: Props) {
+export function PlayerProfileView({
+  profile,
+  trend,
+  teammates,
+  teamLogoSrc,
+}: Props) {
   const { season, playoff } = profile;
   const games = season?.games ?? 0;
+  const archetype = classifyArchetype(profile);
 
   return (
     <div className="space-y-6">
-      {/* 헤더 카드 */}
-      <Header profile={profile} />
+      {/* 헤더 카드 (팀 로고 워터마크 포함) */}
+      <Header
+        profile={profile}
+        archetypeLabel={archetype.label}
+        archetypeChip={archetypeChipClass(archetype.tone)}
+        teamLogoSrc={teamLogoSrc ?? null}
+      />
+
+      {/* 정체성 (Archetype) — 슛 분포 + USG/AST/TS 기반 자동 분류 */}
+      <section>
+        <PlayerArchetypeCard archetype={archetype} />
+      </section>
 
       {/* 핵심 스탯 카드 */}
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -186,7 +206,17 @@ export function PlayerProfileView({ profile, trend, teammates }: Props) {
 
 // ─── 헤더 ──────────────────────────────────────
 
-function Header({ profile }: { profile: PlayerProfile }) {
+function Header({
+  profile,
+  archetypeLabel,
+  archetypeChip,
+  teamLogoSrc,
+}: {
+  profile: PlayerProfile;
+  archetypeLabel: string;
+  archetypeChip: string;
+  teamLogoSrc: string | null;
+}) {
   const { season, playoff } = profile;
   const info = getPlayerInfo(profile.playerNo);
   const flagTone =
@@ -197,7 +227,18 @@ function Header({ profile }: { profile: PlayerProfile }) {
         : "border-neon-500/30 bg-neon-500/10 text-neon-400";
 
   return (
-    <section className="card overflow-hidden">
+    <section className="card relative overflow-hidden">
+      {/* 팀 로고 워터마크 — 카드 배경 위에 그려서 다크 모드에서 잘 보이도록 */}
+      {teamLogoSrc && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={teamLogoSrc}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute right-[-4%] top-[-8%] h-auto w-[40%] max-w-[420px] opacity-[0.12] [filter:grayscale(100%)_brightness(1.8)]"
+          loading="lazy"
+        />
+      )}
       <div className="relative px-6 py-6">
         <div className="absolute left-0 top-0 h-full w-1 bg-flame-500" />
 
@@ -229,6 +270,9 @@ function Header({ profile }: { profile: PlayerProfile }) {
                     POST-SEASON
                   </span>
                 )}
+                <span className={`chip ${archetypeChip}`} title="자동 분류된 archetype">
+                  {archetypeLabel}
+                </span>
               </div>
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink-50">
                 {profile.kname}

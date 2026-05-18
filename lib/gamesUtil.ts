@@ -52,21 +52,23 @@ export function gameToId(g: RawGame): string {
 
 export function findGameById(id: string): RawGame | null {
   const decoded = decodeURIComponent(id);
-  // URL 인코딩이 풀린 형태로 비교
+  // 1차: gameToId() 형식 "YYYYMMDD-HHMM-home-away" 매칭
   const m = decoded.match(/^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})-(.+?)-(.+)$/);
-  if (!m) return null;
-  const [, y, mo, d, h, mi, home, away] = m;
-  const date = `${y}-${mo}-${d}`;
-  const time = `${h}:${mi}`;
-  return (
-    ALL_GAMES.find(
+  if (m) {
+    const [, y, mo, d, h, mi, home, away] = m;
+    const date = `${y}-${mo}-${d}`;
+    const time = `${h}:${mi}`;
+    const hit = ALL_GAMES.find(
       (g) =>
         g.date === date &&
         g.time === time &&
         g.homeShort === home &&
         g.awayShort === away,
-    ) ?? null
-  );
+    );
+    if (hit) return hit;
+  }
+  // 2차 fallback: gmkey 로 직접 매칭 (RecentStandoutsHighlight 등에서 gmkey 를 URL 로 보내는 케이스)
+  return ALL_GAMES.find((g) => g.gmkey === decoded) ?? null;
 }
 
 /** YYYY-MM-DD 비교 */

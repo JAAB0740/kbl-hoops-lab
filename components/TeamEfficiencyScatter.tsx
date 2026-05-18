@@ -30,8 +30,10 @@ export function TeamEfficiencyScatter({
   const xMax = Math.max(...xs) + 2;
   const yMin = Math.min(...ys) - 2;
   const yMax = Math.max(...ys) + 2;
-  const xMid = (xMin + xMax) / 2;
-  const yMid = (yMin + yMax) / 2;
+  // 교차선 = 물리적 중간값이 아니라 "리그 평균(산술 평균)"
+  //   - 표본 작은 모집단의 비대칭 분포에서도 의미 있는 기준선이 되도록.
+  const xAvg = xs.reduce((s, v) => s + v, 0) / xs.length;
+  const yAvg = ys.reduce((s, v) => s + v, 0) / ys.length;
 
   const x2px = (v: number) => PAD.l + ((v - xMin) / (xMax - xMin)) * innerW;
   // y축 반전: 작을수록 위 (실점 적음 = 좋음)
@@ -76,24 +78,46 @@ export function TeamEfficiencyScatter({
             })}
           </g>
 
-          {/* 사분면 분할선 (평균) */}
-          <g stroke="#374151" strokeDasharray="6 5" strokeWidth="1.5">
-            <line x1={x2px(xMid)} y1={PAD.t} x2={x2px(xMid)} y2={PAD.t + innerH} />
-            <line x1={PAD.l} y1={y2px(yMid)} x2={PAD.l + innerW} y2={y2px(yMid)} />
+          {/* 사분면 워터마크 — 분할선보다 먼저 그려서 뒤로 깔리게 */}
+          <g
+            fontFamily="-apple-system, sans-serif"
+            fontWeight="800"
+            fontSize="26"
+            fill="#475569"
+            fillOpacity="0.12"
+            textAnchor="middle"
+            pointerEvents="none"
+          >
+            {/* 우상단: 공격↑ + 수비↑ → 공수 완벽 */}
+            <text x={x2px(xAvg) + innerW * 0.25} y={y2px(yAvg) - innerH * 0.22}>공수 완벽</text>
+            {/* 좌상단: 공격↓ + 수비↑ → 수비 원툴 */}
+            <text x={x2px(xAvg) - innerW * 0.25} y={y2px(yAvg) - innerH * 0.22}>수비 원툴</text>
+            {/* 우하단: 공격↑ + 수비↓ → 공격 몰빵 */}
+            <text x={x2px(xAvg) + innerW * 0.25} y={y2px(yAvg) + innerH * 0.28}>공격 몰빵</text>
+            {/* 좌하단: 공격↓ + 수비↓ → 공수 빈약 */}
+            <text x={x2px(xAvg) - innerW * 0.25} y={y2px(yAvg) + innerH * 0.28}>공수 빈약</text>
           </g>
 
-          {/* 사분면 라벨 */}
+          {/* 리그 평균 교차선 — 점선 (실제 산술 평균 기준) */}
+          <g stroke="#475569" strokeDasharray="6 5" strokeWidth="1.5">
+            <line x1={x2px(xAvg)} y1={PAD.t} x2={x2px(xAvg)} y2={PAD.t + innerH} />
+            <line x1={PAD.l} y1={y2px(yAvg)} x2={PAD.l + innerW} y2={y2px(yAvg)} />
+          </g>
+
+          {/* 교차점 부근 "리그 평균" 라벨 */}
           <g
             fontFamily="-apple-system, sans-serif"
             fontSize="10"
             fontWeight="600"
-            fill="#6b7280"
-            textAnchor="middle"
+            fill="#94a3b8"
+            pointerEvents="none"
           >
-            <text x={x2px(xMid) + innerW * 0.25} y={y2px(yMid) - innerH * 0.42}>강팀 (공·수 모두 ↑)</text>
-            <text x={x2px(xMid) - innerW * 0.25} y={y2px(yMid) - innerH * 0.42}>수비형 약팀</text>
-            <text x={x2px(xMid) + innerW * 0.25} y={y2px(yMid) + innerH * 0.42}>슛 잘하는 약팀</text>
-            <text x={x2px(xMid) - innerW * 0.25} y={y2px(yMid) + innerH * 0.42}>약팀 (공·수 모두 ↓)</text>
+            <text x={x2px(xAvg) + 4} y={PAD.t + 12}>
+              리그 평균 ORtg {xAvg.toFixed(1)}
+            </text>
+            <text x={PAD.l + 4} y={y2px(yAvg) - 4}>
+              리그 평균 DRtg {yAvg.toFixed(1)}
+            </text>
           </g>
 
           {/* x축 — Off Rtg */}

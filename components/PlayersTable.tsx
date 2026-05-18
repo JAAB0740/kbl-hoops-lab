@@ -276,8 +276,8 @@ export function PlayersTable({
         />
       </div>
 
-      {/* 테이블 */}
-      <div className="overflow-x-auto rounded-lg border border-court-700/70">
+      {/* 테이블 — sticky header + sticky left 3 cols + zebra (globals.css .players-table) */}
+      <div className="players-table-wrap rounded-lg border border-court-700/70">
         {statMode === "registry" ? (
           <RegistryTable
             rows={sorted}
@@ -410,12 +410,12 @@ function StatTable({
   onSort: (k: string) => void;
 }) {
   return (
-    <table className="w-full text-sm">
+    <table className="players-table w-full text-sm">
       <thead>
         <tr className="bg-court-900/80 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-          <th className="py-2.5 pl-3 text-left font-medium">#</th>
-          <th className="py-2.5 text-left font-medium">선수</th>
-          <th className="py-2.5 text-left font-medium">팀</th>
+          <th className="w-[48px] py-2.5 pl-3 text-left font-medium">#</th>
+          <th className="w-[180px] py-2.5 text-left font-medium">선수</th>
+          <th className="w-[80px] py-2.5 text-left font-medium">팀</th>
           {cols.map((c) => (
             <th
               key={c.key}
@@ -440,32 +440,31 @@ function StatTable({
       </thead>
       <tbody className="divider-y">
         {rows.map(({ p, info }, i) => (
-          <tr
-            key={`${p.name}-${p.team}-${i}`}
-            className="group transition hover:bg-court-700/30"
-          >
-            <td className="stat-num py-2 pl-3 text-[15px] text-ink-500">{i + 1}</td>
-            <td className="py-2 text-[16px] font-medium text-ink-50">
-              <div className="flex items-center gap-1.5">
+          <tr key={`${p.name}-${p.team}-${i}`} className="group">
+            <td className="w-[48px] max-w-[48px] stat-num py-2 pl-3 text-[15px] text-ink-500">
+              {i + 1}
+            </td>
+            <td className="w-[180px] max-w-[180px] py-2 text-[16px] font-medium text-ink-50">
+              <div className="flex items-center gap-1.5 truncate">
                 {p.playerNo ? (
                   <Link
                     href={`/players/${p.playerNo}`}
-                    className="transition hover:text-flame-400"
+                    className="truncate transition hover:text-flame-400"
                   >
                     {p.name}
                   </Link>
                 ) : (
-                  p.name
+                  <span className="truncate">{p.name}</span>
                 )}
                 {info?.flag === "외국선수" && (
-                  <span className="text-[9px] text-buzzer-400" title="외국선수">●</span>
+                  <span className="shrink-0 text-[9px] text-buzzer-400" title="외국선수">●</span>
                 )}
                 {info?.flag === "아시아쿼터" && (
-                  <span className="text-[9px] text-hoop-400" title="아시아쿼터">●</span>
+                  <span className="shrink-0 text-[9px] text-hoop-400" title="아시아쿼터">●</span>
                 )}
               </div>
             </td>
-            <td className="py-2">
+            <td className="w-[80px] max-w-[80px] py-2">
               <span className="chip">{p.team || "-"}</span>
             </td>
             {cols.map((c) => {
@@ -539,12 +538,12 @@ function RegistryTable({
         : "border-neon-500/30 bg-neon-500/10 text-neon-400";
 
   return (
-    <table className="w-full text-sm">
+    <table className="players-table w-full text-sm">
       <thead>
         <tr className="bg-court-900/80 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-          <th className="py-2.5 pl-3 text-left font-medium">#</th>
-          <th className="py-2.5 text-left font-medium">선수</th>
-          <th className="py-2.5 text-left font-medium">팀</th>
+          <th className="w-[48px] py-2.5 pl-3 text-left font-medium">#</th>
+          <th className="w-[180px] py-2.5 text-left font-medium">선수</th>
+          <th className="w-[80px] py-2.5 text-left font-medium">팀</th>
           {cols.map((c) => {
             const isSorted = sortKey === c.key;
             return (
@@ -571,29 +570,30 @@ function RegistryTable({
       </thead>
       <tbody className="divider-y">
         {rows.map(({ p, info }, i) => (
-          <tr
-            key={`${p.name}-${p.team}-${i}`}
-            className="group transition hover:bg-court-700/30"
-          >
-            <td className="stat-num py-2 pl-3 text-[15px] text-ink-500">{i + 1}</td>
-            <td className="py-2 text-[16px] font-medium text-ink-50">
-              {p.playerNo ? (
-                <Link
-                  href={`/players/${p.playerNo}`}
-                  className="transition hover:text-flame-400"
-                >
-                  {p.name}
-                </Link>
-              ) : (
-                p.name
-              )}
-              {info?.ename && (
-                <span className="ml-1.5 text-[13px] text-ink-500">
-                  {info.ename}
-                </span>
-              )}
+          <tr key={`${p.name}-${p.team}-${i}`} className="group">
+            <td className="w-[48px] max-w-[48px] stat-num py-2 pl-3 text-[15px] text-ink-500">
+              {i + 1}
             </td>
-            <td className="py-2">
+            <td className="w-[180px] max-w-[180px] py-2 text-[16px] font-medium text-ink-50">
+              <div className="truncate">
+                {p.playerNo ? (
+                  <Link
+                    href={`/players/${p.playerNo}`}
+                    className="transition hover:text-flame-400"
+                  >
+                    {p.name}
+                  </Link>
+                ) : (
+                  p.name
+                )}
+                {info?.ename && (
+                  <span className="ml-1.5 text-[13px] text-ink-500">
+                    {info.ename}
+                  </span>
+                )}
+              </div>
+            </td>
+            <td className="w-[80px] max-w-[80px] py-2">
               <span className="chip">{p.team || "-"}</span>
             </td>
             {/* 구분 */}

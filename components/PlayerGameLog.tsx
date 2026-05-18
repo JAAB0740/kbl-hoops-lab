@@ -323,8 +323,8 @@ export function PlayerGameLog({
         </div>
       )}
 
-      <div className="overflow-x-auto rounded-lg border border-court-700/70">
-        <table className="w-full text-[14px]">
+      <div className="game-log-table-wrap rounded-lg border border-court-700/70">
+        <table className="game-log-table w-full text-[14px]">
           <thead>
             <tr className="bg-court-900/70 text-[13px] uppercase tracking-wider text-ink-500">
               <SortableHead

@@ -48,4 +48,98 @@
   .divider-y > * + * {
     @apply border-t border-court-700/60;
   }
+
+  /* ─────────────────────────────────────────────
+     Player Explorer 대형 테이블 — 가독성 강화
+     · 헤더 상단 고정 (sticky thead)
+     · 좌측 3열 (#, 선수, 팀) 가로 스크롤 시 고정
+     · 좌상단 모서리 셀은 z-index 최상위
+     · Zebra striping (짝수 행 미세하게 밝게)
+     · Hover (데스크탑 전용 — 모바일 :hover 고착 방지)
+     ───────────────────────────────────────────── */
+
+  .players-table-wrap {
+    max-height: 75vh;
+    overflow: auto;
+  }
+
+  /* 헤더 상단 고정 — court-900 단단한 배경 + slate-700 하단 보더 */
+  .players-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #0d0f13;
+    border-bottom: 2px solid #334155;
+  }
+
+  /* 좌측 3열 고정 — 누적 left 값 명시.
+     PlayersTable.tsx 에서 첫 3개 th/td 에 고정 width 부여(아래 left 와 일치) */
+  .players-table th:nth-child(1),
+  .players-table tbody td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: #0d0f13;
+  }
+  .players-table th:nth-child(2),
+  .players-table tbody td:nth-child(2) {
+    position: sticky;
+    left: 48px; /* col 1 width */
+    z-index: 5;
+    background-color: #0d0f13;
+  }
+  .players-table th:nth-child(3),
+  .players-table tbody td:nth-child(3) {
+    position: sticky;
+    left: 228px; /* col 1 (48) + col 2 (180) */
+    z-index: 5;
+    background-color: #0d0f13;
+    /* 좌측 고정 영역 우측 끝 — 그림자로 깊이감 */
+    box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 좌상단 모서리 (sticky header × sticky left col 교차) — 최상위 */
+  .players-table thead th:nth-child(1),
+  .players-table thead th:nth-child(2),
+  .players-table thead th:nth-child(3) {
+    z-index: 20;
+  }
+
+  /* Zebra striping — 짝수 행 미세하게 밝게 (좌측 sticky 셀도 동일 톤 유지) */
+  .players-table tbody tr:nth-child(even) > td {
+    background-color: #11141a;
+  }
+
+  /* Hover — 데스크탑(hover & fine pointer) 전용. 모바일 터치에서 :hover 고착 방지 */
+  @media (hover: hover) and (pointer: fine) {
+    .players-table tbody tr:hover > td {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* ─────────────────────────────────────────────
+     Game Log 테이블 — 헤더 sticky (wrapper 내부 스크롤 기준)
+     · wrapper max-h + overflow:auto 으로 sticky containing block 형성
+       (페이지 스크롤이 아닌 wrapper 내부 스크롤이라 nav 높이 상쇄 불필요)
+     ───────────────────────────────────────────── */
+
+  .game-log-table-wrap {
+    max-height: 60vh;
+    overflow: auto;
+  }
+  .game-log-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #0d0f13;
+    border-bottom: 2px solid #334155;
+  }
+  .game-log-table tbody tr:nth-child(even) > td {
+    background-color: #11141a;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .game-log-table tbody tr:hover > td {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
 }

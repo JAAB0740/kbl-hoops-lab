@@ -241,9 +241,12 @@ export function TeamRoundTrend({
             ))}
           </g>
 
-          {/* 라인 */}
+          {/* 라인 — highlight 된 팀을 마지막에 그려 z-index 최상단으로 (SVG 는 DOM 순서가 stacking) */}
           <g>
-            {teamSeries.map((s) => {
+            {[
+              ...teamSeries.filter((s) => s.team.code !== highlight),
+              ...teamSeries.filter((s) => s.team.code === highlight),
+            ].map((s) => {
               const color = TEAM_COLORS[s.team.shortName] ?? "#94a3b8";
               const isHighlight = highlight === s.team.code;
               const isDimmed = highlight !== null && !isHighlight;

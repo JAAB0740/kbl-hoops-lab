@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PlayerProfileView } from "@/components/PlayerProfile";
 import { PlayerGameLog } from "@/components/PlayerGameLog";
+import { ScrollToTopFab } from "@/components/ScrollToTopFab";
 import {
   getAllPlayerNos,
   getPlayerProfile,
@@ -10,6 +11,7 @@ import {
   PLAYERS_DETAIL_META,
 } from "@/lib/playerProfiles";
 import { playerGameLog } from "@/lib/boxscores";
+import { teamLogoSrc } from "@/lib/teamLogos";
 
 interface Props {
   params: { id: string };
@@ -39,6 +41,7 @@ export default function PlayerProfilePage({ params }: Props) {
   const trend = getRoundTrend(profile);
   const teammates = getTeammates(profile.playerNo, 5);
   const gameLog = playerGameLog(profile.playerNo);
+  const logoSrc = teamLogoSrc(profile.team.short);
 
   const fetchedDate = PLAYERS_DETAIL_META.fetchedAt
     ? new Date(PLAYERS_DETAIL_META.fetchedAt).toLocaleString("ko-KR", {
@@ -60,7 +63,12 @@ export default function PlayerProfilePage({ params }: Props) {
           <span className="text-ink-300">{profile.kname}</span>
         </nav>
 
-        <PlayerProfileView profile={profile} trend={trend} teammates={teammates} />
+        <PlayerProfileView
+          profile={profile}
+          trend={trend}
+          teammates={teammates}
+          teamLogoSrc={logoSrc}
+        />
 
         {/* 박스스코어 기반 게임로그 — 데이터 있을 때만 */}
         {gameLog.length > 0 && (
@@ -73,6 +81,9 @@ export default function PlayerProfilePage({ params }: Props) {
           데이터 출처: KBL 공식 API (api-stats.kbl.or.kr) · 마지막 갱신 {fetchedDate}
         </footer>
       </main>
+
+      {/* 우측 하단 플로팅 — 게임 로그가 길어진 페이지에서 맨 위로 빠른 이동 */}
+      <ScrollToTopFab />
     </div>
   );
 }

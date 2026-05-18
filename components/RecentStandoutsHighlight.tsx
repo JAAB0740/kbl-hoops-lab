@@ -2,25 +2,45 @@ import Link from "next/link";
 import { TEAM_COLORS } from "@/lib/data";
 import { fmtDate } from "@/lib/gamesUtil";
 import type { PlayerStandoutWithGame } from "@/lib/standout";
+import { StandoutsCarousel } from "./StandoutsCarousel";
 
 /**
  * 홈 페이지 — 최근 경기들의 가장 임팩트 큰 선수 standout 합산.
- * 카드 클릭 시 해당 게임 상세 페이지로 이동.
  *
- * SNS 캡처 가치 + 사이트 첫 인상에 "이 사이트는 분석한다" 어필.
+ * 데스크탑(md+) : 2~3열 grid
+ * 모바일        : 가로 스와이프 캐러셀 + Peeking(85vw) + scroll-snap
+ *                · 카드 전체 링크 → 명시 버튼 분리 (오터치 방지)
+ *                · 도트 페이지 인디케이터
+ *                · active:scale 피드백
+ *
+ * 카드 렌더 자체는 server, 캐러셀 wrapper(IO + 도트)만 client component.
  */
 
-const KIND_TONES: Record<PlayerStandoutWithGame["kind"], { goodEmoji: string; badEmoji: string }> = {
-  scoring:      { goodEmoji: "🔥",  badEmoji: "🥶" },
-  shooting:     { goodEmoji: "🎯",  badEmoji: "🌧️" },
-  defense:      { goodEmoji: "🛡️", badEmoji: "🔓" },
-  playmaking:   { goodEmoji: "🎭",  badEmoji: "🤷" },
-  carelessness: { goodEmoji: "✨",  badEmoji: "💥" },
-  tempo:        { goodEmoji: "⚡",  badEmoji: "🐌" },
+const KIND_TONES: Record<
+  PlayerStandoutWithGame["kind"],
+  { goodEmoji: string; badEmoji: string }
+> = {
+  scoring: { goodEmoji: "🔥", badEmoji: "🥶" },
+  shooting: { goodEmoji: "🎯", badEmoji: "🌧️" },
+  defense: { goodEmoji: "🛡️", badEmoji: "🔓" },
+  playmaking: { goodEmoji: "🎭", badEmoji: "🤷" },
+  carelessness: { goodEmoji: "✨", badEmoji: "💥" },
+  tempo: { goodEmoji: "⚡", badEmoji: "🐌" },
 };
 
-export function RecentStandoutsHighlight({ items }: { items: PlayerStandoutWithGame[] }) {
+export function RecentStandoutsHighlight({
+  items,
+}: {
+  items: PlayerStandoutWithGame[];
+}) {
   if (items.length === 0) return null;
+
+  const cards = items.map((s, i) => (
+    <HighlightCard key={`${s.playerNo}-${i}`} standout={s} />
+  ));
+  const dotColors = items.map(
+    (s) => TEAM_COLORS[s.teamShort] ?? "#f97316",
+  );
 
   return (
     <section className="card overflow-hidden">
@@ -41,11 +61,7 @@ export function RecentStandoutsHighlight({ items }: { items: PlayerStandoutWithG
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((s, i) => (
-          <HighlightCard key={`${s.playerNo}-${i}`} standout={s} />
-        ))}
-      </div>
+      <StandoutsCarousel cards={cards} dotColors={dotColors} />
     </section>
   );
 }
@@ -62,16 +78,22 @@ function HighlightCard({ standout: s }: { standout: PlayerStandoutWithGame }) {
     : "border-buzzer-500/30 bg-buzzer-500/[0.06]";
 
   return (
-    <Link
-      href={`/games/${encodeURIComponent(s.gameContext.gmkey)}`}
-      className={`relative block overflow-hidden rounded-lg border p-4 transition hover:scale-[1.01] ${cardBg}`}
+    <article
+      className={[
+        "relative h-full overflow-hidden rounded-lg border p-4",
+        // 모바일 active 피드백 (Tap)
+        "transition-transform active:scale-[0.98]",
+        // 데스크탑 hover
+        "md:transition md:hover:scale-[1.01]",
+        cardBg,
+      ].join(" ")}
     >
       <span
         className="absolute left-0 top-0 h-full w-[3px]"
         style={{ backgroundColor: teamColor }}
       />
 
-      {/* 헤더: 이모지 + stat 카테고리 + 팀 */}
+      {/* 헤더: 이모지 + 카테고리 + 팀 */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-xl">{emoji}</span>
@@ -93,12 +115,13 @@ function HighlightCard({ standout: s }: { standout: PlayerStandoutWithGame }) {
       <div className="mt-2">
         <div className="text-[18px] font-bold text-ink-50">{s.pname}</div>
         <div className="mt-0.5 text-[12px] text-ink-500">
-          {fmtDate(s.gameContext.date)} · {s.gameContext.tag} · {s.gameContext.isHome ? "vs" : "@"} {s.gameContext.opponent}
+          {fmtDate(s.gameContext.date)} · {s.gameContext.tag} ·{" "}
+          {s.gameContext.isHome ? "vs" : "@"} {s.gameContext.opponent}
         </div>
       </div>
 
-      {/* 큰 수치 + delta */}
-      <div className="mt-2 flex items-baseline gap-2">
+      {/* 큰 수치 + delta + 시즌 평균 — nowrap 으로 모바일 줄바꿈 방지 */}
+      <div className="mt-2 flex items-baseline gap-2 whitespace-nowrap">
         <span className="stat-num text-2xl font-bold text-ink-50">
           {s.fmtValue(s.gameValue)}
         </span>
@@ -111,6 +134,20 @@ function HighlightCard({ standout: s }: { standout: PlayerStandoutWithGame }) {
       </div>
 
       <p className="mt-2 text-[12px] text-ink-300 line-clamp-1">{s.caption}</p>
-    </Link>
+
+      {/* 명시적 이동 버튼 — 카드 자체 클릭 대신 (오터치 방지) */}
+      <Link
+        href={`/games/${encodeURIComponent(s.gameContext.gmkey)}`}
+        className={[
+          "mt-3 inline-flex items-center gap-1 rounded-md",
+          "border border-court-700 bg-court-800/60 px-2.5 py-1",
+          "text-[12px] text-ink-300 transition",
+          "hover:border-flame-500/50 hover:text-flame-400",
+          "active:scale-95",
+        ].join(" ")}
+      >
+        이 경기 상세 <span aria-hidden>→</span>
+      </Link>
+    </article>
   );
 }
