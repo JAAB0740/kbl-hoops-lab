@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { GameCard } from "@/components/GameCard";
 import { SeasonCalendar } from "@/components/SeasonCalendar";
 import { TeamScheduleSummary } from "@/components/TeamScheduleSummary";
@@ -16,6 +16,8 @@ import {
   seasonMonths as getSeasonMonths,
   type RawGame,
 } from "@/lib/gamesUtil";
+import { usePersistedState } from "@/lib/usePersistedState";
+import { useScrollRestoration } from "@/lib/useScrollRestoration";
 
 type Mode = "byday" | "month" | "calendar";
 
@@ -49,14 +51,21 @@ function pickInitialDate(): string {
 }
 
 export function GamesExplorer() {
-  const [mode, setMode] = useState<Mode>("byday");
-  const [selectedDate, setSelectedDate] = useState<string>(pickInitialDate);
-  // 월별 모드용 — 기본은 selectedDate의 월
-  const [selectedMonth, setSelectedMonth] = useState<string>(() =>
-    pickInitialDate().slice(0, 7),
+  // 페이지 이동 후 뒤로 가기 시 모드·선택일·필터 보존
+  useScrollRestoration();
+
+  const [mode, setMode] = usePersistedState<Mode>("gamesExplorer:mode", "byday");
+  const [selectedDate, setSelectedDate] = usePersistedState<string>(
+    "gamesExplorer:selectedDate",
+    pickInitialDate,
   );
-  const [team, setTeam] = useState<string | null>(null);
-  const [tag, setTag] = useState<string | null>(null);
+  // 월별 모드용 — 기본은 selectedDate의 월
+  const [selectedMonth, setSelectedMonth] = usePersistedState<string>(
+    "gamesExplorer:selectedMonth",
+    () => pickInitialDate().slice(0, 7),
+  );
+  const [team, setTeam] = usePersistedState<string | null>("gamesExplorer:team", null);
+  const [tag, setTag] = usePersistedState<string | null>("gamesExplorer:tag", null);
 
   const teams = useMemo(() => allTeamShorts({ kblOnly: true }), []);
   const tags = useMemo(() => allTags(), []);

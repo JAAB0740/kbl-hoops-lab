@@ -3,22 +3,18 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * 메인 페이지 상단 Hero 4 카드 — 모바일 가로 스와이프 캐러셀 wrapper.
+ * 차트 가로 스와이프 캐러셀 — 모바일에서 세로 길이 줄이기 위해 2~3개 차트를 묶음.
  *
- * 모바일(<md): flex + scroll-snap-x mandatory + Peeking(85vw) + snap-align start
- * 데스크탑(md+): 2열, lg(1024+): 4열 grid
+ *  - 모바일(<md): snap-x mandatory, 100% basis 로 한 번에 한 차트씩 노출 + 도트 인디케이터
+ *  - PC(md+): 세로 stack (기존 layout 그대로) — wrapper 가 grid 또는 그냥 sequential
  *
- * 카드 자체는 server 에서 미리 렌더된 ReactNode 로 받음. 캐러셀 wrapper 만 client
- * (IntersectionObserver 로 활성 카드 추적 → 도트 인디케이터 팀 컬러 강조).
+ * 사용처: 라운드 추이 + 레이더 차트 (선수 상세 시즌 요약 탭)
  */
 
-export function HeroCarousel({
-  cards,
-  dotColors,
+export function ChartCarousel({
+  charts,
 }: {
-  cards: ReactNode[];
-  /** 각 카드의 활성 도트 색상 (팀 컬러) */
-  dotColors: string[];
+  charts: ReactNode[];
 }) {
   const scrollerRef = useRef<HTMLUListElement>(null);
   const cardRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -45,23 +41,21 @@ export function HeroCarousel({
     );
     for (const el of cardRefs.current) if (el) obs.observe(el);
     return () => obs.disconnect();
-  }, [cards.length]);
+  }, [charts.length]);
 
   return (
     <>
       <ul
         ref={scrollerRef}
         className={[
-          // 모바일 캐러셀 — snap-x mandatory, gap-4(16px),
-          // -mx-6 으로 부모 padding 무력화하고 내부 px-4 로 첫/마지막 카드 16px 여백
-          "-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2",
+          // 모바일 캐러셀 — basis 100% (한 번에 한 차트), snap-x mandatory
+          "-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2",
           "[&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
-          // 데스크탑 grid 로 전환
-          "md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0",
-          "lg:grid-cols-4",
+          // PC — flex/snap 해제하고 차트가 세로 stack
+          "md:mx-0 md:block md:space-y-4 md:overflow-visible md:px-0 md:pb-0",
         ].join(" ")}
       >
-        {cards.map((card, i) => (
+        {charts.map((c, i) => (
           <li
             // eslint-disable-next-line react/no-array-index-key
             key={i}
@@ -70,29 +64,28 @@ export function HeroCarousel({
             }}
             data-idx={i}
             className={[
-              // 모바일 — peeking 85vw + 다음 카드 ~15% 보이게, snap-align start
-              "shrink-0 basis-[85vw] snap-start",
-              // 데스크탑 — grid item
+              // 모바일 — 한 차트가 viewport 폭 거의 가득
+              "shrink-0 basis-full snap-center",
+              // PC — wrapper md:space-y-4 가 자동 간격 부여
               "md:basis-auto md:shrink",
             ].join(" ")}
           >
-            {card}
+            {c}
           </li>
         ))}
       </ul>
 
-      {/* 도트 페이지 인디케이터 — 모바일 전용. 클릭 시 해당 카드로 smooth scroll */}
-      {cards.length > 1 && (
+      {/* 도트 인디케이터 — 모바일 전용 */}
+      {charts.length > 1 && (
         <div className="mt-3 flex justify-center gap-2 md:hidden">
-          {cards.map((_, i) => {
+          {charts.map((_, i) => {
             const isActive = i === activeIdx;
-            const color = dotColors[i] ?? "#f97316";
             return (
               <button
                 // eslint-disable-next-line react/no-array-index-key
                 key={i}
                 type="button"
-                aria-label={`${i + 1}번째 카드로 이동`}
+                aria-label={`${i + 1}번째 차트로 이동`}
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => {
                   const el = cardRefs.current[i];
@@ -103,20 +96,14 @@ export function HeroCarousel({
                     inline: "start",
                   });
                 }}
-                className={[
-                  // 시각적으로는 도트 크기 유지하되 터치 영역은 더 크게 (p-2)
-                  "inline-flex items-center justify-center p-2 -m-2",
-                ].join(" ")}
+                className="inline-flex items-center justify-center p-2 -m-2"
               >
                 <span
                   aria-hidden
                   className={[
                     "inline-block rounded-full transition-all",
-                    isActive ? "h-1.5 w-4" : "h-1.5 w-1.5",
+                    isActive ? "h-1.5 w-4 bg-flame-500" : "h-1.5 w-1.5 bg-court-600",
                   ].join(" ")}
-                  style={{
-                    backgroundColor: isActive ? color : "#3f3f46",
-                  }}
                 />
               </button>
             );

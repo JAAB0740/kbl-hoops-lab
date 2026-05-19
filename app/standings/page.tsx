@@ -4,6 +4,7 @@ import {
   STANDINGS_FILTERS,
   type FilteredTeam,
 } from "@/lib/data";
+import { teamLogoSrc } from "@/lib/teamLogos";
 
 export const metadata = {
   title: "순위 — KBL Hoops Lab",
@@ -32,19 +33,39 @@ export default function StandingsPage() {
           </p>
         </section>
 
-        {/* 요약 카드 4개 */}
+        {/* 요약 카드 4개 — 모바일 가로 스와이프 캐러셀, md+ 4열 grid */}
         {HAS_FILTERED_STANDINGS && (
-          <section className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <SummaryCard label="정규리그 우승" team={champion} barColor="bg-flame-500" />
-            <SummaryCard label="4강 직행" team={runnerUp} barColor="bg-flame-400" />
+          <section
+            className={[
+              // 모바일 — peeking carousel (85vw + snap-x + gap 12px)
+              "-mx-6 mb-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2",
+              "[&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
+              // md+ — 4열 grid
+              "md:mx-0 md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0",
+            ].join(" ")}
+          >
+            <SummaryCard
+              label="정규리그 우승"
+              team={champion}
+              logoSrc={teamLogoSrc(champion?.shortName)}
+              barColor="bg-flame-500"
+            />
+            <SummaryCard
+              label="4강 직행"
+              team={runnerUp}
+              logoSrc={teamLogoSrc(runnerUp?.shortName)}
+              barColor="bg-flame-400"
+            />
             <SummaryCard
               label="PO 라인 (6위)"
               team={sixthPlace}
+              logoSrc={teamLogoSrc(sixthPlace?.shortName)}
               barColor="bg-hoop-500"
             />
             <SummaryCard
               label="최하위"
               team={bottom}
+              logoSrc={teamLogoSrc(bottom?.shortName)}
               barColor="bg-buzzer-500"
               highlight="danger"
             />
@@ -66,7 +87,7 @@ export default function StandingsPage() {
           </section>
         )}
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
+        <footer className="mt-6 md:mt-8 border-t border-court-700/60 pt-4 md:pt-6 text-center text-[12px] md:text-[14px] text-ink-500">
           데이터 출처: KBL 공식 API · 2025-26 정규리그 54경기 기준
         </footer>
       </main>
@@ -77,25 +98,47 @@ export default function StandingsPage() {
 function SummaryCard({
   label,
   team,
+  logoSrc,
   barColor,
   highlight,
 }: {
   label: string;
   team?: FilteredTeam;
+  logoSrc?: string | null;
   barColor: string;
   highlight?: "danger";
 }) {
   if (!team) return null;
   return (
-    <div className="relative overflow-hidden card p-4">
+    <div
+      className={[
+        // 모바일 캐러셀 item — basis 85vw + snap-start. md+ 자동 (grid)
+        "shrink-0 basis-[85vw] snap-start",
+        "md:basis-auto md:shrink",
+        "relative overflow-hidden card p-4",
+      ].join(" ")}
+    >
       <span className={`absolute left-0 top-0 h-full w-[3px] ${barColor}`} />
-      <div className="text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
+
+      {/* 팀 로고 워터마크 — 우측 하단, 텍스트 가독성 안전한 수준 */}
+      {logoSrc && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={logoSrc}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -right-2 -bottom-2 h-20 w-auto opacity-[0.10] [filter:grayscale(100%)_brightness(1.6)]"
+          loading="lazy"
+        />
+      )}
+
+      <div className="relative text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
         {label}
       </div>
-      <div className="mt-2 text-base font-semibold text-ink-50">{team.name}</div>
+      <div className="relative mt-2 text-base font-semibold text-ink-50">{team.name}</div>
       <div
         className={[
-          "mt-1 stat-num text-[15px]",
+          "relative mt-1 stat-num text-[15px]",
           highlight === "danger" ? "text-buzzer-500" : "text-ink-300",
         ].join(" ")}
       >

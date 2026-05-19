@@ -41,7 +41,7 @@
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-court-700 bg-court-800/80
+    @apply inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-court-700 bg-court-800/80
            px-2.5 py-1 text-[11px] font-medium text-ink-300;
   }
 
@@ -98,6 +98,22 @@
     box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
   }
 
+  /* 모바일에서는 sticky 영역이 viewport 의 60%+ 를 잡아 답답.
+     3번째 열(팀) 은 모바일에선 static 으로 전환하고 그림자는 2번째(선수) 에 부여. */
+  @media (max-width: 767px) {
+    .players-table th:nth-child(3),
+    .players-table tbody td:nth-child(3) {
+      position: static;
+      left: auto;
+      z-index: auto;
+      box-shadow: none;
+    }
+    .players-table th:nth-child(2),
+    .players-table tbody td:nth-child(2) {
+      box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+    }
+  }
+
   /* 좌상단 모서리 (sticky header × sticky left col 교차) — 최상위 */
   .players-table thead th:nth-child(1),
   .players-table thead th:nth-child(2),
@@ -134,11 +150,80 @@
     background-color: #0d0f13;
     border-bottom: 2px solid #334155;
   }
+  /* 좌측 1열(날짜) 가로 스크롤 시 고정 — 어느 경기 row 인지 추적 가능 */
+  .game-log-table th:nth-child(1),
+  .game-log-table tbody td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: #0d0f13;
+    box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+  }
+  .game-log-table thead th:nth-child(1) {
+    z-index: 20; /* 좌상단 모서리는 sticky header × sticky col 교차 */
+  }
   .game-log-table tbody tr:nth-child(even) > td {
     background-color: #11141a;
   }
   @media (hover: hover) and (pointer: fine) {
     .game-log-table tbody tr:hover > td {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* ─────────────────────────────────────────────
+     Standings 테이블 — 모바일 가로 스크롤 + 좌측 2열 sticky
+     · 모든 셀 nowrap (팀명/숫자 줄바꿈 방지)
+     · 첫 열(#) + 둘째 열(팀) 좌측 고정
+     ───────────────────────────────────────────── */
+
+  .standings-table-wrap {
+    overflow-x: auto;
+  }
+  .standings-table th,
+  .standings-table td {
+    white-space: nowrap;
+  }
+  .standings-table th:nth-child(1),
+  .standings-table tbody td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: #0d0f13;
+  }
+  .standings-table th:nth-child(2),
+  .standings-table tbody td:nth-child(2) {
+    position: sticky;
+    left: 56px; /* col 1 (#) width — 명시적 w-[56px] */
+    z-index: 5;
+    background-color: #0d0f13;
+    box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+  }
+  .standings-table thead th:nth-child(1),
+  .standings-table thead th:nth-child(2) {
+    z-index: 20; /* sticky header × sticky col 모서리 */
+  }
+
+  /* 모바일: 2열 sticky(196px) 이 viewport 의 50%+ 차지해 답답.
+     팀 열 sticky 해제 → # 1열만 고정. 그림자는 # 우측에. */
+  @media (max-width: 767px) {
+    .standings-table th:nth-child(2),
+    .standings-table tbody td:nth-child(2) {
+      position: static;
+      left: auto;
+      z-index: auto;
+      box-shadow: none;
+    }
+    .standings-table th:nth-child(1),
+    .standings-table tbody td:nth-child(1) {
+      box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+    }
+  }
+  .standings-table tbody tr:nth-child(even) > td {
+    background-color: #11141a;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .standings-table tbody tr:hover > td {
       background-color: rgba(255, 255, 255, 0.05);
     }
   }

@@ -328,6 +328,12 @@ export function TeamRoundTrend({
                     fill={color}
                     opacity={isDimmed ? 0.25 : 1}
                     onMouseEnter={() => setHighlight(p.team.code)}
+                    // 모바일 터치/PC 클릭 모두 지원 — 같은 팀 다시 누르면 해제
+                    onClick={() =>
+                      setHighlight((cur) =>
+                        cur === p.team.code ? null : p.team.code,
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   >
                     {p.team.shortName}
@@ -339,7 +345,8 @@ export function TeamRoundTrend({
       </div>
 
       <p className="mt-2 text-[13px] text-ink-500">
-        ※ 마우스를 라인 위에 올리면 해당 팀 강조. {metric.invert ? "이 메트릭은 낮을수록 좋음." : ""}
+        ※ 라인 또는 우측 팀 라벨을 탭/호버하면 해당 팀 강조 (다시 탭 = 해제).
+        {metric.invert ? " 이 메트릭은 낮을수록 좋음." : ""}
       </p>
     </div>
   );

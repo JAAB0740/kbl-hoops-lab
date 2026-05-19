@@ -140,6 +140,9 @@ export function PlayerGameLog({
   const [mode, setMode] = useState<Mode>("basic");
   const [tagFilter, setTagFilter] = useState<string>("all");
   const [sort, setSort] = useState<{ k: SortKey; dir: SortDir } | null>(null);
+  // 모바일 — 기본 최신 5개만 표시. "전체 보기" 토글로 펼침.
+  const [expanded, setExpanded] = useState(false);
+  const COLLAPSED_COUNT = 5;
 
   const filtered = useMemo(() => {
     if (tagFilter === "all") return log;
@@ -187,6 +190,10 @@ export function PlayerGameLog({
     }
     return arr;
   }, [filtered, sort, cols]);
+
+  // 모바일 — 기본 collapsed (5개). expanded 면 전체. 검색/필터 변경 시 자동 reset 안 함 (사용자 클릭 의도 존중).
+  const displayed = expanded ? sorted : sorted.slice(0, COLLAPSED_COUNT);
+  const hiddenCount = sorted.length - displayed.length;
 
   function toggleStatSort(key: string) {
     setSort((cur) => {
@@ -382,7 +389,7 @@ export function PlayerGameLog({
             </tr>
           </thead>
           <tbody className="divide-y divide-court-800/50">
-            {sorted.map((entry) => {
+            {displayed.map((entry) => {
               const r = entry.records;
               const oppColor = TEAM_COLORS[entry.opponent] ?? "#94a3b8";
               return (
@@ -462,6 +469,31 @@ export function PlayerGameLog({
           </tbody>
         </table>
       </div>
+
+      {/* 더보기/접기 토글 — 기본 최신 5경기만, 클릭 시 전체 펼침 */}
+      {sorted.length > COLLAPSED_COUNT && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="mt-2 flex w-full items-center justify-center gap-2 rounded-md border border-court-700 bg-court-800/60 px-3 py-2.5 text-[14px] font-medium text-ink-300 transition active:scale-[0.995] hover:border-court-500 hover:text-ink-100"
+        >
+          {expanded ? (
+            <>
+              <span>기록 접기</span>
+              <span aria-hidden>∧</span>
+            </>
+          ) : (
+            <>
+              <span>
+                전체 경기 기록 보기
+                <span className="ml-1 text-flame-400">(+{hiddenCount})</span>
+              </span>
+              <span aria-hidden>∨</span>
+            </>
+          )}
+        </button>
+      )}
 
       <p className="mt-2 text-[13px] text-ink-500">
         ※ 출장 0초인 경기 (DNP) 는 제외 · 날짜 클릭 시 경기 상세

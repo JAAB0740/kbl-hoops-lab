@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { TEAM_COLORS, type FilteredTeam } from "@/lib/data";
+import { usePersistedState } from "@/lib/usePersistedState";
+import { useScrollRestoration } from "@/lib/useScrollRestoration";
 
 type Filter = "all" | "home" | "away";
 
@@ -16,7 +18,10 @@ interface Props {
 }
 
 export function FilterableStandings({ filters }: Props) {
-  const [filter, setFilter] = useState<Filter>("all");
+  // 페이지 이동 후 뒤로 가기 시 필터·스크롤 위치 보존
+  useScrollRestoration();
+
+  const [filter, setFilter] = usePersistedState<Filter>("standings:filter", "all");
   const teams = filters[filter];
 
   // GB 계산 — 현재 필터의 선두팀 기준
@@ -98,13 +103,13 @@ export function FilterableStandings({ filters }: Props) {
         </div>
       )}
 
-      {/* 테이블 */}
-      <div className="overflow-hidden rounded-lg border border-court-700/70">
-        <table className="w-full text-sm">
+      {/* 테이블 — 모바일 가로 스크롤 + 좌측 2열 sticky (globals.css .standings-table) */}
+      <div className="standings-table-wrap rounded-lg border border-court-700/70">
+        <table className="standings-table w-full text-sm">
           <thead>
             <tr className="bg-court-900/70 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-              <th className="py-2.5 pl-3 text-left font-medium">#</th>
-              <th className="py-2.5 text-left font-medium">팀</th>
+              <th className="w-[56px] py-2.5 pl-3 text-left font-medium">#</th>
+              <th className="w-[140px] py-2.5 text-left font-medium">팀</th>
               <th className="py-2.5 text-right font-medium">경기</th>
               <th className="py-2.5 text-right font-medium">승</th>
               <th className="py-2.5 text-right font-medium">패</th>
@@ -120,8 +125,8 @@ export function FilterableStandings({ filters }: Props) {
             {teams.map((t) => {
               const color = TEAM_COLORS[t.shortName] ?? "#94a3b8";
               return (
-                <tr key={t.code} className="group transition hover:bg-court-700/30">
-                  <td className="py-2.5 pl-3">
+                <tr key={t.code} className="group">
+                  <td className="w-[56px] py-2.5 pl-3">
                     <span
                       className="stat-num text-[16px] font-semibold"
                       style={{ color }}
@@ -129,7 +134,7 @@ export function FilterableStandings({ filters }: Props) {
                       {t.rank}
                     </span>
                   </td>
-                  <td className="py-2.5">
+                  <td className="w-[140px] py-2.5">
                     <div className="flex items-center gap-2.5">
                       <span
                         className="h-2 w-2 shrink-0 rounded-full"

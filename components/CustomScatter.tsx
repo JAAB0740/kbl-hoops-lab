@@ -146,9 +146,9 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
         <StatSelector label="점 크기" value={zKey} onChange={setZKey} />
       </div>
 
-      {/* 산점도 */}
-      <div style={{ width: "100%", height: 400 }}>
-        <ResponsiveContainer>
+      {/* 산점도 — 모바일에선 정사각형 (aspect-square), md+ 부터 고정 높이 */}
+      <div className="aspect-square w-full md:aspect-auto md:h-[400px]">
+        <ResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 10, right: 24, bottom: 20, left: 4 }}>
             <CartesianGrid stroke="#262a33" strokeDasharray="3 3" />
             <XAxis
@@ -244,14 +244,16 @@ function StatSelector({
   onChange: (v: StatKey) => void;
 }) {
   return (
-    <div className="flex items-center gap-2">
-      <label className="shrink-0 text-[13px] font-medium uppercase tracking-wider text-ink-500">
+    // 모바일: 라벨 위 / select 아래 (column) — 좁은 폭에서 select 자체에 더 많은 영역 할당
+    // sm+: 라벨 좌 / select 우 (row)
+    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+      <label className="shrink-0 text-[12px] font-medium uppercase tracking-wider text-ink-500 sm:text-[13px]">
         {label}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as StatKey)}
-        className="flex-1 rounded-md border border-court-700 bg-court-800 px-2 py-1 text-[15px] text-ink-100 focus:border-flame-500 focus:outline-none"
+        className="w-full rounded-md border border-court-700 bg-court-800 px-2 py-1.5 text-[15px] text-ink-100 focus:border-flame-500 focus:outline-none sm:flex-1"
       >
         {STAT_OPTIONS.map((opt) => (
           <option key={opt.key} value={opt.key}>

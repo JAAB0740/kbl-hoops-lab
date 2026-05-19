@@ -13,6 +13,7 @@ import {
   topSchool,
   type PlayerFlag,
 } from "@/lib/playerInfo";
+import { setCodec, usePersistedState } from "@/lib/usePersistedState";
 
 type StatMode = "traditional" | "advanced" | "registry";
 
@@ -74,13 +75,24 @@ export function PlayersTable({
   /** 외부에서 1차/2차/등록 토글 제어. 미지정 시 traditional */
   statMode?: StatMode;
 }) {
-  const [sortKey, setSortKey] = useState<string>("points");
-  const [sortDir, setSortDir] = useState<"desc" | "asc">("desc");
-  const [teamFilter, setTeamFilter] = useState<string>("");
+  // 페이지 이동 후 뒤로 가기 시 정렬·필터·검색 상태 보존
+  const [sortKey, setSortKey] = usePersistedState<string>("playersTable:sortKey", "points");
+  const [sortDir, setSortDir] = usePersistedState<"desc" | "asc">("playersTable:sortDir", "desc");
+  const [teamFilter, setTeamFilter] = usePersistedState<string>("playersTable:teamFilter", "");
   // 다중 선택 (칩) — 빈 Set 이면 "전체"
-  const [flagFilter, setFlagFilter] = useState<Set<PlayerFlag>>(new Set());
-  const [posFilter, setPosFilter] = useState<Set<string>>(new Set());
-  const [search, setSearch] = useState("");
+  const [flagFilter, setFlagFilter] = usePersistedState<Set<PlayerFlag>>(
+    "playersTable:flagFilter",
+    new Set(),
+    setCodec<PlayerFlag>(),
+  );
+  const [posFilter, setPosFilter] = usePersistedState<Set<string>>(
+    "playersTable:posFilter",
+    new Set(),
+    setCodec<string>(),
+  );
+  const [search, setSearch] = usePersistedState<string>("playersTable:search", "");
+  // 모바일 — 선수구분/포지션 chip 토글. PC 는 항상 펼침.
+  const [chipFiltersOpen, setChipFiltersOpen] = useState(false);
 
   function toggleFlag(f: PlayerFlag) {
     setFlagFilter((cur) => {
@@ -249,6 +261,28 @@ export function PlayersTable({
           </div>
         </div>
 
+        {/* 모바일 토글 — 선수구분/포지션 chip 펼치기. PC 는 항상 펼침 (버튼 자체 숨김). */}
+        <button
+          type="button"
+          onClick={() => setChipFiltersOpen((v) => !v)}
+          aria-expanded={chipFiltersOpen}
+          className="flex w-full items-center justify-between rounded-md border border-court-700 bg-court-800/70 px-3 py-2 text-[14px] text-ink-300 transition active:scale-[0.99] md:hidden"
+        >
+          <span className="flex items-center gap-1.5">
+            <span aria-hidden>⌕</span>
+            <span className="font-medium text-ink-100">선수구분 · 포지션 필터</span>
+            {(flagFilter.size > 0 || posFilter.size > 0) && (
+              <span className="ml-1 text-[12px] text-flame-400">
+                ({flagFilter.size + posFilter.size}개 선택)
+              </span>
+            )}
+          </span>
+          <span aria-hidden className={`text-[14px] transition-transform ${chipFiltersOpen ? "rotate-180" : ""}`}>
+            ∨
+          </span>
+        </button>
+
+        <div className={["space-y-2", chipFiltersOpen ? "" : "hidden md:block"].join(" ")}>
         {/* 선수구분 — 다중 선택 칩 (국내+아시아쿼터 같이 보기 가능) */}
         <ChipFilterRow
           label="선수구분"
@@ -274,6 +308,7 @@ export function PlayersTable({
           onToggle={togglePos}
           onClear={() => setPosFilter(new Set())}
         />
+        </div>
       </div>
 
       {/* 테이블 — sticky header + sticky left 3 cols + zebra (globals.css .players-table) */}

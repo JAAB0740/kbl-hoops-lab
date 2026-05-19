@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import {
   CartesianGrid,
   Line,
@@ -11,6 +11,7 @@ import {
   YAxis,
 } from "recharts";
 import { aggregateRoundSet, REGULAR_POPULATION, PLAYOFF_POPULATION } from "@/lib/playerProfiles";
+import { ChartCarousel } from "@/components/ChartCarousel";
 import { PlayerArchetypeCard } from "@/components/PlayerArchetypeCard";
 import { ShootingRangeChart } from "@/components/ShootingRangeChart";
 import { ShotChartCourt } from "@/components/ShotChartCourt";
@@ -40,7 +41,17 @@ interface Props {
   teammates: PlayerDetailRow[];
   /** 소속팀 로고 파일 경로 — 있으면 상단 영역 배경 워터마크로 노출 */
   teamLogoSrc?: string | null;
+  /** 게임 로그 노드 — 모바일에선 탭3 안, PC에선 페이지 끝에 자연스럽게 렌더 */
+  gameLogNode?: ReactNode;
 }
+
+type ProfileTabKey = "overview" | "shooting" | "log";
+
+const PROFILE_TABS: { key: ProfileTabKey; label: string }[] = [
+  { key: "overview", label: "시즌 요약" },
+  { key: "shooting", label: "슈팅 분석" },
+  { key: "log",      label: "게임 로그" },
+];
 
 type TrendKey = "points" | "rebounds" | "assists" | "fgPct" | "threePct" | "minutes";
 
@@ -58,10 +69,18 @@ export function PlayerProfileView({
   trend,
   teammates,
   teamLogoSrc,
+  gameLogNode,
 }: Props) {
   const { season, playoff } = profile;
   const games = season?.games ?? 0;
   const archetype = classifyArchetype(profile);
+
+  // 모바일 — 3탭 (시즌 요약 / 슈팅 분석 / 게임 로그). PC 는 모든 그룹 sequential.
+  const [tab, setTab] = useState<ProfileTabKey>("overview");
+
+  // 탭별 가시성 className helper — 모바일에선 active 탭만, PC(md+) 는 항상 표시
+  const tabShow = (k: ProfileTabKey) =>
+    tab === k ? "" : "hidden md:block";
 
   return (
     <div className="space-y-6">
@@ -77,6 +96,41 @@ export function PlayerProfileView({
       <section>
         <PlayerArchetypeCard archetype={archetype} />
       </section>
+
+      {/* 모바일 전용 — 3탭 nav (sticky 상단). PC 는 숨김 — 모든 그룹 sequential */}
+      <nav
+        role="tablist"
+        aria-label="선수 상세 탭"
+        className="sticky top-14 z-40 -mx-6 flex border-b border-court-700/60 bg-court-950/95 backdrop-blur md:hidden"
+      >
+        {PROFILE_TABS.map((t) => {
+          const isActive = tab === t.key;
+          return (
+            <button
+              key={t.key}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setTab(t.key)}
+              className={[
+                "relative flex-1 px-3 py-3 text-[14px] font-medium transition",
+                isActive ? "text-ink-50" : "text-ink-500 hover:text-ink-300",
+              ].join(" ")}
+            >
+              {t.label}
+              {isActive && (
+                <span
+                  aria-hidden
+                  className="absolute inset-x-2 bottom-0 h-[3px] rounded-t bg-flame-500"
+                />
+              )}
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* ─── 탭 1 : 시즌 요약 ─────────────────────── */}
+      <div className={["space-y-6", tabShow("overview")].join(" ")}>
 
       {/* 핵심 스탯 카드 */}
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -118,23 +172,23 @@ export function PlayerProfileView({
         />
       </section>
 
-      {/* 슈팅 효율 + 라운드 추이 (2단) */}
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1.4fr]">
-        <ShootingPanel row={season} />
-        <RoundTrendPanel trend={trend} />
+      {/* 라운드 추이 + 8축 레이더 — 모바일: 가로 스와이프 캐러셀, PC: 세로 stack */}
+      <section>
+        <ChartCarousel
+          charts={[
+            <RoundTrendPanel key="trend" trend={trend} />,
+            season ? (
+              <PlayerSpiderPanel
+                key="radar"
+                season={season}
+                playoff={playoff ?? null}
+                kname={profile.kname}
+                teamShort={profile.team.short}
+              />
+            ) : null,
+          ].filter(Boolean) as React.ReactNode[]}
+        />
       </section>
-
-      {/* 8축 Spider Chart — 리그 분포 대비 어디에 강한지 */}
-      {season && (
-        <section>
-          <PlayerSpiderPanel
-            season={season}
-            playoff={playoff ?? null}
-            kname={profile.kname}
-            teamShort={profile.team.short}
-          />
-        </section>
-      )}
 
       {/* 2차 스탯 (Advanced) */}
       {profile.advanced?.season && (
@@ -150,6 +204,35 @@ export function PlayerProfileView({
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <QuarterBreakdownPanel quarters={profile.quarters} halves={profile.halves} />
         <VenueBreakdownPanel venue={profile.venue} season={profile.season} />
+      </section>
+
+      {/* 라운드 범위 비교 */}
+      <section>
+        <RoundCompare profile={profile} />
+      </section>
+
+      {/* PO 비교 + 동료 */}
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <PostseasonPanel season={season} playoff={playoff} />
+        <TeammatesPanel
+          teammates={teammates}
+          teamShort={profile.team.short}
+        />
+      </section>
+
+      {/* 라운드별 상세 테이블 */}
+      <section>
+        <RoundTable rounds={profile.rounds} />
+      </section>
+
+      </div>{/* /탭1 시즌 요약 */}
+
+      {/* ─── 탭 2 : 슈팅 분석 ─────────────────────── */}
+      <div className={["space-y-6", tabShow("shooting")].join(" ")}>
+
+      {/* 슈팅 효율 패널 — 한 경기당 FG/3P/FT/2P 막대 */}
+      <section>
+        <ShootingPanel row={season} />
       </section>
 
       {/* 영역별 야투 (KBL 6분할) — 코트 heat map + 막대 차트 */}
@@ -182,24 +265,12 @@ export function PlayerProfileView({
         </section>
       )}
 
-      {/* 라운드 범위 비교 */}
-      <section>
-        <RoundCompare profile={profile} />
-      </section>
+      </div>{/* /탭2 슈팅 분석 */}
 
-      {/* PO 비교 + 동료 */}
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <PostseasonPanel season={season} playoff={playoff} />
-        <TeammatesPanel
-          teammates={teammates}
-          teamShort={profile.team.short}
-        />
-      </section>
-
-      {/* 라운드별 상세 테이블 */}
-      <section>
-        <RoundTable rounds={profile.rounds} />
-      </section>
+      {/* ─── 탭 3 : 게임 로그 ─────────────────────── */}
+      <div className={["space-y-6", tabShow("log")].join(" ")}>
+        {gameLogNode}
+      </div>
     </div>
   );
 }
@@ -228,18 +299,19 @@ function Header({
 
   return (
     <section className="card relative overflow-hidden">
-      {/* 팀 로고 워터마크 — 카드 배경 위에 그려서 다크 모드에서 잘 보이도록 */}
+      {/* 팀 로고 워터마크 — 모바일은 px 단위 고정 (기기 폭 변해도 일관),
+          PC 는 % 비례로 카드에 맞춰 크게 */}
       {teamLogoSrc && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={teamLogoSrc}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-[-4%] top-[-8%] h-auto w-[40%] max-w-[420px] opacity-[0.12] [filter:grayscale(100%)_brightness(1.8)]"
+          className="pointer-events-none absolute right-[-20px] top-0 h-auto w-[140px] opacity-[0.12] [filter:grayscale(100%)_brightness(1.8)] md:right-[-4%] md:top-[-8%] md:w-[40%] md:max-w-[420px]"
           loading="lazy"
         />
       )}
-      <div className="relative px-6 py-6">
+      <div className="relative px-4 py-4 md:px-6 md:py-6">
         <div className="absolute left-0 top-0 h-full w-1 bg-flame-500" />
 
         <div className="flex flex-wrap items-start justify-between gap-6">
@@ -255,11 +327,11 @@ function Header({
               />
             )}
             <div>
-              <div className="flex items-center gap-2 text-[14px] font-medium uppercase tracking-[0.12em] text-ink-500">
+              <div className="flex flex-wrap items-center gap-2 text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500 md:text-[14px]">
                 <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">
                   {profile.team.short}
                 </span>
-                <span>{profile.team.name}</span>
+                <span className="whitespace-nowrap">{profile.team.name}</span>
                 {info && (
                   <span className={`chip ${flagTone}`}>
                     {info.flag}
@@ -274,10 +346,10 @@ function Header({
                   {archetypeLabel}
                 </span>
               </div>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink-50">
+              <h1 className="mt-2 text-2xl font-bold tracking-tight text-ink-50 md:text-3xl">
                 {profile.kname}
                 {profile.ename && profile.ename !== profile.kname && (
-                  <span className="ml-2 text-base font-normal text-ink-500">
+                  <span className="ml-2 text-[13px] font-normal text-ink-500 md:text-base">
                     {profile.ename}
                   </span>
                 )}
@@ -302,18 +374,18 @@ function Header({
           {/* 우: 시즌 평균 */}
           {season && (
             <div className="flex items-baseline gap-1">
-              <span className="text-[14px] uppercase tracking-[0.12em] text-ink-500">
+              <span className="text-[12px] uppercase tracking-[0.12em] text-ink-500 md:text-[14px]">
                 정규 평균
               </span>
-              <span className="ml-3 stat-num text-2xl font-bold text-flame-400">
+              <span className="ml-2 stat-num text-xl font-bold text-flame-400 md:ml-3 md:text-2xl">
                 {fmt(season.points)}
               </span>
-              <span className="stat-num text-sm text-ink-500">/</span>
-              <span className="stat-num text-2xl font-bold text-hoop-400">
+              <span className="stat-num text-[12px] text-ink-500 md:text-sm">/</span>
+              <span className="stat-num text-xl font-bold text-hoop-400 md:text-2xl">
                 {fmt(season.rebounds)}
               </span>
-              <span className="stat-num text-sm text-ink-500">/</span>
-              <span className="stat-num text-2xl font-bold text-neon-400">
+              <span className="stat-num text-[12px] text-ink-500 md:text-sm">/</span>
+              <span className="stat-num text-xl font-bold text-neon-400 md:text-2xl">
                 {fmt(season.assists)}
               </span>
             </div>
@@ -376,10 +448,10 @@ function Header({
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="text-[13px] uppercase tracking-[0.12em] text-ink-500">
+      <div className="text-[11px] uppercase tracking-[0.12em] text-ink-500 md:text-[13px]">
         {label}
       </div>
-      <div className="mt-0.5 text-[16px] font-medium text-ink-100">{value}</div>
+      <div className="mt-0.5 text-[14px] font-medium text-ink-100 md:text-[16px]">{value}</div>
     </div>
   );
 }

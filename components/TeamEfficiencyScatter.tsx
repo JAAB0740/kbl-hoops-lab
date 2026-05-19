@@ -60,10 +60,12 @@ export function TeamEfficiencyScatter({
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* 모바일: 정사각형 영역에 SVG fit (preserveAspectRatio meet 으로 비율 유지) */}
+      <div className="aspect-square w-full overflow-hidden md:aspect-auto md:overflow-x-auto">
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="h-auto w-full"
+          preserveAspectRatio="xMidYMid meet"
+          className="h-full w-full md:h-auto"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* 격자 */}

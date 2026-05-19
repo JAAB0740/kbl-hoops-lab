@@ -68,16 +68,16 @@ export default function PlayerProfilePage({ params }: Props) {
           trend={trend}
           teammates={teammates}
           teamLogoSrc={logoSrc}
+          gameLogNode={
+            gameLog.length > 0 ? (
+              <section className="md:mt-2">
+                <PlayerGameLog log={gameLog} playerName={profile.kname} />
+              </section>
+            ) : null
+          }
         />
 
-        {/* 박스스코어 기반 게임로그 — 데이터 있을 때만 */}
-        {gameLog.length > 0 && (
-          <section className="mt-8">
-            <PlayerGameLog log={gameLog} playerName={profile.kname} />
-          </section>
-        )}
-
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
+        <footer className="mt-6 md:mt-8 border-t border-court-700/60 pt-4 md:pt-6 text-center text-[12px] md:text-[14px] text-ink-500">
           데이터 출처: KBL 공식 API (api-stats.kbl.or.kr) · 마지막 갱신 {fetchedDate}
         </footer>
       </main>

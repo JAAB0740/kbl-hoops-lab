@@ -68,7 +68,7 @@ export default function PlayoffsPage() {
           <PlayoffBracketView bracket={bracket} />
         </section>
 
-        <footer className="mt-8 border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
+        <footer className="mt-6 md:mt-8 border-t border-court-700/60 pt-4 md:pt-6 text-center text-[12px] md:text-[14px] text-ink-500">
           데이터 출처: KBL 공식 일정 · 자동 fetch (npm run parse:kbl-schedule)
         </footer>
       </main>

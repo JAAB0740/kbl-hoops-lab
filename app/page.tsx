@@ -126,7 +126,7 @@ export default function DashboardPage() {
           <CreatorCard />
         </section>
 
-        <footer className="border-t border-court-700/60 pt-6 text-center text-[14px] text-ink-500">
+        <footer className="border-t border-court-700/60 pt-4 md:pt-6 text-center text-[12px] md:text-[14px] text-ink-500">
           <p>
             데이터 출처: KBL 공식 API · 평일 21:30 / 주말 16:30 자동 갱신
           </p>

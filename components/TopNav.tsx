@@ -24,7 +24,7 @@ export function TopNav() {
   const status = getSeasonStatus();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-court-700/70 bg-court-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-court-700/70 bg-court-950/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         {/* 1행: 로고 + (md 이상) 데스크톱 NAV + 우측 정보 */}
         <div className="flex h-14 items-center justify-between">

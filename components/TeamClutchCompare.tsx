@@ -156,6 +156,10 @@ export function TeamClutchCompare({
         </div>
       </div>
 
+      {/* 모바일에서 6열 grid 가 좁아지지 않도록 wrapper 에 가로 스크롤 + 최소 폭 보장 */}
+      <div className="overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+      <div className="min-w-[640px] md:min-w-0">
+
       {/* 헤더 */}
       <div className="mb-2 grid grid-cols-[110px_70px_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-3 px-1 text-[13px] uppercase tracking-wider text-ink-500">
         <span>팀</span>
@@ -213,6 +217,9 @@ export function TeamClutchCompare({
           );
         })}
       </div>
+
+      </div>{/* /min-w wrapper */}
+      </div>{/* /overflow-x-auto wrapper */}
 
       <p className="mt-4 text-[13px] text-ink-500">
         ※ 클러치 PPG는 한 경기 클러치 시간(약 5분) 동안의 득점이라 시즌 PPG보다 작은 게 정상.

@@ -8,6 +8,8 @@ import {
   combinePlayerLists,
   type RawPlayer,
 } from "@/lib/data";
+import { setCodec, usePersistedState } from "@/lib/usePersistedState";
+import { useScrollRestoration } from "@/lib/useScrollRestoration";
 
 const ROUND_NUMS = [1, 2, 3, 4, 5, 6] as const;
 
@@ -59,13 +61,22 @@ export function PlayersExplorer({
   perRound,
   byKey,
 }: Props) {
-  const [scope, setScope] = useState<Scope>("regular");
-  const [roundSet, setRoundSet] = useState<Set<number>>(new Set());
+  // 페이지 이동 후 뒤로 가기 시 필터·정렬·스크롤 위치 복원
+  useScrollRestoration();
+
+  const [scope, setScope] = usePersistedState<Scope>("playersExplorer:scope", "regular");
+  const [roundSet, setRoundSet] = usePersistedState<Set<number>>(
+    "playersExplorer:roundSet",
+    new Set(),
+    setCodec<number>(),
+  );
   // venue (홈/원정)와 time (쿼터/전후반)을 독립적으로 동시 선택 가능
-  const [venueKey, setVenueKey] = useState<VenueKey | null>(null);
-  const [timeKey, setTimeKey] = useState<TimeKey | null>(null);
-  const [statMode, setStatMode] = useState<StatMode>("traditional");
-  // 동적 조합 결과 (둘 이상 차원 조합). null = 정적 props 사용
+  const [venueKey, setVenueKey] = usePersistedState<VenueKey | null>("playersExplorer:venueKey", null);
+  const [timeKey, setTimeKey] = usePersistedState<TimeKey | null>("playersExplorer:timeKey", null);
+  const [statMode, setStatMode] = usePersistedState<StatMode>("playersExplorer:statMode", "traditional");
+  // 모바일 — 필터 영역 아코디언 토글. PC 는 항상 펼침 (이 state 무관)
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  // 동적 조합 결과 (둘 이상 차원 조합). null = 정적 props 사용 — fetch state 라 보존 X
   const [dynamicPlayers, setDynamicPlayers] = useState<RawPlayer[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState<string | null>(null);
@@ -201,7 +212,28 @@ export function PlayersExplorer({
           </div>
         </div>
 
-        <div className="space-y-2">
+        {/* 모바일 전용 — 필터 아코디언 토글 버튼. PC 는 항상 펼침 (md:hidden 으로 버튼 자체 숨김). */}
+        <button
+          type="button"
+          onClick={() => setFiltersOpen((v) => !v)}
+          aria-expanded={filtersOpen}
+          className="mb-3 flex w-full items-center justify-between rounded-md border border-court-700 bg-court-800/70 px-3 py-2.5 text-[15px] text-ink-300 transition active:scale-[0.99] md:hidden"
+        >
+          <span className="flex items-center gap-2">
+            <span aria-hidden className="text-[16px] leading-none">≡</span>
+            <span className="font-medium text-ink-100">상세 필터</span>
+            <span className="text-ink-500">·</span>
+            <span className="text-flame-400">{label}</span>
+          </span>
+          <span
+            aria-hidden
+            className={`text-[14px] text-ink-400 transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+          >
+            ∨
+          </span>
+        </button>
+
+        <div className={["space-y-2", filtersOpen ? "" : "hidden md:block"].join(" ")}>
           {/* 스코프 */}
           <FilterRow label="스코프">
             {([
