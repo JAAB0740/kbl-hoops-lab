@@ -62,7 +62,9 @@ export function QuarterScoreBox({
             className={`${cellFont} font-semibold`}
             style={{ color: won ? color : undefined }}
           >
-            {full ?? short}
+            {/* 모바일: 짧은 이름(소노) / PC: 풀네임(고양 소노) — 좁은 화면에서 토탈 컬럼까지 보이도록 */}
+            <span className="md:hidden">{short}</span>
+            <span className="hidden md:inline">{full ?? short}</span>
           </span>
         </td>
         {cells.map((v, i) => (

@@ -16,6 +16,7 @@ import { TeamFourFactors } from "@/components/TeamFourFactors";
 import { TeamFilterInsights } from "@/components/TeamFilterInsights";
 import { TeamClutchCompare } from "@/components/TeamClutchCompare";
 import { TeamRoundTrend } from "@/components/TeamRoundTrend";
+import { CollapsibleSection } from "@/components/CollapsibleSection";
 
 const ROUND_NUMS = [1, 2, 3, 4, 5, 6] as const;
 
@@ -55,6 +56,8 @@ export function TeamAnalytics({
   const [timeKey, setTimeKey] = useState<TimeKey | null>(null);
   // 스탯 모드 (1차 / 2차)
   const [statMode, setStatMode] = useState<StatMode>("traditional");
+  // 모바일 — 필터 영역 아코디언. PC 는 항상 펼침.
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   // 동적 조합 결과 (time + (venue or rounds)). null = 정적 데이터 사용
   const [dynamicTeams, setDynamicTeams] = useState<FilteredTeam[] | null>(null);
@@ -210,7 +213,28 @@ export function TeamAnalytics({
           </div>
         </div>
 
-        <div className="space-y-2">
+        {/* 모바일 — 필터 아코디언 토글. PC 는 항상 펼침 (md:hidden) */}
+        <button
+          type="button"
+          onClick={() => setFiltersOpen((v) => !v)}
+          aria-expanded={filtersOpen}
+          className="mb-3 flex w-full items-center justify-between rounded-md border border-court-700 bg-court-800/70 px-3 py-2.5 text-[15px] text-ink-300 transition active:scale-[0.99] md:hidden"
+        >
+          <span className="flex items-center gap-2">
+            <span aria-hidden className="text-[16px] leading-none">≡</span>
+            <span className="font-medium text-ink-100">상세 필터</span>
+            <span className="text-ink-500">·</span>
+            <span className="text-flame-400">{activeLabel}</span>
+          </span>
+          <span
+            aria-hidden
+            className={`text-[14px] text-ink-400 transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+          >
+            ∨
+          </span>
+        </button>
+
+        <div className={["space-y-2", filtersOpen ? "" : "hidden md:block"].join(" ")}>
           {/* 스코프 */}
           <FilterRow label="스코프">
             {([
@@ -449,11 +473,10 @@ export function TeamAnalytics({
             </div>
 
             <div className="overflow-x-auto rounded-lg border border-court-700/70">
-              <table className="w-full text-sm">
+              <table className="team-rank-table w-full text-sm">
                 <thead>
                   <tr className="bg-court-900/70 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-                    <th className="py-2.5 pl-3 text-left font-medium">#</th>
-                    <th className="py-2.5 text-left font-medium">팀</th>
+                    <th className="w-[150px] py-2.5 text-left font-medium md:w-[190px]">순위 · 팀</th>
                     <th className="py-2.5 text-right font-medium">경기</th>
                     <th className="py-2.5 text-right font-medium">승</th>
                     <th className="py-2.5 text-right font-medium">패</th>
@@ -481,31 +504,25 @@ export function TeamAnalytics({
                     )}
                   </tr>
                 </thead>
-                <tbody className="divider-y">
+                <tbody>
                   {teams.map((t) => {
                     const color = TEAM_COLORS[t.shortName] ?? "#94a3b8";
                     const a = t.advanced;
                     return (
-                      <tr
-                        key={t.code}
-                        className="group transition hover:bg-court-700/30"
-                      >
-                        <td className="py-2.5 pl-3">
-                          <span
-                            className="stat-num text-[16px] font-semibold"
-                            style={{ color }}
-                          >
-                            {t.rank}
-                          </span>
-                        </td>
-                        <td className="py-2.5">
-                          <div className="flex items-center gap-2.5">
+                      <tr key={t.code} className="group">
+                        {/* 순위 + 팀 — 한 셀 병합 (가로 스크롤 시 함께 고정) */}
+                        <td className="w-[150px] py-2.5 md:w-[190px]">
+                          <div className="flex items-center gap-2">
+                            <span className="stat-num w-5 shrink-0 text-[16px] font-semibold text-ink-50">
+                              {t.rank}
+                            </span>
                             <span
                               className="h-2 w-2 shrink-0 rounded-full"
                               style={{ backgroundColor: color }}
                             />
-                            <span className="text-[16px] font-medium text-ink-50">
-                              {t.name}
+                            <span className="truncate text-[16px] font-medium text-ink-50">
+                              <span className="md:hidden">{t.shortName}</span>
+                              <span className="hidden md:inline">{t.name}</span>
                             </span>
                           </div>
                         </td>
@@ -557,47 +574,57 @@ export function TeamAnalytics({
 
           {/* 필터 변화 인사이트 — 정규시즌 전체 baseline 과 비교 */}
           {scope === "regular" && (
-            <TeamFilterInsights
-              teams={teams}
-              baseline={filters.all ?? []}
-              label={activeLabel}
-            />
+            <CollapsibleSection title="필터 변화 인사이트">
+              <TeamFilterInsights
+                teams={teams}
+                baseline={filters.all ?? []}
+                label={activeLabel}
+              />
+            </CollapsibleSection>
           )}
 
-          {/* 공수 효율 산점도 (advanced) */}
+          {/* 공수 효율 산점도 — 모바일에서도 항상 표시 (큼직하게) */}
           <TeamEfficiencyScatter
             teams={teams}
             title={`${activeLabel} 공수 효율 산점도`}
           />
 
           {/* 4팩터 분석 (Dean Oliver) */}
-          <TeamFourFactors
-            teams={teams}
-            title={`${activeLabel} 4팩터 분석`}
-          />
+          <CollapsibleSection title={`${activeLabel} 4팩터 분석`} defaultOpen>
+            <TeamFourFactors
+              teams={teams}
+              title={`${activeLabel} 4팩터 분석`}
+            />
+          </CollapsibleSection>
 
+          {/* 리바운드 분해 + 슛 프로필 — PC 2열 grid, 모바일 각각 아코디언 */}
           <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            {/* 리바운드 분해 */}
-            <TeamReboundBars
-              teams={teams}
-              title={`${activeLabel} 리바운드 분해`}
-            />
-
-            {/* 슛 프로필 */}
-            <TeamShotProfile
-              teams={teams}
-              title={`${activeLabel} 슛 프로필`}
-            />
+            <CollapsibleSection title={`${activeLabel} 리바운드 분해`}>
+              <TeamReboundBars
+                teams={teams}
+                title={`${activeLabel} 리바운드 분해`}
+              />
+            </CollapsibleSection>
+            <CollapsibleSection title={`${activeLabel} 슛 프로필`}>
+              <TeamShotProfile
+                teams={teams}
+                title={`${activeLabel} 슛 프로필`}
+              />
+            </CollapsibleSection>
           </div>
 
           {/* 라운드별 팀 추이 — 정규시즌일 때만 (라운드 데이터 사용) */}
           {scope === "regular" && (
-            <TeamRoundTrend filters={filters} />
+            <CollapsibleSection title="라운드별 팀 추이">
+              <TeamRoundTrend filters={filters} />
+            </CollapsibleSection>
           )}
 
           {/* 클러치 vs 시즌 비교 — 정규시즌 전체 baseline 사용 (필터에 영향 안 받음) */}
           {scope === "regular" && (filters.all?.length ?? 0) > 0 && (
-            <TeamClutchCompare baseline={filters.all} />
+            <CollapsibleSection title="클러치 vs 시즌 비교">
+              <TeamClutchCompare baseline={filters.all} />
+            </CollapsibleSection>
           )}
         </div>
       )}

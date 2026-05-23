@@ -13,7 +13,7 @@ export const metadata = {
 export default function PlayersPage() {
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-3 py-8 md:px-6">
         <section className="mb-4 md:mb-6">
           <span className="chip border-neon-500/30 bg-neon-500/10 text-neon-400">
             193명 전체 · 경기당 평균

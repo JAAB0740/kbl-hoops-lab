@@ -19,8 +19,10 @@ export function TeamEfficiencyScatter({
   const withAdv = teams.filter((t) => t.advanced);
   if (withAdv.length === 0) return null;
 
-  const W = 720, H = 480;
-  const PAD = { l: 60, r: 20, t: 30, b: 50 };
+  // 정사각형 viewBox — x(ORtg)·y(DRtg) 동등 축이라 정사각형이 자연스럽고,
+  // 모바일 정사각형 컨테이너에 여백 없이 꽉 참.
+  const W = 720, H = 720;
+  const PAD = { l: 58, r: 24, t: 64, b: 66 };
   const innerW = W - PAD.l - PAD.r;
   const innerH = H - PAD.t - PAD.b;
 
@@ -40,7 +42,7 @@ export function TeamEfficiencyScatter({
   const y2px = (v: number) => PAD.t + ((v - yMin) / (yMax - yMin)) * innerH;
 
   const maxWins = Math.max(...withAdv.map((t) => t.wins));
-  const r = (wins: number) => 6 + (wins / Math.max(maxWins, 1)) * 12;
+  const r = (wins: number) => 10 + (wins / Math.max(maxWins, 1)) * 16;
 
   // 격자값
   const xTicks = 5;
@@ -60,12 +62,13 @@ export function TeamEfficiencyScatter({
         </div>
       </div>
 
-      {/* 모바일: 정사각형 영역에 SVG fit (preserveAspectRatio meet 으로 비율 유지) */}
-      <div className="aspect-square w-full overflow-hidden md:aspect-auto md:overflow-x-auto">
+      {/* 정사각형 viewBox — 컨테이너도 정사각형(aspect-square). 모바일 가로폭 100%,
+          PC 는 max-w 로 과대 확장 방지하고 가운데 정렬 */}
+      <div className="mx-auto aspect-square w-full max-w-[640px]">
         <svg
           viewBox={`0 0 ${W} ${H}`}
           preserveAspectRatio="xMidYMid meet"
-          className="h-full w-full md:h-auto"
+          className="h-full w-full"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* 격자 */}
@@ -84,7 +87,7 @@ export function TeamEfficiencyScatter({
           <g
             fontFamily="-apple-system, sans-serif"
             fontWeight="800"
-            fontSize="26"
+            fontSize="36"
             fill="#475569"
             fillOpacity="0.12"
             textAnchor="middle"
@@ -109,7 +112,7 @@ export function TeamEfficiencyScatter({
           {/* 교차점 부근 "리그 평균" 라벨 */}
           <g
             fontFamily="-apple-system, sans-serif"
-            fontSize="10"
+            fontSize="15"
             fontWeight="600"
             fill="#94a3b8"
             pointerEvents="none"
@@ -125,7 +128,7 @@ export function TeamEfficiencyScatter({
           {/* x축 — Off Rtg */}
           <g
             fontFamily="-apple-system, sans-serif"
-            fontSize="10"
+            fontSize="16"
             fill="#9ca3af"
             textAnchor="middle"
           >
@@ -134,7 +137,7 @@ export function TeamEfficiencyScatter({
               const x = PAD.l + (innerW * i) / xTicks;
               return <text key={`xt${i}`} x={x} y={H - PAD.b + 16}>{v.toFixed(0)}</text>;
             })}
-            <text x={PAD.l + innerW / 2} y={H - 8} fontSize="11" fontWeight="600" fill="#d1d5db">
+            <text x={PAD.l + innerW / 2} y={H - 10} fontSize="19" fontWeight="600" fill="#d1d5db">
               Offensive Rating →
             </text>
           </g>
@@ -142,7 +145,7 @@ export function TeamEfficiencyScatter({
           {/* y축 — Def Rtg */}
           <g
             fontFamily="-apple-system, sans-serif"
-            fontSize="10"
+            fontSize="16"
             fill="#9ca3af"
             textAnchor="end"
           >
@@ -151,16 +154,16 @@ export function TeamEfficiencyScatter({
               const y = PAD.t + (innerH * i) / yTicks;
               return <text key={`yt${i}`} x={PAD.l - 8} y={y + 4}>{v.toFixed(0)}</text>;
             })}
+            {/* y축 제목 — 세로쓰기 대신 좌상단 가로 배치 (모바일 가독성) */}
             <text
-              x={20}
-              y={PAD.t + innerH / 2}
-              fontSize="11"
+              x={PAD.l - 50}
+              y={28}
+              fontSize="19"
               fontWeight="600"
               fill="#d1d5db"
-              textAnchor="middle"
-              transform={`rotate(-90, 20, ${PAD.t + innerH / 2})`}
+              textAnchor="start"
             >
-              ← Defensive Rating
+              Defensive Rating (↑ 실점 적음)
             </text>
           </g>
 
@@ -175,13 +178,13 @@ export function TeamEfficiencyScatter({
                   <circle cx={cx} cy={cy} r={r(t.wins)} fill={color} fillOpacity="0.55" stroke={color} strokeWidth="2" />
                   <text
                     x={cx}
-                    y={cy - r(t.wins) - 4}
+                    y={cy - r(t.wins) - 6}
                     fontFamily="-apple-system, sans-serif"
-                    fontSize="11"
-                    fontWeight="600"
+                    fontSize="20"
+                    fontWeight="700"
                     fill="#e5e7eb"
                     stroke="#0d0f13"
-                    strokeWidth="3"
+                    strokeWidth="4"
                     paintOrder="stroke"
                     textAnchor="middle"
                   >

@@ -25,7 +25,7 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-court-700/70 bg-court-950/80 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <div className="mx-auto max-w-7xl px-3 md:px-6">
         {/* 1행: 로고 + (md 이상) 데스크톱 NAV + 우측 정보 */}
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-8">
@@ -69,7 +69,7 @@ export function TopNav() {
         </div>
 
         {/* 2행: 모바일 NAV (md 미만에서만 표시) — 가로 스크롤 가능 */}
-        <nav className="md:hidden -mx-4 border-t border-court-700/40 overflow-x-auto scrollbar-none">
+        <nav className="md:hidden -mx-3 border-t border-court-700/40 overflow-x-auto scrollbar-none">
           <div className="flex items-center gap-1 px-3 py-2 whitespace-nowrap">
             {NAV.map((item) => (
               <Link

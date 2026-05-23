@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TEAM_COLORS } from "@/lib/data";
+import { teamLogoSrc } from "@/lib/teamLogos";
 import {
   ALL_GAMES,
   fmtDate,
@@ -23,6 +24,14 @@ import { getMatchDetail, fmtKblTime } from "@/lib/matchDetails";
 import { StandoutCards } from "@/components/StandoutCards";
 import { PlayerStandoutCards } from "@/components/PlayerStandoutCards";
 import { detectStandouts, detectPlayerStandouts } from "@/lib/standout";
+
+/** "서울 SK 나이츠" → "서울 SK" — 3단어 이상일 때만 마지막 토큰(별명) 제거.
+ *  외국팀(1~2단어, EASL 등) 은 그대로 두어 의미 손실 방지. */
+function stripNickname(full: string): string {
+  const parts = full.trim().split(/\s+/);
+  if (parts.length <= 2) return full;
+  return parts.slice(0, -1).join(" ");
+}
 
 interface Props {
   params: { id: string };
@@ -99,7 +108,7 @@ export default function GameDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-6xl px-6 py-8">
+      <main className="mx-auto max-w-6xl px-3 py-8 md:px-6">
         {/* 뒤로가기 */}
         <Link
           href="/games"
@@ -153,28 +162,86 @@ export default function GameDetailPage({ params }: Props) {
             </span>
           </div>
 
-          {/* 스코어 보드 */}
-          <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          {/* 스코어 보드 — 가로 row 배치 (justify-between):
+              [홈: 로고+이름+성적]  [점수+자막]  [원정: 로고+이름+성적]
+              · 모든 사이즈에서 동일한 가로 배치 (모바일도 그대로)
+              · 팀명/성적 nowrap 으로 줄바꿈 방지 → 점수가 박스 밖으로 터지지 않음
+              · 로고가 시각 식별 메인, 이름·성적은 그 아래 작게 (#94a3b8) */}
+          <div className="mt-6 flex items-center justify-between gap-2 md:gap-6">
             <TeamHeader
-              full={game.homeTeam}
               short={game.homeShort}
+              full={stripNickname(game.homeTeam)}
               color={homeColor}
               role="홈"
               standing={homeStandingAt}
-              align="right"
+              logoSrc={teamLogoSrc(game.homeShort)}
             />
-            <div className="text-center">
+            <div className="flex shrink-0 flex-col items-center">
               {isFinal ? (
-                <div className="stat-num text-5xl font-bold leading-none md:text-6xl">
-                  <span style={{ color: homeColor }}>{game.homeScore}</span>
-                  <span className="mx-3 text-ink-500">-</span>
-                  <span style={{ color: awayColor }}>{game.awayScore}</span>
+                <div className="font-extrabold leading-none">
+                  <span
+                    className="stat-num text-[40px] md:text-[48px]"
+                    style={{
+                      color:
+                        (game.homeScore ?? 0) > (game.awayScore ?? 0)
+                          ? homeColor
+                          : "#3f4754",
+                    }}
+                  >
+                    {game.homeScore}
+                  </span>
+                  <span className="stat-num mx-[12px] text-[40px] text-ink-500 md:text-[48px]">
+                    -
+                  </span>
+                  <span
+                    className="stat-num text-[40px] md:text-[48px]"
+                    style={{
+                      color:
+                        (game.awayScore ?? 0) > (game.homeScore ?? 0)
+                          ? awayColor
+                          : "#3f4754",
+                    }}
+                  >
+                    {game.awayScore}
+                  </span>
                 </div>
               ) : (
                 <div className="stat-num text-2xl text-ink-300">VS</div>
               )}
+              {/* 점수차 + 승리팀 — 메인 스코어 아래 공간 활용 (시리즈 외 단일 경기) */}
+              {isFinal &&
+                game.homeScore != null &&
+                game.awayScore != null &&
+                seriesGames.length <= 1 &&
+                (() => {
+                  const diff = (game.homeScore ?? 0) - (game.awayScore ?? 0);
+                  if (diff === 0) return null;
+                  const winnerColor = diff > 0 ? homeColor : awayColor;
+                  const winnerShort = diff > 0 ? game.homeShort : game.awayShort;
+                  const absDiff = Math.abs(diff);
+                  const tag = absDiff <= 3 ? "박빙" : absDiff >= 20 ? "대승" : "";
+                  return (
+                    <div className="mt-2 whitespace-nowrap text-[12px] md:text-[13px]">
+                      <span
+                        className="font-semibold"
+                        style={{ color: winnerColor }}
+                      >
+                        {winnerShort}
+                      </span>
+                      <span
+                        className="ml-1 stat-num font-semibold"
+                        style={{ color: winnerColor }}
+                      >
+                        +{absDiff}
+                      </span>
+                      {tag && (
+                        <span className="ml-1 text-ink-500">{tag}</span>
+                      )}
+                    </div>
+                  );
+                })()}
               {seriesGames.length > 1 && (
-                <div className="mt-3 text-[15px] text-ink-400">
+                <div className="mt-3 whitespace-nowrap text-[13px] text-ink-400 md:text-[15px]">
                   시리즈:{" "}
                   <span className="font-semibold" style={{ color: homeColor }}>
                     {seriesHomeWins}
@@ -187,12 +254,12 @@ export default function GameDetailPage({ params }: Props) {
               )}
             </div>
             <TeamHeader
-              full={game.awayTeam}
               short={game.awayShort}
+              full={stripNickname(game.awayTeam)}
               color={awayColor}
               role="원정"
               standing={awayStandingAt}
-              align="left"
+              logoSrc={teamLogoSrc(game.awayShort)}
             />
           </div>
         </header>
@@ -217,8 +284,8 @@ export default function GameDetailPage({ params }: Props) {
               gmkey={game.gmkey}
               homeShort={game.homeShort}
               awayShort={game.awayShort}
-              homeFull={game.homeTeam}
-              awayFull={game.awayTeam}
+              homeFull={stripNickname(game.homeTeam)}
+              awayFull={stripNickname(game.awayTeam)}
               size="md"
             />
           </section>
@@ -269,17 +336,17 @@ export default function GameDetailPage({ params }: Props) {
                     key={i}
                     href={`/games/${gameToId(g)}`}
                     className={[
-                      "flex items-center justify-between rounded-md border px-3 py-2 text-[15px] transition",
+                      "flex flex-col gap-0.5 rounded-md border px-3 py-2 text-[14px] transition sm:flex-row sm:items-center sm:justify-between sm:text-[15px]",
                       isCurrent
                         ? "border-flame-500/40 bg-flame-500/10"
                         : "border-court-700 bg-court-800/40 hover:border-court-600",
                     ].join(" ")}
                   >
-                    <span className="flex items-center gap-3">
+                    <span className="flex items-center gap-3 whitespace-nowrap">
                       <span className="stat-num text-ink-500">G{i + 1}</span>
                       <span className="text-ink-400">{fmtDate(g.date)}</span>
                     </span>
-                    <span className="stat-num font-medium">
+                    <span className="stat-num whitespace-nowrap font-medium">
                       {f ? (
                         <>
                           <span
@@ -515,12 +582,12 @@ export default function GameDetailPage({ params }: Props) {
                     <Link
                       key={i}
                       href={`/games/${gameToId(g)}`}
-                      className="flex items-center justify-between rounded-md border border-court-700 bg-court-800/40 px-3 py-2 text-[15px] transition hover:border-court-600"
+                      className="flex flex-col gap-0.5 rounded-md border border-court-700 bg-court-800/40 px-3 py-2 text-[14px] transition hover:border-court-600 sm:flex-row sm:items-center sm:justify-between sm:text-[15px]"
                     >
-                      <span className="text-ink-400">
+                      <span className="whitespace-nowrap text-[13px] text-ink-400 sm:text-[15px]">
                         {fmtDate(g.date)} · {g.tag}
                       </span>
-                      <span className="stat-num">
+                      <span className="stat-num whitespace-nowrap">
                         <span
                           className={
                             homeWonGame
@@ -565,8 +632,8 @@ export default function GameDetailPage({ params }: Props) {
               box={boxScore}
               homeShort={game.homeShort}
               awayShort={game.awayShort}
-              homeFull={game.homeTeam}
-              awayFull={game.awayTeam}
+              homeFull={stripNickname(game.homeTeam)}
+              awayFull={stripNickname(game.awayTeam)}
             />
           </section>
         )}
@@ -738,15 +805,16 @@ function KeyPlayersBlock({
 }
 
 function TeamHeader({
-  full,
   short,
+  full,
   color,
   role,
   standing,
-  align,
+  logoSrc,
 }: {
-  full: string;
   short: string;
+  /** 지역 포함 별명 제거된 풀네임 — 예: "대구 한국가스공사", "고양 소노" */
+  full: string;
   color: string;
   role: string;
   /** 경기 시점 기준 정규시즌 standing */
@@ -756,31 +824,55 @@ function TeamHeader({
     losses: number;
     winPct: number;
   };
-  align: "left" | "right";
+  /** 팀 로고 SVG 경로 — public/teams/{short}.svg */
+  logoSrc: string | null;
 }) {
   return (
-    <div className={align === "right" ? "text-right" : "text-left"}>
-      <div className="text-[13px] uppercase tracking-[0.15em] text-ink-500">
+    // 모바일에서 컬럼 폭을 78px 로 캡 → "대구 한국가스공사" 같은 긴 이름이
+    // 자연 wrap 되며 양옆 팀 컬럼이 가운데 스코어를 밀어내지 않게 함.
+    <div className="flex min-w-0 max-w-[78px] shrink-0 flex-col items-center gap-1 sm:max-w-none">
+      {/* role 라벨 (홈/원정) — 매우 작게 */}
+      <div className="whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.1em] text-ink-500">
         {role}
       </div>
-      <div className="mt-1 text-lg font-bold" style={{ color }}>
+      {/* 팀 로고 — 메인 식별 요소. 없으면 컬러 도트 폴백 */}
+      <div className="flex h-10 w-10 items-center justify-center md:h-12 md:w-12">
+        {logoSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={logoSrc}
+            alt={short}
+            className="h-full w-full object-contain"
+          />
+        ) : (
+          <div
+            className="h-full w-full rounded-full opacity-70"
+            style={{ backgroundColor: color }}
+          />
+        )}
+      </div>
+      {/* 팀명 — 지역 포함 풀네임(별명 제외). 모바일은 작게, 긴 이름은 공백 기준 wrap.
+          break-keep (word-break: keep-all) 로 한글이 글자 중간에서 끊기지 않게 →
+          "대구 한국가스공사" 는 공백 기준 "대구 / 한국가스공사" 두 줄로 분리. */}
+      <div
+        className="break-keep text-center text-[12px] font-bold leading-tight md:text-[15px]"
+        style={{ color }}
+      >
         {full}
       </div>
-      <div className="mt-0.5 text-[15px] text-ink-400">{short}</div>
-      {standing && (
-        <div className="mt-2 stat-num text-[14px] text-ink-300">
-          {standing.rank == null
-            ? "개막 전"
-            : `경기 시점 ${standing.rank}위`}
-          {" · "}
-          {standing.wins}-{standing.losses}
-          {standing.wins + standing.losses > 0 && (
-            <>
-              {" · "}
-              {standing.winPct.toFixed(3).replace(/^0/, "")}
-            </>
-          )}
+      {/* 시즌 성적 — nowrap, 작게(#94a3b8). 압축 포맷: "9위 · 2승 7패" (승률 .222 생략) */}
+      {standing && standing.rank != null && (
+        <div
+          className="stat-num whitespace-nowrap text-[11px] md:text-[12px]"
+          style={{ color: "#94a3b8" }}
+        >
+          <span className="font-medium text-ink-200">{standing.rank}위</span>
+          <span className="mx-1 text-ink-600">·</span>
+          {standing.wins}승 {standing.losses}패
         </div>
+      )}
+      {standing && standing.rank == null && (
+        <div className="text-[11px] text-ink-500 md:text-[12px]">개막 전</div>
       )}
     </div>
   );

@@ -6,7 +6,7 @@
  *  - HeroCards 워터마크 (Hero 카드 우상단)
  *  - PlayerProfileView 배경 워터마크 (선수 상세 페이지)
  *
- * 한글 파일명 / 대소문자 무관 매칭 지원.
+ * 한글 파일명 / 대소문자 무관 매칭 지원. 지원 확장자: svg / png / webp.
  */
 
 import fs from "node:fs";

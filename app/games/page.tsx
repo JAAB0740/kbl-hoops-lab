@@ -38,7 +38,7 @@ export default function GamesPage() {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-3 py-8 md:px-6">
         {/* 헤더 */}
         <section className="mb-8">
           <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">

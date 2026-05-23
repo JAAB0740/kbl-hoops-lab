@@ -108,8 +108,7 @@ export function FilterableStandings({ filters }: Props) {
         <table className="standings-table w-full text-sm">
           <thead>
             <tr className="bg-court-900/70 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-              <th className="w-[56px] py-2.5 pl-3 text-left font-medium">#</th>
-              <th className="w-[140px] py-2.5 text-left font-medium">팀</th>
+              <th className="w-[150px] py-2.5 text-left font-medium md:w-[190px]">순위 · 팀</th>
               <th className="py-2.5 text-right font-medium">경기</th>
               <th className="py-2.5 text-right font-medium">승</th>
               <th className="py-2.5 text-right font-medium">패</th>
@@ -118,37 +117,42 @@ export function FilterableStandings({ filters }: Props) {
               <th className="py-2.5 text-right font-medium">PPG</th>
               <th className="py-2.5 text-right font-medium">RPG</th>
               <th className="py-2.5 text-right font-medium">APG</th>
-              <th className="py-2.5 pr-3 text-right font-medium">FG%</th>
+              <th className="py-2.5 text-right font-medium">FG%</th>
             </tr>
           </thead>
-          <tbody className="divider-y">
+          <tbody>
             {teams.map((t) => {
               const color = TEAM_COLORS[t.shortName] ?? "#94a3b8";
               return (
                 <tr key={t.code} className="group">
-                  <td className="w-[56px] py-2.5 pl-3">
-                    <span
-                      className="stat-num text-[16px] font-semibold"
-                      style={{ color }}
-                    >
-                      {t.rank}
-                    </span>
-                  </td>
-                  <td className="w-[140px] py-2.5">
-                    <div className="flex items-center gap-2.5">
+                  {/* 순위 + 팀 — 한 셀로 병합해 가로 스크롤 시 함께 고정 */}
+                  <td className="w-[150px] py-2.5 md:w-[190px]">
+                    <div className="flex items-center gap-2">
+                      <span className="stat-num w-5 shrink-0 text-[16px] font-semibold text-ink-50">
+                        {t.rank}
+                      </span>
                       <span
                         className="h-2 w-2 shrink-0 rounded-full"
                         style={{ backgroundColor: color }}
                       />
-                      <span className="text-[16px] font-medium text-ink-50">
-                        {t.name}
+                      {/* 모바일: shortName / PC: 풀네임 */}
+                      <span className="truncate text-[16px] font-medium text-ink-50">
+                        <span className="md:hidden">{t.shortName}</span>
+                        <span className="hidden md:inline">{t.name}</span>
                       </span>
                     </div>
                   </td>
                   <td className="stat-num py-2.5 text-right text-ink-300">{t.games}</td>
-                  <td className="stat-num py-2.5 text-right text-ink-100">{t.wins}</td>
-                  <td className="stat-num py-2.5 text-right text-ink-300">{t.losses}</td>
-                  <td className="stat-num py-2.5 text-right font-medium text-ink-50">
+                  {/* 승 — 은은한 초록 (hoop) */}
+                  <td className="stat-num py-2.5 text-right font-semibold text-hoop-400">
+                    {t.wins}
+                  </td>
+                  {/* 패 — 은은한 로즈 (buzzer) */}
+                  <td className="stat-num py-2.5 text-right font-semibold text-buzzer-400">
+                    {t.losses}
+                  </td>
+                  {/* 승률 — 핵심 스탯 흰색 강조 */}
+                  <td className="stat-num py-2.5 text-right font-semibold text-ink-50">
                     {t.winPct.toFixed(3).replace(/^0/, "")}
                   </td>
                   <td className="stat-num py-2.5 text-right text-ink-300">{gb(t)}</td>
@@ -161,7 +165,7 @@ export function FilterableStandings({ filters }: Props) {
                   <td className="stat-num py-2.5 text-right text-ink-300">
                     {t.stats.assists.toFixed(1)}
                   </td>
-                  <td className="stat-num py-2.5 pr-3 text-right text-ink-300">
+                  <td className="stat-num py-2.5 text-right text-ink-300">
                     {t.stats.fgPct.toFixed(1)}
                   </td>
                 </tr>

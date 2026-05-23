@@ -19,7 +19,7 @@ export default function StandingsPage() {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-3 py-8 md:px-6">
         {/* 헤더 */}
         <section className="mb-8">
           <span className="chip border-neon-500/30 bg-neon-500/10 text-neon-400">
@@ -120,14 +120,14 @@ function SummaryCard({
     >
       <span className={`absolute left-0 top-0 h-full w-[3px] ${barColor}`} />
 
-      {/* 팀 로고 워터마크 — 우측 하단, 텍스트 가독성 안전한 수준 */}
+      {/* 팀 로고 워터마크 — 우측 하단. 원본 팀 컬러 유지(필터 없음) + 은은한 투명도 */}
       {logoSrc && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={logoSrc}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute -right-2 -bottom-2 h-20 w-auto opacity-[0.10] [filter:grayscale(100%)_brightness(1.6)]"
+          className="pointer-events-none absolute -right-2 -bottom-2 h-20 w-auto opacity-[0.08]"
           loading="lazy"
         />
       )}

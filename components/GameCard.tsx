@@ -89,11 +89,11 @@ export function GameCard({ game }: { game: RawGame }) {
     <div className="card overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full p-4 text-left transition hover:bg-court-700/20"
+        className="w-full p-3 text-left transition hover:bg-court-700/20 md:p-4"
       >
         <div className="flex items-center gap-3">
-          {/* 좌측: tag + status */}
-          <div className="flex w-32 flex-col items-start gap-1.5 shrink-0">
+          {/* 좌측: tag + status — 모바일은 칩 너비만큼만(자연폭), PC 는 고정 w-32 */}
+          <div className="flex flex-col items-start gap-1.5 shrink-0 md:w-32">
             <span className={["chip", tagToneClass].join(" ")}>{game.tag}</span>
             {statusChip(game)}
             {!isFinal && game.status !== "live" && (
@@ -327,7 +327,9 @@ function TeamRow({
           className="truncate text-[16px] font-semibold"
           style={{ color: isWinner ? color : undefined }}
         >
-          {full}
+          {/* 모바일: 짧은 이름 / PC: 풀네임 — 좁은 화면에서 팀명 가시성 확보 */}
+          <span className="md:hidden">{short}</span>
+          <span className="hidden md:inline">{full}</span>
         </span>
       </div>
       <div className="shrink-0">

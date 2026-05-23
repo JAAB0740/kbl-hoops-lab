@@ -41,7 +41,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-3 py-8 md:px-6">
         {/* 히어로 섹션 (동적) */}
         <section className="mb-8">
           <div className="flex flex-wrap items-end justify-between gap-4">

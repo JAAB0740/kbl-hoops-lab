@@ -104,7 +104,7 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
   if (!mounted) return <div className="card" style={{ height: 560 }} />;
 
   return (
-    <div className="card p-5">
+    <div className="card p-3 sm:p-5">
       {/* 헤더 */}
       <div className="mb-4 flex items-end justify-between gap-4">
         <div>
@@ -146,10 +146,10 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
         <StatSelector label="점 크기" value={zKey} onChange={setZKey} />
       </div>
 
-      {/* 산점도 — 모바일에선 정사각형 (aspect-square), md+ 부터 고정 높이 */}
-      <div className="aspect-square w-full md:aspect-auto md:h-[400px]">
+      {/* 산점도 — 모바일 정사각형(5:5), 축 여백 최소화로 플롯 영역 최대 확보 */}
+      <div className="aspect-square w-full md:aspect-auto md:h-[440px]">
         <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 10, right: 24, bottom: 20, left: 4 }}>
+          <ScatterChart margin={{ top: 10, right: 10, bottom: 26, left: 0 }}>
             <CartesianGrid stroke="#262a33" strokeDasharray="3 3" />
             <XAxis
               type="number"
@@ -158,32 +158,33 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
               allowDecimals={xMeta.isPct}
               tickFormatter={(v) => (xMeta.isPct ? v.toFixed(0) : Math.round(v).toString())}
               stroke="#71717a"
-              tick={{ fill: "#a1a1aa", fontSize: 11 }}
+              tick={{ fill: "#a1a1aa", fontSize: 12 }}
               label={{
                 value: `${xMeta.label} (${xMeta.unit})`,
                 position: "insideBottom",
                 offset: -8,
-                fill: "#71717a",
-                fontSize: 11,
+                fill: "#9ca3af",
+                fontSize: 13,
               }}
             />
             <YAxis
               type="number"
               dataKey="y"
+              width={44}
               domain={[0, (max: number) => Math.ceil(max + 1)]}
               allowDecimals={yMeta.isPct}
               tickFormatter={(v) => (yMeta.isPct ? v.toFixed(0) : Math.round(v).toString())}
               stroke="#71717a"
-              tick={{ fill: "#a1a1aa", fontSize: 11 }}
+              tick={{ fill: "#a1a1aa", fontSize: 12 }}
               label={{
                 value: `${yMeta.label} (${yMeta.unit})`,
                 angle: -90,
                 position: "insideLeft",
-                fill: "#71717a",
-                fontSize: 11,
+                fill: "#9ca3af",
+                fontSize: 13,
               }}
             />
-            <ZAxis type="number" dataKey="z" range={[30, 280]} />
+            <ZAxis type="number" dataKey="z" range={[40, 360]} />
             <Tooltip
               cursor={{ strokeDasharray: "3 3", stroke: "#f59e0b" }}
               content={({ active, payload }) => {
@@ -214,9 +215,9 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
               }}
             />
             <Legend
-              wrapperStyle={{ fontSize: 11, color: "#a1a1aa", paddingTop: 8 }}
+              wrapperStyle={{ fontSize: 12, color: "#a1a1aa", paddingTop: 8 }}
               iconType="circle"
-              iconSize={8}
+              iconSize={10}
             />
             {[...byTeam.entries()].map(([team, items]) => (
               <Scatter

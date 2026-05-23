@@ -52,7 +52,7 @@
   /* ─────────────────────────────────────────────
      Player Explorer 대형 테이블 — 가독성 강화
      · 헤더 상단 고정 (sticky thead)
-     · 좌측 3열 (#, 선수, 팀) 가로 스크롤 시 고정
+     · 좌측 1열 (#·선수 병합 셀) 가로 스크롤 시 고정
      · 좌상단 모서리 셀은 z-index 최상위
      · Zebra striping (짝수 행 미세하게 밝게)
      · Hover (데스크탑 전용 — 모바일 :hover 고착 방지)
@@ -61,6 +61,12 @@
   .players-table-wrap {
     max-height: 75vh;
     overflow: auto;
+  }
+
+  /* 모든 셀 nowrap — 좁은 폭에서 헤더(스틸/블록 등)가 두 줄로 깨지는 것 방지 */
+  .players-table th,
+  .players-table td {
+    white-space: nowrap;
   }
 
   /* 헤더 상단 고정 — court-900 단단한 배경 + slate-700 하단 보더 */
@@ -72,56 +78,22 @@
     border-bottom: 2px solid #334155;
   }
 
-  /* 좌측 3열 고정 — 누적 left 값 명시.
-     PlayersTable.tsx 에서 첫 3개 th/td 에 고정 width 부여(아래 left 와 일치) */
+  /* 좌측 1열(#·선수 병합 셀) 가로 스크롤 시 고정 — 선수 식별 유지.
+     PlayersTable.tsx 에서 첫 th/td 에 고정 width(128px) 부여 */
   .players-table th:nth-child(1),
   .players-table tbody td:nth-child(1) {
     position: sticky;
     left: 0;
     z-index: 5;
     background-color: #0d0f13;
-  }
-  .players-table th:nth-child(2),
-  .players-table tbody td:nth-child(2) {
-    position: sticky;
-    left: 48px; /* col 1 width */
-    z-index: 5;
-    background-color: #0d0f13;
-  }
-  .players-table th:nth-child(3),
-  .players-table tbody td:nth-child(3) {
-    position: sticky;
-    left: 228px; /* col 1 (48) + col 2 (180) */
-    z-index: 5;
-    background-color: #0d0f13;
-    /* 좌측 고정 영역 우측 끝 — 그림자로 깊이감 */
     box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
   }
-
-  /* 모바일에서는 sticky 영역이 viewport 의 60%+ 를 잡아 답답.
-     3번째 열(팀) 은 모바일에선 static 으로 전환하고 그림자는 2번째(선수) 에 부여. */
-  @media (max-width: 767px) {
-    .players-table th:nth-child(3),
-    .players-table tbody td:nth-child(3) {
-      position: static;
-      left: auto;
-      z-index: auto;
-      box-shadow: none;
-    }
-    .players-table th:nth-child(2),
-    .players-table tbody td:nth-child(2) {
-      box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
-    }
-  }
-
   /* 좌상단 모서리 (sticky header × sticky left col 교차) — 최상위 */
-  .players-table thead th:nth-child(1),
-  .players-table thead th:nth-child(2),
-  .players-table thead th:nth-child(3) {
+  .players-table thead th:nth-child(1) {
     z-index: 20;
   }
 
-  /* Zebra striping — 짝수 행 미세하게 밝게 (좌측 sticky 셀도 동일 톤 유지) */
+  /* Zebra striping — 짝수 행 미세하게 밝게 */
   .players-table tbody tr:nth-child(even) > td {
     background-color: #11141a;
   }
@@ -180,44 +152,28 @@
   .standings-table-wrap {
     overflow-x: auto;
   }
+  /* 모든 셀 좌우 패딩 16px — 데이터 간 거리감 확보. nowrap 으로 줄바꿈 방지 */
   .standings-table th,
   .standings-table td {
     white-space: nowrap;
+    padding-left: 16px;
+    padding-right: 16px;
   }
+  /* 행 구분선 — 옅은 slate 보더로 줄 경계 명확화 */
+  .standings-table tbody tr {
+    border-bottom: 1px solid #334155;
+  }
+  /* 순위+팀이 한 셀로 병합됨 — 첫 1열만 sticky 로 확실하게 고정 */
   .standings-table th:nth-child(1),
   .standings-table tbody td:nth-child(1) {
     position: sticky;
     left: 0;
     z-index: 5;
     background-color: #0d0f13;
-  }
-  .standings-table th:nth-child(2),
-  .standings-table tbody td:nth-child(2) {
-    position: sticky;
-    left: 56px; /* col 1 (#) width — 명시적 w-[56px] */
-    z-index: 5;
-    background-color: #0d0f13;
     box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
   }
-  .standings-table thead th:nth-child(1),
-  .standings-table thead th:nth-child(2) {
+  .standings-table thead th:nth-child(1) {
     z-index: 20; /* sticky header × sticky col 모서리 */
-  }
-
-  /* 모바일: 2열 sticky(196px) 이 viewport 의 50%+ 차지해 답답.
-     팀 열 sticky 해제 → # 1열만 고정. 그림자는 # 우측에. */
-  @media (max-width: 767px) {
-    .standings-table th:nth-child(2),
-    .standings-table tbody td:nth-child(2) {
-      position: static;
-      left: auto;
-      z-index: auto;
-      box-shadow: none;
-    }
-    .standings-table th:nth-child(1),
-    .standings-table tbody td:nth-child(1) {
-      box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
-    }
   }
   .standings-table tbody tr:nth-child(even) > td {
     background-color: #11141a;
@@ -226,5 +182,58 @@
     .standings-table tbody tr:hover > td {
       background-color: rgba(255, 255, 255, 0.05);
     }
+  }
+
+  /* ─────────────────────────────────────────────
+     Team Analytics 팀 랭킹 테이블 — standings-table 과 동일 패턴
+     · 모든 셀 nowrap · # + 팀 2열 sticky · zebra
+     ───────────────────────────────────────────── */
+
+  .team-rank-table th,
+  .team-rank-table td {
+    white-space: nowrap;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .team-rank-table tbody tr {
+    border-bottom: 1px solid #334155;
+  }
+  /* 순위+팀 한 셀 병합 — 첫 1열만 sticky */
+  .team-rank-table th:nth-child(1),
+  .team-rank-table tbody td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: #0d0f13;
+    box-shadow: 4px 0 8px -2px rgba(0, 0, 0, 0.45);
+  }
+  .team-rank-table thead th:nth-child(1) {
+    z-index: 20;
+  }
+  .team-rank-table tbody tr:nth-child(even) > td {
+    background-color: #11141a;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .team-rank-table tbody tr:hover > td {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────
+   모바일 — 카드(회색 박스) 좌우 여백 축소
+   · .card + 패딩 유틸(p-3~p-8)을 함께 가진 요소만 타깃 →
+     specificity 0,2,0 으로 Tailwind 의 .p-N(0,1,0) 을 덮어씀
+   · 패딩을 자식에 위임한 카드(예: GameCard 의 card overflow-hidden)는
+     p-N 이 없어 영향 없음 — 의도치 않게 패딩이 더해지는 것 방지
+   · 상하 패딩은 유지하고 좌우만 0.75rem 으로 — 좁은 화면 공간 확보
+   ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .card.p-3,
+  .card.p-4,
+  .card.p-5,
+  .card.p-8 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 }

@@ -228,8 +228,8 @@ export function PlayersTable({
       <div className="card p-8 text-center">
         <h3 className="text-sm font-semibold text-ink-50">선수 데이터 없음</h3>
         <p className="mt-2 text-[16px] text-ink-300">
-          아직 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[15px]">data/players.json</code>이 비어있어요.
-          PowerShell에서 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[15px]">npm run parse:players</code>를 먼저 실행해주세요.
+          아직 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[14px]">data/players.json</code>이 비어있어요.
+          PowerShell에서 <code className="rounded bg-court-700/60 px-1 py-0.5 font-mono text-[14px]">npm run parse:players</code>를 먼저 실행해주세요.
         </p>
       </div>
     );
@@ -371,7 +371,7 @@ function ChipFilterRow({
         <button
           onClick={onClear}
           className={[
-            "rounded-md px-3 py-1.5 text-[15px] font-medium transition",
+            "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
             selected.size === 0
               ? "bg-flame-500/20 text-flame-400 ring-1 ring-flame-500/40"
               : "border border-court-700 bg-court-800/70 text-ink-300 hover:border-court-600 hover:text-ink-100",
@@ -386,7 +386,7 @@ function ChipFilterRow({
               key={o.value}
               onClick={() => onToggle(o.value)}
               className={[
-                "rounded-md px-3 py-1.5 text-[15px] font-medium transition",
+                "rounded-md px-3 py-1.5 text-[14px] font-medium transition",
                 toneClass(o.tone, active),
               ].join(" ")}
             >
@@ -445,12 +445,11 @@ function StatTable({
   onSort: (k: string) => void;
 }) {
   return (
-    <table className="players-table w-full text-sm">
+    <table className="players-table w-full text-[14px]">
       <thead>
-        <tr className="bg-court-900/80 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-          <th className="w-[48px] py-2.5 pl-3 text-left font-medium">#</th>
-          <th className="w-[180px] py-2.5 text-left font-medium">선수</th>
-          <th className="w-[80px] py-2.5 text-left font-medium">팀</th>
+        <tr className="bg-court-900/80 text-[13px] uppercase tracking-[0.1em] text-ink-500">
+          <th className="w-[128px] py-2.5 pl-2 text-left font-medium">#·선수</th>
+          <th className="w-[72px] py-2.5 text-left font-medium">팀</th>
           {cols.map((c) => (
             <th
               key={c.key}
@@ -476,21 +475,24 @@ function StatTable({
       <tbody className="divider-y">
         {rows.map(({ p, info }, i) => (
           <tr key={`${p.name}-${p.team}-${i}`} className="group">
-            <td className="w-[48px] max-w-[48px] stat-num py-2 pl-3 text-[15px] text-ink-500">
-              {i + 1}
-            </td>
-            <td className="w-[180px] max-w-[180px] py-2 text-[16px] font-medium text-ink-50">
-              <div className="flex items-center gap-1.5 truncate">
-                {p.playerNo ? (
-                  <Link
-                    href={`/players/${p.playerNo}`}
-                    className="truncate transition hover:text-flame-400"
-                  >
-                    {p.name}
-                  </Link>
-                ) : (
-                  <span className="truncate">{p.name}</span>
-                )}
+            {/* #·선수 병합 — 좌측 여백 최소화. 연번을 왼쪽 끝에 붙이고 이름과 바짝 */}
+            <td className="w-[128px] max-w-[128px] py-2 pl-2">
+              <div className="flex items-center gap-1.5">
+                <span className="stat-num shrink-0 text-[12px] text-ink-500">
+                  {i + 1}
+                </span>
+                <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-ink-50">
+                  {p.playerNo ? (
+                    <Link
+                      href={`/players/${p.playerNo}`}
+                      className="transition hover:text-flame-400"
+                    >
+                      {p.name}
+                    </Link>
+                  ) : (
+                    p.name
+                  )}
+                </span>
                 {info?.flag === "외국선수" && (
                   <span className="shrink-0 text-[9px] text-buzzer-400" title="외국선수">●</span>
                 )}
@@ -499,7 +501,7 @@ function StatTable({
                 )}
               </div>
             </td>
-            <td className="w-[80px] max-w-[80px] py-2">
+            <td className="w-[72px] max-w-[72px] py-2">
               <span className="chip">{p.team || "-"}</span>
             </td>
             {cols.map((c) => {
@@ -531,7 +533,7 @@ function StatTable({
         ))}
         {rows.length === 0 && (
           <tr>
-            <td colSpan={3 + cols.length} className="py-8 text-center text-[16px] text-ink-500">
+            <td colSpan={2 + cols.length} className="py-8 text-center text-[16px] text-ink-500">
               조건에 맞는 선수가 없어요.
             </td>
           </tr>
@@ -573,12 +575,11 @@ function RegistryTable({
         : "border-neon-500/30 bg-neon-500/10 text-neon-400";
 
   return (
-    <table className="players-table w-full text-sm">
+    <table className="players-table w-full text-[14px]">
       <thead>
-        <tr className="bg-court-900/80 text-[14px] uppercase tracking-[0.1em] text-ink-500">
-          <th className="w-[48px] py-2.5 pl-3 text-left font-medium">#</th>
-          <th className="w-[180px] py-2.5 text-left font-medium">선수</th>
-          <th className="w-[80px] py-2.5 text-left font-medium">팀</th>
+        <tr className="bg-court-900/80 text-[13px] uppercase tracking-[0.1em] text-ink-500">
+          <th className="w-[128px] py-2.5 pl-2 text-left font-medium">#·선수</th>
+          <th className="w-[72px] py-2.5 text-left font-medium">팀</th>
           {cols.map((c) => {
             const isSorted = sortKey === c.key;
             return (
@@ -606,29 +607,27 @@ function RegistryTable({
       <tbody className="divider-y">
         {rows.map(({ p, info }, i) => (
           <tr key={`${p.name}-${p.team}-${i}`} className="group">
-            <td className="w-[48px] max-w-[48px] stat-num py-2 pl-3 text-[15px] text-ink-500">
-              {i + 1}
-            </td>
-            <td className="w-[180px] max-w-[180px] py-2 text-[16px] font-medium text-ink-50">
-              <div className="truncate">
-                {p.playerNo ? (
-                  <Link
-                    href={`/players/${p.playerNo}`}
-                    className="transition hover:text-flame-400"
-                  >
-                    {p.name}
-                  </Link>
-                ) : (
-                  p.name
-                )}
-                {info?.ename && (
-                  <span className="ml-1.5 text-[13px] text-ink-500">
-                    {info.ename}
-                  </span>
-                )}
+            {/* #·선수 병합 — 좌측 여백 최소화 */}
+            <td className="w-[128px] max-w-[128px] py-2 pl-2">
+              <div className="flex items-center gap-1.5">
+                <span className="stat-num shrink-0 text-[12px] text-ink-500">
+                  {i + 1}
+                </span>
+                <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-ink-50">
+                  {p.playerNo ? (
+                    <Link
+                      href={`/players/${p.playerNo}`}
+                      className="transition hover:text-flame-400"
+                    >
+                      {p.name}
+                    </Link>
+                  ) : (
+                    p.name
+                  )}
+                </span>
               </div>
             </td>
-            <td className="w-[80px] max-w-[80px] py-2">
+            <td className="w-[72px] max-w-[72px] py-2">
               <span className="chip">{p.team || "-"}</span>
             </td>
             {/* 구분 */}
@@ -642,40 +641,40 @@ function RegistryTable({
               )}
             </td>
             {/* 포지션 */}
-            <td className="py-2 text-[15px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info?.pos ? fmtPos(info.pos) : "—"}
             </td>
             {/* 등번호 */}
-            <td className="stat-num py-2 text-[15px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.backNum ?? "—"}
             </td>
             {/* 신장 */}
-            <td className="stat-num py-2 text-[15px] text-ink-100">
+            <td className="stat-num py-2 text-[14px] text-ink-100">
               {info?.pHeight ? `${info.pHeight}cm` : "—"}
             </td>
             {/* 체중 */}
-            <td className="stat-num py-2 text-[15px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.pWeight ? `${info.pWeight}kg` : "—"}
             </td>
             {/* 나이 */}
-            <td className="stat-num py-2 text-[15px] text-ink-300">
+            <td className="stat-num py-2 text-[14px] text-ink-300">
               {info?.birthday && ageOf(info.birthday) != null
                 ? `만 ${ageOf(info.birthday)}세`
                 : "—"}
             </td>
             {/* 학교 */}
-            <td className="py-2 text-[15px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info ? topSchool(info.schools) ?? "—" : "—"}
             </td>
             {/* 드래프트 */}
-            <td className="py-2 text-[15px] text-ink-300">
+            <td className="py-2 text-[14px] text-ink-300">
               {info ? fmtDraft(info.draft) ?? "—" : "—"}
             </td>
           </tr>
         ))}
         {rows.length === 0 && (
           <tr>
-            <td colSpan={3 + cols.length} className="py-8 text-center text-[16px] text-ink-500">
+            <td colSpan={2 + cols.length} className="py-8 text-center text-[16px] text-ink-500">
               조건에 맞는 선수가 없어요.
             </td>
           </tr>

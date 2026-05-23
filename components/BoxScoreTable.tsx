@@ -265,7 +265,7 @@ function TeamBoxTable({
 
   return (
     <div className="overflow-hidden rounded-lg border border-court-700/70">
-      <div className="flex items-center justify-between gap-2 bg-court-900/70 px-3 py-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 bg-court-900/70 px-3 py-2">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
           <span className="text-[15px] font-semibold" style={{ color }}>
@@ -276,20 +276,20 @@ function TeamBoxTable({
           </span>
         </div>
         {teamRecord && mode === "basic" && (
-          <div className="stat-num text-[14px] text-ink-300">
+          <div className="hidden stat-num text-[14px] text-ink-300 md:block">
             FG {teamRecord.records.fgt}/{teamRecord.records.fgtA} ·{" "}
             3P {teamRecord.records.threep}/{teamRecord.records.threepA} ·{" "}
             FT {teamRecord.records.ft}/{teamRecord.records.ftA}
           </div>
         )}
         {teamRecord && mode === "advanced" && (
-          <div className="stat-num text-[14px] text-ink-300">
+          <div className="hidden stat-num text-[14px] text-ink-300 md:block">
             ORtg {fmt1(teamRecord.records.offrtg)} · DRtg {fmt1(teamRecord.records.defrtg)} ·
             {" "}eFG% {fmtPct(teamRecord.records.efgRt)} · Pace {fmt1(teamRecord.records.pace)}
           </div>
         )}
         {teamRecord && mode === "hustle" && (
-          <div className="stat-num text-[14px] text-ink-300">
+          <div className="hidden stat-num text-[14px] text-ink-300 md:block">
             팀 페인트 {teamRecord.records.pp} · 속공 {teamRecord.records.fbScoreCn ?? teamRecord.records.fb} ·
             {" "}TO 득점 {teamRecord.records.turnoverScoreCn ?? "—"} · 벤치 {teamRecord.records.benchScoreCn ?? "—"}
           </div>
@@ -297,12 +297,13 @@ function TeamBoxTable({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-[14px]">
+        <table className="players-table w-full text-[14px]">
           <thead>
             <tr className="bg-court-900/40 text-[13px] uppercase tracking-wider text-ink-500">
-              <th className="py-2 px-2 text-left font-medium w-8">#</th>
-              <th className="py-2 text-left font-medium">선수</th>
-              <th className="py-2 text-left font-medium w-12">포지션</th>
+              {/* #·선수 병합 — players-table CSS 로 좌측 sticky */}
+              <th className="w-[120px] py-2 pl-3 text-left font-medium">#·선수</th>
+              {/* 포지션은 모바일에서 숨김 — 더 많은 스탯 컬럼 노출 */}
+              <th className="hidden w-12 py-2 text-left font-medium md:table-cell">포지션</th>
               {cols.map((c, i) => {
                 const isSorted = sort?.key === c.key;
                 const isLast = i === cols.length - 1;
@@ -336,24 +337,29 @@ function TeamBoxTable({
                   key={p.player.pcode}
                   className="transition hover:bg-court-700/20"
                 >
-                  <td className="py-1.5 px-2 stat-num text-ink-500">
-                    {p.player.backNum}
+                  {/* #·선수 병합 — 좌측 sticky (players-table CSS) + 이름 nowrap+truncate (세로 깨짐 방지) */}
+                  <td className="w-[120px] max-w-[120px] py-1.5 pl-3">
+                    <div className="flex items-center gap-1.5">
+                      <span className="stat-num shrink-0 text-[12px] text-ink-500">
+                        {p.player.backNum}
+                      </span>
+                      <span className="min-w-0 flex-1 truncate">
+                        <Link
+                          href={`/players/${p.player.pcode}`}
+                          className={[
+                            "hover:text-flame-400",
+                            isStarter ? "font-medium text-ink-50" : "text-ink-200",
+                          ].join(" ")}
+                        >
+                          {p.player.pname}
+                          {isStarter && (
+                            <span className="ml-0.5 text-[9px] text-flame-400">★</span>
+                          )}
+                        </Link>
+                      </span>
+                    </div>
                   </td>
-                  <td className="py-1.5 pr-2">
-                    <Link
-                      href={`/players/${p.player.pcode}`}
-                      className={[
-                        "inline-flex items-center gap-1 hover:text-flame-400",
-                        isStarter ? "font-medium text-ink-50" : "text-ink-200",
-                      ].join(" ")}
-                    >
-                      {p.player.pname}
-                      {isStarter && (
-                        <span className="text-[9px] text-flame-400">★</span>
-                      )}
-                    </Link>
-                  </td>
-                  <td className="py-1.5 text-ink-500">{p.player.pos}</td>
+                  <td className="hidden py-1.5 text-ink-500 md:table-cell">{p.player.pos}</td>
                   {cols.map((c, i) => {
                     const isLast = i === cols.length - 1;
                     return (
@@ -376,10 +382,9 @@ function TeamBoxTable({
               );
             })}
             {teamRecord && (
-              <tr className="bg-court-900/50 font-semibold">
-                <td className="py-1.5 px-2"></td>
-                <td className="py-1.5 text-ink-300">팀 합계</td>
-                <td className="py-1.5"></td>
+              <tr className="border-t-2 border-court-700 font-semibold">
+                <td className="py-1.5 pl-3 text-ink-300">팀 합계</td>
+                <td className="hidden py-1.5 md:table-cell"></td>
                 {cols.map((c, i) => {
                   const isLast = i === cols.length - 1;
                   return (

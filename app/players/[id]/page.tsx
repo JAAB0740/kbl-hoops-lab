@@ -53,7 +53,7 @@ export default function PlayerProfilePage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-3 py-8 md:px-6">
         {/* 브레드크럼 */}
         <nav className="mb-6 flex items-center gap-2 text-[14px] text-ink-500">
           <Link href="/players" className="hover:text-ink-300">

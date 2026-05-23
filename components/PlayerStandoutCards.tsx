@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TEAM_COLORS } from "@/lib/data";
+import { MobileSwipeGrid } from "@/components/MobileSwipeGrid";
 import type { PlayerStandout } from "@/lib/standout";
 
 /**
@@ -36,11 +37,12 @@ export function PlayerStandoutCards({
           {subtitle ?? "출장 5분 이상 + 시즌 5경기 이상 선수 중, 평소 대비 크게 달랐던 활약 — 자동 감지"}
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 모바일: 가로 스와이프(도트 포함) / sm+: 2~3열 그리드 */}
+      <MobileSwipeGrid>
         {items.map((s, i) => (
           <PlayerStandoutCard key={`${s.playerNo}-${s.stat}-${i}`} standout={s} />
         ))}
-      </div>
+      </MobileSwipeGrid>
     </section>
   );
 }

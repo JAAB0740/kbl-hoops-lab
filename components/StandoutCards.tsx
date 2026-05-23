@@ -1,4 +1,5 @@
 import { TEAM_COLORS } from "@/lib/data";
+import { MobileSwipeGrid } from "@/components/MobileSwipeGrid";
 import type { Standout } from "@/lib/standout";
 
 /**
@@ -45,11 +46,12 @@ export function StandoutCards({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 모바일: 가로 스와이프(도트 포함) / sm+: 2~3열 그리드 */}
+      <MobileSwipeGrid>
         {items.map((s, i) => (
           <StandoutCard key={i} standout={s} />
         ))}
-      </div>
+      </MobileSwipeGrid>
     </section>
   );
 }
