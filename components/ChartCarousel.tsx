@@ -49,7 +49,7 @@ export function ChartCarousel({
         ref={scrollerRef}
         className={[
           // 모바일 캐러셀 — basis 100% (한 번에 한 차트), snap-x mandatory
-          "-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2",
+          "-mx-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-3 pb-2",
           "[&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
           // PC — flex/snap 해제하고 차트가 세로 stack
           "md:mx-0 md:block md:space-y-4 md:overflow-visible md:px-0 md:pb-0",

@@ -52,9 +52,10 @@ export function HeroCarousel({
       <ul
         ref={scrollerRef}
         className={[
-          // 모바일 캐러셀 — snap-x mandatory, gap-4(16px),
-          // -mx-6 으로 부모 padding 무력화하고 내부 px-4 로 첫/마지막 카드 16px 여백
-          "-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2",
+          // 모바일 캐러셀 — snap-x mandatory, gap-4(16px).
+          // 부모 페이지가 px-3(mobile)/md:px-6 이라 -mx-3 로 부모 padding 정확히 무력화,
+          // 내부 px-4 로 첫/마지막 카드에 약 16px 여백을 부여.
+          "-mx-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2",
           "[&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
           // 데스크탑 grid 로 전환
           "md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0",
