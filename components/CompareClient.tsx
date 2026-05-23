@@ -197,7 +197,9 @@ export function CompareClient({ standings, players }: Props) {
       </div>
 
       {/* 셀렉터 2개 */}
-      <div className="mb-4 grid grid-cols-2 gap-4">
+      {/* 셀렉터 — 모바일은 1열 stack (좁은 폭에서 "헨리 엘런슨 (DB)" 같은
+          긴 옵션이 박스 밖으로 잘리는 문제 방지), sm+ 부터 2열 가로 배치 */}
+      <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <Selector
           color={COLOR_A}
           label="A"
