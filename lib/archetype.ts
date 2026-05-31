@@ -16,13 +16,12 @@ import type {
   PlayerAdvancedStats,
   PlayerDetailRow,
   PlayerProfile,
-  ShootingRange,
 } from "./types";
+import type { PlayerShotChart } from "./shotCharts";
 import { REGULAR_POPULATION } from "./playerProfiles";
 import { percentileOf } from "./percentile";
 import { getPlayerInfo } from "./playerInfo";
 import advJson from "../data/players-advanced.json";
-import shootingJson from "../data/shooting.json";
 
 // ─── 임계값 (UI에서 조절할 수 있도록 변수화) ─────────────
 
@@ -128,18 +127,12 @@ export const ARCHETYPE_THRESHOLDS: ArchetypeThresholds = {
 // ─── 모집단 빌드 ────────────────────────────────
 
 type AdvEntry = { playerNo: string; advanced: PlayerAdvancedStats };
-type ShootEntry = { playerNo: string; ranges: ShootingRange[] };
 
 const advRegular: AdvEntry[] =
   (advJson as { splits?: { regularSeason?: AdvEntry[] } }).splits?.regularSeason ?? [];
-const shootingRegular: ShootEntry[] =
-  (shootingJson as { players?: { regular?: ShootEntry[] } }).players?.regular ?? [];
 
 function findAdv(playerNo: string): PlayerAdvancedStats | undefined {
   return advRegular.find((e) => String(e.playerNo) === String(playerNo))?.advanced;
-}
-function findShoot(playerNo: string): ShootingRange[] | undefined {
-  return shootingRegular.find((e) => String(e.playerNo) === String(playerNo))?.ranges;
 }
 
 function isQualifiedRow(row: PlayerDetailRow, th: ArchetypeThresholds): boolean {
@@ -151,7 +144,6 @@ interface QualifiedRow {
   playerNo: string;
   row: PlayerDetailRow;
   adv?: PlayerAdvancedStats;
-  ranges?: ShootingRange[];
 }
 
 // 모집단은 ARCHETYPE_THRESHOLDS의 자격 기준으로 한 번만 빌드.
@@ -163,7 +155,6 @@ const QUALIFIED: QualifiedRow[] = REGULAR_POPULATION.filter((r) =>
   playerNo: String(row.playerNo),
   row,
   adv: findAdv(String(row.playerNo)),
-  ranges: findShoot(String(row.playerNo)),
 }));
 
 function sortedAsc(xs: number[]): number[] {
@@ -184,22 +175,29 @@ const SORTED = {
   blocks: sortedAsc(QUALIFIED.map((q) => q.row.blocks)),
   steals: sortedAsc(QUALIFIED.map((q) => q.row.steals)),
   threePct: sortedAsc(QUALIFIED.map((q) => q.row.threePct)),
+  // KBL `fgAtt` 는 misnamed (2pt only). 총 FGA 는 `twoAtt`.
   ftaRate: sortedAsc(
-    QUALIFIED.map((q) => (q.row.fgAtt > 0 ? q.row.ftAtt / q.row.fgAtt : NaN)),
+    QUALIFIED.map((q) => (q.row.twoAtt > 0 ? q.row.ftAtt / q.row.twoAtt : NaN)),
   ),
   defActivity: sortedAsc(QUALIFIED.map((q) => defActivity(q.row))),
 };
 
 /**
- * 슛 분포 계산
- *  - paint = range 1(림) + 2(페인트) / 전체
- *  - mid   = range 3
- *  - three = range 4(코너) + 5(윙) + 6(탑)
- *  - cornerWingOfThree = (range 4 + 5) / (4 + 5 + 6)
- *  - rimAtt = range 1 시도/G (raw, shooting.json per-game 값)
- *  - rimPct = range 1 성공률
+ * 슛 분포 계산 — **우리 14존 raw 분류 기반** (KBL shooting.json 의 misleading
+ * "range 4-6 = 3pt 라벨" 의존을 제거; 실제 long-2 가 그 안에 섞여 있음).
+ *
+ *  거리 정의 (8ft=58px / 16ft=116px / 3pt arc=160px, lib/shotCharts.ts):
+ *   - 페인트 (≤16ft): rim + paint_left/center/right
+ *   - 미드 (16ft~3pt arc): mid_baseline_*, mid_elbow_*, mid_center
+ *   - 3점 (arc 밖 + corner strip): corner_3_*, wing_3_*, top_3_center
+ *
+ *  반환:
+ *   - paint/mid/three = FGA 대비 비중 (합 ≈ 1)
+ *   - cornerWingOfThree = (corner_3 + wing_3) / 전체 3점
+ *   - rimAtt = 림(8ft) 시도/G  (gamesWithShots 로 나눔)
+ *   - rimPct = 림 성공률 (%)
  */
-function shotShares(ranges: ShootingRange[] | undefined): {
+function shotShares(shotChart: PlayerShotChart | undefined): {
   paint: number;
   mid: number;
   three: number;
@@ -207,23 +205,28 @@ function shotShares(ranges: ShootingRange[] | undefined): {
   rimAtt: number;
   rimPct: number;
 } | null {
-  if (!ranges || ranges.length === 0) return null;
-  const find = (n: number) => ranges.find((r) => r.range === n);
-  const get = (n: number) => find(n)?.att ?? 0;
-  const tot = ranges.reduce((s, r) => s + (r.att ?? 0), 0);
+  if (!shotChart || shotChart.totalShots <= 0) return null;
+  const d = shotChart.byZoneDetailed;
+  const games = shotChart.gamesWithShots || 1;
+  const rim = d.rim.att;
+  const paint = rim + d.paint_left.att + d.paint_center.att + d.paint_right.att;
+  const mid =
+    d.mid_baseline_top.att + d.mid_baseline_bot.att +
+    d.mid_elbow_top.att + d.mid_elbow_bot.att +
+    d.mid_center.att;
+  const corner3 = d.corner_3_top.att + d.corner_3_bot.att;
+  const wing3 = d.wing_3_top.att + d.wing_3_bot.att;
+  const top3 = d.top_3_center.att;
+  const three = corner3 + wing3 + top3;
+  const tot = paint + mid + three;
   if (tot <= 0) return null;
-  const r1 = find(1);
-  const r4 = get(4);
-  const r5 = get(5);
-  const r6 = get(6);
-  const total3 = r4 + r5 + r6;
   return {
-    paint: (get(1) + get(2)) / tot,
-    mid: get(3) / tot,
-    three: total3 / tot,
-    cornerWingOfThree: total3 > 0 ? (r4 + r5) / total3 : null,
-    rimAtt: r1?.att ?? 0,
-    rimPct: r1?.pct ?? 0,
+    paint: paint / tot,
+    mid: mid / tot,
+    three: three / tot,
+    cornerWingOfThree: three > 0 ? (corner3 + wing3) / three : null,
+    rimAtt: rim / games,
+    rimPct: d.rim.pct,
   };
 }
 
@@ -312,7 +315,6 @@ export function classifyArchetype(
   const row = profile.season;
   const adv = profile.advanced?.season;
   const info = getPlayerInfo(profile.playerNo);
-  const ranges = profile.shooting?.regular;
   const height = info?.pHeight ?? null;
   const pos = info?.pos ?? null;
   const flag = info?.flag ?? null;
@@ -333,9 +335,14 @@ export function classifyArchetype(
   }
 
   // ─── 신호 계산 ──────────────────────────
-  const shares = shotShares(ranges);
-  const threeShare = row.fgAtt > 0 ? row.threeAtt / row.fgAtt : 0;
-  const ftaRate = row.fgAtt > 0 ? row.ftAtt / row.fgAtt : 0;
+  // 우리 14존 raw 분류 (lib/shotCharts.ts) 기준 — 페인트(≤16ft) / 미드 / 3점
+  const shares = shotShares(profile.shotChart);
+  // threeShare: shares 가 있으면 우리 분류값(정확), 없으면 KBL row 기반 fallback.
+  // 주의: KBL `row.fgAtt` 는 misnamed — 실은 2pt-only. `row.twoAtt` 가 total FGA.
+  const fgaTotal = row.twoAtt; // total FGA (per-game)
+  const threeShare =
+    shares?.three ?? (fgaTotal > 0 ? row.threeAtt / fgaTotal : 0);
+  const ftaRate = fgaTotal > 0 ? row.ftAtt / fgaTotal : 0;
   const paintShare = shares?.paint ?? null;
   const midShare = shares?.mid ?? null;
 

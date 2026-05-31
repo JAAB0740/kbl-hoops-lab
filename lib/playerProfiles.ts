@@ -212,6 +212,7 @@ export function getPlayerProfile(playerNo: string): PlayerProfile | null {
     shooting,
     clutch,
     hustle,
+    // shotChart 는 server-only (fs 사용) — page 에서 별도로 attach (app/players/[id]/page.tsx)
   };
 }
 

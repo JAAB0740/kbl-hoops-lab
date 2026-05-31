@@ -12,6 +12,7 @@ import {
 } from "@/lib/playerProfiles";
 import { playerGameLog } from "@/lib/boxscores";
 import { teamLogoSrc } from "@/lib/teamLogos";
+import { getPlayerShotChart } from "@/lib/shotChartsServer";
 
 interface Props {
   params: { id: string };
@@ -37,6 +38,11 @@ export default function PlayerProfilePage({ params }: Props) {
   if (!profile) {
     notFound();
   }
+
+  // 슛 차트는 server-only (fs로 match-charts.json 읽음) — 페이지에서 attach.
+  // playerProfiles.ts 는 client 컴포넌트에서도 import 되므로 fs 의존성 분리.
+  const shotChart = getPlayerShotChart(profile.playerNo);
+  if (shotChart) profile.shotChart = shotChart;
 
   const trend = getRoundTrend(profile);
   const teammates = getTeammates(profile.playerNo, 5);

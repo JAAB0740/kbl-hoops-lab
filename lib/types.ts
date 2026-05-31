@@ -240,6 +240,8 @@ export interface PlayerProfile {
     regular?: HustlePlayerStats;
     playoff?: HustlePlayerStats;
   };
+  /** 시즌 슛 차트 — KBL 경기 차트 API 의 raw 슛 좌표 집계 (있으면) */
+  shotChart?: import("./shotCharts").PlayerShotChart;
 }
 
 export interface ShootingRange {

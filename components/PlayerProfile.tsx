@@ -13,8 +13,9 @@ import {
 import { aggregateRoundSet, REGULAR_POPULATION, PLAYOFF_POPULATION } from "@/lib/playerProfiles";
 import { ChartCarousel } from "@/components/ChartCarousel";
 import { PlayerArchetypeCard } from "@/components/PlayerArchetypeCard";
-import { ShootingRangeChart } from "@/components/ShootingRangeChart";
-import { ShotChartCourt } from "@/components/ShotChartCourt";
+import { ShotMap } from "@/components/ShotMap";
+import { HexShotMap } from "@/components/HexShotMap";
+import { AreaShotChart } from "@/components/AreaShotChart";
 import { StatRadar, type RadarSeries } from "@/components/StatRadar";
 import { archetypeChipClass, classifyArchetype } from "@/lib/archetype";
 import { percentilesOf } from "@/lib/percentile";
@@ -235,19 +236,32 @@ export function PlayerProfileView({
         <ShootingPanel row={season} />
       </section>
 
-      {/* 영역별 야투 (KBL 6분할) — 코트 heat map + 막대 차트 */}
-      {profile.shooting?.regular && profile.shooting.regular.length > 0 && (
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1.2fr]">
-          <ShotChartCourt
-            ranges={profile.shooting.regular}
-            title="영역별 야투 — 코트 맵"
-            subtitle="KBL 공식 6분할 · 정규시즌 평균"
-          />
-          <ShootingRangeChart
-            regular={profile.shooting.regular}
-            playoff={profile.shooting.playoff}
-          />
-        </section>
+      {/* 영역별 야투 — 방사형 14존 (KBL 경기 차트 raw 슛 로그 → 좌표 분류) */}
+      {profile.shotChart && profile.shotChart.totalShots > 0 && (
+        <AreaShotChart
+          chart={profile.shotChart}
+          title="영역별 야투 — 방사형 14존"
+          subtitle="3pt 5존 · 미드 5존 · 페인트 3존 · 림 · 색상은 zone 별 리그 평균 대비 ±%p"
+        />
+      )}
+
+      {/* 슛 차트 — KBL 경기차트의 raw 슛 로그를 좌표 정규화 후 점으로 표시.
+          위의 6분할 평균과 달리 "이 선수의 실제 슛 위치" 가 보임. */}
+      {profile.shotChart && profile.shotChart.totalShots > 0 && (
+        <ShotMap
+          chart={profile.shotChart}
+          title="슛 차트 — 실제 슛 위치"
+          subtitle="정규시즌 + 플레이오프 (올스타·EASL 제외) · KBL 경기 차트 API 좌표 직접 활용"
+        />
+      )}
+
+      {/* 헥스빈 차트 — Kirk Goldsberry 스타일. 시도수(크기) × 리그 효율 대비(색상) 이중 인코딩 */}
+      {profile.shotChart && profile.shotChart.totalShots > 0 && (
+        <HexShotMap
+          chart={profile.shotChart}
+          title="헥스빈 차트 — 시도량 × 효율"
+          subtitle="크기 = 시도수, 색 = 리그 zone 평균 대비 FG%"
+        />
       )}
 
       {/* 클러치 + 허슬 (보이지 않는 영향력) */}
