@@ -313,17 +313,23 @@ function Header({
 
   return (
     <section className="card relative overflow-hidden">
-      {/* 팀 로고 워터마크 — 모바일은 px 단위 고정 (기기 폭 변해도 일관),
-          PC 는 % 비례로 카드에 맞춰 크게 */}
+      {/* 팀 로고 워터마크 — 고정 종횡비 박스 + object-contain 으로 통일.
+          로고 SVG 마다 종횡비/디자인이 달라 (정사각 심볼 vs 가로 텍스트) 그냥 width
+          만 지정하면 어떤 건 잘리고 어떤 건 너무 작음. 박스 강제 + object-contain 으로
+          시각적 무게 일관화. */}
       {teamLogoSrc && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={teamLogoSrc}
-          alt=""
+        <div
           aria-hidden
-          className="pointer-events-none absolute right-[-20px] top-0 h-auto w-[140px] opacity-[0.12] [filter:grayscale(100%)_brightness(1.8)] md:right-[-4%] md:top-[-8%] md:w-[40%] md:max-w-[420px]"
-          loading="lazy"
-        />
+          className="pointer-events-none absolute right-3 top-3 flex h-[110px] w-[140px] items-center justify-center md:right-6 md:top-4 md:h-[180px] md:w-[220px]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={teamLogoSrc}
+            alt=""
+            className="h-full w-full object-contain opacity-[0.18] [filter:grayscale(100%)_brightness(1.8)]"
+            loading="lazy"
+          />
+        </div>
       )}
       <div className="relative px-4 py-4 md:px-6 md:py-6">
         <div className="absolute left-0 top-0 h-full w-1 bg-flame-500" />
