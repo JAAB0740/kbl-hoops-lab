@@ -313,20 +313,20 @@ function Header({
 
   return (
     <section className="card relative overflow-hidden">
-      {/* 팀 로고 워터마크 — 큰 박스 + object-contain 으로 모든 팀 동일 무게.
-          로고 SVG 마다 종횡비/패딩이 다르지만 (정사각 심볼 vs 가로 텍스트) 박스 강제 +
-          object-contain 으로 시각적 무게 일관화. 박스를 우측으로 살짝 빼서 (-right-6)
-          큰 로고가 카드 우측을 시원하게 채우는 느낌. card 의 overflow-hidden 이 자동 컷. */}
+      {/* 팀 로고 워터마크 — 카드 안에 정위치 (right-0) + 박스 안 정중앙 정렬.
+          object-contain 으로 종횡비 유지하며 박스 안에 fit. 박스를 카드 위로 살짝
+          끌어올려 (`-top-X`) 세로 중앙이 카드 중앙에 오도록 → 정사각/가로형 모두
+          카드 한가운데 표시. opacity·brightness 강화로 KCC 같은 흐린 로고도 식별 가능. */}
       {teamLogoSrc && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-4 top-0 flex h-[140px] w-[200px] items-center justify-end md:-right-6 md:top-0 md:h-[260px] md:w-[340px]"
+          className="pointer-events-none absolute -top-4 right-0 flex h-[200px] w-[250px] items-center justify-center md:-top-8 md:right-0 md:h-[330px] md:w-[425px]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={teamLogoSrc}
             alt=""
-            className="h-full w-full object-contain object-right opacity-[0.20] [filter:grayscale(100%)_brightness(1.9)]"
+            className="h-full w-full object-contain opacity-[0.25] [filter:grayscale(100%)_brightness(2.1)]"
             loading="lazy"
           />
         </div>
