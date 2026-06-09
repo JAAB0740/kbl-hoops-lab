@@ -1,41 +1,13 @@
 {
-  "fetchedAt": "2026-06-08T22:22:10.636Z",
+  "fetchedAt": "2026-06-09T15:41:22.705Z",
   "seasonCode": "47",
-  "totalRegistered": 216,
+  "totalRegistered": 168,
   "countByFlag": {
-    "국내": 187,
-    "아시아쿼터": 10,
-    "외국선수": 19
+    "국내": 155,
+    "아시아쿼터": 7,
+    "외국선수": 5
   },
   "byPcode": {
-    "290100": {
-      "pcode": "290100",
-      "kname": "함지훈",
-      "ename": "HAM JI HOON",
-      "teamCode": "10",
-      "pos": "FD",
-      "backNum": "12",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1984-12-11",
-      "pHeight": 198,
-      "pWeight": 94,
-      "schools": {
-        "primary": "미아초",
-        "middle": "삼선중",
-        "high": "경복고",
-        "university": "중앙대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2007,
-        "round": 1,
-        "rank": 10
-      },
-      "photoUrl": null,
-      "inSeason": 12
-    },
     "290284": {
       "pcode": "290284",
       "kname": "허일영",
@@ -119,62 +91,6 @@
       },
       "photoUrl": null,
       "inSeason": 18
-    },
-    "290417": {
-      "pcode": "290417",
-      "kname": "최진수",
-      "ename": "CHOI JIN SOO",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "7",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1989-05-11",
-      "pHeight": 203,
-      "pWeight": 93,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "사우스켄트고등학교",
-        "university": "메릴랜드대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2011,
-        "round": 1,
-        "rank": 3
-      },
-      "photoUrl": null,
-      "inSeason": 18
-    },
-    "290435": {
-      "pcode": "290435",
-      "kname": "홍경기",
-      "ename": "HONG GYEONGKI",
-      "teamCode": "66",
-      "pos": "GD",
-      "backNum": "7",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1988-10-04",
-      "pHeight": 184,
-      "pWeight": 84,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "군산고",
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2011,
-        "round": 2,
-        "rank": 10
-      },
-      "photoUrl": null,
-      "inSeason": 19
     },
     "290440": {
       "pcode": "290440",
@@ -316,34 +232,6 @@
       "photoUrl": null,
       "inSeason": 20
     },
-    "290488": {
-      "pcode": "290488",
-      "kname": "차바위",
-      "ename": "CHA BA WEE",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "6",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1989-08-24",
-      "pHeight": 192,
-      "pWeight": 88,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "양정고",
-        "university": "한양대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2012,
-        "round": 1,
-        "rank": 7
-      },
-      "photoUrl": null,
-      "inSeason": 20
-    },
     "290489": {
       "pcode": "290489",
       "kname": "정준원",
@@ -397,58 +285,6 @@
         "round": 1,
         "rank": 4
       },
-      "photoUrl": null,
-      "inSeason": 21
-    },
-    "290503": {
-      "pcode": "290503",
-      "kname": "박지훈",
-      "ename": "PARK JI HOON",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "8",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1989-06-19",
-      "pHeight": 193,
-      "pWeight": 90,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "대진고",
-        "university": "명지대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2012,
-        "round": 1,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 21
-    },
-    "290524": {
-      "pcode": "290524",
-      "kname": "라건아",
-      "ename": "Ra Guna",
-      "teamCode": "64",
-      "pos": "C",
-      "backNum": "20",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1989-02-20",
-      "pHeight": 200,
-      "pWeight": 116,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "Missouri",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
       "photoUrl": null,
       "inSeason": 21
     },
@@ -588,34 +424,6 @@
         "year": 2015,
         "round": 1,
         "rank": 2
-      },
-      "photoUrl": null,
-      "inSeason": 27
-    },
-    "290585": {
-      "pcode": "290585",
-      "kname": "최창진",
-      "ename": "CHOI CHANG JIN",
-      "teamCode": "64",
-      "pos": "GD",
-      "backNum": "4",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1993-06-22",
-      "pHeight": 185,
-      "pWeight": 87,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "계성고",
-        "university": "경희대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2015,
-        "round": 1,
-        "rank": 4
       },
       "photoUrl": null,
       "inSeason": 27
@@ -760,34 +568,6 @@
       "photoUrl": null,
       "inSeason": 27
     },
-    "290738": {
-      "pcode": "290738",
-      "kname": "두경민",
-      "ename": "DOO KYUNG MIN",
-      "teamCode": "50",
-      "pos": "GD",
-      "backNum": "30",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1991-09-22",
-      "pHeight": 184,
-      "pWeight": 79,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "경희대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2013,
-        "round": 1,
-        "rank": 3
-      },
-      "photoUrl": null,
-      "inSeason": 23
-    },
     "290740": {
       "pcode": "290740",
       "kname": "전준범",
@@ -812,34 +592,6 @@
         "year": 2013,
         "round": 1,
         "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 23
-    },
-    "290741": {
-      "pcode": "290741",
-      "kname": "김영현",
-      "ename": "KIM YOUNG HYUN",
-      "teamCode": "70",
-      "pos": "GD",
-      "backNum": "12",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1991-05-18",
-      "pHeight": 186,
-      "pWeight": 81,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "삼일상업고등학교",
-        "university": "경희대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2013,
-        "round": 1,
-        "rank": 10
       },
       "photoUrl": null,
       "inSeason": 23
@@ -1008,34 +760,6 @@
         "year": 2014,
         "round": 1,
         "rank": 5
-      },
-      "photoUrl": null,
-      "inSeason": 25
-    },
-    "290777": {
-      "pcode": "290777",
-      "kname": "김영훈",
-      "ename": "KIM YOUNG HUN",
-      "teamCode": "66",
-      "pos": "FD",
-      "backNum": "24",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1992-05-21",
-      "pHeight": 190,
-      "pWeight": 88,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "군산고",
-        "university": "동국대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2014,
-        "round": 2,
-        "rank": 6
       },
       "photoUrl": null,
       "inSeason": 25
@@ -1236,34 +960,6 @@
       "photoUrl": null,
       "inSeason": 25
     },
-    "290897": {
-      "pcode": "290897",
-      "kname": "송교창",
-      "ename": "SONG KYO CHANG",
-      "teamCode": "60",
-      "pos": "FD",
-      "backNum": "9",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1996-07-03",
-      "pHeight": 199,
-      "pWeight": 92,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "삼일상고",
-        "university": "경희사이버",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2015,
-        "round": 1,
-        "rank": 3
-      },
-      "photoUrl": null,
-      "inSeason": 27
-    },
     "290901": {
       "pcode": "290901",
       "kname": "정성우",
@@ -1460,6 +1156,34 @@
       "photoUrl": null,
       "inSeason": 29
     },
+    "291005": {
+      "pcode": "291005",
+      "kname": "최승욱",
+      "ename": "CHOI SEUNG WOOK",
+      "teamCode": "64",
+      "pos": "FD",
+      "backNum": "2",
+      "flag": "국내",
+      "country": "",
+      "birthday": "",
+      "pHeight": 191,
+      "pWeight": 89,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2016,
+        "round": 2,
+        "rank": 2
+      },
+      "photoUrl": null,
+      "inSeason": null
+    },
     "291008": {
       "pcode": "291008",
       "kname": "박지훈",
@@ -1628,34 +1352,6 @@
       "photoUrl": null,
       "inSeason": 31
     },
-    "291089": {
-      "pcode": "291089",
-      "kname": "이우정",
-      "ename": "LEE WOOJUNG",
-      "teamCode": "10",
-      "pos": "GD",
-      "backNum": "4",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1995-06-16",
-      "pHeight": 184,
-      "pWeight": 72,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "중앙대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2017,
-        "round": 1,
-        "rank": 7
-      },
-      "photoUrl": null,
-      "inSeason": 31
-    },
     "291091": {
       "pcode": "291091",
       "kname": "양홍석",
@@ -1711,30 +1407,6 @@
       },
       "photoUrl": null,
       "inSeason": 31
-    },
-    "291144": {
-      "pcode": "291144",
-      "kname": "대릴 먼로",
-      "ename": "Darryl Monroe",
-      "teamCode": "55",
-      "pos": "C",
-      "backNum": "86",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1986-01-30",
-      "pHeight": 200,
-      "pWeight": 114,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "George Mason",
-        "university": "George Mason",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 33
     },
     "291182": {
       "pcode": "291182",
@@ -1844,34 +1516,6 @@
         "year": 2018,
         "round": 1,
         "rank": 5
-      },
-      "photoUrl": null,
-      "inSeason": 33
-    },
-    "291209": {
-      "pcode": "291209",
-      "kname": "김한솔",
-      "ename": "KIM HAN SOL",
-      "teamCode": "35",
-      "pos": "C",
-      "backNum": "71",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1994-08-28",
-      "pHeight": 198,
-      "pWeight": 113,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "용산고",
-        "university": "상명대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2018,
-        "round": 1,
-        "rank": 7
       },
       "photoUrl": null,
       "inSeason": 33
@@ -2292,30 +1936,6 @@
       "photoUrl": null,
       "inSeason": 35
     },
-    "291341": {
-      "pcode": "291341",
-      "kname": "존 이그부누",
-      "ename": "John Egbunu",
-      "teamCode": "10",
-      "pos": "C",
-      "backNum": "22",
-      "flag": "외국선수",
-      "country": "나이지리아",
-      "birthday": "1994-10-31",
-      "pHeight": 211,
-      "pWeight": 120,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "University of Florida",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 37
-    },
     "291342": {
       "pcode": "291342",
       "kname": "숀 롱",
@@ -2337,34 +1957,6 @@
       },
       "gradYear": null,
       "draft": null,
-      "photoUrl": null,
-      "inSeason": 37
-    },
-    "291348": {
-      "pcode": "291348",
-      "kname": "박민우",
-      "ename": "PARK MIN WOO",
-      "teamCode": "35",
-      "pos": "FD",
-      "backNum": "30",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1999-01-16",
-      "pHeight": 196,
-      "pWeight": 99,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2020,
-        "round": 3,
-        "rank": 1
-      },
       "photoUrl": null,
       "inSeason": 37
     },
@@ -2812,90 +2404,6 @@
       "photoUrl": null,
       "inSeason": 39
     },
-    "291478": {
-      "pcode": "291478",
-      "kname": "이원석",
-      "ename": "LEE WON SEOK",
-      "teamCode": "35",
-      "pos": "FD",
-      "backNum": "2",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2000-01-30",
-      "pHeight": 207,
-      "pWeight": 100,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "연세대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2021,
-        "round": 1,
-        "rank": 1
-      },
-      "photoUrl": null,
-      "inSeason": 39
-    },
-    "291479": {
-      "pcode": "291479",
-      "kname": "신승민",
-      "ename": "SHIN SEUNG MIN",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "2",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1998-03-25",
-      "pHeight": 195,
-      "pWeight": 102,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "연세대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2021,
-        "round": 1,
-        "rank": 8
-      },
-      "photoUrl": null,
-      "inSeason": 39
-    },
-    "291481": {
-      "pcode": "291481",
-      "kname": "최주영",
-      "ename": "CHOI JOO YOUNG",
-      "teamCode": "64",
-      "pos": "C",
-      "backNum": "32",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1998-05-02",
-      "pHeight": 204,
-      "pWeight": 107,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "성균관대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2021,
-        "round": 3,
-        "rank": 8
-      },
-      "photoUrl": null,
-      "inSeason": 39
-    },
     "291482": {
       "pcode": "291482",
       "kname": "주현우",
@@ -2948,34 +2456,6 @@
         "year": 2021,
         "round": 1,
         "rank": 7
-      },
-      "photoUrl": null,
-      "inSeason": 39
-    },
-    "291485": {
-      "pcode": "291485",
-      "kname": "이승우",
-      "ename": "LEE SEUNG WOO",
-      "teamCode": "10",
-      "pos": "FD",
-      "backNum": "0",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-01-19",
-      "pHeight": 193,
-      "pWeight": 89,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "한양대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2021,
-        "round": 1,
-        "rank": 5
       },
       "photoUrl": null,
       "inSeason": 39
@@ -3204,30 +2684,6 @@
       "photoUrl": null,
       "inSeason": 39
     },
-    "291500": {
-      "pcode": "291500",
-      "kname": "조니 오브라이언트",
-      "ename": "Johnny O'Bryant III",
-      "teamCode": "70",
-      "pos": "C",
-      "backNum": "0",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1993-06-01",
-      "pHeight": 203,
-      "pWeight": 119,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "Louisiana st.",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 39
-    },
     "291511": {
       "pcode": "291511",
       "kname": "이선 알바노",
@@ -3328,30 +2784,6 @@
       "photoUrl": null,
       "inSeason": 41
     },
-    "291580": {
-      "pcode": "291580",
-      "kname": "드완 에르난데스",
-      "ename": "Dewan Hernandez",
-      "teamCode": "60",
-      "pos": "C",
-      "backNum": "32",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1996-12-09",
-      "pHeight": 208,
-      "pWeight": 119,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "Miami",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 41
-    },
     "291583": {
       "pcode": "291583",
       "kname": "렌즈 아반도",
@@ -3400,34 +2832,6 @@
         "year": 2022,
         "round": 1,
         "rank": 2
-      },
-      "photoUrl": null,
-      "inSeason": 41
-    },
-    "291588": {
-      "pcode": "291588",
-      "kname": "박인웅",
-      "ename": "PARK IN UNG",
-      "teamCode": "16",
-      "pos": "FD",
-      "backNum": "23",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2000-07-18",
-      "pHeight": 190,
-      "pWeight": 88,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "중앙대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2022,
-        "round": 1,
-        "rank": 3
       },
       "photoUrl": null,
       "inSeason": 41
@@ -3544,62 +2948,6 @@
       "photoUrl": null,
       "inSeason": 41
     },
-    "291601": {
-      "pcode": "291601",
-      "kname": "고찬혁",
-      "ename": "KO CHAN HYUK",
-      "teamCode": "06",
-      "pos": "GD",
-      "backNum": "6",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-05-25",
-      "pHeight": 184,
-      "pWeight": 99,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "경희대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2022,
-        "round": 1,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 41
-    },
-    "291603": {
-      "pcode": "291603",
-      "kname": "문가온",
-      "ename": "MOON KAON ",
-      "teamCode": "55",
-      "pos": "GD",
-      "backNum": "37",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2000-11-21",
-      "pHeight": 187,
-      "pWeight": 84,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "중앙대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2022,
-        "round": 1,
-        "rank": 10
-      },
-      "photoUrl": null,
-      "inSeason": 41
-    },
     "291605": {
       "pcode": "291605",
       "kname": "조재우",
@@ -3655,34 +3003,6 @@
       },
       "photoUrl": null,
       "inSeason": 41
-    },
-    "291639": {
-      "pcode": "291639",
-      "kname": "박상우",
-      "ename": "PARK SANG WOO",
-      "teamCode": "16",
-      "pos": "FD",
-      "backNum": "11",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2000-05-30",
-      "pHeight": 191,
-      "pWeight": 77,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "건국대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 2,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 43
     },
     "291640": {
       "pcode": "291640",
@@ -3764,62 +3084,6 @@
         "year": 2023,
         "round": 1,
         "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
-    "291645": {
-      "pcode": "291645",
-      "kname": "김근현",
-      "ename": "KIM GEON HYEON",
-      "teamCode": "10",
-      "pos": "GD",
-      "backNum": "18",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1999-03-18",
-      "pHeight": 193,
-      "pWeight": 78,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "성균관대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 2,
-        "rank": 7
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
-    "291646": {
-      "pcode": "291646",
-      "kname": "김건우",
-      "ename": "KIM GEONU",
-      "teamCode": "55",
-      "pos": "C",
-      "backNum": "31",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2000-09-29",
-      "pHeight": 200,
-      "pWeight": 100,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "연세대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 2,
-        "rank": 2
       },
       "photoUrl": null,
       "inSeason": 43
@@ -3936,34 +3200,6 @@
       "photoUrl": null,
       "inSeason": 43
     },
-    "291654": {
-      "pcode": "291654",
-      "kname": "정배권",
-      "ename": "JUNG BAE KWON",
-      "teamCode": "60",
-      "pos": "GD",
-      "backNum": "17",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-04-01",
-      "pHeight": 184,
-      "pWeight": 81,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "성균관대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 2,
-        "rank": 5
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
     "291655": {
       "pcode": "291655",
       "kname": "나성호",
@@ -3988,34 +3224,6 @@
         "year": 2023,
         "round": 1,
         "rank": 10
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
-    "291660": {
-      "pcode": "291660",
-      "kname": "박승재",
-      "ename": "PARK SEUNG JAE",
-      "teamCode": "35",
-      "pos": "GD",
-      "backNum": "3",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-03-07",
-      "pHeight": 178,
-      "pWeight": 78,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "동국대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 1,
-        "rank": 7
       },
       "photoUrl": null,
       "inSeason": 43
@@ -4047,58 +3255,6 @@
       },
       "photoUrl": null,
       "inSeason": 43
-    },
-    "291668": {
-      "pcode": "291668",
-      "kname": "신주영",
-      "ename": "SHIN JU YOUNG",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "1",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-06-15",
-      "pHeight": 200,
-      "pWeight": 100,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 1,
-        "rank": 5
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
-    "291698": {
-      "pcode": "291698",
-      "kname": "레이션 해먼즈",
-      "ename": "Rayshaun Hammonds",
-      "teamCode": "10",
-      "pos": "FD",
-      "backNum": "2",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1997-11-10",
-      "pHeight": 200,
-      "pWeight": 120,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "University of Georgia",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 45
     },
     "291699": {
       "pcode": "291699",
@@ -4264,34 +3420,6 @@
       "photoUrl": null,
       "inSeason": 45
     },
-    "291751": {
-      "pcode": "291751",
-      "kname": "김도은",
-      "ename": "Kim Do Eun",
-      "teamCode": "66",
-      "pos": "GD",
-      "backNum": "8",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-01-09",
-      "pHeight": 183,
-      "pWeight": 82,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 4,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
     "291752": {
       "pcode": "291752",
       "kname": "김보배",
@@ -4432,62 +3560,6 @@
       "photoUrl": null,
       "inSeason": 45
     },
-    "291758": {
-      "pcode": "291758",
-      "kname": "강현수",
-      "ename": "Kang Hyun Su",
-      "teamCode": "10",
-      "pos": "GD",
-      "backNum": "30",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2003-01-11",
-      "pHeight": 180,
-      "pWeight": 70,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "중앙대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 3,
-        "rank": 5
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
-    "291759": {
-      "pcode": "291759",
-      "kname": "김태훈",
-      "ename": "Kim Tae Hun",
-      "teamCode": "55",
-      "pos": "GD",
-      "backNum": "9",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-04-29",
-      "pHeight": 189,
-      "pWeight": 87,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 1,
-        "rank": 6
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
     "291760": {
       "pcode": "291760",
       "kname": "이민서",
@@ -4512,34 +3584,6 @@
         "year": 2024,
         "round": 1,
         "rank": 7
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
-    "291761": {
-      "pcode": "291761",
-      "kname": "강재민",
-      "ename": "Kang Jae Min",
-      "teamCode": "55",
-      "pos": "FD",
-      "backNum": "0",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-03-11",
-      "pHeight": 195,
-      "pWeight": 84,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "연세대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 2,
-        "rank": 9
       },
       "photoUrl": null,
       "inSeason": 45
@@ -4623,62 +3667,6 @@
       "draft": {
         "year": 2024,
         "round": 1,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
-    "291766": {
-      "pcode": "291766",
-      "kname": "박성재",
-      "ename": "Park Seong Jae",
-      "teamCode": "06",
-      "pos": "GD",
-      "backNum": "27",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-03-13",
-      "pHeight": 182,
-      "pWeight": 84,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "한양대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 2,
-        "rank": 2
-      },
-      "photoUrl": null,
-      "inSeason": 45
-    },
-    "291767": {
-      "pcode": "291767",
-      "kname": "김재현",
-      "ename": "Kim Jae Hyeon",
-      "teamCode": "06",
-      "pos": "GD",
-      "backNum": "8",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-04-17",
-      "pHeight": 188,
-      "pWeight": 81,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "고려대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2024,
-        "round": 3,
         "rank": 9
       },
       "photoUrl": null,
@@ -4796,30 +3784,6 @@
       "photoUrl": null,
       "inSeason": 45
     },
-    "291777": {
-      "pcode": "291777",
-      "kname": "조엘 카굴랑안",
-      "ename": "Joel Diomar Cagulangan",
-      "teamCode": "06",
-      "pos": "GD",
-      "backNum": "19",
-      "flag": "아시아쿼터",
-      "country": "필리핀",
-      "birthday": "2000-01-24",
-      "pHeight": 172,
-      "pWeight": 77,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 45
-    },
     "291778": {
       "pcode": "291778",
       "kname": "케빈 켐바오",
@@ -4892,30 +3856,6 @@
       "photoUrl": null,
       "inSeason": 47
     },
-    "291786": {
-      "pcode": "291786",
-      "kname": "에삼 무스타파",
-      "ename": "Essam Mostafa",
-      "teamCode": "16",
-      "pos": "C",
-      "backNum": "44",
-      "flag": "외국선수",
-      "country": "이집트",
-      "birthday": "1999-08-03",
-      "pHeight": 203,
-      "pWeight": 118,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
     "291787": {
       "pcode": "291787",
       "kname": "케렘 칸터",
@@ -4928,102 +3868,6 @@
       "birthday": "1995-04-29",
       "pHeight": 203,
       "pWeight": 118,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291788": {
-      "pcode": "291788",
-      "kname": "네이던 나이트",
-      "ename": "Nathan Knight",
-      "teamCode": "66",
-      "pos": "C",
-      "backNum": "1",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1997-09-20",
-      "pHeight": 202,
-      "pWeight": 116,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291791": {
-      "pcode": "291791",
-      "kname": "데릭 윌리엄스",
-      "ename": "Derrick Williams",
-      "teamCode": "06",
-      "pos": "FD",
-      "backNum": "24",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1991-05-25",
-      "pHeight": 202,
-      "pWeight": 110,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291792": {
-      "pcode": "291792",
-      "kname": "윌리엄 나바로",
-      "ename": "William Raniel Navarro",
-      "teamCode": "60",
-      "pos": "FD",
-      "backNum": "23",
-      "flag": "아시아쿼터",
-      "country": "필리핀",
-      "birthday": "1997-02-03",
-      "pHeight": 193,
-      "pWeight": 91,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291793": {
-      "pcode": "291793",
-      "kname": "브라이스 워싱턴",
-      "ename": "Bryce Washington",
-      "teamCode": "70",
-      "pos": "FD",
-      "backNum": "3",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1996-01-25",
-      "pHeight": 196,
-      "pWeight": 122,
       "schools": {
         "primary": null,
         "middle": null,
@@ -5817,126 +4661,6 @@
         "round": 3,
         "rank": 9
       },
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291871": {
-      "pcode": "291871",
-      "kname": "베니 보트라이트",
-      "ename": "Bennie Boatwright",
-      "teamCode": "64",
-      "pos": "FD",
-      "backNum": "25",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1996-07-13",
-      "pHeight": 205,
-      "pWeight": 118,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291876": {
-      "pcode": "291876",
-      "kname": "존킴웰 피게로아",
-      "ename": "Johnkimwell Figueroa",
-      "teamCode": "10",
-      "pos": "GD",
-      "backNum": "8",
-      "flag": "아시아쿼터",
-      "country": "필리핀",
-      "birthday": "2002-04-20",
-      "pHeight": 190,
-      "pWeight": 87,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291877": {
-      "pcode": "291877",
-      "kname": "이기디우스 모츠카비추스",
-      "ename": "Egidijus Mockevicius",
-      "teamCode": "66",
-      "pos": "C",
-      "backNum": "27",
-      "flag": "외국선수",
-      "country": "리투아니아",
-      "birthday": "1992-09-01",
-      "pHeight": 208,
-      "pWeight": 107,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291878": {
-      "pcode": "291878",
-      "kname": "조나단 윌리엄스",
-      "ename": "Johnathan Williams",
-      "teamCode": "06",
-      "pos": "C",
-      "backNum": "13",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1995-05-22",
-      "pHeight": 203,
-      "pWeight": 104,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
-    "291879": {
-      "pcode": "291879",
-      "kname": "카이린 갤러웨이",
-      "ename": "Kyrin Galloway",
-      "teamCode": "50",
-      "pos": "FD",
-      "backNum": "14",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1999-07-10",
-      "pHeight": 203,
-      "pWeight": 106,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
       "photoUrl": null,
       "inSeason": 47
     }
