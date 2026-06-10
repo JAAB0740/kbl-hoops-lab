@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-09T22:20:26.224Z",
+  "fetchedAt": "2026-06-10T16:18:38.625Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -55,9 +55,9 @@
         "teamName4": "KCC",
         "games": 54,
         "minutes": 30.666975308641973,
-        "screenAssists": 1.1481481481481481,
+        "screenAssists": 1.1111111111111112,
         "screenAssistsPts": 0.3333333333333333,
-        "deflections": 0.5370370370370371
+        "deflections": 0.5
       },
       {
         "rank": 5,
@@ -71,7 +71,7 @@
         "minutes": 33.912244897959184,
         "screenAssists": 0.1836734693877551,
         "screenAssistsPts": 3.163265306122449,
-        "deflections": 0.8367346938775511
+        "deflections": 0.8163265306122449
       },
       {
         "rank": 6,
@@ -83,9 +83,9 @@
         "teamName4": "소노",
         "games": 54,
         "minutes": 30.63364197530864,
-        "screenAssists": 1.3333333333333333,
+        "screenAssists": 1.2777777777777777,
         "screenAssistsPts": 0.35185185185185186,
-        "deflections": 0.8148148148148148
+        "deflections": 0.7777777777777778
       },
       {
         "rank": 7,
@@ -153,7 +153,7 @@
         "teamName4": "KCC",
         "games": 45,
         "minutes": 30.917037037037037,
-        "screenAssists": 0.2,
+        "screenAssists": 0.17777777777777778,
         "screenAssistsPts": 2.422222222222222,
         "deflections": 0.3111111111111111
       },
@@ -225,7 +225,7 @@
         "minutes": 34.76203703703704,
         "screenAssists": 0.1111111111111111,
         "screenAssistsPts": 1.8703703703703705,
-        "deflections": 0.35185185185185186
+        "deflections": 0.2777777777777778
       },
       {
         "rank": 17,
@@ -701,7 +701,7 @@
         "minutes": 20.114035087719298,
         "screenAssists": 0.3684210526315789,
         "screenAssistsPts": 0,
-        "deflections": 0.21052631578947367
+        "deflections": 0.18421052631578946
       },
       {
         "rank": 51,
@@ -1163,7 +1163,7 @@
         "minutes": 12.825347222222224,
         "screenAssists": 0.041666666666666664,
         "screenAssistsPts": 0.3333333333333333,
-        "deflections": 0.2708333333333333
+        "deflections": 0.20833333333333334
       },
       {
         "rank": 84,
@@ -1359,7 +1359,7 @@
         "minutes": 8.481428571428571,
         "screenAssists": 0.42857142857142855,
         "screenAssistsPts": 0.08571428571428572,
-        "deflections": 0.2857142857142857
+        "deflections": 0.2571428571428571
       },
       {
         "rank": 98,
@@ -1541,7 +1541,7 @@
         "minutes": 16.62596153846154,
         "screenAssists": 0.057692307692307696,
         "screenAssistsPts": 0.5384615384615384,
-        "deflections": 0.38461538461538464
+        "deflections": 0.36538461538461536
       },
       {
         "rank": 111,
