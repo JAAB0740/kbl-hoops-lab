@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-06-30T22:11:05.705Z",
+  "fetchedAt": "2026-07-01T15:22:39.042Z",
   "seasonCode": "47",
-  "totalRegistered": 168,
+  "totalRegistered": 169,
   "countByFlag": {
-    "국내": 155,
+    "국내": 156,
     "아시아쿼터": 7,
     "외국선수": 5
   },
@@ -1162,7 +1162,7 @@
       "ename": "CHOI SEUNG WOOK",
       "teamCode": "64",
       "pos": "FD",
-      "backNum": "2",
+      "backNum": "5",
       "flag": "국내",
       "country": "",
       "birthday": "",
@@ -1736,6 +1736,34 @@
         "year": 2019,
         "round": 2,
         "rank": 2
+      },
+      "photoUrl": null,
+      "inSeason": 35
+    },
+    "291277": {
+      "pcode": "291277",
+      "kname": "김진영",
+      "ename": "KIM JIN YOUNG",
+      "teamCode": "70",
+      "pos": "GD",
+      "backNum": "14",
+      "flag": "국내",
+      "country": "",
+      "birthday": "1998-06-22",
+      "pHeight": 193,
+      "pWeight": 65.1,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2019,
+        "round": 1,
+        "rank": 3
       },
       "photoUrl": null,
       "inSeason": 35
@@ -2572,6 +2600,34 @@
       "photoUrl": null,
       "inSeason": 39
     },
+    "291491": {
+      "pcode": "291491",
+      "kname": "서정현",
+      "ename": "SEO JUNG HYUN",
+      "teamCode": "60",
+      "pos": "C",
+      "backNum": "32",
+      "flag": "국내",
+      "country": "",
+      "birthday": "1998-03-20",
+      "pHeight": 199.7,
+      "pWeight": null,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "고려대",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2021,
+        "round": 2,
+        "rank": 2
+      },
+      "photoUrl": null,
+      "inSeason": 39
+    },
     "291492": {
       "pcode": "291492",
       "kname": "하윤기",
@@ -2652,6 +2708,34 @@
         "year": 2021,
         "round": 1,
         "rank": 6
+      },
+      "photoUrl": null,
+      "inSeason": 39
+    },
+    "291498": {
+      "pcode": "291498",
+      "kname": "김수환",
+      "ename": "KIM SUHWAN",
+      "teamCode": "55",
+      "pos": "GD",
+      "backNum": "1",
+      "flag": "국내",
+      "country": "",
+      "birthday": "1998-09-18",
+      "pHeight": 188.4,
+      "pWeight": null,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "성균관대",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2021,
+        "round": 2,
+        "rank": 5
       },
       "photoUrl": null,
       "inSeason": 39
@@ -3060,34 +3144,6 @@
       "photoUrl": null,
       "inSeason": 43
     },
-    "291644": {
-      "pcode": "291644",
-      "kname": "이경도",
-      "ename": "LEE GYEONGDO",
-      "teamCode": "50",
-      "pos": "GD",
-      "backNum": "2",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2002-03-01",
-      "pHeight": 188,
-      "pWeight": 85,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "단국대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 1,
-        "rank": 9
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
     "291648": {
       "pcode": "291648",
       "kname": "표승빈",
@@ -3196,34 +3252,6 @@
         "year": 2023,
         "round": 1,
         "rank": 4
-      },
-      "photoUrl": null,
-      "inSeason": 43
-    },
-    "291655": {
-      "pcode": "291655",
-      "kname": "나성호",
-      "ename": "NA SUNG HO",
-      "teamCode": "50",
-      "pos": "FD",
-      "backNum": "8",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "2001-04-24",
-      "pHeight": 189,
-      "pWeight": 83,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "단국대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2023,
-        "round": 1,
-        "rank": 10
       },
       "photoUrl": null,
       "inSeason": 43
