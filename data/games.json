@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-29T14:40:41.977Z",
+  "fetchedAt": "2026-07-29T15:47:33.140Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=47&fromDate=20251001&toDate=20260630",
   "totalGames": 303,
   "games": [
