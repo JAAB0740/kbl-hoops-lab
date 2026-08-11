@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-08-10T21:32:48.946Z",
+  "fetchedAt": "2026-08-11T13:55:32.206Z",
   "seasonCode": "47",
-  "totalRegistered": 169,
+  "totalRegistered": 170,
   "countByFlag": {
-    "국내": 156,
+    "국내": 157,
     "아시아쿼터": 7,
     "외국선수": 5
   },
@@ -3028,6 +3028,34 @@
         "year": 2022,
         "round": 1,
         "rank": 6
+      },
+      "photoUrl": null,
+      "inSeason": 41
+    },
+    "291599": {
+      "pcode": "291599",
+      "kname": "염유성",
+      "ename": "YEOM YU SEOUNG",
+      "teamCode": "64",
+      "pos": "GD",
+      "backNum": "10",
+      "flag": "국내",
+      "country": "대한민국",
+      "birthday": "2002-03-08",
+      "pHeight": 187,
+      "pWeight": 85,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "단국대",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2022,
+        "round": 1,
+        "rank": 8
       },
       "photoUrl": null,
       "inSeason": 41
