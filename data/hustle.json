@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-15T23:18:07.913Z",
+  "fetchedAt": "2026-09-16T17:14:09.753Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -1797,20 +1797,6 @@
       },
       {
         "rank": 129,
-        "playerNo": "291483",
-        "kname": "정호영",
-        "ename": "JUNG HO YOUNG",
-        "teamCode": "16",
-        "teamName1": "원주 DB",
-        "teamName4": "DB",
-        "games": 43,
-        "minutes": 7.644186046511629,
-        "screenAssists": 0,
-        "screenAssistsPts": 0.27906976744186046,
-        "deflections": 0.13953488372093023
-      },
-      {
-        "rank": 130,
         "playerNo": "290599",
         "kname": "서민수",
         "ename": "SEO MIN SOO",
@@ -1824,7 +1810,7 @@
         "deflections": 0.16216216216216217
       },
       {
-        "rank": 131,
+        "rank": 130,
         "playerNo": "290553",
         "kname": "배병준",
         "ename": "BAE BYUNGJUN",
@@ -1836,6 +1822,20 @@
         "screenAssists": 0,
         "screenAssistsPts": 0.9230769230769231,
         "deflections": 0.38461538461538464
+      },
+      {
+        "rank": 131,
+        "playerNo": "291483",
+        "kname": "정호영",
+        "ename": "JUNG HO YOUNG",
+        "teamCode": "16",
+        "teamName1": "원주 DB",
+        "teamName4": "DB",
+        "games": 44,
+        "minutes": 7.470454545454546,
+        "screenAssists": 0,
+        "screenAssistsPts": 0.2727272727272727,
+        "deflections": 0.13636363636363635
       },
       {
         "rank": 132,
@@ -2643,8 +2643,8 @@
         "teamCode": "16",
         "teamName1": "원주 DB",
         "teamName4": "DB",
-        "games": 1,
-        "minutes": 1.7833333333333334,
+        "games": 2,
+        "minutes": 0.8916666666666667,
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
