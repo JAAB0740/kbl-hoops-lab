@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-09-20T22:48:28.653Z",
+  "fetchedAt": "2026-09-21T18:17:43.609Z",
   "seasonCode": "47",
-  "totalRegistered": 170,
+  "totalRegistered": 185,
   "countByFlag": {
-    "국내": 157,
-    "아시아쿼터": 7,
-    "외국선수": 5
+    "국내": 156,
+    "아시아쿼터": 8,
+    "외국선수": 8
   },
   "byPcode": {
     "290284": {
@@ -285,6 +285,30 @@
         "round": 1,
         "rank": 4
       },
+      "photoUrl": null,
+      "inSeason": 21
+    },
+    "290524": {
+      "pcode": "290524",
+      "kname": "라건아",
+      "ename": "Ra Guna",
+      "teamCode": "64",
+      "pos": "C",
+      "backNum": "20",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1989-02-20",
+      "pHeight": 200,
+      "pWeight": 116,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "Missouri",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
       "photoUrl": null,
       "inSeason": 21
     },
@@ -1044,34 +1068,6 @@
       "photoUrl": null,
       "inSeason": 29
     },
-    "290993": {
-      "pcode": "290993",
-      "kname": "최준용",
-      "ename": "CHOI JUN YONG",
-      "teamCode": "60",
-      "pos": "FD",
-      "backNum": "2",
-      "flag": "국내",
-      "country": "대한민국",
-      "birthday": "1994-04-04",
-      "pHeight": 200,
-      "pWeight": 95,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": "경복고등학교",
-        "university": "연세대",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": {
-        "year": 2016,
-        "round": 1,
-        "rank": 2
-      },
-      "photoUrl": null,
-      "inSeason": 29
-    },
     "290996": {
       "pcode": "290996",
       "kname": "정인덕",
@@ -1603,6 +1599,30 @@
       },
       "photoUrl": null,
       "inSeason": 33
+    },
+    "291237": {
+      "pcode": "291237",
+      "kname": "크리스 맥컬러",
+      "ename": "Christopher McCullough",
+      "teamCode": "35",
+      "pos": "FD",
+      "backNum": "13",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 206,
+      "pWeight": 105,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
     },
     "291248": {
       "pcode": "291248",
@@ -2404,6 +2424,30 @@
       "photoUrl": null,
       "inSeason": 39
     },
+    "291436": {
+      "pcode": "291436",
+      "kname": "라숀 토마스",
+      "ename": "Rashawn Thomas",
+      "teamCode": "70",
+      "pos": "FD",
+      "backNum": "25",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 200,
+      "pWeight": 107,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
     "291476": {
       "pcode": "291476",
       "kname": "김준환",
@@ -2768,6 +2812,30 @@
       "photoUrl": null,
       "inSeason": 39
     },
+    "291500": {
+      "pcode": "291500",
+      "kname": "조니 오브라이언트",
+      "ename": "Johnny O'Bryant III",
+      "teamCode": "70",
+      "pos": "C",
+      "backNum": "0",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1993-06-01",
+      "pHeight": 203,
+      "pWeight": 119,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "Louisiana st.",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 39
+    },
     "291511": {
       "pcode": "291511",
       "kname": "이선 알바노",
@@ -2867,6 +2935,30 @@
       },
       "photoUrl": null,
       "inSeason": 41
+    },
+    "291579": {
+      "pcode": "291579",
+      "kname": "게이지 프림",
+      "ename": "Gaige Colburn Prim",
+      "teamCode": "10",
+      "pos": "C",
+      "backNum": "44",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 206,
+      "pWeight": 117,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
     },
     "291583": {
       "pcode": "291583",
@@ -3311,6 +3403,102 @@
       },
       "photoUrl": null,
       "inSeason": 43
+    },
+    "291671": {
+      "pcode": "291671",
+      "kname": "패리스 배스",
+      "ename": "Paris Nickolas Bass",
+      "teamCode": "06",
+      "pos": "FD",
+      "backNum": "35",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 200,
+      "pWeight": 97,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291680": {
+      "pcode": "291680",
+      "kname": "케베 알루마",
+      "ename": "Keve Aluma",
+      "teamCode": "64",
+      "pos": "FD",
+      "backNum": "19",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 206,
+      "pWeight": 110,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291692": {
+      "pcode": "291692",
+      "kname": "미구엘 안드레 옥존",
+      "ename": "Miguel Andre Oczon",
+      "teamCode": "10",
+      "pos": "GD",
+      "backNum": "8",
+      "flag": "아시아쿼터",
+      "country": "필리핀",
+      "birthday": "2000-03-29",
+      "pHeight": 182,
+      "pWeight": 88,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "Benilde University",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 43
+    },
+    "291698": {
+      "pcode": "291698",
+      "kname": "레이션 해먼즈",
+      "ename": "Rayshaun Hammonds",
+      "teamCode": "10",
+      "pos": "FD",
+      "backNum": "2",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1997-11-10",
+      "pHeight": 200,
+      "pWeight": 120,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "University of Georgia",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 45
     },
     "291699": {
       "pcode": "291699",
@@ -4719,6 +4907,174 @@
       },
       "photoUrl": null,
       "inSeason": 47
+    },
+    "291881": {
+      "pcode": "291881",
+      "kname": "스카티 제임스",
+      "ename": "David Scott James Jr",
+      "teamCode": "66",
+      "pos": "FD",
+      "backNum": "31",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 200,
+      "pWeight": 113,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291882": {
+      "pcode": "291882",
+      "kname": "아치 굿윈",
+      "ename": "Archie Lee Goodwin III",
+      "teamCode": "50",
+      "pos": "GD",
+      "backNum": "8",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 193,
+      "pWeight": 94,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291883": {
+      "pcode": "291883",
+      "kname": "존 무니",
+      "ename": "John Mooney",
+      "teamCode": "70",
+      "pos": "C",
+      "backNum": "33",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 203,
+      "pWeight": 111,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291884": {
+      "pcode": "291884",
+      "kname": "루이스 킹",
+      "ename": "Louis Dajon King",
+      "teamCode": "60",
+      "pos": "FD",
+      "backNum": "23",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 200,
+      "pWeight": 93,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291885": {
+      "pcode": "291885",
+      "kname": "트레이 포터",
+      "ename": "Trey Samuel Porter",
+      "teamCode": "06",
+      "pos": "C",
+      "backNum": "22",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 209,
+      "pWeight": 107,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291886": {
+      "pcode": "291886",
+      "kname": "다리우스 베즐리",
+      "ename": "Darius Denayr Bazley",
+      "teamCode": "10",
+      "pos": "FD",
+      "backNum": "0",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 206,
+      "pWeight": 94,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291887": {
+      "pcode": "291887",
+      "kname": "제리 아바디아노",
+      "ename": "Gerry Austin Tabucan Abadiano",
+      "teamCode": "10",
+      "pos": "GD",
+      "backNum": "26",
+      "flag": "아시아쿼터",
+      "country": "",
+      "birthday": "",
+      "pHeight": 180,
+      "pWeight": 81,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
     }
   }
 }
