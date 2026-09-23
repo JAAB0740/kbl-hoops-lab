@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-09-22T23:24:02.980Z",
+  "fetchedAt": "2026-09-23T17:23:23.628Z",
   "seasonCode": "47",
-  "totalRegistered": 185,
+  "totalRegistered": 186,
   "countByFlag": {
     "국내": 156,
     "아시아쿼터": 8,
-    "외국선수": 8
+    "외국선수": 9
   },
   "byPcode": {
     "290284": {
@@ -1983,6 +1983,30 @@
       },
       "photoUrl": null,
       "inSeason": 35
+    },
+    "291333": {
+      "pcode": "291333",
+      "kname": "아이재아 힉스",
+      "ename": "Isaiah Hicks",
+      "teamCode": "06",
+      "pos": "C",
+      "backNum": "31",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1994-07-24",
+      "pHeight": 203,
+      "pWeight": 113,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "UNC",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 37
     },
     "291342": {
       "pcode": "291342",
