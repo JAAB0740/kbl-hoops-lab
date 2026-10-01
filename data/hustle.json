@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-01T00:16:32.322Z",
+  "fetchedAt": "2026-10-01T18:33:38.394Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -28,7 +28,7 @@
         "games": 53,
         "minutes": 29.505974842767294,
         "screenAssists": 0.5471698113207547,
-        "screenAssistsPts": 0.8867924528301887,
+        "screenAssistsPts": 0.8301886792452831,
         "deflections": 0.3584905660377358
       },
       {
@@ -55,9 +55,9 @@
         "teamName4": "KCC",
         "games": 54,
         "minutes": 30.666975308641973,
-        "screenAssists": 1.1111111111111112,
+        "screenAssists": 1.1481481481481481,
         "screenAssistsPts": 0.3333333333333333,
-        "deflections": 0.5
+        "deflections": 0.5370370370370371
       },
       {
         "rank": 5,
@@ -70,8 +70,8 @@
         "games": 49,
         "minutes": 33.912244897959184,
         "screenAssists": 0.1836734693877551,
-        "screenAssistsPts": 3.163265306122449,
-        "deflections": 0.8163265306122449
+        "screenAssistsPts": 3.2244897959183674,
+        "deflections": 0.8367346938775511
       },
       {
         "rank": 6,
@@ -83,9 +83,9 @@
         "teamName4": "소노",
         "games": 54,
         "minutes": 30.63364197530864,
-        "screenAssists": 1.2777777777777777,
+        "screenAssists": 1.3333333333333333,
         "screenAssistsPts": 0.35185185185185186,
-        "deflections": 0.7777777777777778
+        "deflections": 0.8148148148148148
       },
       {
         "rank": 7,
@@ -112,7 +112,7 @@
         "games": 54,
         "minutes": 34.612037037037034,
         "screenAssists": 0.12962962962962962,
-        "screenAssistsPts": 2.240740740740741,
+        "screenAssistsPts": 2.2222222222222223,
         "deflections": 1.3333333333333333
       },
       {
@@ -153,7 +153,7 @@
         "teamName4": "KCC",
         "games": 45,
         "minutes": 30.917037037037037,
-        "screenAssists": 0.17777777777777778,
+        "screenAssists": 0.2,
         "screenAssistsPts": 2.422222222222222,
         "deflections": 0.3111111111111111
       },
@@ -194,7 +194,7 @@
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
         "games": 53,
-        "minutes": 31.938364779874217,
+        "minutes": 31.914150943396226,
         "screenAssists": 0.05660377358490566,
         "screenAssistsPts": 2.3207547169811322,
         "deflections": 0.6415094339622641
@@ -224,8 +224,8 @@
         "games": 54,
         "minutes": 34.76203703703704,
         "screenAssists": 0.1111111111111111,
-        "screenAssistsPts": 1.8703703703703705,
-        "deflections": 0.2777777777777778
+        "screenAssistsPts": 1.9074074074074074,
+        "deflections": 0.35185185185185186
       },
       {
         "rank": 17,
@@ -294,7 +294,7 @@
         "games": 54,
         "minutes": 32.556172839506175,
         "screenAssists": 0.05555555555555555,
-        "screenAssistsPts": 2.6666666666666665,
+        "screenAssistsPts": 2.740740740740741,
         "deflections": 0.5740740740740741
       },
       {
@@ -308,7 +308,7 @@
         "games": 50,
         "minutes": 30.189666666666668,
         "screenAssists": 0.16,
-        "screenAssistsPts": 2.14,
+        "screenAssistsPts": 2.08,
         "deflections": 0.44
       },
       {
@@ -350,7 +350,7 @@
         "games": 47,
         "minutes": 27.147163120567374,
         "screenAssists": 0.0425531914893617,
-        "screenAssistsPts": 1.7872340425531914,
+        "screenAssistsPts": 1.8297872340425532,
         "deflections": 0.7446808510638298
       },
       {
@@ -392,7 +392,7 @@
         "games": 50,
         "minutes": 20.937333333333335,
         "screenAssists": 0,
-        "screenAssistsPts": 1.26,
+        "screenAssistsPts": 1.32,
         "deflections": 0.4
       },
       {
@@ -406,7 +406,7 @@
         "games": 34,
         "minutes": 29.386764705882353,
         "screenAssists": 0.17647058823529413,
-        "screenAssistsPts": 2.235294117647059,
+        "screenAssistsPts": 2.323529411764706,
         "deflections": 0.058823529411764705
       },
       {
@@ -420,7 +420,7 @@
         "games": 38,
         "minutes": 27.503508771929823,
         "screenAssists": 0.05263157894736842,
-        "screenAssistsPts": 1.8421052631578947,
+        "screenAssistsPts": 1.7894736842105263,
         "deflections": 0.5526315789473685
       },
       {
@@ -448,7 +448,7 @@
         "games": 54,
         "minutes": 24.900308641975307,
         "screenAssists": 0.037037037037037035,
-        "screenAssistsPts": 1.5740740740740742,
+        "screenAssistsPts": 1.5555555555555556,
         "deflections": 0.9074074074074074
       },
       {
@@ -476,7 +476,7 @@
         "games": 49,
         "minutes": 29.080272108843538,
         "screenAssists": 0.2653061224489796,
-        "screenAssistsPts": 1.816326530612245,
+        "screenAssistsPts": 1.8775510204081634,
         "deflections": 0.3673469387755102
       },
       {
@@ -504,7 +504,7 @@
         "games": 48,
         "minutes": 29.76284722222222,
         "screenAssists": 0.041666666666666664,
-        "screenAssistsPts": 1.3125,
+        "screenAssistsPts": 1.375,
         "deflections": 0.5833333333333334
       },
       {
@@ -560,7 +560,7 @@
         "games": 53,
         "minutes": 26.195911949685534,
         "screenAssists": 0.16981132075471697,
-        "screenAssistsPts": 1.150943396226415,
+        "screenAssistsPts": 1.1886792452830188,
         "deflections": 0.6226415094339622
       },
       {
@@ -701,7 +701,7 @@
         "minutes": 20.114035087719298,
         "screenAssists": 0.3684210526315789,
         "screenAssistsPts": 0,
-        "deflections": 0.18421052631578946
+        "deflections": 0.21052631578947367
       },
       {
         "rank": 51,
@@ -1106,7 +1106,7 @@
         "games": 51,
         "minutes": 17.841503267973856,
         "screenAssists": 0.09803921568627451,
-        "screenAssistsPts": 0.09803921568627451,
+        "screenAssistsPts": 0.11764705882352941,
         "deflections": 0.3137254901960784
       },
       {
@@ -1148,7 +1148,7 @@
         "games": 36,
         "minutes": 16.702314814814816,
         "screenAssists": 0.1111111111111111,
-        "screenAssistsPts": 0.75,
+        "screenAssistsPts": 0.8055555555555556,
         "deflections": 0.3333333333333333
       },
       {
@@ -1163,7 +1163,7 @@
         "minutes": 12.825347222222224,
         "screenAssists": 0.041666666666666664,
         "screenAssistsPts": 0.3333333333333333,
-        "deflections": 0.20833333333333334
+        "deflections": 0.2708333333333333
       },
       {
         "rank": 84,
@@ -1359,7 +1359,7 @@
         "minutes": 8.481428571428571,
         "screenAssists": 0.42857142857142855,
         "screenAssistsPts": 0.08571428571428572,
-        "deflections": 0.2571428571428571
+        "deflections": 0.2857142857142857
       },
       {
         "rank": 98,
@@ -1412,7 +1412,7 @@
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
         "games": 37,
-        "minutes": 13.978828828828828,
+        "minutes": 14.013513513513514,
         "screenAssists": 0,
         "screenAssistsPts": 0.4864864864864865,
         "deflections": 0.5405405405405406
@@ -1540,8 +1540,8 @@
         "games": 52,
         "minutes": 16.62596153846154,
         "screenAssists": 0.057692307692307696,
-        "screenAssistsPts": 0.5384615384615384,
-        "deflections": 0.36538461538461536
+        "screenAssistsPts": 0.5192307692307693,
+        "deflections": 0.38461538461538464
       },
       {
         "rank": 111,
@@ -1636,7 +1636,7 @@
         "teamName1": "원주 DB",
         "teamName4": "DB",
         "games": 54,
-        "minutes": 12.396604938271604,
+        "minutes": 12.2929012345679,
         "screenAssists": 0.018518518518518517,
         "screenAssistsPts": 0.2962962962962963,
         "deflections": 0.1111111111111111
@@ -1797,6 +1797,20 @@
       },
       {
         "rank": 129,
+        "playerNo": "291483",
+        "kname": "정호영",
+        "ename": "JUNG HO YOUNG",
+        "teamCode": "16",
+        "teamName1": "원주 DB",
+        "teamName4": "DB",
+        "games": 43,
+        "minutes": 7.644186046511629,
+        "screenAssists": 0,
+        "screenAssistsPts": 0.27906976744186046,
+        "deflections": 0.13953488372093023
+      },
+      {
+        "rank": 130,
         "playerNo": "290599",
         "kname": "서민수",
         "ename": "SEO MIN SOO",
@@ -1810,7 +1824,7 @@
         "deflections": 0.16216216216216217
       },
       {
-        "rank": 130,
+        "rank": 131,
         "playerNo": "290553",
         "kname": "배병준",
         "ename": "BAE BYUNGJUN",
@@ -1822,20 +1836,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 0.9230769230769231,
         "deflections": 0.38461538461538464
-      },
-      {
-        "rank": 131,
-        "playerNo": "291483",
-        "kname": "정호영",
-        "ename": "JUNG HO YOUNG",
-        "teamCode": "16",
-        "teamName1": "원주 DB",
-        "teamName4": "DB",
-        "games": 44,
-        "minutes": 7.470454545454546,
-        "screenAssists": 0,
-        "screenAssistsPts": 0.2727272727272727,
-        "deflections": 0.13636363636363635
       },
       {
         "rank": 132,
@@ -2184,7 +2184,7 @@
         "games": 45,
         "minutes": 5.851481481481482,
         "screenAssists": 0,
-        "screenAssistsPts": 0.2,
+        "screenAssistsPts": 0.26666666666666666,
         "deflections": 0.2222222222222222
       },
       {
@@ -2643,8 +2643,8 @@
         "teamCode": "16",
         "teamName1": "원주 DB",
         "teamName4": "DB",
-        "games": 2,
-        "minutes": 0.8916666666666667,
+        "games": 1,
+        "minutes": 1.7833333333333334,
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
@@ -3601,7 +3601,7 @@
         "minutes": 3.419047619047619,
         "screenAssists": 0,
         "screenAssistsPts": 0,
-        "deflections": 0.42857142857142855
+        "deflections": 0.2857142857142857
       },
       {
         "rank": 65,
