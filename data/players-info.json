@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-10-02T00:19:51.825Z",
+  "fetchedAt": "2026-10-02T18:00:41.466Z",
   "seasonCode": "47",
-  "totalRegistered": 186,
+  "totalRegistered": 187,
   "countByFlag": {
     "국내": 156,
     "아시아쿼터": 8,
@@ -2283,6 +2283,34 @@
       },
       "photoUrl": null,
       "inSeason": 37
+    },
+    "291375": {
+      "pcode": "291375",
+      "kname": "이우석",
+      "ename": "LEE WOO SUK",
+      "teamCode": "10",
+      "pos": "GD",
+      "backNum": "11",
+      "flag": "국내",
+      "country": "",
+      "birthday": "",
+      "pHeight": 196,
+      "pWeight": 83,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2020,
+        "round": 1,
+        "rank": 3
+      },
+      "photoUrl": null,
+      "inSeason": null
     },
     "291376": {
       "pcode": "291376",
