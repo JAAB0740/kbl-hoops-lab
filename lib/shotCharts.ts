@@ -164,8 +164,12 @@ const BASKET_Y = 205;
  *  Top-10 슈터 dist≥160 매칭이 KBL 공식 3PA 와 ±2 안에 들어옴 → 실제 3pt arc r=160.
  *  (FIBA 6.75m 환산은 163 이지만 KBL 캔버스 스케일/캘리는 약간 다름.) */
 
-/** 3pt arc 반경 (px). 데이터 검증 결과 r=160 일 때 KBL 3PA 와 모든 top 슈터 ±2 매칭. */
-const THREE_PT_R = 160;
+/** 3pt arc 반경 (px). league-wide 전체 선수 KBL 3PA vs 우리 분류 합 fit (sweep 결과):
+ *   r=160 → sum(diff)=+80, r=161 → +26 (best), r=162 → −44.
+ *  r=161 일 때 평균 차이가 0 에 가장 가까워 KBL 공식 통계와 align.
+ *  (개별 ±1-2 슛은 좌표만 있는 raw data 의 본질적 한계 — 슛 기록자의
+ *   on-line 판정 vs 좌표 거리 계산 불일치.) */
+const THREE_PT_R = 161;
 /** 림 영역 반경 (px). **8 feet = 2.44m → 58px** (scale 23.7 px/m, 3pt arc 160px=6.75m 기준).
  *  baseline 까지 거리=40px 이므로 58 은 18px 더 넘어가는데 clipPath 가 자동 컷 → D 모양. */
 const RIM_R = 58;
@@ -175,11 +179,13 @@ const RIM_R = 58;
  *  paint width 4.9m × 24.14 ≈ 118 → y center 205, half=59 → [146, 264]. */
 const PAINT_X = [20, 162] as const;
 const PAINT_Y = [146, 264] as const;
-/** 코너 3 — arc r=160 + basket-y=205 → arc 가 닿는 코너 직선 y=50/360.
- *  arc-라인 교차점 x ≈ 100 (chord 310 < 2r 320 ✓). */
+/** 코너 3 — corner-3 strip 의 y/x 경계. arc r=161 이 y=50/360 에 도달하는 정확한
+ *  x 위치 = √(161²−155²)+60 ≈ 103.5px (이전 100 은 r=160 기준이라 1px 어긋남).
+ *  ARC_CORNER_X 로 통일 → 시각 코트 라인 ↔ wedge boundary 정확히 일치. */
 const CORNER_Y_LOW = 50;   // y < 50: 위쪽 코너 영역
 const CORNER_Y_HIGH = 360; // y > 360: 아래쪽 코너 영역
-const CORNER_X_MAX = 100;  // arc-라인 교차점 보다 살짝 여유
+const ARC_CORNER_X = 103.5; // arc r=161 이 y=50/360 에 도달하는 정확한 x 위치
+const CORNER_X_MAX = 104;   // 분류용 (정수, ARC_CORNER_X 반올림)
 /** 윙/탑 구분 — basket-y(205) 와의 y 거리 임계값. < TOP_WIDTH → 탑, 이상 → 윙.
  *  80px ≈ 25° wedge (FIBA 3pt arc 기준). 좁은 정면 탑존만 잡고 사이드는 wing. */
 const TOP_WIDTH = 80;
@@ -313,7 +319,9 @@ export const SHOT_CHART_GEOMETRY = {
   /** 코트 외곽 사이드라인 (위·아래) — basket(y=205) 기준 대칭이 되도록 조정.
    *  KBL 캔버스 원본은 y=5/y=390 (위 200px, 아래 185px) 비대칭이라 위쪽 3pt 영역이 더
    *  넓어 보이는 문제가 있어서, 위 사이드라인을 15px 내려 y=20 으로 맞춤 → 위·아래 185px 대칭.
-   *  코트 좌측 베이스라인은 x=20 (basket-to-baseline 40px). */
+   *  코트 좌측 베이스라인은 x=20 (basket-to-baseline 40px).
+   *  주의: FIBA 비례상 corner-3 line 의 sideline 거리는 1.26m (표준 0.9m 보다 큼) —
+   *  코트 외곽을 더 안쪽으로 좁히면 코너 부근 슛이 clipPath 로 잘리므로 시각 우선으로 유지. */
   TOP_SIDELINE_Y: 20,
   BOT_SIDELINE_Y: 390,
   COURT_L_X: 20,
@@ -324,6 +332,7 @@ export const SHOT_CHART_GEOMETRY = {
   CORNER_X_MAX,
   CORNER_Y_LOW,
   CORNER_Y_HIGH,
+  ARC_CORNER_X,
   TOP_WIDTH,
   PAINT_R,
   PAINT_WING_ANGLE,

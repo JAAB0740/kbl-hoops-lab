@@ -175,15 +175,14 @@ export function HexShotMap({
             strokeWidth="1"
             strokeDasharray="3 3"
           />
-          {/* 3pt 라인 — 검증 후 KBL 실제 arc r=160.
-              corner 라인 y=50/360, arc-line 교차점 (100, 50) 및 (100, 360).
-              chord 310 < 2r 320 → SVG arc 정상 렌더. */}
+          {/* 3pt 라인 — FIBA/KBL 표준: arc r=161=6.75m, corner-3 line sideline
+              0.9m 안쪽 (y=41/369). G.CORNER_Y_LOW/HIGH 통해 통일. */}
           <path
             d={[
-              `M 20 50`,
-              `L 100 50`,
-              `A ${G.THREE_PT_R} ${G.THREE_PT_R} 0 0 1 100 360`,
-              `L 20 360`,
+              `M 20 ${G.CORNER_Y_LOW}`,
+              `L ${G.ARC_CORNER_X} ${G.CORNER_Y_LOW}`,
+              `A ${G.THREE_PT_R} ${G.THREE_PT_R} 0 0 1 ${G.ARC_CORNER_X} ${G.CORNER_Y_HIGH}`,
+              `L 20 ${G.CORNER_Y_HIGH}`,
             ].join(" ")}
             fill="none"
             stroke={LINE}
@@ -324,6 +323,10 @@ export function HexShotMap({
       <p className="mt-3 text-[11px] leading-snug text-ink-500">
         Kirk Goldsberry 스타일. 헥스 크기 = 시도수, 색상 = 해당 zone 의 리그 평균 대비
         FG% 차이. 헥스 hover/탭 시 상세 표시. 리그 baseline 은 KBL 정규+PO 38,000+ 슛 기준.
+      </p>
+      <p className="mt-1.5 text-[11px] leading-snug text-ink-500/80">
+        ※ KBL 공식 2/3점 통계와 ±1% 내외 미세 오차 가능 — raw 데이터에 2/3점 메타가 없어
+        좌표만으로 추정. 라인 위 보더라인 슛은 슛 기록자의 on-line 판정과 다를 수 있음.
       </p>
     </section>
   );

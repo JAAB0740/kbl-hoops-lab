@@ -141,6 +141,11 @@ export function ShotMap({
             KBL 경기 차트 API 의 실제 슛 좌표로 직접 계산.
             존 분류는 FIBA 코트 기준 (페인트 4.9×5.8m, 3pt 6.75m).
           </p>
+          <p className="mt-1.5 text-[11px] leading-snug text-ink-500/80">
+            ※ KBL 공식 통계와 ±1% 내외 미세 오차 가능 — raw 데이터에 2/3점 메타가
+            없어 좌표만으로 추정. 라인 위 보더라인 슛은 슛 기록자의 on-line 판정
+            (발 위치) 과 우리의 좌표 거리 계산이 다를 수 있음.
+          </p>
         </div>
       </div>
     </section>
@@ -154,12 +159,12 @@ function CourtSVG({ chart }: { chart: PlayerShotChart }) {
   const PAINT_X = G.PAINT_X;
   const PAINT_Y = G.PAINT_Y;
 
-  // 3pt 코너 직선 — 데이터 검증 결과 KBL 실제 arc r=160, 코너 라인 y=50/360.
-  // arc-line 교차점: (x-60)² + (50-205)² = 160² → x ≈ 100.
-  const ARC_START_TOP = { x: 100, y: 50 };
-  const ARC_START_BOT = { x: 100, y: 360 };
-  const CORNER_TOP_BL = { x: 20, y: 50 };
-  const CORNER_BOT_BL = { x: 20, y: 360 };
+  // 3pt 라인 — FIBA/KBL 표준: arc r=161=6.75m, corner-3 line sideline 0.9m 안쪽.
+  // corner-3 line y=41/369 (G.CORNER_Y_LOW/HIGH 기반). arc x 는 visual 보간용.
+  const ARC_START_TOP = { x: G.ARC_CORNER_X, y: G.CORNER_Y_LOW };
+  const ARC_START_BOT = { x: G.ARC_CORNER_X, y: G.CORNER_Y_HIGH };
+  const CORNER_TOP_BL = { x: 20, y: G.CORNER_Y_LOW };
+  const CORNER_BOT_BL = { x: 20, y: G.CORNER_Y_HIGH };
 
   return (
     <div className="overflow-hidden rounded-lg border border-court-700/60 bg-court-900/40">

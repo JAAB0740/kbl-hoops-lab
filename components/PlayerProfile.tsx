@@ -76,12 +76,12 @@ export function PlayerProfileView({
   const games = season?.games ?? 0;
   const archetype = classifyArchetype(profile);
 
-  // 모바일 — 3탭 (시즌 요약 / 슈팅 분석 / 게임 로그). PC 는 모든 그룹 sequential.
+  // 3탭 (시즌 요약 / 슈팅 분석 / 게임 로그) — 모바일·PC 모두 active 탭만 표시.
   const [tab, setTab] = useState<ProfileTabKey>("overview");
 
-  // 탭별 가시성 className helper — 모바일에선 active 탭만, PC(md+) 는 항상 표시
+  // 탭별 가시성 — active 탭만 표시 (모바일·PC 동일)
   const tabShow = (k: ProfileTabKey) =>
-    tab === k ? "" : "hidden md:block";
+    tab === k ? "" : "hidden";
 
   return (
     <div className="space-y-6">
@@ -98,11 +98,11 @@ export function PlayerProfileView({
         <PlayerArchetypeCard archetype={archetype} />
       </section>
 
-      {/* 모바일 전용 — 3탭 nav (sticky 상단). PC 는 숨김 — 모든 그룹 sequential */}
+      {/* Sticky 섹션 탭 — 카드형 + flame accent border 로 시각 강조. active 탭만 페이지 표시. */}
       <nav
         role="tablist"
-        aria-label="선수 상세 탭"
-        className="sticky top-14 z-40 -mx-6 flex border-b border-court-700/60 bg-court-950/95 backdrop-blur md:hidden"
+        aria-label="선수 상세 섹션"
+        className="sticky top-14 z-40 -mx-6 flex border-y border-flame-500/30 bg-court-900/95 shadow-court-glow backdrop-blur md:mx-0 md:rounded-lg md:border"
       >
         {PROFILE_TABS.map((t) => {
           const isActive = tab === t.key;
@@ -112,17 +112,30 @@ export function PlayerProfileView({
               type="button"
               role="tab"
               aria-selected={isActive}
-              onClick={() => setTab(t.key)}
+              onClick={() => {
+                setTab(t.key);
+                // 탭 변경 시 페이지 상단으로 스크롤 (sticky nav 가 그대로 보이게 offset)
+                if (typeof window !== "undefined") {
+                  const el = document.getElementById(`section-${t.key}`);
+                  if (el) {
+                    const offset = 96;
+                    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }
+                }
+              }}
               className={[
-                "relative flex-1 px-3 py-3 text-[14px] font-medium transition",
-                isActive ? "text-ink-50" : "text-ink-500 hover:text-ink-300",
+                "relative flex-1 px-3 py-4 text-[17px] font-bold tracking-tight transition md:py-5 md:text-[20px]",
+                isActive
+                  ? "bg-flame-500/10 text-flame-300"
+                  : "text-ink-400 hover:bg-court-800/60 hover:text-ink-100",
               ].join(" ")}
             >
               {t.label}
               {isActive && (
                 <span
                   aria-hidden
-                  className="absolute inset-x-2 bottom-0 h-[3px] rounded-t bg-flame-500"
+                  className="absolute inset-x-0 bottom-0 h-[3px] bg-flame-500"
                 />
               )}
             </button>
@@ -131,7 +144,7 @@ export function PlayerProfileView({
       </nav>
 
       {/* ─── 탭 1 : 시즌 요약 ─────────────────────── */}
-      <div className={["space-y-6", tabShow("overview")].join(" ")}>
+      <div id="section-overview" className={["scroll-mt-24 space-y-6", tabShow("overview")].join(" ")}>
 
       {/* 핵심 스탯 카드 */}
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -229,7 +242,7 @@ export function PlayerProfileView({
       </div>{/* /탭1 시즌 요약 */}
 
       {/* ─── 탭 2 : 슈팅 분석 ─────────────────────── */}
-      <div className={["space-y-6", tabShow("shooting")].join(" ")}>
+      <div id="section-shooting" className={["scroll-mt-24 space-y-6", tabShow("shooting")].join(" ")}>
 
       {/* 슈팅 효율 패널 — 한 경기당 FG/3P/FT/2P 막대 */}
       <section>
@@ -282,7 +295,7 @@ export function PlayerProfileView({
       </div>{/* /탭2 슈팅 분석 */}
 
       {/* ─── 탭 3 : 게임 로그 ─────────────────────── */}
-      <div className={["space-y-6", tabShow("log")].join(" ")}>
+      <div id="section-log" className={["scroll-mt-24 space-y-6", tabShow("log")].join(" ")}>
         {gameLogNode}
       </div>
     </div>
@@ -320,14 +333,22 @@ function Header({
       {teamLogoSrc && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-4 right-0 flex h-[200px] w-[250px] items-center justify-center md:-top-8 md:right-0 md:h-[330px] md:w-[425px]"
+          className="pointer-events-none absolute -top-6 right-0 flex h-[240px] w-[300px] items-center justify-center md:-top-12 md:right-0 md:h-[400px] md:w-[520px]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={teamLogoSrc}
             alt=""
-            className="h-full w-full object-contain opacity-[0.25] [filter:grayscale(100%)_brightness(2.1)]"
+            className="h-full w-full object-contain opacity-[0.22] [filter:grayscale(100%)_brightness(2.1)]"
             loading="lazy"
+            // 좌→우 fade mask — 카드 좌측 정보 (chip/이름/좌측 메타) 영역에서는 워터마크 사라지고,
+            // 우측 1/3 에 집중적으로 진하게 표시 → 텍스트와 충돌 ↓
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, transparent 30%, black 65%, black 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, transparent 30%, black 65%, black 100%)",
+            }}
           />
         </div>
       )}
@@ -391,9 +412,16 @@ function Header({
             </div>
           </div>
 
-          {/* 우: 시즌 평균 */}
+          {/* 우: 시즌 평균 — 워터마크 위에 떠 있어야 하므로 z-10 + drop shadow 로
+              가독성 보장. 텍스트 자체에 진한 그림자가 깔려 워터마크 위에서도 또렷. */}
           {season && (
-            <div className="flex items-baseline gap-1">
+            <div
+              className="relative z-10 flex items-baseline gap-1"
+              style={{
+                filter:
+                  "drop-shadow(0 1px 2px rgba(13,15,19,1)) drop-shadow(0 0 6px rgba(13,15,19,0.9))",
+              }}
+            >
               <span className="text-[12px] uppercase tracking-[0.12em] text-ink-500 md:text-[14px]">
                 정규 평균
               </span>
@@ -412,9 +440,15 @@ function Header({
           )}
         </div>
 
-        {/* 메타정보 grid */}
+        {/* 메타정보 grid — 우측 셀(드래프트/선수구분)이 워터마크와 겹치므로
+            전체에 drop-shadow 살짝 + z-10 으로 떠 있게 */}
         {info && (
-          <div className="mt-5 grid grid-cols-2 gap-3 border-t border-court-700/60 pt-4 sm:grid-cols-3 md:grid-cols-6">
+          <div
+            className="relative z-10 mt-5 grid grid-cols-2 gap-3 border-t border-court-700/60 pt-4 sm:grid-cols-3 md:grid-cols-6"
+            style={{
+              filter: "drop-shadow(0 1px 2px rgba(13,15,19,0.9))",
+            }}
+          >
             <Meta label="국적" value={fmtCountry(info.country, info.flag)} />
             <Meta
               label="생년월일"

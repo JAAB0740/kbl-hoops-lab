@@ -61,9 +61,10 @@ function wedge(rIn: number, rOut: number, a0: number, a1: number): string {
   ].join(" ");
 }
 
-// 핵심 점들
-const ARC_C_TOP = { x: 99.7, y: 50 };
-const ARC_C_BOT = { x: 99.7, y: 360 };
+// 핵심 점들 — corner-3 line 과 arc 만나는 지점.
+// arc r=161 이 y=50/360 에 도달하는 정확한 x = G.ARC_CORNER_X (≈103.5).
+const ARC_C_TOP = { x: G.ARC_CORNER_X, y: G.CORNER_Y_LOW };
+const ARC_C_BOT = { x: G.ARC_CORNER_X, y: G.CORNER_Y_HIGH };
 const ARC_TW_TOP = { x: BX + THREE_R * Math.cos(-A_TW), y: BY + THREE_R * Math.sin(-A_TW) };
 const ARC_TW_BOT = { x: BX + THREE_R * Math.cos(+A_TW), y: BY + THREE_R * Math.sin(+A_TW) };
 const CR_TW_TOP_Y = BY + (COURT_R_X - BX) * Math.tan(-A_TW);
@@ -122,16 +123,16 @@ const ZONE_PATHS: Record<ShotZoneDetailed, string> = {
     "Z",
   ].join(" "),
 
-  // 10. 좌 코너 3 (직사각형 — top sideline y=20 으로 조정해서 우 코너와 높이 균일)
-  corner_3_top: `M 20,${TOP_SIDELINE_Y} L 100,${TOP_SIDELINE_Y} L 100,50 L 20,50 Z`,
+  // 10. 좌 코너 3 (직사각형 — FIBA: corner-3 line 이 sideline 0.9m 안쪽 = y=41)
+  corner_3_top: `M 20,${TOP_SIDELINE_Y} L ${G.ARC_CORNER_X},${TOP_SIDELINE_Y} L ${G.ARC_CORNER_X},${G.CORNER_Y_LOW} L 20,${G.CORNER_Y_LOW} Z`,
 
   // 11. 좌 윙 3 (top sideline y=TOP_SIDELINE_Y 반영)
   wing_3_top: [
     `M ${f(ARC_TW_TOP.x)},${f(ARC_TW_TOP.y)}`,
     `L ${COURT_R_X},${f(CR_TW_TOP_Y)}`,
     `L ${COURT_R_X},${TOP_SIDELINE_Y}`,
-    `L 100,${TOP_SIDELINE_Y}`,
-    `L 100,50`,
+    `L ${G.ARC_CORNER_X},${TOP_SIDELINE_Y}`,
+    `L ${G.ARC_CORNER_X},${G.CORNER_Y_LOW}`,
     `L ${ARC_C_TOP.x},${ARC_C_TOP.y}`,
     `A ${THREE_R},${THREE_R} 0 0,1 ${f(ARC_TW_TOP.x)},${f(ARC_TW_TOP.y)}`,
     "Z",
@@ -152,18 +153,19 @@ const ZONE_PATHS: Record<ShotZoneDetailed, string> = {
     `M ${f(ARC_TW_BOT.x)},${f(ARC_TW_BOT.y)}`,
     `L ${COURT_R_X},${f(CR_TW_BOT_Y)}`,
     `L ${COURT_R_X},${BOT_SIDELINE_Y}`,
-    `L 100,${BOT_SIDELINE_Y}`,
-    `L 100,360`,
+    `L ${G.ARC_CORNER_X},${BOT_SIDELINE_Y}`,
+    `L ${G.ARC_CORNER_X},${G.CORNER_Y_HIGH}`,
     `L ${ARC_C_BOT.x},${ARC_C_BOT.y}`,
     `A ${THREE_R},${THREE_R} 0 0,0 ${f(ARC_TW_BOT.x)},${f(ARC_TW_BOT.y)}`,
     "Z",
   ].join(" "),
 
-  // 14. 우 코너 3 (직사각형)
-  corner_3_bot: `M 20,360 L 100,360 L 100,${BOT_SIDELINE_Y} L 20,${BOT_SIDELINE_Y} Z`,
+  // 14. 우 코너 3 (직사각형 — FIBA: corner-3 line y=369)
+  corner_3_bot: `M 20,${G.CORNER_Y_HIGH} L ${G.ARC_CORNER_X},${G.CORNER_Y_HIGH} L ${G.ARC_CORNER_X},${BOT_SIDELINE_Y} L 20,${BOT_SIDELINE_Y} Z`,
 };
 
-const COURT_3PT_PATH = "M 20,50 L 99.7,50 A 160,160 0 0,1 99.7,360 L 20,360";
+// 코트 3pt line (시각용) — corner-3 line FIBA 0.9m + arc r=161
+const COURT_3PT_PATH = `M 20,${G.CORNER_Y_LOW} L ${G.ARC_CORNER_X},${G.CORNER_Y_LOW} A ${THREE_R},${THREE_R} 0 0,1 ${G.ARC_CORNER_X},${G.CORNER_Y_HIGH} L 20,${G.CORNER_Y_HIGH}`;
 
 // ─── 라벨 위치 (portrait) ──────────────────────────
 //   paint_left wedge 의 centroid: midAngle = -5π/16, midR = 90 (avg of 60, 120)
@@ -414,6 +416,10 @@ export function AreaShotChart({
             ))}
           </div>
         </div>
+        <p className="px-3 pb-2 text-[11px] leading-snug text-ink-500/80">
+          ※ KBL 공식 2/3점 통계와 ±1% 내외 미세 오차 가능 — raw 데이터에 2/3점 메타가 없어
+          좌표만으로 추정. 라인 위 보더라인 슛은 슛 기록자의 on-line 판정과 다를 수 있음.
+        </p>
       </div>
     </section>
   );

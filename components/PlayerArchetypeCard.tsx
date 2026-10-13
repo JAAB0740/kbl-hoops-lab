@@ -171,58 +171,49 @@ function ShotMixBar({
   const m = norm(mid);
   const t = norm(three);
 
+  // 막대 안에 % 텍스트 표시 — 작은 구간 (예: <8%) 은 텍스트 잘리므로 % 만 표기,
+  // 충분히 큰 구간 (≥12%) 은 zone 명 + %. 시선이 막대 위로 집중되어 가독성 ↑.
+  const minForLabel = 12; // 이 비중 미만은 zone 명 생략하고 % 만
+  const SegmentLabel = ({ pct, label, hideOnNarrow }: { pct: number; label: string; hideOnNarrow?: boolean }) => (
+    <span className="flex items-center gap-1.5 px-2 text-[14px] font-extrabold leading-none text-court-950 md:text-[16px]">
+      {!hideOnNarrow && pct >= minForLabel && (
+        <span className="hidden tracking-tight sm:inline">{label}</span>
+      )}
+      <span className="stat-num">{pct.toFixed(0)}%</span>
+    </span>
+  );
+
   return (
     <div className="mt-2">
-      <div className="flex h-3 overflow-hidden rounded-md border border-court-700/60 bg-court-900/40">
+      <div className="flex h-9 overflow-hidden rounded-md border border-court-700/60 bg-court-900/40 md:h-10">
         {paint > 0 && (
           <div
-            className="h-full bg-flame-500"
+            className="flex h-full items-center justify-center bg-flame-500"
             style={{ width: `${p}%` }}
             title={`페인트 ${p.toFixed(0)}%`}
-          />
+          >
+            <SegmentLabel pct={p} label={paint > 0 ? "페인트" : "—"} />
+          </div>
         )}
         {mid > 0 && (
           <div
-            className="h-full bg-neon-500"
+            className="flex h-full items-center justify-center bg-neon-500"
             style={{ width: `${m}%` }}
             title={`${midLabel} ${m.toFixed(0)}%`}
-          />
+          >
+            <SegmentLabel pct={m} label={midLabel} />
+          </div>
         )}
         {three > 0 && (
           <div
-            className="h-full bg-buzzer-500"
+            className="flex h-full items-center justify-center bg-buzzer-500"
             style={{ width: `${t}%` }}
             title={`3점 ${t.toFixed(0)}%`}
-          />
+          >
+            <SegmentLabel pct={t} label="3점" />
+          </div>
         )}
       </div>
-      <div className="mt-2 grid grid-cols-3 gap-2 text-[13px]">
-        <LegendCell
-          color="bg-flame-500"
-          label={paint > 0 ? "페인트" : "—"}
-          value={`${p.toFixed(0)}%`}
-        />
-        <LegendCell color="bg-neon-500" label={midLabel} value={`${m.toFixed(0)}%`} />
-        <LegendCell color="bg-buzzer-500" label="3점" value={`${t.toFixed(0)}%`} />
-      </div>
-    </div>
-  );
-}
-
-function LegendCell({
-  color,
-  label,
-  value,
-}: {
-  color: string;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex items-center gap-1.5">
-      <span className={`inline-block h-2 w-3 rounded-sm ${color}`} />
-      <span className="text-ink-500">{label}</span>
-      <span className="stat-num ml-auto text-ink-100">{value}</span>
     </div>
   );
 }
