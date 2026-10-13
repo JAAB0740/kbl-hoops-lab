@@ -27,6 +27,7 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
 
 const HEADERS = {
   "User-Agent":
@@ -38,7 +39,9 @@ const HEADERS = {
   TeamCode: "",
 };
 
-const SEASON = "47";
+const SEASON_INFO = getCurrentSeason();
+logSeason(SEASON_INFO);
+const SEASON = SEASON_INFO.code;
 
 // ─── 1) api-stats — 풀 메타정보 ─────────────────────
 console.log("[1/2] api-stats.kbl.or.kr/api/players (52 필드)");

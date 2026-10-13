@@ -16,6 +16,11 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+
+const SEASON_INFO = getCurrentSeason();
+logSeason(SEASON_INFO);
+const SEASON = SEASON_INFO.code;
 
 const HEADERS = {
   "User-Agent":
@@ -29,7 +34,7 @@ const HEADERS = {
 
 const BASE = "https://api-stats.kbl.or.kr/api/records/player/general/traditional";
 const COMMON = {
-  seasonCode: "47",
+  seasonCode: SEASON,
   perCn: "1",      // 1=평균, 0=합산
   lastCn: "0",
   partIfList: "0",
@@ -159,7 +164,7 @@ writeFileSync(
     {
       fetchedAt: new Date().toISOString(),
       source: "api-stats.kbl.or.kr",
-      seasonCode: "47",
+      seasonCode: SEASON,
       splits: normalized,
     },
     null,

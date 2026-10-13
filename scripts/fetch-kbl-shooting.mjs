@@ -12,6 +12,11 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+
+const SEASON_INFO = getCurrentSeason();
+logSeason(SEASON_INFO);
+const SEASON = SEASON_INFO.code;
 
 const HEADERS = {
   "User-Agent":
@@ -26,7 +31,7 @@ const HEADERS = {
 const PLAYER_BASE = "https://api-stats.kbl.or.kr/api/records/player/shooting";
 const TEAM_BASE = "https://api-stats.kbl.or.kr/api/records/team/shooting";
 const COMMON = {
-  seasonCode: "47",
+  seasonCode: SEASON,
   perCn: "1",
   lastCn: "0",
   partIfList: "0",
@@ -130,7 +135,7 @@ writeFileSync(
     {
       fetchedAt: new Date().toISOString(),
       source: "api-stats.kbl.or.kr/api/records/{player,team}/shooting",
-      seasonCode: "47",
+      seasonCode: SEASON,
       // 6 Range 의미 (KBL 공식 정의 추정):
       //   Range 1: 림 부근 (페인트 안)
       //   Range 2: 페인트 외곽 (미드 근거리)

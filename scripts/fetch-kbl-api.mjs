@@ -11,6 +11,11 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+
+const SEASON_INFO = getCurrentSeason();
+logSeason(SEASON_INFO);
+const SEASON = SEASON_INFO.code;
 
 // ─── Head-to-Head 타이브레이커 ─────────────────────────
 // games.json 의 정규시즌 결과로 모든 팀 쌍의 head-to-head 계산
@@ -62,7 +67,7 @@ function compareH2H(h2h, a, b) {
 
 const BASE = "https://api-stats.kbl.or.kr/api/records/team/general/traditional";
 const COMMON = {
-  seasonCode: "47",
+  seasonCode: SEASON,
   gameCode: "01",            // 정규리그만 (PO/챔결 제외)
   sortDataSc: "WIN_A",
   sortOrderSc: "desc",

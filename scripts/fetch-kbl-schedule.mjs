@@ -14,10 +14,13 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
 
-const SEASON = "47"; // KBL 본선 (D리그는 48)
-const SEASON_FROM = "20251001";
-const SEASON_TO = "20260630";
+const SEASON_INFO = getCurrentSeason();
+logSeason(SEASON_INFO);
+const SEASON = SEASON_INFO.code;
+const SEASON_FROM = SEASON_INFO.from;
+const SEASON_TO = SEASON_INFO.to;
 const URL = `https://api.kbl.or.kr/match/list?seasonCode=${SEASON}&fromDate=${SEASON_FROM}&toDate=${SEASON_TO}`;
 
 const HEADERS = {
