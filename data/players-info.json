@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T02:21:29.268Z",
+  "fetchedAt": "2026-10-13T19:28:38.054Z",
   "seasonCode": "47",
   "totalRegistered": 187,
   "countByFlag": {
@@ -2475,30 +2475,6 @@
       "draft": null,
       "photoUrl": null,
       "inSeason": 39
-    },
-    "291436": {
-      "pcode": "291436",
-      "kname": "라숀 토마스",
-      "ename": "Rashawn Thomas",
-      "teamCode": "70",
-      "pos": "FD",
-      "backNum": "25",
-      "flag": "외국선수",
-      "country": "",
-      "birthday": "",
-      "pHeight": 200,
-      "pWeight": 107,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": null
     },
     "291476": {
       "pcode": "291476",
@@ -5116,6 +5092,30 @@
       "birthday": "",
       "pHeight": 180,
       "pWeight": 81,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": null
+    },
+    "291888": {
+      "pcode": "291888",
+      "kname": "데이본 리드",
+      "ename": "Davon Reed",
+      "teamCode": "70",
+      "pos": "FD",
+      "backNum": "9",
+      "flag": "외국선수",
+      "country": "",
+      "birthday": "",
+      "pHeight": 195,
+      "pWeight": 106,
       "schools": {
         "primary": null,
         "middle": null,
