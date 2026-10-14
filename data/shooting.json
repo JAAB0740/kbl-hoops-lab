@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-14T00:02:21.114Z",
+  "fetchedAt": "2026-10-14T17:29:42.939Z",
   "source": "api-stats.kbl.or.kr/api/records/{player,team}/shooting",
   "seasonCode": "49",
   "rangeLabels": {
@@ -5327,50 +5327,6 @@
       },
       {
         "rank": 2,
-        "code": "06",
-        "name": "수원 KT",
-        "shortName": "KT",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 13.25,
-            "att": 18.5,
-            "pct": 71.62162162162163
-          },
-          {
-            "range": 2,
-            "made": 7.25,
-            "att": 13.75,
-            "pct": 52.72727272727272
-          },
-          {
-            "range": 3,
-            "made": 1.75,
-            "att": 6.5,
-            "pct": 26.923076923076923
-          },
-          {
-            "range": 4,
-            "made": 1,
-            "att": 3.75,
-            "pct": 26.666666666666668
-          },
-          {
-            "range": 5,
-            "made": 7.5,
-            "att": 23,
-            "pct": 32.608695652173914
-          },
-          {
-            "range": 6,
-            "made": 1.75,
-            "att": 9,
-            "pct": 19.444444444444446
-          }
-        ]
-      },
-      {
-        "rank": 3,
         "code": "10",
         "name": "울산 현대모비스",
         "shortName": "현대모비스",
@@ -5414,7 +5370,7 @@
         ]
       },
       {
-        "rank": 4,
+        "rank": 3,
         "code": "60",
         "name": "부산 KCC",
         "shortName": "KCC",

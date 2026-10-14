@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-14T00:02:23.703Z",
+  "fetchedAt": "2026-10-14T17:29:46.398Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -201,34 +201,6 @@
       },
       {
         "rank": 15,
-        "playerNo": "290524",
-        "kname": "라건아",
-        "ename": "Ra Guna",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 4,
-        "minutes": 26.825,
-        "screenAssists": 1.5,
-        "screenAssistsPts": 0,
-        "deflections": 0.5
-      },
-      {
-        "rank": 15,
-        "playerNo": "291692",
-        "kname": "미구엘 옥존",
-        "ename": "Miguel Andre Oczon",
-        "teamCode": "06",
-        "teamName1": "수원 KT",
-        "teamName4": "KT",
-        "games": 4,
-        "minutes": 24.133333333333333,
-        "screenAssists": 0,
-        "screenAssistsPts": 1.6,
-        "deflections": 1
-      },
-      {
-        "rank": 15,
         "playerNo": "291511",
         "kname": "이선 알바노",
         "ename": "Ethan Alvano",
@@ -403,20 +375,6 @@
         "teamCode": "50",
         "teamName1": "창원 LG",
         "teamName4": "LG",
-        "games": 4,
-        "minutes": 25.8875,
-        "screenAssists": 0.25,
-        "screenAssistsPts": 0.75,
-        "deflections": 0
-      },
-      {
-        "rank": 28,
-        "playerNo": "291667",
-        "kname": "문정현",
-        "ename": "MOON JEONG HYEON",
-        "teamCode": "06",
-        "teamName1": "수원 KT",
-        "teamName4": "KT",
         "games": 4,
         "minutes": 25.8875,
         "screenAssists": 0.25,
@@ -604,20 +562,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
-      },
-      {
-        "rank": 40,
-        "playerNo": "291583",
-        "kname": "렌즈 아반도",
-        "ename": "Rhenz Joseph Abando",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 5,
-        "minutes": 25.19333333333333,
-        "screenAssists": 0,
-        "screenAssistsPts": 1.4,
-        "deflections": 1
       },
       {
         "rank": 41,
@@ -1026,6 +970,20 @@
         "deflections": 0.3333333333333333
       },
       {
+        "rank": 70,
+        "playerNo": "290781",
+        "kname": "김준일",
+        "ename": "KIM JUN YL",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 5,
+        "minutes": 12.176666666666668,
+        "screenAssists": 0.4,
+        "screenAssistsPts": 0,
+        "deflections": 0.4
+      },
+      {
         "rank": 71,
         "playerNo": "290985",
         "kname": "최성모",
@@ -1278,21 +1236,7 @@
         "deflections": 0
       },
       {
-        "rank": 88,
-        "playerNo": "291087",
-        "kname": "김국찬",
-        "ename": "KIM GOOK CHAN",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 4,
-        "minutes": 14.95,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.5
-      },
-      {
-        "rank": 88,
+        "rank": 89,
         "playerNo": "290997",
         "kname": "김진유",
         "ename": "KIM JIN YOO",
