@@ -5,6 +5,7 @@ import {
   type FilteredTeam,
 } from "@/lib/data";
 import { teamLogoSrc } from "@/lib/teamLogos";
+import { seasonLabel } from "@/lib/kblSeason";
 
 export const metadata = {
   title: "순위 — KBL Hoops Lab",
@@ -16,6 +17,11 @@ export default function StandingsPage() {
   const runnerUp = teams[1];
   const sixthPlace = teams[5];
   const bottom = teams[teams.length - 1];
+  const season = seasonLabel();
+  // 54경기는 KBL 정규리그 full-season. 아직 진행 중이면 "진행 중" 으로 fallback 가능.
+  const gamesPlayedLabel = champion
+    ? `${champion.wins + champion.losses}경기 기준`
+    : "진행 중";
 
   return (
     <div className="min-h-screen">
@@ -23,7 +29,7 @@ export default function StandingsPage() {
         {/* 헤더 */}
         <section className="mb-8">
           <span className="chip border-neon-500/30 bg-neon-500/10 text-neon-400">
-            2025-26 정규리그 · 54경기 기준
+            {season} 정규리그 · {gamesPlayedLabel}
           </span>
           <h1 className="mt-3 text-2xl font-bold tracking-tight text-ink-50 md:text-3xl">
             전체 팀 순위
@@ -88,7 +94,7 @@ export default function StandingsPage() {
         )}
 
         <footer className="mt-6 md:mt-8 border-t border-court-700/60 pt-4 md:pt-6 text-center text-[12px] md:text-[14px] text-ink-500">
-          데이터 출처: KBL 공식 API · 2025-26 정규리그 54경기 기준
+          데이터 출처: KBL 공식 API · {season} 정규리그 · {gamesPlayedLabel}
         </footer>
       </main>
     </div>

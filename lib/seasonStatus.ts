@@ -4,6 +4,7 @@
 
 import { buildPlayoffBracket } from "./playoffs";
 import gamesJson from "../data/games.json";
+import { STANDINGS } from "./data";
 import type { PlayoffSeries } from "./types";
 
 type RawGame = {
@@ -74,6 +75,24 @@ export function getSeasonStatus(): SeasonStatus {
     );
   const nextGame = upcoming[0] ?? null;
   const daysToNext = nextGame ? diffDays(today, nextGame.date) : null;
+
+  // 정규시즌 미완료 (리더 50경기 미만) 이면 PO 단계 로직 skip → "정규리그 진행중".
+  // (empty bracket.firstRound 가 every === true 로 "4강 대기" 라벨 되는 버그 회피)
+  const leader = STANDINGS[0];
+  const regularComplete = leader ? (leader.wins + leader.losses) >= 50 : false;
+  if (!regularComplete) {
+    return {
+      stage: "regular",
+      label: "정규리그",
+      shortChip: "정규리그 진행중",
+      nextGame,
+      daysToNext,
+      finalSeries: null,
+      semiSeries: [],
+      firstSeries: [],
+      champion: null,
+    };
+  }
 
   // 시즌 단계 결정
   const finalAllDone = bracket.final?.status === "final";

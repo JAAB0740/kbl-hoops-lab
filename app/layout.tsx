@@ -21,10 +21,13 @@ const pretendard = localFont({
   display: "swap",
 });
 
+import { seasonLabel } from "@/lib/kblSeason";
+
 const SITE_URL = "https://kbl-hoops-lab.vercel.app";
-const SITE_TITLE = "KBL Hoops Lab — 2025-26 시즌 분석";
+const SEASON_LABEL = seasonLabel();
+const SITE_TITLE = `KBL Hoops Lab — ${SEASON_LABEL} 시즌 분석`;
 const SITE_DESCRIPTION =
-  "한국프로농구(KBL) 2025-26 시즌 순위, 일정, 선수 스탯, 비교, 박스스코어, 플레이오프 브래킷, 4팩터·샷차트 등 고급 분석을 한 화면에서.";
+  `한국프로농구(KBL) ${SEASON_LABEL} 시즌 순위, 일정, 선수 스탯, 비교, 박스스코어, 플레이오프 브래킷, 4팩터·샷차트 등 고급 분석을 한 화면에서.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
   keywords: [
     "KBL", "한국프로농구", "농구", "프로농구", "통계", "스탯",
     "선수", "팀", "순위", "일정", "박스스코어",
-    "플레이오프", "챔피언결정전", "2025-26", "비교",
+    "플레이오프", "챔피언결정전", SEASON_LABEL, "비교",
     "advanced stats", "4팩터", "샷차트",
   ],
   authors: [{ name: "JAAB" }],

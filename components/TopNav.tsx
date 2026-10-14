@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSeasonStatus } from "@/lib/seasonStatus";
+import { seasonLabel } from "@/lib/kblSeason";
 
 const NAV = [
   { href: "/", label: "홈" },
@@ -59,7 +60,7 @@ export function TopNav() {
 
           <div className="flex items-center gap-3">
             <span className="hidden text-[14px] font-medium tracking-widest text-ink-500 sm:inline">
-              2025-26 정규리그
+              {seasonLabel()} 정규리그
             </span>
             <div className="flex items-center gap-1.5 rounded-md border border-court-700 bg-court-800/70 px-2.5 py-1.5">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-buzzer-500" />

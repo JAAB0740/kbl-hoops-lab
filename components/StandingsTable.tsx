@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { TeamStanding } from "@/lib/types";
+import { seasonLabel } from "@/lib/kblSeason";
 
 interface Props {
   rows: TeamStanding[];
@@ -15,7 +16,7 @@ export function StandingsTable({ rows, take = 6 }: Props) {
         <div>
           <h3 className="text-sm font-semibold text-ink-50">정규리그 TOP {take}</h3>
           <p className="mt-0.5 text-[14px] text-ink-500">
-            2025-26 · 주황색은 4강 직행, 청록은 6강 PO
+            {seasonLabel()} · 주황색은 4강 직행, 청록은 6강 PO
           </p>
         </div>
         <Link

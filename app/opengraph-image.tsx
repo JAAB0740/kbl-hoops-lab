@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { seasonLabel } from "@/lib/kblSeason";
 
 /**
  * Open Graph 이미지 — 1200×630.
@@ -7,7 +8,7 @@ import { ImageResponse } from "next/og";
  * Satori 엔진 제약: 자식이 있는 모든 element 에 display 속성 명시 필수 (생략 시 빌드 실패).
  */
 export const runtime = "edge";
-export const alt = "KBL Hoops Lab — 2025-26 시즌 분석";
+export const alt = `KBL Hoops Lab — ${seasonLabel()} 시즌 분석`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -59,7 +60,7 @@ export default async function OGImage() {
               color: "#a1a1aa",
             }}
           >
-            2025-26 시즌 · 챔피언결정전 진행 중
+            {seasonLabel()} 시즌 · KBL 공식 데이터 기반
           </div>
           <div
             style={{

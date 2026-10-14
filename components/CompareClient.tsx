@@ -6,6 +6,7 @@ import type { RawPlayer } from "@/lib/data";
 import type { TeamStanding } from "@/lib/types";
 import { StatRadar, type RadarSeries } from "@/components/StatRadar";
 import { percentilesOf } from "@/lib/percentile";
+import { seasonLabel } from "@/lib/kblSeason";
 
 type Mode = "team" | "player";
 
@@ -236,7 +237,7 @@ export function CompareClient({ standings, players }: Props) {
       {mounted && series.length > 0 && (
         <StatRadar
           title={`${aLabel}  vs  ${bLabel}`}
-          subtitle={`2025-26 시즌 · ${mode === "team" ? "팀" : "선수"} 비교 · 리그 분포 기준 percentile (바깥쪽 = 강함)`}
+          subtitle={`${seasonLabel()} 시즌 · ${mode === "team" ? "팀" : "선수"} 비교 · 리그 분포 기준 percentile (바깥쪽 = 강함)`}
           axes={AXES.map((a) => a.label)}
           series={series}
           height={420}

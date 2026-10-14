@@ -1,5 +1,6 @@
 import { PlayoffBracketView } from "@/components/PlayoffBracket";
 import { buildPlayoffBracket } from "@/lib/playoffs";
+import { seasonLabel } from "@/lib/kblSeason";
 
 export const metadata = {
   title: "플레이오프 — KBL Hoops Lab",
@@ -25,7 +26,7 @@ export default function PlayoffsPage() {
         <section className="mb-8">
           <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">
             <span className="h-1.5 w-1.5 rounded-full bg-flame-500" />
-            POST-SEASON · 2025-26
+            POST-SEASON · {seasonLabel()}
           </span>
           <h1 className="mt-3 text-2xl font-bold tracking-tight text-ink-50 md:text-3xl">
             봄 농구 브래킷

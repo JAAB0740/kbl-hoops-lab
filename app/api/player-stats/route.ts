@@ -230,12 +230,14 @@ function aggregateMulti(lists: NormalizedPlayer[][]): NormalizedPlayer[] {
   return out;
 }
 
+import { getCurrentSeason } from "@/lib/kblSeason";
+
 const TRAD_BASE = "https://api-stats.kbl.or.kr/api/records/player/general/traditional";
 const ADV_BASE = "https://api-stats.kbl.or.kr/api/records/player/general/advanced";
 
 async function callKBL(extra: Record<string, string>) {
   const params = new URLSearchParams({
-    seasonCode: "47",
+    seasonCode: getCurrentSeason().code,
     perCn: "1",
     lastCn: "0",
     partIfList: "0",

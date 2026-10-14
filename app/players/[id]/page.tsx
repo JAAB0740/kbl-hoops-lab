@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PlayerProfileView } from "@/components/PlayerProfile";
+import { seasonLabel } from "@/lib/kblSeason";
 import { PlayerGameLog } from "@/components/PlayerGameLog";
 import { ScrollToTopFab } from "@/components/ScrollToTopFab";
 import {
@@ -29,7 +30,7 @@ export function generateMetadata({ params }: Props) {
   }
   return {
     title: `${profile.kname} (${profile.team.short}) — KBL Hoops Lab`,
-    description: `${profile.kname} 선수의 2025-26 시즌 평균, 라운드별 추이, 플레이오프 비교.`,
+    description: `${profile.kname} 선수의 ${seasonLabel()} 시즌 평균, 라운드별 추이, 플레이오프 비교.`,
   };
 }
 

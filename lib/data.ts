@@ -33,8 +33,15 @@ const SHORT_TO_TEAMCODE: Record<string, TeamStanding["code"]> = {
   삼성: "SAMSUNG",
 };
 
-// 순위에 따른 PO status 분류 (10팀 기준)
-function rankToStatus(rank: number, total: number): TeamStanding["status"] {
+// 순위에 따른 PO status 분류 (10팀 기준).
+// 시즌 진행 중 (한 팀도 50경기 미만) 이면 전체 "out" — 아직 "우승"/"최하위" 라벨 X.
+// 정규리그 54경기 중 50+ 완료되면 상위/하위 라벨 적용.
+function rankToStatus(
+  rank: number,
+  total: number,
+  isSeasonComplete: boolean,
+): TeamStanding["status"] {
+  if (!isSeasonComplete) return "out";
   if (rank === 1) return "regular-champ";
   if (rank === 2) return "bye";
   if (rank >= 3 && rank <= 6) return "po";
@@ -81,6 +88,9 @@ const totalTeams = filteredAll.length || 10;
 const leaderRow = filteredAll[0];
 const leaderWins = leaderRow?.wins ?? 0;
 const leaderLosses = leaderRow?.losses ?? 0;
+// 시즌 완료 여부 — 리더 팀이 50경기 이상 치렀으면 "거의 종료" 로 판단 (54경기 중 50+)
+const SEASON_COMPLETE_THRESHOLD = 50;
+const isSeasonComplete = (leaderWins + leaderLosses) >= SEASON_COMPLETE_THRESHOLD;
 
 function computeGb(wins: number, losses: number): string {
   if (!leaderRow) return "-";
@@ -90,7 +100,7 @@ function computeGb(wins: number, losses: number): string {
 }
 
 export const STANDINGS: TeamStanding[] = filteredAll.map((t) => {
-  const status = rankToStatus(t.rank, totalTeams);
+  const status = rankToStatus(t.rank, totalTeams, isSeasonComplete);
   const ppg = t.stats?.points ?? 0;
   const margin = t.stats?.margin ?? 0;
   // oppPpg = ppg - margin (KBL margin = 득점 - 실점)

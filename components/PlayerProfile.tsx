@@ -16,6 +16,7 @@ import { PlayerArchetypeCard } from "@/components/PlayerArchetypeCard";
 import { ShotMap } from "@/components/ShotMap";
 import { HexShotMap } from "@/components/HexShotMap";
 import { AreaShotChart } from "@/components/AreaShotChart";
+import { seasonLabel } from "@/lib/kblSeason";
 import { StatRadar, type RadarSeries } from "@/components/StatRadar";
 import { archetypeChipClass, classifyArchetype } from "@/lib/archetype";
 import { percentilesOf } from "@/lib/percentile";
@@ -578,9 +579,10 @@ function PlayerSpiderPanel({
 
   // 캡처/공유 시 컨텍스트 보이게 — 선수 + 팀 + 시즌 제목에 포함
   const title = `${kname} · ${teamShort} · 8축 강점 비교`;
+  const seasonLbl = seasonLabel();
   const subtitle = playoff
-    ? "2025-26 시즌 · 정규시즌(주황) vs 플레이오프(시안) · 리그 분포 기준 percentile"
-    : "2025-26 시즌 · 리그 분포 기준 percentile";
+    ? `${seasonLbl} 시즌 · 정규시즌(주황) vs 플레이오프(시안) · 리그 분포 기준 percentile`
+    : `${seasonLbl} 시즌 · 리그 분포 기준 percentile`;
 
   return (
     <StatRadar
