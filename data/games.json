@@ -278,9 +278,9 @@
       "homeShort": "가스공사",
       "awayTeam": "수원 KT 소닉붐",
       "awayShort": "KT",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 82,
+      "awayScore": 69,
+      "status": "final",
       "stadium": "대구체육관"
     },
     {
