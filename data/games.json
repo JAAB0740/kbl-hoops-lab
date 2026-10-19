@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-18T22:39:28.384Z",
+  "fetchedAt": "2026-10-19T18:47:25.250Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -418,9 +418,9 @@
       "homeShort": "DB",
       "awayTeam": "대구 한국가스공사 페가수스",
       "awayShort": "가스공사",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 104,
+      "awayScore": 78,
+      "status": "final",
       "stadium": "원주DB프로미아레나"
     },
     {
@@ -1042,7 +1042,7 @@
     {
       "gmkey": "S49G01N71",
       "date": "2026-11-15",
-      "time": "14:00",
+      "time": "16:30",
       "tag": "정규리그",
       "homeTeam": "창원 LG 세이커스",
       "homeShort": "LG",
