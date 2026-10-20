@@ -852,10 +852,9 @@ export function combineTeamLists(...lists: FilteredTeam[][]): FilteredTeam[] {
   return out;
 }
 
-export const HAS_FILTERED_STANDINGS =
-  STANDINGS_FILTERS.all.length >= 10 &&
-  STANDINGS_FILTERS.home.length >= 10 &&
-  STANDINGS_FILTERS.away.length >= 10;
+// 'all' 에 10팀 다 있으면 최소한 표시 가능 — home/away 는 시즌 초에 일부 팀이
+// 아직 그 split 경기를 안 치러서 9팀만 있을 수 있음 (완전 종료 전엔 흔한 상태).
+export const HAS_FILTERED_STANDINGS = STANDINGS_FILTERS.all.length >= 10;
 
 /**
  * 라운드 다중 선택 집계 — 선택된 라운드들의 가중평균(games 기준)으로
