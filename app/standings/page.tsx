@@ -22,6 +22,8 @@ export default function StandingsPage() {
   const gamesPlayedLabel = champion
     ? `${champion.wins + champion.losses}경기 기준`
     : "진행 중";
+  // 시즌 완료 여부 — 리더가 50경기 이상 치렀으면 "우승/직행/최하위" 라벨, 아니면 단순 순위.
+  const regularComplete = champion ? (champion.wins + champion.losses) >= 50 : false;
 
   return (
     <div className="min-h-screen">
@@ -51,29 +53,29 @@ export default function StandingsPage() {
             ].join(" ")}
           >
             <SummaryCard
-              label="정규리그 우승"
+              label={regularComplete ? "정규리그 우승" : "1위 (선두)"}
               team={champion}
               logoSrc={teamLogoSrc(champion?.shortName)}
               barColor="bg-flame-500"
             />
             <SummaryCard
-              label="4강 직행"
+              label={regularComplete ? "4강 직행" : "2위"}
               team={runnerUp}
               logoSrc={teamLogoSrc(runnerUp?.shortName)}
               barColor="bg-flame-400"
             />
             <SummaryCard
-              label="PO 라인 (6위)"
+              label={regularComplete ? "PO 라인 (6위)" : "6위"}
               team={sixthPlace}
               logoSrc={teamLogoSrc(sixthPlace?.shortName)}
               barColor="bg-hoop-500"
             />
             <SummaryCard
-              label="최하위"
+              label={regularComplete ? "최하위" : `${teams.length}위`}
               team={bottom}
               logoSrc={teamLogoSrc(bottom?.shortName)}
               barColor="bg-buzzer-500"
-              highlight="danger"
+              highlight={regularComplete ? "danger" : undefined}
             />
           </section>
         )}
