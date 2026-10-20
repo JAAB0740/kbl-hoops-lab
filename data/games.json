@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-20T00:01:27.210Z",
+  "fetchedAt": "2026-10-20T17:25:06.805Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -432,9 +432,9 @@
       "homeShort": "SK",
       "awayTeam": "안양 정관장 레드부스터스",
       "awayShort": "정관장",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 84,
+      "awayScore": 76,
+      "status": "final",
       "stadium": "잠실학생체육관"
     },
     {
