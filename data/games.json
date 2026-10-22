@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-21T23:46:43.610Z",
+  "fetchedAt": "2026-10-22T17:28:21.653Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -474,9 +474,9 @@
       "homeShort": "현대모비스",
       "awayTeam": "창원 LG 세이커스",
       "awayShort": "LG",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 83,
+      "awayScore": 88,
+      "status": "final",
       "stadium": "울산동천체육관"
     },
     {
