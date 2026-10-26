@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T13:02:21.245Z",
+  "fetchedAt": "2026-10-26T19:44:29.182Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -54,7 +54,7 @@
         "teamName1": "고양 소노",
         "teamName4": "소노",
         "games": 9,
-        "minutes": 32.968518518518515,
+        "minutes": 32.72777777777778,
         "screenAssists": 1.3333333333333333,
         "screenAssistsPts": 0.8888888888888888,
         "deflections": 1.1111111111111112
@@ -208,7 +208,7 @@
         "teamName1": "고양 소노",
         "teamName4": "소노",
         "games": 9,
-        "minutes": 26.646296296296295,
+        "minutes": 26.89814814814815,
         "screenAssists": 0.5555555555555556,
         "screenAssistsPts": 0.4444444444444444,
         "deflections": 0.3333333333333333
@@ -1805,20 +1805,6 @@
         "teamName4": "SK",
         "games": 3,
         "minutes": 3.7055555555555557,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0
-      },
-      {
-        "rank": 115,
-        "playerNo": "291391",
-        "kname": "조석호",
-        "ename": "JO S H",
-        "teamCode": "66",
-        "teamName1": "고양 소노",
-        "teamName4": "소노",
-        "games": 1,
-        "minutes": 0.1,
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
