@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-10-25T22:56:15.217Z",
+  "fetchedAt": "2026-10-26T13:02:26.153Z",
   "seasonCode": "49",
-  "totalRegistered": 187,
+  "totalRegistered": 184,
   "countByFlag": {
     "국내": 158,
     "아시아쿼터": 9,
-    "외국선수": 20
+    "외국선수": 17
   },
   "byPcode": {
     "290284": {
@@ -2964,30 +2964,6 @@
       "photoUrl": null,
       "inSeason": 41
     },
-    "291579": {
-      "pcode": "291579",
-      "kname": "게이지 프림",
-      "ename": "Gaige Colburn Prim",
-      "teamCode": "10",
-      "pos": "C",
-      "backNum": "44",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1999-04-08",
-      "pHeight": 206,
-      "pWeight": 117,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": "Missouri State",
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 43
-    },
     "291583": {
       "pcode": "291583",
       "kname": "렌즈 아반도",
@@ -4104,30 +4080,6 @@
       "photoUrl": null,
       "inSeason": 47
     },
-    "291785": {
-      "pcode": "291785",
-      "kname": "헨리 엘런슨",
-      "ename": "Henry Ellenson",
-      "teamCode": "16",
-      "pos": "FD",
-      "backNum": "8",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1997-01-13",
-      "pHeight": 208,
-      "pWeight": 115,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 47
-    },
     "291787": {
       "pcode": "291787",
       "kname": "케렘 칸터",
@@ -4972,30 +4924,6 @@
       "birthday": "1994-08-17",
       "pHeight": 193,
       "pWeight": 94,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 49
-    },
-    "291883": {
-      "pcode": "291883",
-      "kname": "존 무니",
-      "ename": "John Mooney",
-      "teamCode": "70",
-      "pos": "C",
-      "backNum": "33",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "1998-03-20",
-      "pHeight": 203,
-      "pWeight": 111,
       "schools": {
         "primary": null,
         "middle": null,

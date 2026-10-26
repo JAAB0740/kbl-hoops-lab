@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T22:53:36.870Z",
+  "fetchedAt": "2026-10-26T13:01:01.071Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -586,9 +586,9 @@
       "homeShort": "소노",
       "awayTeam": "창원 LG 세이커스",
       "awayShort": "LG",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 107,
+      "awayScore": 109,
+      "status": "final",
       "stadium": "고양소노아레나"
     },
     {
