@@ -61,6 +61,26 @@ export function ShotMap({
     );
   }
 
+  // 사이드바 존별 숫자를 14존 분류와 통일 (영역별 야투 차트와 완전 매칭).
+  // byZone (6존 사각형+arc 분류) 과 byZoneDetailed (14존 radial wedge) 는 라인 근처
+  // 슛을 다르게 처리할 수 있어서 ±1-2 차이. 사이드바를 14존 roll-up 으로 재집계.
+  const d = chart.byZoneDetailed;
+  const sumZones = (
+    ...zs: Array<{ att: number; made: number }>
+  ): { att: number; made: number; pct: number } => {
+    const att = zs.reduce((n, z) => n + z.att, 0);
+    const made = zs.reduce((n, z) => n + z.made, 0);
+    return { att, made, pct: att > 0 ? (made / att) * 100 : 0 };
+  };
+  const rolledByZone: Record<ShotZone, { att: number; made: number; pct: number }> = {
+    at_rim:   sumZones(d.rim),
+    paint:    sumZones(d.paint_left, d.paint_center, d.paint_right),
+    midrange: sumZones(d.mid_baseline_top, d.mid_baseline_bot, d.mid_elbow_top, d.mid_elbow_bot, d.mid_center),
+    corner_3: sumZones(d.corner_3_top, d.corner_3_bot),
+    wing_3:   sumZones(d.wing_3_top, d.wing_3_bot),
+    top_3:    sumZones(d.top_3_center),
+  };
+
   return (
     <section className="card p-5">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
@@ -92,7 +112,7 @@ export function ShotMap({
             존별 슛 효율
           </div>
           {ZONE_ORDER.map((z) => {
-            const zs = chart.byZone[z];
+            const zs = rolledByZone[z];
             const color = ZONE_COLORS[z];
             const widthPct = chart.totalShots > 0
               ? (zs.att / chart.totalShots) * 100
