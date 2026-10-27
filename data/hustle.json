@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T19:44:29.182Z",
+  "fetchedAt": "2026-10-27T00:09:48.922Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -432,7 +432,7 @@
         "teamName1": "창원 LG",
         "teamName4": "LG",
         "games": 9,
-        "minutes": 25.394444444444446,
+        "minutes": 25.362962962962964,
         "screenAssists": 0.3333333333333333,
         "screenAssistsPts": 1.5555555555555556,
         "deflections": 0.1111111111111111
@@ -1580,7 +1580,7 @@
         "teamName1": "창원 LG",
         "teamName4": "LG",
         "games": 7,
-        "minutes": 3.261904761904762,
+        "minutes": 3.302380952380952,
         "screenAssists": 0.2857142857142857,
         "screenAssistsPts": 0,
         "deflections": 0.2857142857142857
