@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-10-28T00:10:03.581Z",
+  "fetchedAt": "2026-10-28T16:02:10.667Z",
   "seasonCode": "49",
-  "totalRegistered": 184,
+  "totalRegistered": 185,
   "countByFlag": {
     "국내": 158,
     "아시아쿼터": 9,
-    "외국선수": 17
+    "외국선수": 18
   },
   "byPcode": {
     "290284": {
@@ -2469,6 +2469,30 @@
         "middle": null,
         "high": null,
         "university": "Minnesota State Univ.",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 39
+    },
+    "291436": {
+      "pcode": "291436",
+      "kname": "라숀 토마스",
+      "ename": "Rashawn Thomas",
+      "teamCode": "70",
+      "pos": "FD",
+      "backNum": "25",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1994-08-18",
+      "pHeight": 200,
+      "pWeight": 107,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "TAMUCC",
         "graduate": null
       },
       "gradYear": null,
