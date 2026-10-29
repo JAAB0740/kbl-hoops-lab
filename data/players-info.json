@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-10-29T00:51:04.621Z",
+  "fetchedAt": "2026-10-29T13:29:29.844Z",
   "seasonCode": "49",
-  "totalRegistered": 185,
+  "totalRegistered": 186,
   "countByFlag": {
     "국내": 158,
     "아시아쿼터": 9,
-    "외국선수": 18
+    "외국선수": 19
   },
   "byPcode": {
     "290284": {
@@ -3503,6 +3503,30 @@
       "draft": null,
       "photoUrl": null,
       "inSeason": 43
+    },
+    "291695": {
+      "pcode": "291695",
+      "kname": "앨런 윌리엄스",
+      "ename": "Alan Travis Williams",
+      "teamCode": "16",
+      "pos": "C",
+      "backNum": "15",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1993-01-28",
+      "pHeight": 198,
+      "pWeight": 122,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "University of California",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 45
     },
     "291698": {
       "pcode": "291698",
