@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-10-30T00:52:38.973Z",
+  "fetchedAt": "2026-10-30T12:50:08.413Z",
   "seasonCode": "49",
-  "totalRegistered": 186,
+  "totalRegistered": 185,
   "countByFlag": {
     "국내": 158,
     "아시아쿼터": 9,
-    "외국선수": 19
+    "외국선수": 18
   },
   "byPcode": {
     "290284": {
@@ -5020,30 +5020,6 @@
       "birthday": "1996-06-24",
       "pHeight": 209,
       "pWeight": 107,
-      "schools": {
-        "primary": null,
-        "middle": null,
-        "high": null,
-        "university": null,
-        "graduate": null
-      },
-      "gradYear": null,
-      "draft": null,
-      "photoUrl": null,
-      "inSeason": 49
-    },
-    "291886": {
-      "pcode": "291886",
-      "kname": "다리우스 베즐리",
-      "ename": "Darius Denayr Bazley",
-      "teamCode": "10",
-      "pos": "FD",
-      "backNum": "0",
-      "flag": "외국선수",
-      "country": "미국",
-      "birthday": "2000-06-12",
-      "pHeight": 206,
-      "pWeight": 94,
       "schools": {
         "primary": null,
         "middle": null,
