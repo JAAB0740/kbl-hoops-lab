@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-01T00:02:08.573Z",
+  "fetchedAt": "2026-11-01T14:28:24.111Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -698,9 +698,9 @@
       "homeShort": "소노",
       "awayTeam": "수원 KT 소닉붐",
       "awayShort": "KT",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 96,
+      "awayScore": 103,
+      "status": "final",
       "stadium": "고양소노아레나"
     },
     {
@@ -712,9 +712,9 @@
       "homeShort": "LG",
       "awayTeam": "원주 DB 프로미",
       "awayShort": "DB",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 98,
+      "awayScore": 104,
+      "status": "final",
       "stadium": "창원체육관"
     },
     {
@@ -726,9 +726,9 @@
       "homeShort": "삼성",
       "awayTeam": "서울 SK 나이츠",
       "awayShort": "SK",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 76,
+      "awayScore": 90,
+      "status": "final",
       "stadium": "잠실학생체육관"
     },
     {
