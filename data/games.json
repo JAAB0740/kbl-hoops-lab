@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T00:35:17.290Z",
+  "fetchedAt": "2026-11-02T21:53:16.438Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -740,9 +740,9 @@
       "homeShort": "가스공사",
       "awayTeam": "안양 정관장 레드부스터스",
       "awayShort": "정관장",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 71,
+      "awayScore": 77,
+      "status": "final",
       "stadium": "대구체육관"
     },
     {
