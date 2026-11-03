@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-03T02:52:35.752Z",
+  "fetchedAt": "2026-11-03T19:43:17.340Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -754,9 +754,9 @@
       "homeShort": "KCC",
       "awayTeam": "고양 소노 스카이거너스",
       "awayShort": "소노",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 105,
+      "awayScore": 102,
+      "status": "final",
       "stadium": "부산사직체육관"
     },
     {
