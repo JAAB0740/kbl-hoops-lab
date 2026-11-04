@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T01:14:53.183Z",
+  "fetchedAt": "2026-11-04T19:57:58.509Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -768,9 +768,9 @@
       "homeShort": "SK",
       "awayTeam": "대구 한국가스공사 페가수스",
       "awayShort": "가스공사",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 76,
+      "awayScore": 82,
+      "status": "final",
       "stadium": "잠실학생체육관"
     },
     {

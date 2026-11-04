@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T01:16:53.688Z",
+  "fetchedAt": "2026-11-04T20:00:41.352Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -179,11 +179,11 @@
         "teamCode": "64",
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 29.886363636363637,
-        "screenAssists": 0.5454545454545454,
-        "screenAssistsPts": 0.2727272727272727,
-        "deflections": 0.8181818181818182
+        "games": 12,
+        "minutes": 29.165277777777778,
+        "screenAssists": 0.5,
+        "screenAssistsPts": 0.25,
+        "deflections": 0.75
       },
       {
         "rank": 14,
@@ -193,8 +193,8 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 6,
-        "minutes": 33.31944444444444,
+        "games": 7,
+        "minutes": 33.99761904761905,
         "screenAssists": 1,
         "screenAssistsPts": 0,
         "deflections": 1
@@ -215,34 +215,20 @@
       },
       {
         "rank": 16,
-        "playerNo": "291333",
-        "kname": "아이재아 힉스",
-        "ename": "Isaiah Hicks",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 6,
-        "minutes": 26.680555555555554,
-        "screenAssists": 0.3333333333333333,
-        "screenAssistsPts": 0,
-        "deflections": 0.6666666666666666
-      },
-      {
-        "rank": 16,
         "playerNo": "291084",
         "kname": "안영준",
         "ename": "AN YOUNGJUN",
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 6,
-        "minutes": 35.647222222222226,
+        "games": 7,
+        "minutes": 35.99285714285714,
         "screenAssists": 0,
-        "screenAssistsPts": 1.5,
-        "deflections": 2
+        "screenAssistsPts": 1.2857142857142858,
+        "deflections": 2.142857142857143
       },
       {
-        "rank": 18,
+        "rank": 17,
         "playerNo": "291488",
         "kname": "이정현",
         "ename": "LEE JUNG HYUN",
@@ -256,7 +242,7 @@
         "deflections": 0.6666666666666666
       },
       {
-        "rank": 19,
+        "rank": 18,
         "playerNo": "291342",
         "kname": "숀 롱",
         "ename": "Shawn Long",
@@ -268,6 +254,20 @@
         "screenAssists": 1.1666666666666667,
         "screenAssistsPts": 0.16666666666666666,
         "deflections": 0.4166666666666667
+      },
+      {
+        "rank": 19,
+        "playerNo": "291333",
+        "kname": "아이재아 힉스",
+        "ename": "Isaiah Hicks",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 7,
+        "minutes": 26.002380952380953,
+        "screenAssists": 0.2857142857142857,
+        "screenAssistsPts": 0,
+        "deflections": 0.5714285714285714
       },
       {
         "rank": 20,
@@ -305,11 +305,11 @@
         "teamCode": "64",
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 31.486363636363638,
-        "screenAssists": 0.18181818181818182,
-        "screenAssistsPts": 2.4545454545454546,
-        "deflections": 0.45454545454545453
+        "games": 12,
+        "minutes": 31.595833333333335,
+        "screenAssists": 0.16666666666666666,
+        "screenAssistsPts": 2.25,
+        "deflections": 0.4166666666666667
       },
       {
         "rank": 23,
@@ -347,11 +347,11 @@
         "teamCode": "64",
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 25.757575757575758,
-        "screenAssists": 0.5454545454545454,
+        "games": 12,
+        "minutes": 26.168055555555554,
+        "screenAssists": 0.5833333333333334,
         "screenAssistsPts": 0,
-        "deflections": 0.18181818181818182
+        "deflections": 0.16666666666666666
       },
       {
         "rank": 26,
@@ -481,6 +481,20 @@
       },
       {
         "rank": 35,
+        "playerNo": "291368",
+        "kname": "오재현",
+        "ename": "OH JAEHYUN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 7,
+        "minutes": 23.938095238095237,
+        "screenAssists": 0,
+        "screenAssistsPts": 0.8571428571428571,
+        "deflections": 1.2857142857142858
+      },
+      {
+        "rank": 36,
         "playerNo": "291857",
         "kname": "문유현",
         "ename": "MOON YU HYEON",
@@ -494,7 +508,7 @@
         "deflections": 0.45454545454545453
       },
       {
-        "rank": 36,
+        "rank": 37,
         "playerNo": "291667",
         "kname": "문정현",
         "ename": "MOON JEONG HYEON",
@@ -506,20 +520,6 @@
         "screenAssists": 0.18181818181818182,
         "screenAssistsPts": 0.6363636363636364,
         "deflections": 0.7272727272727273
-      },
-      {
-        "rank": 37,
-        "playerNo": "291068",
-        "kname": "김낙현",
-        "ename": "KIM NAK HYEON",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 6,
-        "minutes": 29.75277777777778,
-        "screenAssists": 0,
-        "screenAssistsPts": 1.8333333333333333,
-        "deflections": 0.6666666666666666
       },
       {
         "rank": 38,
@@ -579,6 +579,34 @@
       },
       {
         "rank": 42,
+        "playerNo": "291068",
+        "kname": "김낙현",
+        "ename": "KIM NAK HYEON",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 7,
+        "minutes": 30.242857142857144,
+        "screenAssists": 0,
+        "screenAssistsPts": 2,
+        "deflections": 0.8571428571428571
+      },
+      {
+        "rank": 43,
+        "playerNo": "291863",
+        "kname": "김민규",
+        "ename": "KIM MIN GYU",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 12,
+        "minutes": 21.795833333333334,
+        "screenAssists": 0,
+        "screenAssistsPts": 0.25,
+        "deflections": 0.16666666666666666
+      },
+      {
+        "rank": 44,
         "playerNo": "291576",
         "kname": "양준석",
         "ename": "YANG JUN SEOK",
@@ -590,34 +618,6 @@
         "screenAssists": 0.5,
         "screenAssistsPts": 1.75,
         "deflections": 0.625
-      },
-      {
-        "rank": 42,
-        "playerNo": "291368",
-        "kname": "오재현",
-        "ename": "OH JAEHYUN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 6,
-        "minutes": 21.855555555555554,
-        "screenAssists": 0,
-        "screenAssistsPts": 1,
-        "deflections": 1.3333333333333333
-      },
-      {
-        "rank": 44,
-        "playerNo": "291863",
-        "kname": "김민규",
-        "ename": "KIM MIN GYU",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 21.472727272727273,
-        "screenAssists": 0,
-        "screenAssistsPts": 0.2727272727272727,
-        "deflections": 0.18181818181818182
       },
       {
         "rank": 45,
@@ -775,6 +775,20 @@
       },
       {
         "rank": 56,
+        "playerNo": "291862",
+        "kname": "양우혁",
+        "ename": "YANG WOO HYUCK",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 12,
+        "minutes": 17.6125,
+        "screenAssists": 0,
+        "screenAssistsPts": 0.6666666666666666,
+        "deflections": 0.16666666666666666
+      },
+      {
+        "rank": 56,
         "playerNo": "291859",
         "kname": "윤기찬",
         "ename": "YUN KI CHAN",
@@ -788,7 +802,7 @@
         "deflections": 0.5833333333333334
       },
       {
-        "rank": 57,
+        "rank": 58,
         "playerNo": "291490",
         "kname": "김동현",
         "ename": "KIM DONG HYUN",
@@ -800,20 +814,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0.5
-      },
-      {
-        "rank": 58,
-        "playerNo": "291862",
-        "kname": "양우혁",
-        "ename": "YANG WOO HYUCK",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 17.222727272727273,
-        "screenAssists": 0,
-        "screenAssistsPts": 0.45454545454545453,
-        "deflections": 0.18181818181818182
       },
       {
         "rank": 59,
@@ -971,20 +971,6 @@
       },
       {
         "rank": 70,
-        "playerNo": "291303",
-        "kname": "김형빈",
-        "ename": "KIM HYUNGBIN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 6,
-        "minutes": 12.93888888888889,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.16666666666666666
-      },
-      {
-        "rank": 70,
         "playerNo": "291887",
         "kname": "제리 아바디아노",
         "ename": "Gerry Austin Tabucan Abadiano",
@@ -998,7 +984,7 @@
         "deflections": 0.5
       },
       {
-        "rank": 72,
+        "rank": 71,
         "playerNo": "291597",
         "kname": "신동혁",
         "ename": "SHIN DONG HYUK",
@@ -1012,7 +998,7 @@
         "deflections": 0
       },
       {
-        "rank": 72,
+        "rank": 71,
         "playerNo": "291391",
         "kname": "조석호",
         "ename": "JO S H",
@@ -1026,21 +1012,7 @@
         "deflections": 1
       },
       {
-        "rank": 74,
-        "playerNo": "290901",
-        "kname": "정성우",
-        "ename": "JEONG SEONG WOO",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 16.066666666666666,
-        "screenAssists": 0,
-        "screenAssistsPts": 0.36363636363636365,
-        "deflections": 0.6363636363636364
-      },
-      {
-        "rank": 75,
+        "rank": 73,
         "playerNo": "291363",
         "kname": "윤원상",
         "ename": "YUN WON SANG",
@@ -1052,6 +1024,34 @@
         "screenAssists": 0,
         "screenAssistsPts": 1.4,
         "deflections": 0.2
+      },
+      {
+        "rank": 74,
+        "playerNo": "291303",
+        "kname": "김형빈",
+        "ename": "KIM HYUNGBIN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 7,
+        "minutes": 12.688095238095238,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.14285714285714285
+      },
+      {
+        "rank": 75,
+        "playerNo": "291005",
+        "kname": "최승욱",
+        "ename": "CHOI SEUNG WOOK",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 12,
+        "minutes": 14.219444444444443,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.25
       },
       {
         "rank": 76,
@@ -1097,17 +1097,17 @@
       },
       {
         "rank": 79,
-        "playerNo": "291005",
-        "kname": "최승욱",
-        "ename": "CHOI SEUNG WOOK",
+        "playerNo": "290901",
+        "kname": "정성우",
+        "ename": "JEONG SEONG WOO",
         "teamCode": "64",
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 14.180303030303032,
+        "games": 12,
+        "minutes": 15.722222222222223,
         "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.2727272727272727
+        "screenAssistsPts": 0.3333333333333333,
+        "deflections": 0.5833333333333334
       },
       {
         "rank": 80,
@@ -1251,17 +1251,17 @@
       },
       {
         "rank": 90,
-        "playerNo": "290450",
-        "kname": "오세근",
-        "ename": "OH SEKEUN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 2,
-        "minutes": 5.883333333333334,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 1
+        "playerNo": "290781",
+        "kname": "김준일",
+        "ename": "KIM JUN YL",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 12,
+        "minutes": 15.52638888888889,
+        "screenAssists": 0.4166666666666667,
+        "screenAssistsPts": 0.16666666666666666,
+        "deflections": 0.25
       },
       {
         "rank": 91,
@@ -1293,6 +1293,20 @@
       },
       {
         "rank": 93,
+        "playerNo": "291182",
+        "kname": "우동현",
+        "ename": "WOO DONGHYUN",
+        "teamCode": "64",
+        "teamName1": "대구 한국가스공사",
+        "teamName4": "가스공사",
+        "games": 8,
+        "minutes": 7.825,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.125
+      },
+      {
+        "rank": 93,
         "playerNo": "291750",
         "kname": "정성조",
         "ename": "Jung Ssung Zo",
@@ -1306,7 +1320,7 @@
         "deflections": 0
       },
       {
-        "rank": 94,
+        "rank": 95,
         "playerNo": "290599",
         "kname": "서민수",
         "ename": "SEO MIN SOO",
@@ -1320,7 +1334,7 @@
         "deflections": 0.42857142857142855
       },
       {
-        "rank": 95,
+        "rank": 96,
         "playerNo": "291293",
         "kname": "최진광",
         "ename": "CHOI JIN GWANG",
@@ -1334,7 +1348,7 @@
         "deflections": 0.1111111111111111
       },
       {
-        "rank": 96,
+        "rank": 97,
         "playerNo": "291754",
         "kname": "손준",
         "ename": "Sohn Jun",
@@ -1348,7 +1362,7 @@
         "deflections": 0
       },
       {
-        "rank": 96,
+        "rank": 97,
         "playerNo": "291376",
         "kname": "양준우",
         "ename": "YANG JUN U",
@@ -1362,7 +1376,7 @@
         "deflections": 1
       },
       {
-        "rank": 96,
+        "rank": 97,
         "playerNo": "291760",
         "kname": "이민서",
         "ename": "Lee Min Seo",
@@ -1376,7 +1390,7 @@
         "deflections": 0
       },
       {
-        "rank": 99,
+        "rank": 100,
         "playerNo": "291070",
         "kname": "최성원",
         "ename": "CHOI SEONG WON",
@@ -1390,21 +1404,7 @@
         "deflections": 0.09090909090909091
       },
       {
-        "rank": 100,
-        "playerNo": "290781",
-        "kname": "김준일",
-        "ename": "KIM JUN YL",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 11,
-        "minutes": 14.416666666666666,
-        "screenAssists": 0.36363636363636365,
-        "screenAssistsPts": 0,
-        "deflections": 0.2727272727272727
-      },
-      {
-        "rank": 100,
+        "rank": 101,
         "playerNo": "290381",
         "kname": "이정현",
         "ename": "LEE JUNG HYUN",
@@ -1433,6 +1433,20 @@
       },
       {
         "rank": 103,
+        "playerNo": "290450",
+        "kname": "오세근",
+        "ename": "OH SEKEUN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 3,
+        "minutes": 7.2555555555555555,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.6666666666666666
+      },
+      {
+        "rank": 104,
         "playerNo": "290284",
         "kname": "허일영",
         "ename": "HEO ILYOUNG",
@@ -1446,7 +1460,7 @@
         "deflections": 0
       },
       {
-        "rank": 104,
+        "rank": 105,
         "playerNo": "290788",
         "kname": "이호현",
         "ename": "LEE HO HYUN",
@@ -1460,7 +1474,7 @@
         "deflections": 0.1111111111111111
       },
       {
-        "rank": 104,
+        "rank": 105,
         "playerNo": "290648",
         "kname": "한상혁",
         "ename": "HAN SANG HYEOK",
@@ -1474,7 +1488,7 @@
         "deflections": 0
       },
       {
-        "rank": 106,
+        "rank": 107,
         "playerNo": "291771",
         "kname": "최형찬",
         "ename": "Choi Hyung Chan",
@@ -1488,7 +1502,7 @@
         "deflections": 0
       },
       {
-        "rank": 106,
+        "rank": 107,
         "playerNo": "291764",
         "kname": "황영찬",
         "ename": "Hwang Yeong Chan",
@@ -1502,7 +1516,7 @@
         "deflections": 0.14285714285714285
       },
       {
-        "rank": 108,
+        "rank": 109,
         "playerNo": "291476",
         "kname": "김준환",
         "ename": "KIM JUN HWAN",
@@ -1516,7 +1530,7 @@
         "deflections": 0
       },
       {
-        "rank": 109,
+        "rank": 110,
         "playerNo": "291847",
         "kname": "최강민",
         "ename": "CHOI KANG MIN",
@@ -1528,20 +1542,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0.16666666666666666
-      },
-      {
-        "rank": 110,
-        "playerNo": "291182",
-        "kname": "우동현",
-        "ename": "WOO DONGHYUN",
-        "teamCode": "64",
-        "teamName1": "대구 한국가스공사",
-        "teamName4": "가스공사",
-        "games": 7,
-        "minutes": 7.033333333333333,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.14285714285714285
       },
       {
         "rank": 111,
@@ -1607,28 +1607,14 @@
         "teamCode": "64",
         "teamName1": "대구 한국가스공사",
         "teamName4": "가스공사",
-        "games": 4,
-        "minutes": 7.695833333333334,
+        "games": 5,
+        "minutes": 6.2266666666666675,
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
       },
       {
-        "rank": 116,
-        "playerNo": "290784",
-        "kname": "최원혁",
-        "ename": "CHOI WONHYUK",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 3,
-        "minutes": 7.7444444444444445,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.3333333333333333
-      },
-      {
-        "rank": 117,
+        "rank": 115,
         "playerNo": "291763",
         "kname": "임동언",
         "ename": "Lim Dong Eon",
@@ -1642,7 +1628,7 @@
         "deflections": 0
       },
       {
-        "rank": 118,
+        "rank": 117,
         "playerNo": "291087",
         "kname": "김국찬",
         "ename": "KIM GOOK CHAN",
@@ -1654,6 +1640,20 @@
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0.2857142857142857
+      },
+      {
+        "rank": 118,
+        "playerNo": "290784",
+        "kname": "최원혁",
+        "ename": "CHOI WONHYUK",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 4,
+        "minutes": 8.591666666666667,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.25
       },
       {
         "rank": 119,
