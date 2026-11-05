@@ -277,9 +277,10 @@ export function detectStandouts(gmkey: string | undefined, limit = 5): Standout[
     );
 
     // 10) 3점 의존도 (3점 시도 / 총 FG 시도)
-    if (r.fgtA > 0 && (season.stats.fgAtt + season.stats.threeAtt) > 0) {
+    // season.stats.fgAtt 는 normalizeTeamStats 로 이미 total (fg+three) 로 재계산됨.
+    if (r.fgtA > 0 && season.stats.fgAtt > 0) {
       const game3Dep = (r.threepA / r.fgtA) * 100;
-      const seasonTotalAtt = season.stats.fgAtt + season.stats.threeAtt; // fgAtt 는 보통 2점 시도만이라 합산
+      const seasonTotalAtt = season.stats.fgAtt;
       const season3Dep = (season.stats.threeAtt / seasonTotalAtt) * 100;
       push("3점 의존도", "scoring", game3Dep, season3Dep,
         checkPct({ game: game3Dep, avg: season3Dep, thresholdAbs: 12, stat: "3점 의존도", kind: "scoring" }),

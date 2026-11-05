@@ -361,7 +361,8 @@ export function getRoundTrend(profile: PlayerProfile) {
       points: row?.points ?? null,
       rebounds: row?.rebounds ?? null,
       assists: row?.assists ?? null,
-      fgPct: row?.fgPct ?? null,
+      // KBL misnomer: row.fgPct 는 2P% 일 뿐. 실제 total FG% 는 row.twoPct.
+      fgPct: row?.twoPct ?? row?.fgPct ?? null,
       threePct: row?.threePct ?? null,
       minutes: row?.minutes ?? null,
     };

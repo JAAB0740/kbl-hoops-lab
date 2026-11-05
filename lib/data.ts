@@ -243,15 +243,18 @@ function detailRowToRaw(p: DetailRow): RawPlayer {
       dReb:      p.dReb ?? 0,
       steals:    p.steals ?? 0,
       blocks:    p.blocks ?? 0,
-      fgMade:    p.fgMade ?? 0,
-      fgAtt:     p.fgAtt ?? 0,
-      fgPct:     p.fgPct ?? 0,
+      // KBL API misnomer 수정: 선수 데이터는 `twoMade/twoAtt/twoPct` 가 실제 total FG
+      // (API 가 반대로 라벨링). 사이트에서 "FG" 는 total 을 의미하므로 swap.
+      // 2pt-only 원본은 UI 에서 안 쓰여 drop (필요 시 total - three 로 역산).
+      fgMade:    p.twoMade ?? 0,
+      fgAtt:     p.twoAtt ?? 0,
+      fgPct:     p.twoPct ?? 0,
       threeMade: p.threeMade ?? 0,
       threePA:   p.threeAtt ?? 0,
       threePct:  p.threePct ?? 0,
-      twoPM:     p.twoMade ?? 0,
-      twoPA:     p.twoAtt ?? 0,
-      twoPct:    p.twoPct ?? 0,
+      twoPM:     p.fgMade ?? 0,
+      twoPA:     p.fgAtt ?? 0,
+      twoPct:    p.fgPct ?? 0,
       ftMade:    p.ftMade ?? 0,
       ftAtt:     p.ftAtt ?? 0,
       ftPct:     p.ftPct ?? 0,
@@ -698,15 +701,42 @@ const advFilters = (
   teamAdvancedJson as { filters?: Partial<Record<FilterKey, AdvancedTeamRow[]>> }
 ).filters ?? {};
 
+/**
+ * 팀 stats 정상화 — KBL API misnomer 수정.
+ *
+ * KBL 공식 API 가 `fg*` 필드에 **2점 only** 데이터를 넣음 (문서상 field 이름은
+ * "field goal" 이지만 실제는 2pt only). 사이트가 total 로 가정해서 FG% / FTA Rate /
+ * 슛 프로필 등이 모두 왜곡. 로드 시점에 total 로 재계산해서 downstream 자동 fix.
+ *
+ * - fgMade / fgAtt / fgPct → total (fg + three)
+ * - 2pt only 원본은 더 이상 UI 에서 안 쓰여 drop. 필요시 (fgMade − threeMade) 로 역산.
+ */
+function normalizeTeamStats(s: FilteredTeam["stats"]): FilteredTeam["stats"] {
+  const fgM = s.fgMade ?? 0;
+  const fgA = s.fgAtt ?? 0;
+  const t3M = s.threeMade ?? 0;
+  const t3A = s.threeAtt ?? 0;
+  const totM = fgM + t3M;
+  const totA = fgA + t3A;
+  return {
+    ...s,
+    fgMade: totM,
+    fgAtt:  totA,
+    fgPct:  totA > 0 ? (totM / totA) * 100 : 0,
+  };
+}
+
 function mergeAdvanced(
   base: FilteredTeam[],
   adv: AdvancedTeamRow[] | undefined,
 ): FilteredTeam[] {
-  if (!adv || adv.length === 0) return base;
-  const byCode = new Map(adv.map((a) => [String(a.code), a.advanced]));
+  const byCode = adv && adv.length > 0
+    ? new Map(adv.map((a) => [String(a.code), a.advanced]))
+    : null;
   return base.map((t) => {
-    const a = byCode.get(String(t.code));
-    return a ? { ...t, advanced: a } : t;
+    const stats = normalizeTeamStats(t.stats);
+    const a = byCode?.get(String(t.code));
+    return a ? { ...t, stats, advanced: a } : { ...t, stats };
   });
 }
 
