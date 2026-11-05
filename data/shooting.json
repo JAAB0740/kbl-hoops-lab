@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-05T01:27:55.906Z",
+  "fetchedAt": "2026-11-05T20:14:52.245Z",
   "source": "api-stats.kbl.or.kr/api/records/{player,team}/shooting",
   "seasonCode": "49",
   "rangeLabels": {
@@ -70,38 +70,38 @@
         "ranges": [
           {
             "range": 1,
-            "made": 6.7,
-            "att": 9.3,
-            "pct": 72.04301075268818
+            "made": 7.090909090909091,
+            "att": 9.727272727272727,
+            "pct": 72.89719626168224
           },
           {
             "range": 2,
-            "made": 1.5,
-            "att": 3.1,
+            "made": 1.3636363636363635,
+            "att": 2.8181818181818183,
             "pct": 48.38709677419355
           },
           {
             "range": 3,
-            "made": 0.4,
-            "att": 1,
-            "pct": 40
+            "made": 0.45454545454545453,
+            "att": 1.1818181818181819,
+            "pct": 38.46153846153847
           },
           {
             "range": 4,
-            "made": 0.2,
-            "att": 0.5,
+            "made": 0.18181818181818182,
+            "att": 0.45454545454545453,
             "pct": 40
           },
           {
             "range": 5,
-            "made": 0.6,
-            "att": 2.6,
-            "pct": 23.076923076923077
+            "made": 0.5454545454545454,
+            "att": 2.4545454545454546,
+            "pct": 22.22222222222222
           },
           {
             "range": 6,
-            "made": 0.2,
-            "att": 0.9,
+            "made": 0.18181818181818182,
+            "att": 0.8181818181818182,
             "pct": 22.22222222222222
           }
         ]
@@ -202,6 +202,53 @@
       },
       {
         "rank": 5,
+        "playerNo": "291475",
+        "kname": "오마리 스펠맨",
+        "ename": "Omari Spellman",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 1,
+            "att": 1,
+            "pct": 100
+          },
+          {
+            "range": 2,
+            "made": 0,
+            "att": 1,
+            "pct": 0
+          },
+          {
+            "range": 3,
+            "made": 1,
+            "att": 3,
+            "pct": 33.33333333333333
+          },
+          {
+            "range": 4,
+            "made": 2,
+            "att": 3,
+            "pct": 66.66666666666666
+          },
+          {
+            "range": 5,
+            "made": 2,
+            "att": 10,
+            "pct": 20
+          },
+          {
+            "range": 6,
+            "made": 1,
+            "att": 1,
+            "pct": 100
+          }
+        ]
+      },
+      {
+        "rank": 6,
         "playerNo": "291698",
         "kname": "레이션 해먼즈",
         "ename": "Rayshaun Hammonds",
@@ -248,7 +295,7 @@
         ]
       },
       {
-        "rank": 6,
+        "rank": 7,
         "playerNo": "291500",
         "kname": "자니 오브라이언트",
         "ename": "Johnny O'Bryant III",
@@ -295,7 +342,7 @@
         ]
       },
       {
-        "rank": 7,
+        "rank": 8,
         "playerNo": "291884",
         "kname": "루이스 킹",
         "ename": "Louis Dajon King",
@@ -342,7 +389,7 @@
         ]
       },
       {
-        "rank": 8,
+        "rank": 9,
         "playerNo": "291886",
         "kname": "다리우스 베즐리",
         "ename": "Darius Denayr Bazley",
@@ -389,7 +436,7 @@
         ]
       },
       {
-        "rank": 9,
+        "rank": 10,
         "playerNo": "291881",
         "kname": "스카티 제임스",
         "ename": "David Scott James Jr",
@@ -436,7 +483,7 @@
         ]
       },
       {
-        "rank": 10,
+        "rank": 11,
         "playerNo": "291883",
         "kname": "존 무니",
         "ename": "John Mooney",
@@ -483,7 +530,7 @@
         ]
       },
       {
-        "rank": 11,
+        "rank": 12,
         "playerNo": "291511",
         "kname": "이선 알바노",
         "ename": "Ethan Alvano",
@@ -530,7 +577,7 @@
         ]
       },
       {
-        "rank": 12,
+        "rank": 13,
         "playerNo": "291882",
         "kname": "아치 굿윈",
         "ename": "Archie Lee Goodwin III",
@@ -577,7 +624,7 @@
         ]
       },
       {
-        "rank": 13,
+        "rank": 14,
         "playerNo": "291680",
         "kname": "케베 알루마",
         "ename": "Keve Aluma",
@@ -624,7 +671,7 @@
         ]
       },
       {
-        "rank": 14,
+        "rank": 15,
         "playerNo": "291248",
         "kname": "자밀 워니",
         "ename": "Jameel Warney",
@@ -671,7 +718,7 @@
         ]
       },
       {
-        "rank": 15,
+        "rank": 16,
         "playerNo": "291640",
         "kname": "유기상",
         "ename": "YU KI SANG",
@@ -718,7 +765,7 @@
         ]
       },
       {
-        "rank": 16,
+        "rank": 17,
         "playerNo": "291084",
         "kname": "안영준",
         "ename": "AN YOUNGJUN",
@@ -765,7 +812,7 @@
         ]
       },
       {
-        "rank": 17,
+        "rank": 18,
         "playerNo": "291488",
         "kname": "이정현",
         "ename": "LEE JUNG HYUN",
@@ -812,7 +859,7 @@
         ]
       },
       {
-        "rank": 18,
+        "rank": 19,
         "playerNo": "291342",
         "kname": "숀 롱",
         "ename": "Shawn Long",
@@ -859,7 +906,7 @@
         ]
       },
       {
-        "rank": 19,
+        "rank": 20,
         "playerNo": "291333",
         "kname": "아이재아 힉스",
         "ename": "Isaiah Hicks",
@@ -906,7 +953,7 @@
         ]
       },
       {
-        "rank": 20,
+        "rank": 21,
         "playerNo": "291432",
         "kname": "아셈 마레이",
         "ename": "Assem Marei",
@@ -949,53 +996,6 @@
             "made": 0,
             "att": 0,
             "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 21,
-        "playerNo": "291375",
-        "kname": "이우석",
-        "ename": "LEE WOO SUK",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 2.2,
-            "att": 3.4,
-            "pct": 64.70588235294117
-          },
-          {
-            "range": 2,
-            "made": 0.6,
-            "att": 0.8,
-            "pct": 75
-          },
-          {
-            "range": 3,
-            "made": 0.4,
-            "att": 0.5,
-            "pct": 80
-          },
-          {
-            "range": 4,
-            "made": 0.5,
-            "att": 1,
-            "pct": 50
-          },
-          {
-            "range": 5,
-            "made": 2.2,
-            "att": 6.9,
-            "pct": 31.88405797101449
-          },
-          {
-            "range": 6,
-            "made": 0.3,
-            "att": 0.9,
-            "pct": 33.33333333333333
           }
         ]
       },
@@ -1142,6 +1142,53 @@
       },
       {
         "rank": 25,
+        "playerNo": "291375",
+        "kname": "이우석",
+        "ename": "LEE WOO SUK",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 2.1818181818181817,
+            "att": 3.4545454545454546,
+            "pct": 63.1578947368421
+          },
+          {
+            "range": 2,
+            "made": 0.5454545454545454,
+            "att": 0.7272727272727273,
+            "pct": 75
+          },
+          {
+            "range": 3,
+            "made": 0.36363636363636365,
+            "att": 0.5454545454545454,
+            "pct": 66.66666666666666
+          },
+          {
+            "range": 4,
+            "made": 0.45454545454545453,
+            "att": 0.9090909090909091,
+            "pct": 50
+          },
+          {
+            "range": 5,
+            "made": 2,
+            "att": 6.818181818181818,
+            "pct": 29.333333333333332
+          },
+          {
+            "range": 6,
+            "made": 0.2727272727272727,
+            "att": 0.8181818181818182,
+            "pct": 33.33333333333333
+          }
+        ]
+      },
+      {
+        "rank": 26,
         "playerNo": "290524",
         "kname": "라건아",
         "ename": "Ra Guna",
@@ -1184,53 +1231,6 @@
             "made": 0.6666666666666666,
             "att": 1.25,
             "pct": 53.333333333333336
-          }
-        ]
-      },
-      {
-        "rank": 26,
-        "playerNo": "291237",
-        "kname": "크리스 맥컬러",
-        "ename": "Christopher McCullough",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 2.7,
-            "att": 4.1,
-            "pct": 65.85365853658537
-          },
-          {
-            "range": 2,
-            "made": 1.1,
-            "att": 2,
-            "pct": 55.00000000000001
-          },
-          {
-            "range": 3,
-            "made": 0.3,
-            "att": 0.6,
-            "pct": 50
-          },
-          {
-            "range": 4,
-            "made": 0.5,
-            "att": 1.2,
-            "pct": 41.66666666666667
-          },
-          {
-            "range": 5,
-            "made": 0.6,
-            "att": 2.2,
-            "pct": 27.27272727272727
-          },
-          {
-            "range": 6,
-            "made": 0.3,
-            "att": 0.8,
-            "pct": 37.5
           }
         ]
       },
@@ -1330,6 +1330,53 @@
       },
       {
         "rank": 29,
+        "playerNo": "291237",
+        "kname": "크리스 맥컬러",
+        "ename": "Christopher McCullough",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 2.6363636363636362,
+            "att": 4,
+            "pct": 65.9090909090909
+          },
+          {
+            "range": 2,
+            "made": 1,
+            "att": 1.9090909090909092,
+            "pct": 52.38095238095239
+          },
+          {
+            "range": 3,
+            "made": 0.36363636363636365,
+            "att": 0.6363636363636364,
+            "pct": 57.14285714285714
+          },
+          {
+            "range": 4,
+            "made": 0.45454545454545453,
+            "att": 1.0909090909090908,
+            "pct": 41.66666666666667
+          },
+          {
+            "range": 5,
+            "made": 0.5454545454545454,
+            "att": 2.1818181818181817,
+            "pct": 25
+          },
+          {
+            "range": 6,
+            "made": 0.2727272727272727,
+            "att": 0.8181818181818182,
+            "pct": 33.33333333333333
+          }
+        ]
+      },
+      {
+        "rank": 30,
         "playerNo": "291436",
         "kname": "라숀 토마스",
         "ename": "Rashawn Thomas",
@@ -1376,7 +1423,7 @@
         ]
       },
       {
-        "rank": 30,
+        "rank": 31,
         "playerNo": "291888",
         "kname": "데이본 리드",
         "ename": "Davon Reed",
@@ -1423,7 +1470,7 @@
         ]
       },
       {
-        "rank": 31,
+        "rank": 32,
         "playerNo": "291220",
         "kname": "변준형",
         "ename": "BYUN JUN HYUNG",
@@ -1470,7 +1517,7 @@
         ]
       },
       {
-        "rank": 31,
+        "rank": 32,
         "playerNo": "291885",
         "kname": "트레이 포터",
         "ename": "Trey Samuel Porter",
@@ -1517,7 +1564,7 @@
         ]
       },
       {
-        "rank": 33,
+        "rank": 34,
         "playerNo": "291699",
         "kname": "칼 타마요",
         "ename": "Carl Tamayo",
@@ -1564,7 +1611,7 @@
         ]
       },
       {
-        "rank": 34,
+        "rank": 35,
         "playerNo": "290440",
         "kname": "이관희",
         "ename": "LEE GWAN HEE",
@@ -1574,44 +1621,44 @@
         "ranges": [
           {
             "range": 1,
-            "made": 0.2,
-            "att": 0.4,
-            "pct": 50
+            "made": 0.2727272727272727,
+            "att": 0.45454545454545453,
+            "pct": 60
           },
           {
             "range": 2,
-            "made": 0.6,
-            "att": 1.1,
-            "pct": 54.54545454545454
+            "made": 0.6363636363636364,
+            "att": 1.0909090909090908,
+            "pct": 58.333333333333336
           },
           {
             "range": 3,
-            "made": 0.5,
-            "att": 0.8,
+            "made": 0.45454545454545453,
+            "att": 0.7272727272727273,
             "pct": 62.5
           },
           {
             "range": 4,
-            "made": 0.9,
-            "att": 1.4,
-            "pct": 64.28571428571429
+            "made": 1,
+            "att": 1.5454545454545454,
+            "pct": 64.70588235294117
           },
           {
             "range": 5,
-            "made": 1.8,
-            "att": 4.2,
-            "pct": 42.857142857142854
+            "made": 1.8181818181818181,
+            "att": 4.181818181818182,
+            "pct": 43.47826086956522
           },
           {
             "range": 6,
             "made": 0,
-            "att": 0.5,
+            "att": 0.45454545454545453,
             "pct": 0
           }
         ]
       },
       {
-        "rank": 35,
+        "rank": 36,
         "playerNo": "291368",
         "kname": "오재현",
         "ename": "OH JAEHYUN",
@@ -1658,7 +1705,7 @@
         ]
       },
       {
-        "rank": 36,
+        "rank": 37,
         "playerNo": "291857",
         "kname": "문유현",
         "ename": "MOON YU HYEON",
@@ -1705,7 +1752,7 @@
         ]
       },
       {
-        "rank": 37,
+        "rank": 38,
         "playerNo": "291667",
         "kname": "문정현",
         "ename": "MOON JEONG HYEON",
@@ -1752,7 +1799,7 @@
         ]
       },
       {
-        "rank": 38,
+        "rank": 39,
         "playerNo": "291355",
         "kname": "이용우",
         "ename": "LEE YONG WOO",
@@ -1799,7 +1846,7 @@
         ]
       },
       {
-        "rank": 39,
+        "rank": 40,
         "playerNo": "291583",
         "kname": "렌즈 아반도",
         "ename": "Rhenz Joseph Abando",
@@ -1846,7 +1893,7 @@
         ]
       },
       {
-        "rank": 40,
+        "rank": 41,
         "playerNo": "290539",
         "kname": "장재석",
         "ename": "JANG JAE SEOK",
@@ -1889,53 +1936,6 @@
             "made": 0,
             "att": 0,
             "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 41,
-        "playerNo": "291853",
-        "kname": "이규태",
-        "ename": "LEE KYU TAE",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.5,
-            "att": 0.7,
-            "pct": 71.42857142857143
-          },
-          {
-            "range": 2,
-            "made": 0.6,
-            "att": 0.9,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 3,
-            "made": 0.2,
-            "att": 0.3,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 4,
-            "made": 0.4,
-            "att": 0.7,
-            "pct": 57.14285714285714
-          },
-          {
-            "range": 5,
-            "made": 1.6,
-            "att": 3.7,
-            "pct": 43.24324324324324
-          },
-          {
-            "range": 6,
-            "made": 0.3,
-            "att": 0.8,
-            "pct": 37.5
           }
         ]
       },
@@ -1988,6 +1988,53 @@
       },
       {
         "rank": 43,
+        "playerNo": "291853",
+        "kname": "이규태",
+        "ename": "LEE KYU TAE",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.6363636363636364,
+            "att": 1,
+            "pct": 63.63636363636363
+          },
+          {
+            "range": 2,
+            "made": 0.5454545454545454,
+            "att": 0.8181818181818182,
+            "pct": 66.66666666666666
+          },
+          {
+            "range": 3,
+            "made": 0.18181818181818182,
+            "att": 0.36363636363636365,
+            "pct": 50
+          },
+          {
+            "range": 4,
+            "made": 0.36363636363636365,
+            "att": 0.6363636363636364,
+            "pct": 57.14285714285714
+          },
+          {
+            "range": 5,
+            "made": 1.5454545454545454,
+            "att": 3.6363636363636362,
+            "pct": 42.5
+          },
+          {
+            "range": 6,
+            "made": 0.2727272727272727,
+            "att": 0.7272727272727273,
+            "pct": 37.5
+          }
+        ]
+      },
+      {
+        "rank": 44,
         "playerNo": "291863",
         "kname": "김민규",
         "ename": "KIM MIN GYU",
@@ -2034,7 +2081,7 @@
         ]
       },
       {
-        "rank": 44,
+        "rank": 45,
         "playerNo": "291576",
         "kname": "양준석",
         "ename": "YANG JUN SEOK",
@@ -2082,6 +2129,53 @@
       },
       {
         "rank": 45,
+        "playerNo": "290754",
+        "kname": "한호빈",
+        "ename": "HAN HO BIN",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.5454545454545454,
+            "att": 0.8181818181818182,
+            "pct": 66.66666666666666
+          },
+          {
+            "range": 2,
+            "made": 0.09090909090909091,
+            "att": 0.36363636363636365,
+            "pct": 25
+          },
+          {
+            "range": 3,
+            "made": 0,
+            "att": 0.2727272727272727,
+            "pct": 0
+          },
+          {
+            "range": 4,
+            "made": 0.18181818181818182,
+            "att": 0.5454545454545454,
+            "pct": 33.33333333333333
+          },
+          {
+            "range": 5,
+            "made": 1.6363636363636365,
+            "att": 3.5454545454545454,
+            "pct": 46.15384615384615
+          },
+          {
+            "range": 6,
+            "made": 0.5454545454545454,
+            "att": 1.6363636363636365,
+            "pct": 33.33333333333333
+          }
+        ]
+      },
+      {
+        "rank": 47,
         "playerNo": "291846",
         "kname": "에디 다니엘",
         "ename": "EDI DANIEL",
@@ -2128,7 +2222,7 @@
         ]
       },
       {
-        "rank": 45,
+        "rank": 47,
         "playerNo": "290776",
         "kname": "허웅",
         "ename": "HEO UNG",
@@ -2175,54 +2269,7 @@
         ]
       },
       {
-        "rank": 47,
-        "playerNo": "290754",
-        "kname": "한호빈",
-        "ename": "HAN HO BIN",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.6,
-            "att": 0.8,
-            "pct": 75
-          },
-          {
-            "range": 2,
-            "made": 0.1,
-            "att": 0.4,
-            "pct": 25
-          },
-          {
-            "range": 3,
-            "made": 0,
-            "att": 0.3,
-            "pct": 0
-          },
-          {
-            "range": 4,
-            "made": 0.1,
-            "att": 0.5,
-            "pct": 20
-          },
-          {
-            "range": 5,
-            "made": 1.5,
-            "att": 3.1,
-            "pct": 48.38709677419355
-          },
-          {
-            "range": 6,
-            "made": 0.6,
-            "att": 1.8,
-            "pct": 33.33333333333333
-          }
-        ]
-      },
-      {
-        "rank": 48,
+        "rank": 49,
         "playerNo": "290790",
         "kname": "정효근",
         "ename": "JEONG HYO GEUN",
@@ -2269,7 +2316,7 @@
         ]
       },
       {
-        "rank": 49,
+        "rank": 50,
         "playerNo": "291008",
         "kname": "박지훈",
         "ename": "PARK JIHOON",
@@ -2316,7 +2363,7 @@
         ]
       },
       {
-        "rank": 50,
+        "rank": 51,
         "playerNo": "291512",
         "kname": "저스틴 구탕",
         "ename": "Justin Gutang",
@@ -2326,44 +2373,138 @@
         "ranges": [
           {
             "range": 1,
-            "made": 1.5,
-            "att": 2.1,
-            "pct": 71.42857142857143
+            "made": 1.4545454545454546,
+            "att": 2.1818181818181817,
+            "pct": 66.66666666666666
           },
           {
             "range": 2,
-            "made": 0.6,
-            "att": 1.3,
-            "pct": 46.15384615384615
+            "made": 0.5454545454545454,
+            "att": 1.2727272727272727,
+            "pct": 42.857142857142854
           },
           {
             "range": 3,
             "made": 0,
-            "att": 0.3,
+            "att": 0.45454545454545453,
             "pct": 0
           },
           {
             "range": 4,
-            "made": 0.4,
-            "att": 0.4,
-            "pct": 100
+            "made": 0.36363636363636365,
+            "att": 0.5454545454545454,
+            "pct": 66.66666666666666
           },
           {
             "range": 5,
-            "made": 0.8,
-            "att": 2.7,
-            "pct": 29.629629629629626
+            "made": 0.8181818181818182,
+            "att": 2.6363636363636362,
+            "pct": 31.03448275862069
           },
           {
             "range": 6,
-            "made": 0.1,
-            "att": 0.3,
+            "made": 0.09090909090909091,
+            "att": 0.2727272727272727,
             "pct": 33.33333333333333
           }
         ]
       },
       {
-        "rank": 51,
+        "rank": 52,
+        "playerNo": "291189",
+        "kname": "서명진",
+        "ename": "SEO MYEONG JIN",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.8181818181818182,
+            "att": 1.1818181818181819,
+            "pct": 69.23076923076923
+          },
+          {
+            "range": 2,
+            "made": 0,
+            "att": 0.18181818181818182,
+            "pct": 0
+          },
+          {
+            "range": 3,
+            "made": 0.2727272727272727,
+            "att": 0.6363636363636364,
+            "pct": 42.857142857142854
+          },
+          {
+            "range": 4,
+            "made": 0.09090909090909091,
+            "att": 0.18181818181818182,
+            "pct": 50
+          },
+          {
+            "range": 5,
+            "made": 1.1818181818181819,
+            "att": 3.4545454545454546,
+            "pct": 34.21052631578947
+          },
+          {
+            "range": 6,
+            "made": 0.2727272727272727,
+            "att": 0.8181818181818182,
+            "pct": 33.33333333333333
+          }
+        ]
+      },
+      {
+        "rank": 53,
+        "playerNo": "291649",
+        "kname": "박무빈",
+        "ename": "PARK MU BIN",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.7272727272727273,
+            "att": 1.1818181818181819,
+            "pct": 61.53846153846154
+          },
+          {
+            "range": 2,
+            "made": 0.36363636363636365,
+            "att": 0.8181818181818182,
+            "pct": 44.44444444444444
+          },
+          {
+            "range": 3,
+            "made": 0.18181818181818182,
+            "att": 0.36363636363636365,
+            "pct": 50
+          },
+          {
+            "range": 4,
+            "made": 0,
+            "att": 0.2727272727272727,
+            "pct": 0
+          },
+          {
+            "range": 5,
+            "made": 1,
+            "att": 3.1818181818181817,
+            "pct": 31.428571428571427
+          },
+          {
+            "range": 6,
+            "made": 0.18181818181818182,
+            "att": 0.5454545454545454,
+            "pct": 33.33333333333333
+          }
+        ]
+      },
+      {
+        "rank": 54,
         "playerNo": "290603",
         "kname": "이대헌",
         "ename": "LEE DAE HEON",
@@ -2410,7 +2551,7 @@
         ]
       },
       {
-        "rank": 52,
+        "rank": 55,
         "playerNo": "291001",
         "kname": "강상재",
         "ename": "KANG SANG JAE",
@@ -2457,7 +2598,7 @@
         ]
       },
       {
-        "rank": 53,
+        "rank": 56,
         "playerNo": "291842",
         "kname": "강성욱",
         "ename": "KANG SUNG WOOK",
@@ -2504,7 +2645,7 @@
         ]
       },
       {
-        "rank": 53,
+        "rank": 56,
         "playerNo": "291695",
         "kname": "앨런 윌리엄스",
         "ename": "Alan Travis Williams",
@@ -2551,54 +2692,7 @@
         ]
       },
       {
-        "rank": 55,
-        "playerNo": "291649",
-        "kname": "박무빈",
-        "ename": "PARK MU BIN",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.6,
-            "att": 0.9,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 2,
-            "made": 0.4,
-            "att": 0.9,
-            "pct": 44.44444444444444
-          },
-          {
-            "range": 3,
-            "made": 0.2,
-            "att": 0.3,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 4,
-            "made": 0,
-            "att": 0.3,
-            "pct": 0
-          },
-          {
-            "range": 5,
-            "made": 0.8,
-            "att": 3,
-            "pct": 26.666666666666668
-          },
-          {
-            "range": 6,
-            "made": 0.2,
-            "att": 0.5,
-            "pct": 40
-          }
-        ]
-      },
-      {
-        "rank": 56,
+        "rank": 58,
         "playerNo": "291862",
         "kname": "양우혁",
         "ename": "YANG WOO HYUCK",
@@ -2645,7 +2739,7 @@
         ]
       },
       {
-        "rank": 56,
+        "rank": 58,
         "playerNo": "291859",
         "kname": "윤기찬",
         "ename": "YUN KI CHAN",
@@ -2692,7 +2786,7 @@
         ]
       },
       {
-        "rank": 58,
+        "rank": 60,
         "playerNo": "291490",
         "kname": "김동현",
         "ename": "KIM DONG HYUN",
@@ -2739,54 +2833,7 @@
         ]
       },
       {
-        "rank": 59,
-        "playerNo": "291189",
-        "kname": "서명진",
-        "ename": "SEO MYEONG JIN",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.8,
-            "att": 1.2,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0.1,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0.3,
-            "att": 0.6,
-            "pct": 50
-          },
-          {
-            "range": 4,
-            "made": 0.1,
-            "att": 0.2,
-            "pct": 50
-          },
-          {
-            "range": 5,
-            "made": 0.8,
-            "att": 3,
-            "pct": 26.666666666666668
-          },
-          {
-            "range": 6,
-            "made": 0.3,
-            "att": 0.9,
-            "pct": 33.33333333333333
-          }
-        ]
-      },
-      {
-        "rank": 60,
+        "rank": 61,
         "playerNo": "290765",
         "kname": "이재도",
         "ename": "LEE JAE DO",
@@ -2833,7 +2880,7 @@
         ]
       },
       {
-        "rank": 61,
+        "rank": 62,
         "playerNo": "291372",
         "kname": "한승희",
         "ename": "HAN SEUNG HEE ",
@@ -2880,7 +2927,7 @@
         ]
       },
       {
-        "rank": 62,
+        "rank": 63,
         "playerNo": "291226",
         "kname": "박준영",
         "ename": "PARK JUN YOUNG",
@@ -2927,7 +2974,7 @@
         ]
       },
       {
-        "rank": 63,
+        "rank": 64,
         "playerNo": "291492",
         "kname": "하윤기",
         "ename": "HA YUN GI",
@@ -2974,7 +3021,7 @@
         ]
       },
       {
-        "rank": 64,
+        "rank": 65,
         "playerNo": "291850",
         "kname": "이유진",
         "ename": "LEE YU JIN",
@@ -3021,7 +3068,7 @@
         ]
       },
       {
-        "rank": 65,
+        "rank": 66,
         "playerNo": "291752",
         "kname": "김보배",
         "ename": "Kim Bo Bae",
@@ -3063,53 +3110,6 @@
             "range": 6,
             "made": 0,
             "att": 0,
-            "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 66,
-        "playerNo": "290787",
-        "kname": "이승현",
-        "ename": "LEE SEOUNG HYUN",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.3,
-            "att": 0.7,
-            "pct": 42.857142857142854
-          },
-          {
-            "range": 2,
-            "made": 0.2,
-            "att": 0.4,
-            "pct": 50
-          },
-          {
-            "range": 3,
-            "made": 0.2,
-            "att": 0.5,
-            "pct": 40
-          },
-          {
-            "range": 4,
-            "made": 1.1,
-            "att": 2,
-            "pct": 55.00000000000001
-          },
-          {
-            "range": 5,
-            "made": 0.5,
-            "att": 1.3,
-            "pct": 38.46153846153847
-          },
-          {
-            "range": 6,
-            "made": 0,
-            "att": 0.1,
             "pct": 0
           }
         ]
@@ -3163,6 +3163,53 @@
       },
       {
         "rank": 68,
+        "playerNo": "290787",
+        "kname": "이승현",
+        "ename": "LEE SEOUNG HYUN",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.36363636363636365,
+            "att": 0.7272727272727273,
+            "pct": 50
+          },
+          {
+            "range": 2,
+            "made": 0.18181818181818182,
+            "att": 0.36363636363636365,
+            "pct": 50
+          },
+          {
+            "range": 3,
+            "made": 0.18181818181818182,
+            "att": 0.7272727272727273,
+            "pct": 25
+          },
+          {
+            "range": 4,
+            "made": 1,
+            "att": 1.8181818181818181,
+            "pct": 55.00000000000001
+          },
+          {
+            "range": 5,
+            "made": 0.45454545454545453,
+            "att": 1.1818181818181819,
+            "pct": 38.46153846153847
+          },
+          {
+            "range": 6,
+            "made": 0,
+            "att": 0.09090909090909091,
+            "pct": 0
+          }
+        ]
+      },
+      {
+        "rank": 69,
         "playerNo": "290542",
         "kname": "임동섭",
         "ename": "LIM DONG SEOP",
@@ -3209,7 +3256,7 @@
         ]
       },
       {
-        "rank": 69,
+        "rank": 70,
         "playerNo": "290996",
         "kname": "정인덕",
         "ename": "JUNG IN DUK",
@@ -3252,53 +3299,6 @@
             "made": 0,
             "att": 0,
             "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 70,
-        "playerNo": "291887",
-        "kname": "제리 아바디아노",
-        "ename": "Gerry Austin Tabucan Abadiano",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.5,
-            "att": 0.7,
-            "pct": 71.42857142857143
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0.2,
-            "att": 0.9,
-            "pct": 22.22222222222222
-          },
-          {
-            "range": 4,
-            "made": 0.3,
-            "att": 1.1,
-            "pct": 27.27272727272727
-          },
-          {
-            "range": 5,
-            "made": 0.5,
-            "att": 1.2,
-            "pct": 41.66666666666667
-          },
-          {
-            "range": 6,
-            "made": 0.3,
-            "att": 0.5,
-            "pct": 60
           }
         ]
       },
@@ -3398,6 +3398,100 @@
       },
       {
         "rank": 73,
+        "playerNo": "291275",
+        "kname": "김경원",
+        "ename": "KIM KYUNG WON",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 1.3,
+            "att": 1.9,
+            "pct": 68.42105263157895
+          },
+          {
+            "range": 2,
+            "made": 0.1,
+            "att": 0.2,
+            "pct": 50
+          },
+          {
+            "range": 3,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 4,
+            "made": 0,
+            "att": 0.2,
+            "pct": 0
+          },
+          {
+            "range": 5,
+            "made": 0.2,
+            "att": 0.8,
+            "pct": 25
+          },
+          {
+            "range": 6,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          }
+        ]
+      },
+      {
+        "rank": 74,
+        "playerNo": "291887",
+        "kname": "제리 아바디아노",
+        "ename": "Gerry Austin Tabucan Abadiano",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.45454545454545453,
+            "att": 0.7272727272727273,
+            "pct": 62.5
+          },
+          {
+            "range": 2,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 3,
+            "made": 0.18181818181818182,
+            "att": 0.8181818181818182,
+            "pct": 22.22222222222222
+          },
+          {
+            "range": 4,
+            "made": 0.2727272727272727,
+            "att": 1,
+            "pct": 27.27272727272727
+          },
+          {
+            "range": 5,
+            "made": 0.45454545454545453,
+            "att": 1.0909090909090908,
+            "pct": 41.66666666666667
+          },
+          {
+            "range": 6,
+            "made": 0.2727272727272727,
+            "att": 0.45454545454545453,
+            "pct": 60
+          }
+        ]
+      },
+      {
+        "rank": 75,
         "playerNo": "291363",
         "kname": "윤원상",
         "ename": "YUN WON SANG",
@@ -3444,7 +3538,7 @@
         ]
       },
       {
-        "rank": 74,
+        "rank": 76,
         "playerNo": "291303",
         "kname": "김형빈",
         "ename": "KIM HYUNGBIN",
@@ -3491,7 +3585,7 @@
         ]
       },
       {
-        "rank": 75,
+        "rank": 77,
         "playerNo": "291005",
         "kname": "최승욱",
         "ename": "CHOI SEUNG WOOK",
@@ -3538,7 +3632,7 @@
         ]
       },
       {
-        "rank": 76,
+        "rank": 78,
         "playerNo": "290763",
         "kname": "전성현",
         "ename": "JEON SEONG HYUN",
@@ -3585,7 +3679,7 @@
         ]
       },
       {
-        "rank": 77,
+        "rank": 79,
         "playerNo": "291194",
         "kname": "전현우",
         "ename": "JEON HYUN WOO",
@@ -3632,7 +3726,7 @@
         ]
       },
       {
-        "rank": 78,
+        "rank": 80,
         "playerNo": "291784",
         "kname": "알빈 톨렌티노",
         "ename": "Arvin Tolentino",
@@ -3679,7 +3773,7 @@
         ]
       },
       {
-        "rank": 79,
+        "rank": 81,
         "playerNo": "290901",
         "kname": "정성우",
         "ename": "JEONG SEONG WOO",
@@ -3726,54 +3820,7 @@
         ]
       },
       {
-        "rank": 80,
-        "playerNo": "291374",
-        "kname": "이근휘",
-        "ename": "LEE GEUN HWI",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0.1,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 4,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 5,
-            "made": 0.6,
-            "att": 1.5,
-            "pct": 40
-          },
-          {
-            "range": 6,
-            "made": 0.5,
-            "att": 0.9,
-            "pct": 55.55555555555556
-          }
-        ]
-      },
-      {
-        "rank": 81,
+        "rank": 82,
         "playerNo": "290529",
         "kname": "정희재",
         "ename": "JEONG HEE JAE",
@@ -3820,7 +3867,7 @@
         ]
       },
       {
-        "rank": 82,
+        "rank": 83,
         "playerNo": "291351",
         "kname": "이윤기",
         "ename": "LEE YUN KI",
@@ -3863,53 +3910,6 @@
             "made": 0,
             "att": 0,
             "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 83,
-        "playerNo": "291594",
-        "kname": "김태완",
-        "ename": "KIM TAE WAN",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.25,
-            "att": 0.25,
-            "pct": 100
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 4,
-            "made": 0,
-            "att": 0.125,
-            "pct": 0
-          },
-          {
-            "range": 5,
-            "made": 0.625,
-            "att": 1.25,
-            "pct": 50
-          },
-          {
-            "range": 6,
-            "made": 0.25,
-            "att": 0.25,
-            "pct": 100
           }
         ]
       },
@@ -3962,6 +3962,53 @@
       },
       {
         "rank": 85,
+        "playerNo": "291374",
+        "kname": "이근휘",
+        "ename": "LEE GEUN HWI",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 2,
+            "made": 0,
+            "att": 0.09090909090909091,
+            "pct": 0
+          },
+          {
+            "range": 3,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 4,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 5,
+            "made": 0.5454545454545454,
+            "att": 1.6363636363636365,
+            "pct": 33.33333333333333
+          },
+          {
+            "range": 6,
+            "made": 0.45454545454545453,
+            "att": 0.8181818181818182,
+            "pct": 55.55555555555556
+          }
+        ]
+      },
+      {
+        "rank": 85,
         "playerNo": "291208",
         "kname": "조한진",
         "ename": "CHO HAN JIN",
@@ -4008,25 +4055,25 @@
         ]
       },
       {
-        "rank": 86,
-        "playerNo": "291275",
-        "kname": "김경원",
-        "ename": "KIM KYUNG WON",
+        "rank": 87,
+        "playerNo": "291594",
+        "kname": "김태완",
+        "ename": "KIM TAE WAN",
         "teamCode": "10",
         "teamName1": "울산 현대모비스",
         "teamName4": "현대모비스",
         "ranges": [
           {
             "range": 1,
-            "made": 1,
-            "att": 1.3333333333333333,
-            "pct": 75
+            "made": 0.2222222222222222,
+            "att": 0.2222222222222222,
+            "pct": 100
           },
           {
             "range": 2,
-            "made": 0.1111111111111111,
-            "att": 0.2222222222222222,
-            "pct": 50
+            "made": 0,
+            "att": 0,
+            "pct": 0
           },
           {
             "range": 3,
@@ -4037,25 +4084,25 @@
           {
             "range": 4,
             "made": 0,
-            "att": 0.2222222222222222,
+            "att": 0.1111111111111111,
             "pct": 0
           },
           {
             "range": 5,
-            "made": 0.1111111111111111,
-            "att": 0.6666666666666666,
-            "pct": 16.666666666666664
+            "made": 0.5555555555555556,
+            "att": 1.1111111111111112,
+            "pct": 50
           },
           {
             "range": 6,
-            "made": 0,
-            "att": 0,
-            "pct": 0
+            "made": 0.2222222222222222,
+            "att": 0.2222222222222222,
+            "pct": 100
           }
         ]
       },
       {
-        "rank": 87,
+        "rank": 88,
         "playerNo": "290997",
         "kname": "김진유",
         "ename": "KIM JIN YOO",
@@ -4098,53 +4145,6 @@
             "made": 0.25,
             "att": 0.3333333333333333,
             "pct": 75
-          }
-        ]
-      },
-      {
-        "rank": 88,
-        "playerNo": "290489",
-        "kname": "정준원",
-        "ename": "JUNG JOONWON",
-        "teamCode": "10",
-        "teamName1": "울산 현대모비스",
-        "teamName4": "현대모비스",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.4444444444444444,
-            "att": 0.6666666666666666,
-            "pct": 66.66666666666666
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0.1111111111111111,
-            "att": 0.1111111111111111,
-            "pct": 100
-          },
-          {
-            "range": 4,
-            "made": 0,
-            "att": 0.1111111111111111,
-            "pct": 0
-          },
-          {
-            "range": 5,
-            "made": 0.4444444444444444,
-            "att": 1,
-            "pct": 44.44444444444444
-          },
-          {
-            "range": 6,
-            "made": 0,
-            "att": 0,
-            "pct": 0
           }
         ]
       },
@@ -4244,47 +4244,47 @@
       },
       {
         "rank": 91,
-        "playerNo": "290985",
-        "kname": "최성모",
-        "ename": "CHOI SEONG MO",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
+        "playerNo": "290489",
+        "kname": "정준원",
+        "ename": "JUNG JOONWON",
+        "teamCode": "10",
+        "teamName1": "울산 현대모비스",
+        "teamName4": "현대모비스",
         "ranges": [
           {
             "range": 1,
-            "made": 0.2,
-            "att": 0.2,
-            "pct": 100
+            "made": 0.4,
+            "att": 0.6,
+            "pct": 66.66666666666666
           },
           {
             "range": 2,
-            "made": 0.3,
-            "att": 0.4,
-            "pct": 75
-          },
-          {
-            "range": 3,
-            "made": 0,
-            "att": 0.1,
-            "pct": 0
-          },
-          {
-            "range": 4,
             "made": 0,
             "att": 0,
             "pct": 0
           },
           {
+            "range": 3,
+            "made": 0.1,
+            "att": 0.1,
+            "pct": 100
+          },
+          {
+            "range": 4,
+            "made": 0,
+            "att": 0.1,
+            "pct": 0
+          },
+          {
             "range": 5,
-            "made": 0.3,
-            "att": 1,
-            "pct": 30
+            "made": 0.4,
+            "att": 0.9,
+            "pct": 44.44444444444444
           },
           {
             "range": 6,
             "made": 0,
-            "att": 0.2,
+            "att": 0,
             "pct": 0
           }
         ]
@@ -4337,7 +4337,54 @@
         ]
       },
       {
-        "rank": 93,
+        "rank": 92,
+        "playerNo": "290985",
+        "kname": "최성모",
+        "ename": "CHOI SEONG MO",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.2727272727272727,
+            "att": 0.2727272727272727,
+            "pct": 100
+          },
+          {
+            "range": 2,
+            "made": 0.2727272727272727,
+            "att": 0.36363636363636365,
+            "pct": 75
+          },
+          {
+            "range": 3,
+            "made": 0,
+            "att": 0.09090909090909091,
+            "pct": 0
+          },
+          {
+            "range": 4,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 5,
+            "made": 0.2727272727272727,
+            "att": 1,
+            "pct": 27.27272727272727
+          },
+          {
+            "range": 6,
+            "made": 0,
+            "att": 0.18181818181818182,
+            "pct": 0
+          }
+        ]
+      },
+      {
+        "rank": 94,
         "playerNo": "291182",
         "kname": "우동현",
         "ename": "WOO DONGHYUN",
@@ -4379,53 +4426,6 @@
             "range": 6,
             "made": 0,
             "att": 0.125,
-            "pct": 0
-          }
-        ]
-      },
-      {
-        "rank": 93,
-        "playerNo": "291750",
-        "kname": "정성조",
-        "ename": "Jung Ssung Zo",
-        "teamCode": "35",
-        "teamName1": "서울 삼성",
-        "teamName4": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 0.5,
-            "att": 0.5,
-            "pct": 100
-          },
-          {
-            "range": 2,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 3,
-            "made": 0,
-            "att": 0,
-            "pct": 0
-          },
-          {
-            "range": 4,
-            "made": 0.25,
-            "att": 0.25,
-            "pct": 100
-          },
-          {
-            "range": 5,
-            "made": 0,
-            "att": 0.5,
-            "pct": 0
-          },
-          {
-            "range": 6,
-            "made": 0,
-            "att": 0.25,
             "pct": 0
           }
         ]
@@ -4761,6 +4761,53 @@
       },
       {
         "rank": 102,
+        "playerNo": "291750",
+        "kname": "정성조",
+        "ename": "Jung Ssung Zo",
+        "teamCode": "35",
+        "teamName1": "서울 삼성",
+        "teamName4": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 0.4,
+            "att": 0.6,
+            "pct": 66.66666666666666
+          },
+          {
+            "range": 2,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 3,
+            "made": 0,
+            "att": 0,
+            "pct": 0
+          },
+          {
+            "range": 4,
+            "made": 0.2,
+            "att": 0.4,
+            "pct": 50
+          },
+          {
+            "range": 5,
+            "made": 0,
+            "att": 0.4,
+            "pct": 0
+          },
+          {
+            "range": 6,
+            "made": 0,
+            "att": 0.2,
+            "pct": 0
+          }
+        ]
+      },
+      {
+        "rank": 103,
         "playerNo": "290785",
         "kname": "최승욱",
         "ename": "CHOI SEUNG WOOK",
@@ -4807,7 +4854,7 @@
         ]
       },
       {
-        "rank": 103,
+        "rank": 104,
         "playerNo": "290450",
         "kname": "오세근",
         "ename": "OH SEKEUN",
@@ -4854,7 +4901,7 @@
         ]
       },
       {
-        "rank": 104,
+        "rank": 105,
         "playerNo": "290284",
         "kname": "허일영",
         "ename": "HEO ILYOUNG",
@@ -4901,7 +4948,7 @@
         ]
       },
       {
-        "rank": 105,
+        "rank": 106,
         "playerNo": "290788",
         "kname": "이호현",
         "ename": "LEE HO HYUN",
@@ -4948,7 +4995,7 @@
         ]
       },
       {
-        "rank": 105,
+        "rank": 106,
         "playerNo": "290648",
         "kname": "한상혁",
         "ename": "HAN SANG HYEOK",
@@ -4995,7 +5042,7 @@
         ]
       },
       {
-        "rank": 107,
+        "rank": 108,
         "playerNo": "291771",
         "kname": "최형찬",
         "ename": "Choi Hyung Chan",
@@ -5042,7 +5089,7 @@
         ]
       },
       {
-        "rank": 107,
+        "rank": 108,
         "playerNo": "291764",
         "kname": "황영찬",
         "ename": "Hwang Yeong Chan",
@@ -5089,7 +5136,7 @@
         ]
       },
       {
-        "rank": 109,
+        "rank": 110,
         "playerNo": "291476",
         "kname": "김준환",
         "ename": "KIM JUN HWAN",
@@ -5136,7 +5183,7 @@
         ]
       },
       {
-        "rank": 110,
+        "rank": 111,
         "playerNo": "291847",
         "kname": "최강민",
         "ename": "CHOI KANG MIN",
@@ -5183,7 +5230,7 @@
         ]
       },
       {
-        "rank": 111,
+        "rank": 112,
         "playerNo": "291287",
         "kname": "김훈",
         "ename": "KIM HOON",
@@ -5230,7 +5277,7 @@
         ]
       },
       {
-        "rank": 111,
+        "rank": 112,
         "playerNo": "291769",
         "kname": "이찬영",
         "ename": "Lee Chan Yeong",
@@ -5277,7 +5324,7 @@
         ]
       },
       {
-        "rank": 113,
+        "rank": 114,
         "playerNo": "291274",
         "kname": "양재혁",
         "ename": "YANG JAE HYUK",
@@ -5324,7 +5371,7 @@
         ]
       },
       {
-        "rank": 114,
+        "rank": 115,
         "playerNo": "291748",
         "kname": "이근준",
         "ename": "Lee Geun Joon",
@@ -5371,7 +5418,7 @@
         ]
       },
       {
-        "rank": 115,
+        "rank": 116,
         "playerNo": "291289",
         "kname": "박준은",
         "ename": "PARK JOON EUN",
@@ -5418,7 +5465,7 @@
         ]
       },
       {
-        "rank": 115,
+        "rank": 116,
         "playerNo": "291763",
         "kname": "임동언",
         "ename": "Lim Dong Eon",
@@ -5465,7 +5512,7 @@
         ]
       },
       {
-        "rank": 117,
+        "rank": 118,
         "playerNo": "291087",
         "kname": "김국찬",
         "ename": "KIM GOOK CHAN",
@@ -5512,7 +5559,7 @@
         ]
       },
       {
-        "rank": 118,
+        "rank": 119,
         "playerNo": "290784",
         "kname": "최원혁",
         "ename": "CHOI WONHYUK",
@@ -5559,7 +5606,7 @@
         ]
       },
       {
-        "rank": 119,
+        "rank": 120,
         "playerNo": "291855",
         "kname": "강지훈",
         "ename": "KANG JI HOON",
@@ -5606,7 +5653,7 @@
         ]
       },
       {
-        "rank": 119,
+        "rank": 120,
         "playerNo": "291586",
         "kname": "이두원",
         "ename": "LEE DOO WON",
@@ -5653,7 +5700,7 @@
         ]
       },
       {
-        "rank": 119,
+        "rank": 120,
         "playerNo": "290485",
         "kname": "최부경",
         "ename": "CHOI BUKYUNG",
@@ -5700,7 +5747,7 @@
         ]
       },
       {
-        "rank": 119,
+        "rank": 120,
         "playerNo": "290501",
         "kname": "최현민",
         "ename": "CHOI HYUN MIN",
@@ -5747,7 +5794,7 @@
         ]
       },
       {
-        "rank": 123,
+        "rank": 124,
         "playerNo": "290478",
         "kname": "장민국",
         "ename": "JANG M K",
@@ -5794,7 +5841,7 @@
         ]
       },
       {
-        "rank": 124,
+        "rank": 125,
         "playerNo": "291494",
         "kname": "김동준",
         "ename": "KIM DONG JUN",
@@ -5841,7 +5888,7 @@
         ]
       },
       {
-        "rank": 124,
+        "rank": 125,
         "playerNo": "291291",
         "kname": "박정현",
         "ename": "PARK JEONG HYEON",
@@ -5888,7 +5935,7 @@
         ]
       },
       {
-        "rank": 126,
+        "rank": 127,
         "playerNo": "291352",
         "kname": "박지원",
         "ename": "PARK JI WON",
@@ -5935,7 +5982,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291865",
         "kname": "김선우",
         "ename": "KIM SUN WOO",
@@ -5982,7 +6029,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "290904",
         "kname": "박봉진",
         "ename": "PARK BONG JIN",
@@ -6029,7 +6076,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291276",
         "kname": "박찬호",
         "ename": "PARK CHAN HO",
@@ -6076,7 +6123,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "290553",
         "kname": "배병준",
         "ename": "BAE BYUNGJUN",
@@ -6123,7 +6170,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291491",
         "kname": "서정현",
         "ename": "SEO JUNG HYUN",
@@ -6170,7 +6217,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291747",
         "kname": "소준혁",
         "ename": "So Jun Hyeok",
@@ -6217,7 +6264,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291852",
         "kname": "송재환",
         "ename": "SONG JAE HWAN",
@@ -6264,7 +6311,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291856",
         "kname": "신지원",
         "ename": "SHIN JI WON",
@@ -6311,7 +6358,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291845",
         "kname": "안성우",
         "ename": "AN SUNG WOO",
@@ -6358,7 +6405,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291388",
         "kname": "이도헌",
         "ename": "LEE DO HEON",
@@ -6405,7 +6452,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "290783",
         "kname": "이현석",
         "ename": "LEE HYUN SUK",
@@ -6452,7 +6499,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291867",
         "kname": "임정현",
         "ename": "IM JEONG HYUN",
@@ -6499,7 +6546,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "290740",
         "kname": "전준범",
         "ename": "JEON JUN BEOM",
@@ -6546,7 +6593,7 @@
         ]
       },
       {
-        "rank": 127,
+        "rank": 128,
         "playerNo": "291648",
         "kname": "표승빈",
         "ename": "PYO SEONG BIN",
@@ -6819,50 +6866,6 @@
       },
       {
         "rank": 6,
-        "code": "35",
-        "name": "서울 삼성",
-        "shortName": "삼성",
-        "ranges": [
-          {
-            "range": 1,
-            "made": 12.8,
-            "att": 18.2,
-            "pct": 70.32967032967034
-          },
-          {
-            "range": 2,
-            "made": 4.9,
-            "att": 9.6,
-            "pct": 51.041666666666664
-          },
-          {
-            "range": 3,
-            "made": 1.4,
-            "att": 3.5,
-            "pct": 40
-          },
-          {
-            "range": 4,
-            "made": 2.7,
-            "att": 4.9,
-            "pct": 55.10204081632652
-          },
-          {
-            "range": 5,
-            "made": 8.2,
-            "att": 22.4,
-            "pct": 36.607142857142854
-          },
-          {
-            "range": 6,
-            "made": 2,
-            "att": 6.4,
-            "pct": 31.25
-          }
-        ]
-      },
-      {
-        "rank": 7,
         "code": "06",
         "name": "수원 KT",
         "shortName": "KT",
@@ -6906,6 +6909,50 @@
         ]
       },
       {
+        "rank": 7,
+        "code": "35",
+        "name": "서울 삼성",
+        "shortName": "삼성",
+        "ranges": [
+          {
+            "range": 1,
+            "made": 13.272727272727273,
+            "att": 19.09090909090909,
+            "pct": 69.52380952380952
+          },
+          {
+            "range": 2,
+            "made": 4.545454545454546,
+            "att": 9,
+            "pct": 50.505050505050505
+          },
+          {
+            "range": 3,
+            "made": 1.4545454545454546,
+            "att": 3.8181818181818183,
+            "pct": 38.095238095238095
+          },
+          {
+            "range": 4,
+            "made": 2.727272727272727,
+            "att": 5.090909090909091,
+            "pct": 53.57142857142857
+          },
+          {
+            "range": 5,
+            "made": 8.090909090909092,
+            "att": 22.545454545454547,
+            "pct": 35.88709677419355
+          },
+          {
+            "range": 6,
+            "made": 1.8181818181818181,
+            "att": 5.909090909090909,
+            "pct": 30.76923076923077
+          }
+        ]
+      },
+      {
         "rank": 8,
         "code": "10",
         "name": "울산 현대모비스",
@@ -6913,39 +6960,39 @@
         "ranges": [
           {
             "range": 1,
-            "made": 14.5,
-            "att": 21.3,
-            "pct": 68.07511737089203
+            "made": 14.181818181818182,
+            "att": 21.09090909090909,
+            "pct": 67.24137931034483
           },
           {
             "range": 2,
-            "made": 2.9,
-            "att": 6.5,
-            "pct": 44.61538461538462
+            "made": 2.6363636363636362,
+            "att": 6.090909090909091,
+            "pct": 43.28358208955223
           },
           {
             "range": 3,
-            "made": 2.3,
-            "att": 5.6,
-            "pct": 41.07142857142857
+            "made": 2.1818181818181817,
+            "att": 5.909090909090909,
+            "pct": 36.92307692307693
           },
           {
             "range": 4,
-            "made": 2.1,
-            "att": 6.4,
-            "pct": 32.8125
+            "made": 2.090909090909091,
+            "att": 6.090909090909091,
+            "pct": 34.32835820895522
           },
           {
             "range": 5,
-            "made": 7.5,
-            "att": 22.1,
-            "pct": 33.93665158371041
+            "made": 7.818181818181818,
+            "att": 22.90909090909091,
+            "pct": 34.12698412698413
           },
           {
             "range": 6,
-            "made": 1.9,
-            "att": 4.2,
-            "pct": 45.23809523809524
+            "made": 1.8181818181818181,
+            "att": 4,
+            "pct": 45.45454545454545
           }
         ]
       },
@@ -7045,39 +7092,39 @@
         "ranges": [
           {
             "range": 1,
-            "made": 13.273584905660377,
-            "att": 20.08490566037736,
-            "pct": 66.08736496007516
+            "made": 13.296296296296296,
+            "att": 20.14814814814815,
+            "pct": 65.99264705882352
           },
           {
             "range": 2,
-            "made": 4.80188679245283,
-            "att": 9.5,
-            "pct": 50.54617676266137
+            "made": 4.722222222222222,
+            "att": 9.37037037037037,
+            "pct": 50.39525691699605
           },
           {
             "range": 3,
-            "made": 2.056603773584906,
-            "att": 4.9245283018867925,
-            "pct": 41.7624521072797
+            "made": 2.0462962962962963,
+            "att": 4.981481481481482,
+            "pct": 41.07806691449814
           },
           {
             "range": 4,
-            "made": 1.7547169811320755,
-            "att": 4.179245283018868,
-            "pct": 41.98645598194131
+            "made": 1.7685185185185186,
+            "att": 4.194444444444445,
+            "pct": 42.16335540838852
           },
           {
             "range": 5,
-            "made": 8.19811320754717,
-            "att": 23.462264150943398,
-            "pct": 34.941696823482104
+            "made": 8.212962962962964,
+            "att": 23.537037037037038,
+            "pct": 34.89378442171518
           },
           {
             "range": 6,
-            "made": 2.2358490566037736,
-            "att": 6.433962264150943,
-            "pct": 34.75073313782991
+            "made": 2.2037037037037037,
+            "att": 6.342592592592593,
+            "pct": 34.74452554744526
           }
         ]
       }

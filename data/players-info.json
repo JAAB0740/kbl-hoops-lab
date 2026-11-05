@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-11-05T01:28:05.851Z",
+  "fetchedAt": "2026-11-05T20:15:03.023Z",
   "seasonCode": "49",
-  "totalRegistered": 185,
+  "totalRegistered": 186,
   "countByFlag": {
     "국내": 158,
     "아시아쿼터": 9,
-    "외국선수": 18
+    "외국선수": 19
   },
   "byPcode": {
     "290284": {
@@ -2493,6 +2493,30 @@
         "middle": null,
         "high": null,
         "university": "TAMUCC",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 39
+    },
+    "291475": {
+      "pcode": "291475",
+      "kname": "오마리 스펠맨",
+      "ename": "Omari Spellman",
+      "teamCode": "10",
+      "pos": "FD",
+      "backNum": "4",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1997-07-21",
+      "pHeight": 206,
+      "pWeight": null,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "Villanova University",
         "graduate": null
       },
       "gradYear": null,
