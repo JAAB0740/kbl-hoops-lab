@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T01:31:48.652Z",
+  "fetchedAt": "2026-11-06T19:41:01.838Z",
   "source": "api-stats.kbl.or.kr/api/records/player/clutch/traditional",
   "players": {
     "regular": [
@@ -151,25 +151,25 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
+        "games": 8,
         "wins": 5,
-        "losses": 2,
-        "minutes": 2.0095238095238095,
-        "points": 1.5714285714285714,
-        "fgMade": 0.42857142857142855,
-        "fgAtt": 0.5714285714285714,
-        "fgPct": 75,
-        "threeMade": 0.14285714285714285,
-        "threeAtt": 0.14285714285714285,
+        "losses": 3,
+        "minutes": 2.533333333333333,
+        "points": 1.625,
+        "fgMade": 0.375,
+        "fgAtt": 0.625,
+        "fgPct": 60,
+        "threeMade": 0.125,
+        "threeAtt": 0.125,
         "threePct": 100,
-        "ftMade": 0.2857142857142857,
-        "ftAtt": 0.2857142857142857,
-        "ftPct": 100,
-        "rebounds": 0.2857142857142857,
-        "assists": 0.2857142857142857,
-        "steals": 0,
+        "ftMade": 0.5,
+        "ftAtt": 0.75,
+        "ftPct": 66.66666666666666,
+        "rebounds": 0.375,
+        "assists": 0.25,
+        "steals": 0.125,
         "blocks": 0,
-        "turnovers": 0.14285714285714285
+        "turnovers": 0.125
       },
       {
         "rank": 7,
@@ -397,34 +397,6 @@
       },
       {
         "rank": 15,
-        "playerNo": "291068",
-        "kname": "김낙현",
-        "ename": "KIM NAK HYEON",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 7,
-        "wins": 5,
-        "losses": 2,
-        "minutes": 2.0095238095238095,
-        "points": 1.1428571428571428,
-        "fgMade": 0.14285714285714285,
-        "fgAtt": 0.14285714285714285,
-        "fgPct": 100,
-        "threeMade": 0.2857142857142857,
-        "threeAtt": 0.42857142857142855,
-        "threePct": 66.66666666666666,
-        "ftMade": 0,
-        "ftAtt": 0,
-        "ftPct": 0,
-        "rebounds": 0.2857142857142857,
-        "assists": 0.2857142857142857,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 16,
         "playerNo": "291576",
         "kname": "양준석",
         "ename": "YANG JUN SEOK",
@@ -452,7 +424,7 @@
         "turnovers": 0
       },
       {
-        "rank": 17,
+        "rank": 16,
         "playerNo": "291884",
         "kname": "루이스 킹",
         "ename": "Louis Dajon King",
@@ -480,7 +452,35 @@
         "turnovers": 0.25
       },
       {
-        "rank": 18,
+        "rank": 17,
+        "playerNo": "291068",
+        "kname": "김낙현",
+        "ename": "KIM NAK HYEON",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 8,
+        "wins": 5,
+        "losses": 3,
+        "minutes": 2.535416666666667,
+        "points": 1,
+        "fgMade": 0.125,
+        "fgAtt": 0.125,
+        "fgPct": 100,
+        "threeMade": 0.25,
+        "threeAtt": 0.625,
+        "threePct": 40,
+        "ftMade": 0,
+        "ftAtt": 0,
+        "ftPct": 0,
+        "rebounds": 0.25,
+        "assists": 0.25,
+        "steals": 0.125,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 17,
         "playerNo": "291886",
         "kname": "다리우스 베즐리",
         "ename": "Darius Denayr Bazley",
@@ -508,35 +508,7 @@
         "turnovers": 0.125
       },
       {
-        "rank": 18,
-        "playerNo": "291436",
-        "kname": "라숀 토마스",
-        "ename": "Rashawn Thomas",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 4,
-        "wins": 3,
-        "losses": 1,
-        "minutes": 2.904166666666667,
-        "points": 1,
-        "fgMade": 0.25,
-        "fgAtt": 0.5,
-        "fgPct": 50,
-        "threeMade": 0,
-        "threeAtt": 0,
-        "threePct": 0,
-        "ftMade": 0.5,
-        "ftAtt": 0.75,
-        "ftPct": 66.66666666666666,
-        "rebounds": 0.25,
-        "assists": 0.25,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0.25
-      },
-      {
-        "rank": 18,
+        "rank": 17,
         "playerNo": "291432",
         "kname": "아셈 마레이",
         "ename": "Assem Marei",
@@ -564,7 +536,7 @@
         "turnovers": 0
       },
       {
-        "rank": 18,
+        "rank": 17,
         "playerNo": "291882",
         "kname": "아치 굿윈",
         "ename": "Archie Lee Goodwin III",
@@ -592,7 +564,7 @@
         "turnovers": 0
       },
       {
-        "rank": 18,
+        "rank": 17,
         "playerNo": "290539",
         "kname": "장재석",
         "ename": "JANG JAE SEOK",
@@ -620,7 +592,7 @@
         "turnovers": 0.08333333333333333
       },
       {
-        "rank": 18,
+        "rank": 17,
         "playerNo": "291785",
         "kname": "헨리 엘런슨",
         "ename": "Henry Ellenson",
@@ -648,7 +620,7 @@
         "turnovers": 0.16666666666666666
       },
       {
-        "rank": 24,
+        "rank": 23,
         "playerNo": "291787",
         "kname": "케렘 칸터",
         "ename": "Kerem Kanter",
@@ -676,35 +648,35 @@
         "turnovers": 0.09090909090909091
       },
       {
-        "rank": 25,
-        "playerNo": "291248",
-        "kname": "자밀 워니",
-        "ename": "Jameel Warney",
+        "rank": 24,
+        "playerNo": "291368",
+        "kname": "오재현",
+        "ename": "OH JAEHYUN",
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
+        "games": 8,
         "wins": 5,
-        "losses": 2,
-        "minutes": 2.0095238095238095,
-        "points": 0.8571428571428571,
-        "fgMade": 0.42857142857142855,
-        "fgAtt": 0.7142857142857143,
-        "fgPct": 60,
-        "threeMade": 0,
-        "threeAtt": 0.42857142857142855,
-        "threePct": 0,
-        "ftMade": 0,
-        "ftAtt": 0,
-        "ftPct": 0,
-        "rebounds": 0.2857142857142857,
-        "assists": 0.42857142857142855,
-        "steals": 0.14285714285714285,
-        "blocks": 0.14285714285714285,
-        "turnovers": 0
+        "losses": 3,
+        "minutes": 1.9458333333333333,
+        "points": 0.875,
+        "fgMade": 0.125,
+        "fgAtt": 0.25,
+        "fgPct": 50,
+        "threeMade": 0.125,
+        "threeAtt": 0.125,
+        "threePct": 100,
+        "ftMade": 0.25,
+        "ftAtt": 0.375,
+        "ftPct": 66.66666666666666,
+        "rebounds": 0.125,
+        "assists": 0.125,
+        "steals": 0.125,
+        "blocks": 0,
+        "turnovers": 0.125
       },
       {
-        "rank": 26,
+        "rank": 25,
         "playerNo": "291680",
         "kname": "케베 알루마",
         "ename": "Keve Aluma",
@@ -732,32 +704,60 @@
         "turnovers": 0.36363636363636365
       },
       {
-        "rank": 27,
+        "rank": 26,
+        "playerNo": "291436",
+        "kname": "라숀 토마스",
+        "ename": "Rashawn Thomas",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 5,
+        "wins": 4,
+        "losses": 1,
+        "minutes": 3.566666666666667,
+        "points": 0.8,
+        "fgMade": 0.2,
+        "fgAtt": 0.4,
+        "fgPct": 50,
+        "threeMade": 0,
+        "threeAtt": 0,
+        "threePct": 0,
+        "ftMade": 0.4,
+        "ftAtt": 0.6,
+        "ftPct": 66.66666666666666,
+        "rebounds": 1,
+        "assists": 0.2,
+        "steals": 0,
+        "blocks": 0,
+        "turnovers": 0.4
+      },
+      {
+        "rank": 26,
         "playerNo": "291583",
         "kname": "렌즈 아반도",
         "ename": "Rhenz Joseph Abando",
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 9,
-        "wins": 5,
+        "games": 10,
+        "wins": 6,
         "losses": 4,
-        "minutes": 2.3648148148148147,
-        "points": 0.7777777777777778,
+        "minutes": 2.75,
+        "points": 0.8,
         "fgMade": 0,
         "fgAtt": 0,
         "fgPct": 0,
-        "threeMade": 0.1111111111111111,
-        "threeAtt": 0.4444444444444444,
+        "threeMade": 0.1,
+        "threeAtt": 0.4,
         "threePct": 25,
-        "ftMade": 0.4444444444444444,
-        "ftAtt": 0.4444444444444444,
-        "ftPct": 100,
-        "rebounds": 0.5555555555555556,
+        "ftMade": 0.5,
+        "ftAtt": 0.6,
+        "ftPct": 83.33333333333334,
+        "rebounds": 0.7,
         "assists": 0,
         "steals": 0,
         "blocks": 0,
-        "turnovers": 0.1111111111111111
+        "turnovers": 0.2
       },
       {
         "rank": 28,
@@ -788,7 +788,35 @@
         "turnovers": 0.4166666666666667
       },
       {
-        "rank": 29,
+        "rank": 28,
+        "playerNo": "291248",
+        "kname": "자밀 워니",
+        "ename": "Jameel Warney",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 8,
+        "wins": 5,
+        "losses": 3,
+        "minutes": 2.535416666666667,
+        "points": 0.75,
+        "fgMade": 0.375,
+        "fgAtt": 0.75,
+        "fgPct": 50,
+        "threeMade": 0,
+        "threeAtt": 0.5,
+        "threePct": 0,
+        "ftMade": 0,
+        "ftAtt": 0,
+        "ftPct": 0,
+        "rebounds": 0.5,
+        "assists": 0.625,
+        "steals": 0.125,
+        "blocks": 0.125,
+        "turnovers": 0.125
+      },
+      {
+        "rank": 30,
         "playerNo": "290599",
         "kname": "서민수",
         "ename": "SEO MIN SOO",
@@ -816,35 +844,7 @@
         "turnovers": 0
       },
       {
-        "rank": 30,
-        "playerNo": "291888",
-        "kname": "데이본 리드",
-        "ename": "Davon Reed",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 6,
-        "wins": 3,
-        "losses": 3,
-        "minutes": 0.9388888888888889,
-        "points": 0.6666666666666666,
-        "fgMade": 0.3333333333333333,
-        "fgAtt": 0.3333333333333333,
-        "fgPct": 100,
-        "threeMade": 0,
-        "threeAtt": 0,
-        "threePct": 0,
-        "ftMade": 0,
-        "ftAtt": 0,
-        "ftPct": 0,
-        "rebounds": 0.16666666666666666,
-        "assists": 0,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 30,
+        "rank": 31,
         "playerNo": "290542",
         "kname": "임동섭",
         "ename": "LIM DONG SEOP",
@@ -872,7 +872,7 @@
         "turnovers": 0
       },
       {
-        "rank": 30,
+        "rank": 31,
         "playerNo": "291492",
         "kname": "하윤기",
         "ename": "HA YUN GI",
@@ -957,29 +957,29 @@
       },
       {
         "rank": 35,
-        "playerNo": "291368",
-        "kname": "오재현",
-        "ename": "OH JAEHYUN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
+        "playerNo": "291888",
+        "kname": "데이본 리드",
+        "ename": "Davon Reed",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
         "games": 7,
-        "wins": 5,
-        "losses": 2,
-        "minutes": 1.3476190476190477,
+        "wins": 4,
+        "losses": 3,
+        "minutes": 0.8047619047619048,
         "points": 0.5714285714285714,
-        "fgMade": 0.14285714285714285,
+        "fgMade": 0.2857142857142857,
         "fgAtt": 0.2857142857142857,
-        "fgPct": 50,
+        "fgPct": 100,
         "threeMade": 0,
         "threeAtt": 0,
         "threePct": 0,
-        "ftMade": 0.2857142857142857,
-        "ftAtt": 0.42857142857142855,
-        "ftPct": 66.66666666666666,
+        "ftMade": 0,
+        "ftAtt": 0,
+        "ftPct": 0,
         "rebounds": 0.14285714285714285,
-        "assists": 0.14285714285714285,
-        "steals": 0.14285714285714285,
+        "assists": 0,
+        "steals": 0,
         "blocks": 0,
         "turnovers": 0
       },
@@ -1096,7 +1096,35 @@
         "turnovers": 0
       },
       {
-        "rank": 40,
+        "rank": 39,
+        "playerNo": "291372",
+        "kname": "한승희",
+        "ename": "HAN SEUNG HEE ",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "minutes": 2.9402777777777778,
+        "points": 0.5,
+        "fgMade": 0.08333333333333333,
+        "fgAtt": 0.08333333333333333,
+        "fgPct": 100,
+        "threeMade": 0,
+        "threeAtt": 0.16666666666666666,
+        "threePct": 0,
+        "ftMade": 0.3333333333333333,
+        "ftAtt": 0.4166666666666667,
+        "ftPct": 80,
+        "rebounds": 0,
+        "assists": 0.08333333333333333,
+        "steals": 0,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 41,
         "playerNo": "291692",
         "kname": "미구엘 옥존",
         "ename": "Miguel Andre Oczon",
@@ -1124,7 +1152,7 @@
         "turnovers": 0
       },
       {
-        "rank": 40,
+        "rank": 41,
         "playerNo": "291512",
         "kname": "저스틴 구탕",
         "ename": "Justin Gutang",
@@ -1152,35 +1180,7 @@
         "turnovers": 0.09090909090909091
       },
       {
-        "rank": 40,
-        "playerNo": "291372",
-        "kname": "한승희",
-        "ename": "HAN SEUNG HEE ",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 11,
-        "wins": 7,
-        "losses": 4,
-        "minutes": 2.6439393939393936,
-        "points": 0.45454545454545453,
-        "fgMade": 0.09090909090909091,
-        "fgAtt": 0.09090909090909091,
-        "fgPct": 100,
-        "threeMade": 0,
-        "threeAtt": 0.18181818181818182,
-        "threePct": 0,
-        "ftMade": 0.2727272727272727,
-        "ftAtt": 0.2727272727272727,
-        "ftPct": 100,
-        "rebounds": 0,
-        "assists": 0.09090909090909091,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 40,
+        "rank": 41,
         "playerNo": "290754",
         "kname": "한호빈",
         "ename": "HAN HO BIN",
@@ -1209,6 +1209,62 @@
       },
       {
         "rank": 44,
+        "playerNo": "291303",
+        "kname": "김형빈",
+        "ename": "KIM HYUNGBIN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 7,
+        "wins": 4,
+        "losses": 3,
+        "minutes": 1.6023809523809522,
+        "points": 0.42857142857142855,
+        "fgMade": 0,
+        "fgAtt": 0,
+        "fgPct": 0,
+        "threeMade": 0.14285714285714285,
+        "threeAtt": 0.42857142857142855,
+        "threePct": 33.33333333333333,
+        "ftMade": 0,
+        "ftAtt": 0,
+        "ftPct": 0,
+        "rebounds": 0.5714285714285714,
+        "assists": 0,
+        "steals": 0,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 45,
+        "playerNo": "291857",
+        "kname": "문유현",
+        "ename": "MOON YU HYEON",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "minutes": 2.0680555555555555,
+        "points": 0.4166666666666667,
+        "fgMade": 0,
+        "fgAtt": 0.08333333333333333,
+        "fgPct": 0,
+        "threeMade": 0,
+        "threeAtt": 0.08333333333333333,
+        "threePct": 0,
+        "ftMade": 0.4166666666666667,
+        "ftAtt": 0.5,
+        "ftPct": 83.33333333333334,
+        "rebounds": 0.16666666666666666,
+        "assists": 0.16666666666666666,
+        "steals": 0.08333333333333333,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 46,
         "playerNo": "291342",
         "kname": "숀 롱",
         "ename": "Shawn Long",
@@ -1236,7 +1292,7 @@
         "turnovers": 0.2
       },
       {
-        "rank": 44,
+        "rank": 46,
         "playerNo": "290788",
         "kname": "이호현",
         "ename": "LEE HO HYUN",
@@ -1264,7 +1320,7 @@
         "turnovers": 0
       },
       {
-        "rank": 46,
+        "rank": 48,
         "playerNo": "291752",
         "kname": "김보배",
         "ename": "Kim Bo Bae",
@@ -1292,7 +1348,7 @@
         "turnovers": 0
       },
       {
-        "rank": 46,
+        "rank": 48,
         "playerNo": "291363",
         "kname": "윤원상",
         "ename": "YUN WON SANG",
@@ -1320,7 +1376,7 @@
         "turnovers": 0
       },
       {
-        "rank": 46,
+        "rank": 48,
         "playerNo": "290765",
         "kname": "이재도",
         "ename": "LEE JAE DO",
@@ -1348,7 +1404,7 @@
         "turnovers": 0
       },
       {
-        "rank": 46,
+        "rank": 48,
         "playerNo": "290763",
         "kname": "전성현",
         "ename": "JEON SEONG HYUN",
@@ -1376,7 +1432,7 @@
         "turnovers": 0
       },
       {
-        "rank": 46,
+        "rank": 48,
         "playerNo": "290776",
         "kname": "허웅",
         "ename": "HEO UNG",
@@ -1404,7 +1460,7 @@
         "turnovers": 0
       },
       {
-        "rank": 51,
+        "rank": 53,
         "playerNo": "291649",
         "kname": "박무빈",
         "ename": "PARK MU BIN",
@@ -1432,7 +1488,7 @@
         "turnovers": 0
       },
       {
-        "rank": 52,
+        "rank": 54,
         "playerNo": "290985",
         "kname": "최성모",
         "ename": "CHOI SEONG MO",
@@ -1460,35 +1516,7 @@
         "turnovers": 0
       },
       {
-        "rank": 53,
-        "playerNo": "291857",
-        "kname": "문유현",
-        "ename": "MOON YU HYEON",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 11,
-        "wins": 7,
-        "losses": 4,
-        "minutes": 2.1606060606060606,
-        "points": 0.2727272727272727,
-        "fgMade": 0,
-        "fgAtt": 0.09090909090909091,
-        "fgPct": 0,
-        "threeMade": 0,
-        "threeAtt": 0.09090909090909091,
-        "threePct": 0,
-        "ftMade": 0.2727272727272727,
-        "ftAtt": 0.36363636363636365,
-        "ftPct": 75,
-        "rebounds": 0.18181818181818182,
-        "assists": 0.18181818181818182,
-        "steals": 0.09090909090909091,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 53,
+        "rank": 55,
         "playerNo": "291667",
         "kname": "문정현",
         "ename": "MOON JEONG HYEON",
@@ -1516,7 +1544,7 @@
         "turnovers": 0
       },
       {
-        "rank": 53,
+        "rank": 55,
         "playerNo": "291189",
         "kname": "서명진",
         "ename": "SEO MYEONG JIN",
@@ -1544,7 +1572,7 @@
         "turnovers": 0
       },
       {
-        "rank": 53,
+        "rank": 55,
         "playerNo": "291859",
         "kname": "윤기찬",
         "ename": "YUN KI CHAN",
@@ -1572,7 +1600,7 @@
         "turnovers": 0
       },
       {
-        "rank": 57,
+        "rank": 58,
         "playerNo": "291842",
         "kname": "강성욱",
         "ename": "KANG SUNG WOOK",
@@ -1600,7 +1628,7 @@
         "turnovers": 0.1
       },
       {
-        "rank": 57,
+        "rank": 58,
         "playerNo": "291275",
         "kname": "김경원",
         "ename": "KIM KYUNG WON",
@@ -1628,7 +1656,7 @@
         "turnovers": 0
       },
       {
-        "rank": 57,
+        "rank": 58,
         "playerNo": "291862",
         "kname": "양우혁",
         "ename": "YANG WOO HYUCK",
@@ -1656,7 +1684,7 @@
         "turnovers": 0.1
       },
       {
-        "rank": 57,
+        "rank": 58,
         "playerNo": "290440",
         "kname": "이관희",
         "ename": "LEE GWAN HEE",
@@ -1684,7 +1712,7 @@
         "turnovers": 0
       },
       {
-        "rank": 61,
+        "rank": 62,
         "playerNo": "291220",
         "kname": "변준형",
         "ename": "BYUN JUN HYUNG",
@@ -1712,7 +1740,7 @@
         "turnovers": 0.45454545454545453
       },
       {
-        "rank": 61,
+        "rank": 62,
         "playerNo": "291375",
         "kname": "이우석",
         "ename": "LEE WOO SUK",
@@ -1740,7 +1768,7 @@
         "turnovers": 0
       },
       {
-        "rank": 63,
+        "rank": 64,
         "playerNo": "290524",
         "kname": "라건아",
         "ename": "Ra Guna",
@@ -1768,7 +1796,7 @@
         "turnovers": 0
       },
       {
-        "rank": 64,
+        "rank": 65,
         "playerNo": "290583",
         "kname": "한희원",
         "ename": "HAN HEE WON",
@@ -1796,7 +1824,35 @@
         "turnovers": 0
       },
       {
-        "rank": 65,
+        "rank": 66,
+        "playerNo": "291746",
+        "kname": "박정웅",
+        "ename": "Park Jung Woong",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 10,
+        "wins": 7,
+        "losses": 3,
+        "minutes": 1.6166666666666667,
+        "points": 0.1,
+        "fgMade": 0,
+        "fgAtt": 0,
+        "fgPct": 0,
+        "threeMade": 0,
+        "threeAtt": 0.1,
+        "threePct": 0,
+        "ftMade": 0.1,
+        "ftAtt": 0.2,
+        "ftPct": 50,
+        "rebounds": 0.2,
+        "assists": 0.1,
+        "steals": 0.1,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 66,
         "playerNo": "290996",
         "kname": "정인덕",
         "ename": "JUNG IN DUK",
@@ -1824,35 +1880,35 @@
         "turnovers": 0
       },
       {
-        "rank": 66,
+        "rank": 68,
         "playerNo": "291008",
         "kname": "박지훈",
         "ename": "PARK JIHOON",
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 11,
-        "wins": 7,
+        "games": 12,
+        "wins": 8,
         "losses": 4,
-        "minutes": 0.7606060606060605,
-        "points": 0.09090909090909091,
+        "minutes": 1.1291666666666667,
+        "points": 0.08333333333333333,
         "fgMade": 0,
         "fgAtt": 0,
         "fgPct": 0,
         "threeMade": 0,
         "threeAtt": 0,
         "threePct": 0,
-        "ftMade": 0.09090909090909091,
-        "ftAtt": 0.09090909090909091,
-        "ftPct": 100,
+        "ftMade": 0.08333333333333333,
+        "ftAtt": 0.25,
+        "ftPct": 33.33333333333333,
         "rebounds": 0,
-        "assists": 0.09090909090909091,
-        "steals": 0,
+        "assists": 0.08333333333333333,
+        "steals": 0.08333333333333333,
         "blocks": 0,
-        "turnovers": 0.09090909090909091
+        "turnovers": 0.16666666666666666
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291001",
         "kname": "강상재",
         "ename": "KANG SANG JAE",
@@ -1880,7 +1936,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291855",
         "kname": "강지훈",
         "ename": "KANG JI HOON",
@@ -1908,7 +1964,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291579",
         "kname": "게이지 프림",
         "ename": "Gaige Colburn Prim",
@@ -1936,7 +1992,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291087",
         "kname": "김국찬",
         "ename": "KIM GOOK CHAN",
@@ -1964,7 +2020,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291494",
         "kname": "김동준",
         "ename": "KIM DONG JUN",
@@ -1992,7 +2048,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291490",
         "kname": "김동현",
         "ename": "KIM DONG HYUN",
@@ -2020,7 +2076,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291863",
         "kname": "김민규",
         "ename": "KIM MIN GYU",
@@ -2048,7 +2104,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291865",
         "kname": "김선우",
         "ename": "KIM SUN WOO",
@@ -2076,7 +2132,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291476",
         "kname": "김준환",
         "ename": "KIM JUN HWAN",
@@ -2104,7 +2160,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290997",
         "kname": "김진유",
         "ename": "KIM JIN YOO",
@@ -2132,7 +2188,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291594",
         "kname": "김태완",
         "ename": "KIM TAE WAN",
@@ -2160,35 +2216,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
-        "playerNo": "291303",
-        "kname": "김형빈",
-        "ename": "KIM HYUNGBIN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 6,
-        "wins": 4,
-        "losses": 2,
-        "minutes": 1.1944444444444444,
-        "points": 0,
-        "fgMade": 0,
-        "fgAtt": 0,
-        "fgPct": 0,
-        "threeMade": 0,
-        "threeAtt": 0.16666666666666666,
-        "threePct": 0,
-        "ftMade": 0,
-        "ftAtt": 0,
-        "ftPct": 0,
-        "rebounds": 0.16666666666666666,
-        "assists": 0,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291287",
         "kname": "김훈",
         "ename": "KIM HOON",
@@ -2216,7 +2244,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290904",
         "kname": "박봉진",
         "ename": "PARK BONG JIN",
@@ -2244,35 +2272,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
-        "playerNo": "291746",
-        "kname": "박정웅",
-        "ename": "Park Jung Woong",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 9,
-        "wins": 6,
-        "losses": 3,
-        "minutes": 1.1055555555555554,
-        "points": 0,
-        "fgMade": 0,
-        "fgAtt": 0,
-        "fgPct": 0,
-        "threeMade": 0,
-        "threeAtt": 0,
-        "threePct": 0,
-        "ftMade": 0,
-        "ftAtt": 0,
-        "ftPct": 0,
-        "rebounds": 0.2222222222222222,
-        "assists": 0.1111111111111111,
-        "steals": 0,
-        "blocks": 0,
-        "turnovers": 0
-      },
-      {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291291",
         "kname": "박정현",
         "ename": "PARK JEONG HYEON",
@@ -2300,7 +2300,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291226",
         "kname": "박준영",
         "ename": "PARK JUN YOUNG",
@@ -2328,7 +2328,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291289",
         "kname": "박준은",
         "ename": "PARK JOON EUN",
@@ -2356,7 +2356,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291352",
         "kname": "박지원",
         "ename": "PARK JI WON",
@@ -2384,7 +2384,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291276",
         "kname": "박찬호",
         "ename": "PARK CHAN HO",
@@ -2412,7 +2412,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290553",
         "kname": "배병준",
         "ename": "BAE BYUNGJUN",
@@ -2440,7 +2440,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291491",
         "kname": "서정현",
         "ename": "SEO JUNG HYUN",
@@ -2468,7 +2468,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291747",
         "kname": "소준혁",
         "ename": "So Jun Hyeok",
@@ -2496,7 +2496,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291754",
         "kname": "손준",
         "ename": "Sohn Jun",
@@ -2524,7 +2524,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291852",
         "kname": "송재환",
         "ename": "SONG JAE HWAN",
@@ -2552,7 +2552,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291597",
         "kname": "신동혁",
         "ename": "SHIN DONG HYUK",
@@ -2580,7 +2580,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291856",
         "kname": "신지원",
         "ename": "SHIN JI WON",
@@ -2608,16 +2608,16 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291333",
         "kname": "아이재아 힉스",
         "ename": "Isaiah Hicks",
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
+        "games": 8,
         "wins": 5,
-        "losses": 2,
+        "losses": 3,
         "minutes": 0,
         "points": 0,
         "fgMade": 0,
@@ -2636,7 +2636,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291845",
         "kname": "안성우",
         "ename": "AN SUNG WOO",
@@ -2664,7 +2664,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291784",
         "kname": "알빈 톨렌티노",
         "ename": "Arvin Tolentino",
@@ -2692,7 +2692,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291695",
         "kname": "앨런 윌리엄스",
         "ename": "Alan Travis Williams",
@@ -2720,7 +2720,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291274",
         "kname": "양재혁",
         "ename": "YANG JAE HYUK",
@@ -2748,7 +2748,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291846",
         "kname": "에디 다니엘",
         "ename": "EDI DANIEL",
@@ -2776,7 +2776,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291475",
         "kname": "오마리 스펠맨",
         "ename": "Omari Spellman",
@@ -2804,7 +2804,35 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
+        "playerNo": "290450",
+        "kname": "오세근",
+        "ename": "OH SEKEUN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 1,
+        "wins": 0,
+        "losses": 1,
+        "minutes": 2.1666666666666665,
+        "points": 0,
+        "fgMade": 0,
+        "fgAtt": 0,
+        "fgPct": 0,
+        "threeMade": 0,
+        "threeAtt": 0,
+        "threePct": 0,
+        "ftMade": 0,
+        "ftAtt": 0,
+        "ftPct": 0,
+        "rebounds": 0,
+        "assists": 0,
+        "steals": 0,
+        "blocks": 0,
+        "turnovers": 0
+      },
+      {
+        "rank": 69,
         "playerNo": "291182",
         "kname": "우동현",
         "ename": "WOO DONGHYUN",
@@ -2832,7 +2860,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291853",
         "kname": "이규태",
         "ename": "LEE KYU TAE",
@@ -2860,7 +2888,7 @@
         "turnovers": 0.09090909090909091
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291748",
         "kname": "이근준",
         "ename": "Lee Geun Joon",
@@ -2888,7 +2916,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291374",
         "kname": "이근휘",
         "ename": "LEE GEUN HWI",
@@ -2916,7 +2944,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290603",
         "kname": "이대헌",
         "ename": "LEE DAE HEON",
@@ -2944,7 +2972,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291388",
         "kname": "이도헌",
         "ename": "LEE DO HEON",
@@ -2972,7 +3000,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291586",
         "kname": "이두원",
         "ename": "LEE DOO WON",
@@ -3000,7 +3028,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291760",
         "kname": "이민서",
         "ename": "Lee Min Seo",
@@ -3028,7 +3056,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290787",
         "kname": "이승현",
         "ename": "LEE SEOUNG HYUN",
@@ -3056,7 +3084,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291850",
         "kname": "이유진",
         "ename": "LEE YU JIN",
@@ -3084,7 +3112,7 @@
         "turnovers": 0.1
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291351",
         "kname": "이윤기",
         "ename": "LEE YUN KI",
@@ -3112,7 +3140,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290381",
         "kname": "이정현",
         "ename": "LEE JUNG HYUN",
@@ -3140,7 +3168,7 @@
         "turnovers": 0.5
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291386",
         "kname": "이준희",
         "ename": "LEE JOON HEE",
@@ -3168,7 +3196,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291769",
         "kname": "이찬영",
         "ename": "Lee Chan Yeong",
@@ -3196,7 +3224,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291763",
         "kname": "임동언",
         "ename": "Lim Dong Eon",
@@ -3224,7 +3252,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291867",
         "kname": "임정현",
         "ename": "IM JEONG HYUN",
@@ -3252,7 +3280,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290478",
         "kname": "장민국",
         "ename": "JANG M K",
@@ -3280,17 +3308,17 @@
         "turnovers": 0.125
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290740",
         "kname": "전준범",
         "ename": "JEON JUN BEOM",
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 1,
+        "games": 2,
         "wins": 1,
-        "losses": 0,
-        "minutes": 4.066666666666666,
+        "losses": 1,
+        "minutes": 2.0416666666666665,
         "points": 0,
         "fgMade": 0,
         "fgAtt": 0,
@@ -3308,7 +3336,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291194",
         "kname": "전현우",
         "ename": "JEON HYUN WOO",
@@ -3336,7 +3364,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291750",
         "kname": "정성조",
         "ename": "Jung Ssung Zo",
@@ -3364,7 +3392,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290489",
         "kname": "정준원",
         "ename": "JUNG JOONWON",
@@ -3392,7 +3420,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290454",
         "kname": "정창영",
         "ename": "JUNG CHANG YOUNG",
@@ -3420,7 +3448,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290529",
         "kname": "정희재",
         "ename": "JEONG HEE JAE",
@@ -3448,7 +3476,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291887",
         "kname": "제리 아바디아노",
         "ename": "Gerry Austin Tabucan Abadiano",
@@ -3476,7 +3504,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291391",
         "kname": "조석호",
         "ename": "JO S H",
@@ -3504,7 +3532,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291847",
         "kname": "최강민",
         "ename": "CHOI KANG MIN",
@@ -3532,7 +3560,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290485",
         "kname": "최부경",
         "ename": "CHOI BUKYUNG",
@@ -3560,7 +3588,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291070",
         "kname": "최성원",
         "ename": "CHOI SEONG WON",
@@ -3588,7 +3616,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290785",
         "kname": "최승욱",
         "ename": "CHOI SEUNG WOOK",
@@ -3616,17 +3644,17 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290784",
         "kname": "최원혁",
         "ename": "CHOI WONHYUK",
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 4,
+        "games": 5,
         "wins": 2,
-        "losses": 2,
-        "minutes": 0.1875,
+        "losses": 3,
+        "minutes": 0.16666666666666666,
         "points": 0,
         "fgMade": 0,
         "fgAtt": 0,
@@ -3644,7 +3672,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291293",
         "kname": "최진광",
         "ename": "CHOI JIN GWANG",
@@ -3672,7 +3700,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290501",
         "kname": "최현민",
         "ename": "CHOI HYUN MIN",
@@ -3700,7 +3728,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291771",
         "kname": "최형찬",
         "ename": "Choi Hyung Chan",
@@ -3728,7 +3756,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291237",
         "kname": "크리스 맥컬러",
         "ename": "Christopher McCullough",
@@ -3756,7 +3784,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291885",
         "kname": "트레이 포터",
         "ename": "Trey Samuel Porter",
@@ -3784,7 +3812,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291648",
         "kname": "표승빈",
         "ename": "PYO SEONG BIN",
@@ -3812,7 +3840,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290648",
         "kname": "한상혁",
         "ename": "HAN SANG HYEOK",
@@ -3840,7 +3868,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "290284",
         "kname": "허일영",
         "ename": "HEO ILYOUNG",
@@ -3868,7 +3896,7 @@
         "turnovers": 0
       },
       {
-        "rank": 67,
+        "rank": 69,
         "playerNo": "291764",
         "kname": "황영찬",
         "ename": "Hwang Yeong Chan",

@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T01:29:18.633Z",
+  "fetchedAt": "2026-11-06T19:38:22.266Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -810,9 +810,9 @@
       "homeShort": "정관장",
       "awayTeam": "서울 SK 나이츠",
       "awayShort": "SK",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 83,
+      "awayScore": 79,
+      "status": "final",
       "stadium": "안양 정관장 아레나"
     },
     {

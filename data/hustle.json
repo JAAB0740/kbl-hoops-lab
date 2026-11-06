@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T01:31:49.505Z",
+  "fetchedAt": "2026-11-06T19:41:02.639Z",
   "source": "api-stats.kbl.or.kr/api/records/player/hustle",
   "players": {
     "regular": [
@@ -207,11 +207,11 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
-        "minutes": 33.99761904761905,
-        "screenAssists": 1,
+        "games": 8,
+        "minutes": 34.06666666666667,
+        "screenAssists": 0.875,
         "screenAssistsPts": 0,
-        "deflections": 0.8571428571428571
+        "deflections": 0.75
       },
       {
         "rank": 16,
@@ -235,11 +235,11 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
-        "minutes": 35.99285714285714,
+        "games": 8,
+        "minutes": 35.927083333333336,
         "screenAssists": 0,
-        "screenAssistsPts": 1.2857142857142858,
-        "deflections": 2.142857142857143
+        "screenAssistsPts": 1.125,
+        "deflections": 2
       },
       {
         "rank": 18,
@@ -277,11 +277,11 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
-        "minutes": 26.002380952380953,
-        "screenAssists": 0.2857142857142857,
+        "games": 8,
+        "minutes": 25.933333333333334,
+        "screenAssists": 0.25,
         "screenAssistsPts": 0,
-        "deflections": 0.5714285714285714
+        "deflections": 0.75
       },
       {
         "rank": 21,
@@ -355,6 +355,20 @@
       },
       {
         "rank": 26,
+        "playerNo": "291436",
+        "kname": "라숀 토마스",
+        "ename": "Rashawn Thomas",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 5,
+        "minutes": 29.753333333333334,
+        "screenAssists": 2,
+        "screenAssistsPts": 0,
+        "deflections": 1
+      },
+      {
+        "rank": 27,
         "playerNo": "290524",
         "kname": "라건아",
         "ename": "Ra Guna",
@@ -368,7 +382,7 @@
         "deflections": 0.16666666666666666
       },
       {
-        "rank": 27,
+        "rank": 28,
         "playerNo": "291778",
         "kname": "케빈 켐바오",
         "ename": "Karl Kevin Argana Quiambao",
@@ -382,7 +396,7 @@
         "deflections": 0.25
       },
       {
-        "rank": 28,
+        "rank": 29,
         "playerNo": "291692",
         "kname": "미구엘 옥존",
         "ename": "Miguel Andre Oczon",
@@ -396,7 +410,7 @@
         "deflections": 0.36363636363636365
       },
       {
-        "rank": 29,
+        "rank": 30,
         "playerNo": "291237",
         "kname": "크리스 맥컬러",
         "ename": "Christopher McCullough",
@@ -410,20 +424,6 @@
         "deflections": 0.45454545454545453
       },
       {
-        "rank": 30,
-        "playerNo": "291436",
-        "kname": "라숀 토마스",
-        "ename": "Rashawn Thomas",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 4,
-        "minutes": 27.725,
-        "screenAssists": 1.25,
-        "screenAssistsPts": 0,
-        "deflections": 1
-      },
-      {
         "rank": 31,
         "playerNo": "291888",
         "kname": "데이본 리드",
@@ -431,11 +431,11 @@
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 7,
-        "minutes": 26.09047619047619,
-        "screenAssists": 0.2857142857142857,
-        "screenAssistsPts": 0.5714285714285714,
-        "deflections": 0.5714285714285714
+        "games": 8,
+        "minutes": 25.595833333333335,
+        "screenAssists": 0.25,
+        "screenAssistsPts": 0.5,
+        "deflections": 0.5
       },
       {
         "rank": 32,
@@ -501,28 +501,42 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 7,
-        "minutes": 23.938095238095237,
+        "games": 8,
+        "minutes": 24.708333333333332,
         "screenAssists": 0,
-        "screenAssistsPts": 0.8571428571428571,
-        "deflections": 1.4285714285714286
+        "screenAssistsPts": 1.125,
+        "deflections": 1.25
       },
       {
         "rank": 37,
+        "playerNo": "291583",
+        "kname": "렌즈 아반도",
+        "ename": "Rhenz Joseph Abando",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 12,
+        "minutes": 25.716666666666665,
+        "screenAssists": 0,
+        "screenAssistsPts": 1.5833333333333333,
+        "deflections": 0.8333333333333334
+      },
+      {
+        "rank": 38,
         "playerNo": "291857",
         "kname": "문유현",
         "ename": "MOON YU HYEON",
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 11,
-        "minutes": 23.30757575757576,
+        "games": 12,
+        "minutes": 22.943055555555553,
         "screenAssists": 0,
-        "screenAssistsPts": 2.272727272727273,
-        "deflections": 0.45454545454545453
+        "screenAssistsPts": 2.0833333333333335,
+        "deflections": 0.5
       },
       {
-        "rank": 38,
+        "rank": 39,
         "playerNo": "291667",
         "kname": "문정현",
         "ename": "MOON JEONG HYEON",
@@ -536,7 +550,7 @@
         "deflections": 0.7272727272727273
       },
       {
-        "rank": 39,
+        "rank": 40,
         "playerNo": "291355",
         "kname": "이용우",
         "ename": "LEE YONG WOO",
@@ -548,20 +562,6 @@
         "screenAssists": 0.09090909090909091,
         "screenAssistsPts": 1.1818181818181819,
         "deflections": 0.5454545454545454
-      },
-      {
-        "rank": 40,
-        "playerNo": "291583",
-        "kname": "렌즈 아반도",
-        "ename": "Rhenz Joseph Abando",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 11,
-        "minutes": 25.013636363636362,
-        "screenAssists": 0,
-        "screenAssistsPts": 1.0909090909090908,
-        "deflections": 0.6363636363636364
       },
       {
         "rank": 41,
@@ -579,20 +579,6 @@
       },
       {
         "rank": 42,
-        "playerNo": "291068",
-        "kname": "김낙현",
-        "ename": "KIM NAK HYEON",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 7,
-        "minutes": 30.242857142857144,
-        "screenAssists": 0,
-        "screenAssistsPts": 2,
-        "deflections": 0.8571428571428571
-      },
-      {
-        "rank": 43,
         "playerNo": "291853",
         "kname": "이규태",
         "ename": "LEE KYU TAE",
@@ -606,7 +592,7 @@
         "deflections": 0.2727272727272727
       },
       {
-        "rank": 44,
+        "rank": 43,
         "playerNo": "291863",
         "kname": "김민규",
         "ename": "KIM MIN GYU",
@@ -620,7 +606,7 @@
         "deflections": 0.16666666666666666
       },
       {
-        "rank": 45,
+        "rank": 44,
         "playerNo": "291576",
         "kname": "양준석",
         "ename": "YANG JUN SEOK",
@@ -634,7 +620,7 @@
         "deflections": 0.625
       },
       {
-        "rank": 45,
+        "rank": 44,
         "playerNo": "290754",
         "kname": "한호빈",
         "ename": "HAN HO BIN",
@@ -646,6 +632,20 @@
         "screenAssists": 0,
         "screenAssistsPts": 1.5454545454545454,
         "deflections": 0.36363636363636365
+      },
+      {
+        "rank": 46,
+        "playerNo": "291068",
+        "kname": "김낙현",
+        "ename": "KIM NAK HYEON",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 8,
+        "minutes": 30.783333333333335,
+        "screenAssists": 0,
+        "screenAssistsPts": 1.75,
+        "deflections": 0.75
       },
       {
         "rank": 47,
@@ -697,11 +697,11 @@
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 11,
-        "minutes": 19.469696969696972,
+        "games": 12,
+        "minutes": 19.86527777777778,
         "screenAssists": 0,
-        "screenAssistsPts": 1,
-        "deflections": 0.7272727272727273
+        "screenAssistsPts": 1.0833333333333333,
+        "deflections": 0.75
       },
       {
         "rank": 51,
@@ -747,20 +747,6 @@
       },
       {
         "rank": 54,
-        "playerNo": "290603",
-        "kname": "이대헌",
-        "ename": "LEE DAE HEON",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 11,
-        "minutes": 15.562121212121212,
-        "screenAssists": 0.45454545454545453,
-        "screenAssistsPts": 0.2727272727272727,
-        "deflections": 0.09090909090909091
-      },
-      {
-        "rank": 55,
         "playerNo": "291001",
         "kname": "강상재",
         "ename": "KANG SANG JAE",
@@ -774,7 +760,7 @@
         "deflections": 0.5714285714285714
       },
       {
-        "rank": 56,
+        "rank": 55,
         "playerNo": "291842",
         "kname": "강성욱",
         "ename": "KANG SUNG WOOK",
@@ -788,7 +774,7 @@
         "deflections": 1.0909090909090908
       },
       {
-        "rank": 56,
+        "rank": 55,
         "playerNo": "291695",
         "kname": "앨런 윌리엄스",
         "ename": "Alan Travis Williams",
@@ -800,6 +786,20 @@
         "screenAssists": 3,
         "screenAssistsPts": 0,
         "deflections": 0.5
+      },
+      {
+        "rank": 57,
+        "playerNo": "290603",
+        "kname": "이대헌",
+        "ename": "LEE DAE HEON",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 12,
+        "minutes": 14.797222222222222,
+        "screenAssists": 0.4166666666666667,
+        "screenAssistsPts": 0.25,
+        "deflections": 0.08333333333333333
       },
       {
         "rank": 58,
@@ -845,6 +845,20 @@
       },
       {
         "rank": 61,
+        "playerNo": "291372",
+        "kname": "한승희",
+        "ename": "HAN SEUNG HEE ",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 12,
+        "minutes": 20.69027777777778,
+        "screenAssists": 0.3333333333333333,
+        "screenAssistsPts": 0.25,
+        "deflections": 0.16666666666666666
+      },
+      {
+        "rank": 62,
         "playerNo": "290765",
         "kname": "이재도",
         "ename": "LEE JAE DO",
@@ -856,20 +870,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 1.0833333333333333,
         "deflections": 1
-      },
-      {
-        "rank": 62,
-        "playerNo": "291372",
-        "kname": "한승희",
-        "ename": "HAN SEUNG HEE ",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 11,
-        "minutes": 20.366666666666667,
-        "screenAssists": 0.36363636363636365,
-        "screenAssistsPts": 0,
-        "deflections": 0.18181818181818182
       },
       {
         "rank": 63,
@@ -1013,6 +1013,20 @@
       },
       {
         "rank": 73,
+        "playerNo": "291303",
+        "kname": "김형빈",
+        "ename": "KIM HYUNGBIN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 8,
+        "minutes": 12.860416666666667,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.125
+      },
+      {
+        "rank": 74,
         "playerNo": "291275",
         "kname": "김경원",
         "ename": "KIM KYUNG WON",
@@ -1026,7 +1040,7 @@
         "deflections": 0
       },
       {
-        "rank": 74,
+        "rank": 75,
         "playerNo": "291887",
         "kname": "제리 아바디아노",
         "ename": "Gerry Austin Tabucan Abadiano",
@@ -1040,7 +1054,7 @@
         "deflections": 0.45454545454545453
       },
       {
-        "rank": 75,
+        "rank": 76,
         "playerNo": "291363",
         "kname": "윤원상",
         "ename": "YUN WON SANG",
@@ -1052,20 +1066,6 @@
         "screenAssists": 0,
         "screenAssistsPts": 1.4,
         "deflections": 0.2
-      },
-      {
-        "rank": 76,
-        "playerNo": "291303",
-        "kname": "김형빈",
-        "ename": "KIM HYUNGBIN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 7,
-        "minutes": 12.688095238095238,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.14285714285714285
       },
       {
         "rank": 77,
@@ -1173,11 +1173,11 @@
         "teamCode": "70",
         "teamName1": "안양 정관장",
         "teamName4": "정관장",
-        "games": 11,
-        "minutes": 16.086363636363636,
+        "games": 12,
+        "minutes": 17.2125,
         "screenAssists": 0,
-        "screenAssistsPts": 0.2727272727272727,
-        "deflections": 0.2727272727272727
+        "screenAssistsPts": 0.25,
+        "deflections": 0.25
       },
       {
         "rank": 85,
@@ -1236,7 +1236,21 @@
         "deflections": 0.25
       },
       {
-        "rank": 89,
+        "rank": 88,
+        "playerNo": "290450",
+        "kname": "오세근",
+        "ename": "OH SEKEUN",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 4,
+        "minutes": 8.816666666666666,
+        "screenAssists": 0.25,
+        "screenAssistsPts": 0,
+        "deflections": 0.5
+      },
+      {
+        "rank": 90,
         "playerNo": "290583",
         "kname": "한희원",
         "ename": "HAN HEE WON",
@@ -1250,7 +1264,7 @@
         "deflections": 0
       },
       {
-        "rank": 90,
+        "rank": 91,
         "playerNo": "290781",
         "kname": "김준일",
         "ename": "KIM JUN YL",
@@ -1264,7 +1278,7 @@
         "deflections": 0.25
       },
       {
-        "rank": 91,
+        "rank": 92,
         "playerNo": "290489",
         "kname": "정준원",
         "ename": "JUNG JOONWON",
@@ -1278,7 +1292,7 @@
         "deflections": 0
       },
       {
-        "rank": 92,
+        "rank": 93,
         "playerNo": "290454",
         "kname": "정창영",
         "ename": "JUNG CHANG YOUNG",
@@ -1292,7 +1306,7 @@
         "deflections": 0.09090909090909091
       },
       {
-        "rank": 92,
+        "rank": 93,
         "playerNo": "290985",
         "kname": "최성모",
         "ename": "CHOI SEONG MO",
@@ -1306,7 +1320,7 @@
         "deflections": 0.18181818181818182
       },
       {
-        "rank": 94,
+        "rank": 95,
         "playerNo": "291182",
         "kname": "우동현",
         "ename": "WOO DONGHYUN",
@@ -1320,7 +1334,7 @@
         "deflections": 0.125
       },
       {
-        "rank": 95,
+        "rank": 96,
         "playerNo": "290599",
         "kname": "서민수",
         "ename": "SEO MIN SOO",
@@ -1334,7 +1348,7 @@
         "deflections": 0.42857142857142855
       },
       {
-        "rank": 96,
+        "rank": 97,
         "playerNo": "291293",
         "kname": "최진광",
         "ename": "CHOI JIN GWANG",
@@ -1348,7 +1362,7 @@
         "deflections": 0.1111111111111111
       },
       {
-        "rank": 97,
+        "rank": 98,
         "playerNo": "291754",
         "kname": "손준",
         "ename": "Sohn Jun",
@@ -1362,7 +1376,7 @@
         "deflections": 0
       },
       {
-        "rank": 97,
+        "rank": 98,
         "playerNo": "291376",
         "kname": "양준우",
         "ename": "YANG JUN U",
@@ -1376,7 +1390,7 @@
         "deflections": 1
       },
       {
-        "rank": 97,
+        "rank": 98,
         "playerNo": "291760",
         "kname": "이민서",
         "ename": "Lee Min Seo",
@@ -1390,7 +1404,7 @@
         "deflections": 0
       },
       {
-        "rank": 100,
+        "rank": 101,
         "playerNo": "291070",
         "kname": "최성원",
         "ename": "CHOI SEONG WON",
@@ -1404,7 +1418,7 @@
         "deflections": 0.09090909090909091
       },
       {
-        "rank": 101,
+        "rank": 102,
         "playerNo": "290381",
         "kname": "이정현",
         "ename": "LEE JUNG HYUN",
@@ -1418,7 +1432,7 @@
         "deflections": 0
       },
       {
-        "rank": 102,
+        "rank": 103,
         "playerNo": "291750",
         "kname": "정성조",
         "ename": "Jung Ssung Zo",
@@ -1432,7 +1446,7 @@
         "deflections": 0
       },
       {
-        "rank": 103,
+        "rank": 104,
         "playerNo": "290785",
         "kname": "최승욱",
         "ename": "CHOI SEUNG WOOK",
@@ -1446,35 +1460,7 @@
         "deflections": 0.6363636363636364
       },
       {
-        "rank": 104,
-        "playerNo": "290450",
-        "kname": "오세근",
-        "ename": "OH SEKEUN",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 3,
-        "minutes": 7.2555555555555555,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.6666666666666666
-      },
-      {
         "rank": 105,
-        "playerNo": "290284",
-        "kname": "허일영",
-        "ename": "HEO ILYOUNG",
-        "teamCode": "70",
-        "teamName1": "안양 정관장",
-        "teamName4": "정관장",
-        "games": 6,
-        "minutes": 4.775,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0
-      },
-      {
-        "rank": 106,
         "playerNo": "290788",
         "kname": "이호현",
         "ename": "LEE HO HYUN",
@@ -1488,7 +1474,7 @@
         "deflections": 0.1111111111111111
       },
       {
-        "rank": 106,
+        "rank": 105,
         "playerNo": "290648",
         "kname": "한상혁",
         "ename": "HAN SANG HYEOK",
@@ -1502,7 +1488,7 @@
         "deflections": 0
       },
       {
-        "rank": 108,
+        "rank": 107,
         "playerNo": "291771",
         "kname": "최형찬",
         "ename": "Choi Hyung Chan",
@@ -1516,7 +1502,21 @@
         "deflections": 0
       },
       {
-        "rank": 108,
+        "rank": 107,
+        "playerNo": "290284",
+        "kname": "허일영",
+        "ename": "HEO ILYOUNG",
+        "teamCode": "70",
+        "teamName1": "안양 정관장",
+        "teamName4": "정관장",
+        "games": 7,
+        "minutes": 4.545238095238095,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0
+      },
+      {
+        "rank": 107,
         "playerNo": "291764",
         "kname": "황영찬",
         "ename": "Hwang Yeong Chan",
@@ -1657,20 +1657,6 @@
       },
       {
         "rank": 119,
-        "playerNo": "290784",
-        "kname": "최원혁",
-        "ename": "CHOI WONHYUK",
-        "teamCode": "55",
-        "teamName1": "서울 SK",
-        "teamName4": "SK",
-        "games": 4,
-        "minutes": 8.591666666666667,
-        "screenAssists": 0,
-        "screenAssistsPts": 0,
-        "deflections": 0.25
-      },
-      {
-        "rank": 120,
         "playerNo": "291855",
         "kname": "강지훈",
         "ename": "KANG JI HOON",
@@ -1684,7 +1670,7 @@
         "deflections": 0
       },
       {
-        "rank": 120,
+        "rank": 119,
         "playerNo": "291586",
         "kname": "이두원",
         "ename": "LEE DOO WON",
@@ -1698,7 +1684,7 @@
         "deflections": 0
       },
       {
-        "rank": 120,
+        "rank": 119,
         "playerNo": "290485",
         "kname": "최부경",
         "ename": "CHOI BUKYUNG",
@@ -1712,7 +1698,21 @@
         "deflections": 0
       },
       {
-        "rank": 120,
+        "rank": 119,
+        "playerNo": "290784",
+        "kname": "최원혁",
+        "ename": "CHOI WONHYUK",
+        "teamCode": "55",
+        "teamName1": "서울 SK",
+        "teamName4": "SK",
+        "games": 5,
+        "minutes": 9.33,
+        "screenAssists": 0,
+        "screenAssistsPts": 0,
+        "deflections": 0.2
+      },
+      {
+        "rank": 119,
         "playerNo": "290501",
         "kname": "최현민",
         "ename": "CHOI HYUN MIN",
@@ -1957,8 +1957,8 @@
         "teamCode": "55",
         "teamName1": "서울 SK",
         "teamName4": "SK",
-        "games": 4,
-        "minutes": 3.654166666666667,
+        "games": 5,
+        "minutes": 2.9266666666666667,
         "screenAssists": 0,
         "screenAssistsPts": 0,
         "deflections": 0
