@@ -32,10 +32,15 @@ export function TeamEfficiencyScatter({
   const xMax = Math.max(...xs) + 2;
   const yMin = Math.min(...ys) - 2;
   const yMax = Math.max(...ys) + 2;
-  // 교차선 = 물리적 중간값이 아니라 "리그 평균(산술 평균)"
-  //   - 표본 작은 모집단의 비대칭 분포에서도 의미 있는 기준선이 되도록.
-  const xAvg = xs.reduce((s, v) => s + v, 0) / xs.length;
-  const yAvg = ys.reduce((s, v) => s + v, 0) / ys.length;
+  // 교차선 = "리그 평균". 수학적으로 리그 ORtg 평균 = 리그 DRtg 평균
+  // (한 팀의 득점은 상대 팀의 실점이라 전체 합이 일치). KBL 공식 계산의
+  // 반올림/possession 추정 차이로 미세하게 ± 0.3 편차가 나므로 두 값의 평균을
+  // 통일 기준선으로 사용 → cross 축이 정확히 교차하고 혼란 X.
+  const xAvgRaw = xs.reduce((s, v) => s + v, 0) / xs.length;
+  const yAvgRaw = ys.reduce((s, v) => s + v, 0) / ys.length;
+  const leagueAvg = (xAvgRaw + yAvgRaw) / 2;
+  const xAvg = leagueAvg;
+  const yAvg = leagueAvg;
 
   const x2px = (v: number) => PAD.l + ((v - xMin) / (xMax - xMin)) * innerW;
   // y축 반전: 작을수록 위 (실점 적음 = 좋음)
@@ -118,10 +123,10 @@ export function TeamEfficiencyScatter({
             pointerEvents="none"
           >
             <text x={x2px(xAvg) + 4} y={PAD.t + 12}>
-              리그 평균 ORtg {xAvg.toFixed(1)}
+              리그 평균 {leagueAvg.toFixed(1)}
             </text>
             <text x={PAD.l + 4} y={y2px(yAvg) - 4}>
-              리그 평균 DRtg {yAvg.toFixed(1)}
+              리그 평균 {leagueAvg.toFixed(1)}
             </text>
           </g>
 

@@ -4,6 +4,36 @@ import { useMemo } from "react";
 import type { FilteredTeam } from "@/lib/data";
 import { TEAM_COLORS } from "@/lib/data";
 import clutchJson from "@/data/clutch.json";
+import gamesJson from "@/data/games.json";
+
+type RawGame = {
+  status: string;
+  homeShort: string;
+  awayShort: string;
+  homeScore: number | null;
+  awayScore: number | null;
+};
+const ALL_GAMES: RawGame[] = (gamesJson as { games: RawGame[] }).games ?? [];
+
+/**
+ * 종료 점수차 ≤5 경기에서 각 팀의 wins/losses 재계산.
+ * clutch.json 의 player-level games/wins/losses 는 "그 선수가 뛴 경기 전체" 라서
+ * 팀으로 집계해도 사실상 시즌 전체와 같아짐 — 반드시 game-level 필터링해야 함.
+ */
+function computeClutchWinLoss(teamShort: string): { games: number; wins: number; losses: number } {
+  let wins = 0, losses = 0;
+  for (const g of ALL_GAMES) {
+    if (g.status !== "final" || g.homeScore == null || g.awayScore == null) continue;
+    if (Math.abs(g.homeScore - g.awayScore) > 5) continue; // ≤5점차만
+    const isHome = g.homeShort === teamShort;
+    const isAway = g.awayShort === teamShort;
+    if (!isHome && !isAway) continue;
+    const homeWon = g.homeScore > g.awayScore;
+    const teamWon = (isHome && homeWon) || (isAway && !homeWon);
+    if (teamWon) wins++; else losses++;
+  }
+  return { games: wins + losses, wins, losses };
+}
 
 /**
  * 팀 클러치 vs 시즌 평균 비교.
@@ -53,11 +83,11 @@ function aggregatePerTeam(players: ClutchPlayer[]): Map<string, TeamClutch> {
   const out = new Map<string, TeamClutch>();
   for (const [team, rows] of byTeam) {
     if (rows.length === 0) continue;
-    const games = Math.max(...rows.map((r) => r.games));
-    const wins = Math.max(...rows.map((r) => r.wins));
-    const losses = Math.max(...rows.map((r) => r.losses));
-    if (games === 0) continue;
-    // 합산 (선수당 평균 × 게임수 = 합산)
+    // ★ wins/losses 는 games.json 의 ≤5점차 경기에서 재계산 (팀 레벨 game-filtering).
+    //   clutch.json 의 player-level wins 는 선수 출전 경기 전체라 팀 집계가 시즌과 동일.
+    const wl = computeClutchWinLoss(team);
+    if (wl.games === 0) continue;
+    // 슛/카운팅 stats 는 선수 집계 (per-game × games = 합산)
     const sum = (pick: (r: ClutchPlayer) => number) =>
       rows.reduce((n, r) => n + pick(r) * r.games, 0);
     const totFgMade = sum((r) => r.fgMade);
@@ -68,16 +98,19 @@ function aggregatePerTeam(players: ClutchPlayer[]): Map<string, TeamClutch> {
     const totFtAtt  = sum((r) => r.ftAtt);
     const totPts    = sum((r) => r.points);
     const totTov    = sum((r) => r.turnovers);
+    // KBL misnomer 수정: fgMade/fgAtt 는 2점만 → total = fg + three.
+    const realTotMade = totFgMade + tot3Made;
+    const realTotAtt  = totFgAtt + tot3Att;
     out.set(team, {
       shortName: team,
-      games,
-      wins,
-      losses,
-      ppg: totPts / games,
-      fgPct: totFgAtt > 0 ? (totFgMade / totFgAtt) * 100 : 0,
+      games: wl.games,
+      wins: wl.wins,
+      losses: wl.losses,
+      ppg: wl.games > 0 ? totPts / wl.games : 0,
+      fgPct: realTotAtt > 0 ? (realTotMade / realTotAtt) * 100 : 0,
       threePct: tot3Att > 0 ? (tot3Made / tot3Att) * 100 : 0,
       ftPct: totFtAtt > 0 ? (totFtMade / totFtAtt) * 100 : 0,
-      tov: totTov / games,
+      tov: wl.games > 0 ? totTov / wl.games : 0,
     });
   }
   return out;

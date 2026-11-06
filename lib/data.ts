@@ -598,10 +598,16 @@ const MOCK_SCORING_LEADERS: PlayerLeader[] = [
 // 팀 정보가 비어있는 선수는 리더보드에서 제외
 const validPlayers = rawPlayers.filter((p) => p.team);
 
+// 리그 리더 자격 — KBL 공식 기준 (리그 경기의 50% 이상 출전).
+// 시즌 초엔 min 5 경기로 fallback (너무 엄격하면 리스트 비어버림).
+const leagueGames = leaderWins + leaderLosses; // 1위 팀 경기수 ≈ 리그 진행도
+const LEADER_MIN_GAMES = Math.max(5, Math.ceil(leagueGames / 2));
+
 type StatKey = "points" | "assists" | "rebounds" | "steals" | "blocks";
 
 function topByStat(stat: StatKey, unit: string, count = 5): PlayerLeader[] {
   return [...validPlayers]
+    .filter((p) => (p.games ?? 0) >= LEADER_MIN_GAMES)
     .sort((a, b) => b.stats[stat] - a.stats[stat])
     .slice(0, count)
     .map((p, i) => ({
