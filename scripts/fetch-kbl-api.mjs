@@ -11,17 +11,19 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
-import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+import { getCurrentSeason, logSeason, getSeasonDataDir } from "./kblSeason.mjs";
 
 const SEASON_INFO = getCurrentSeason();
 logSeason(SEASON_INFO);
 const SEASON = SEASON_INFO.code;
+const SEASON_DIR = getSeasonDataDir(SEASON);
+mkdirSync(SEASON_DIR, { recursive: true });
 
 // ─── Head-to-Head 타이브레이커 ─────────────────────────
 // games.json 의 정규시즌 결과로 모든 팀 쌍의 head-to-head 계산
 // 동률 시 KBL 공식 순서: 승률 → 승수 → 상대전적 승수 → 상대전적 득실차
 function loadHeadToHead() {
-  const path = "data/games.json";
+  const path = `${SEASON_DIR}/games.json`;
   if (!existsSync(path)) return null;
   try {
     const data = JSON.parse(readFileSync(path, "utf8"));
@@ -272,7 +274,7 @@ for (const f of FETCHES) {
 // ─── 저장 ─────────────────────────────────────────
 mkdirSync("data", { recursive: true });
 writeFileSync(
-  "data/team-filtered.json",
+  `${SEASON_DIR}/team-filtered.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),

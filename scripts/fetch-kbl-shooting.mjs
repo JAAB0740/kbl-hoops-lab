@@ -12,11 +12,13 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+import { getCurrentSeason, logSeason, getSeasonDataDir } from "./kblSeason.mjs";
 
 const SEASON_INFO = getCurrentSeason();
 logSeason(SEASON_INFO);
 const SEASON = SEASON_INFO.code;
+const SEASON_DIR = getSeasonDataDir(SEASON);
+mkdirSync(SEASON_DIR, { recursive: true });
 
 const HEADERS = {
   "User-Agent":
@@ -130,7 +132,7 @@ const teamPlayoff = await fetchOne("PO 평균", TEAM_BASE, { gameCode: "03,04" }
 
 mkdirSync("data", { recursive: true });
 writeFileSync(
-  "data/shooting.json",
+  `${SEASON_DIR}/shooting.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),

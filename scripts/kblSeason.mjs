@@ -64,3 +64,13 @@ export function logSeason(season = getCurrentSeason()) {
     `[KBL season] code=${season.code} · ${season.startYear}-${String(season.endYear).slice(-2)} · ${season.from} ~ ${season.to}`,
   );
 }
+
+/**
+ * 시즌별 데이터 디렉토리.
+ *   49 (2026-27) → "data/season/49"
+ *   47 (2025-26) → "data/season/47"
+ * fetch 스크립트에서 writeFileSync 경로 베이스로 사용.
+ */
+export function getSeasonDataDir(code = getCurrentSeason().code) {
+  return `data/season/${code}`;
+}

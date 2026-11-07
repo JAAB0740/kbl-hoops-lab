@@ -6,7 +6,7 @@
  * intensity (얼마나 많이 벗어났는지) 큰 순으로 정렬.
  */
 
-import boxscoresJson from "../data/boxscores.json";
+import boxscoresJson from "../data/season/49/boxscores.json";
 import { STANDINGS_FILTERS } from "@/lib/data";
 import { REGULAR_POPULATION } from "@/lib/playerProfiles";
 import { ALL_GAMES } from "@/lib/gamesUtil";

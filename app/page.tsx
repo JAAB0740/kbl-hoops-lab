@@ -16,7 +16,7 @@ import { generateHeadlines } from "@/lib/autoHeadlines";
 import { buildHeroCards } from "@/lib/heroCards";
 import { getHeroCopy, getSeasonStatus } from "@/lib/seasonStatus";
 import { recentPlayerStandouts } from "@/lib/standout";
-import gamesJson from "../data/games.json";
+import gamesJson from "../data/season/49/games.json";
 
 export default function DashboardPage() {
   const status = getSeasonStatus();

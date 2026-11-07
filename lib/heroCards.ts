@@ -14,10 +14,10 @@ import { ALL_GAMES } from "./gamesUtil";
 import { STANDINGS } from "./data";
 import { getSeasonStatus, type SeasonStatus } from "./seasonStatus";
 import type { PlayerAdvancedStats, PlayerDetailRow } from "./types";
-import boxScoresJson from "../data/boxscores.json";
-import advJson from "../data/players-advanced.json";
-import teamAdvJson from "../data/team-advanced.json";
-import detailJson from "../data/players-detail.json";
+import boxScoresJson from "../data/season/49/boxscores.json";
+import advJson from "../data/season/49/players-advanced.json";
+import teamAdvJson from "../data/season/49/team-advanced.json";
+import detailJson from "../data/season/49/players-detail.json";
 
 // ─── 타입 ────────────────────────────────────
 

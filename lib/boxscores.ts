@@ -1,5 +1,5 @@
-import boxscoresJson from "../data/boxscores.json";
-import gamesJson from "../data/games.json";
+import boxscoresJson from "../data/season/49/boxscores.json";
+import gamesJson from "../data/season/49/games.json";
 
 /**
  * KBL 박스스코어 데이터 — game-by-game 선수/팀 stats.

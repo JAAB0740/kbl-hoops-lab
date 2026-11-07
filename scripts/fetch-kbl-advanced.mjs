@@ -9,11 +9,13 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+import { getCurrentSeason, logSeason, getSeasonDataDir } from "./kblSeason.mjs";
 
 const SEASON_INFO = getCurrentSeason();
 logSeason(SEASON_INFO);
 const SEASON = SEASON_INFO.code;
+const SEASON_DIR = getSeasonDataDir(SEASON);
+mkdirSync(SEASON_DIR, { recursive: true });
 
 const HEADERS = {
   "User-Agent":
@@ -185,7 +187,7 @@ for (const f of TEAM_FETCHES) {
 
 mkdirSync("data", { recursive: true });
 writeFileSync(
-  "data/team-advanced.json",
+  `${SEASON_DIR}/team-advanced.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),
@@ -234,7 +236,7 @@ for (const f of PLAYER_FETCHES) {
 }
 
 writeFileSync(
-  "data/players-advanced.json",
+  `${SEASON_DIR}/players-advanced.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),

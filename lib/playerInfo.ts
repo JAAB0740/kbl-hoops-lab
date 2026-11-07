@@ -1,4 +1,4 @@
-import playerInfoJson from "../data/players-info.json";
+import playerInfoJson from "../data/season/49/players-info.json";
 
 /**
  * KBL 등록선수 메타정보 — 사진/국적/생년월일/신장/체중/학교/선수구분/드래프트.

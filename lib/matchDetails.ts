@@ -1,4 +1,4 @@
-import matchDetailsJson from "../data/match-details.json";
+import matchDetailsJson from "../data/season/49/match-details.json";
 
 /**
  * KBL 게임 상세 정보 — 쿼터별 스코어 + 관중 수 + 시작/종료 시간.

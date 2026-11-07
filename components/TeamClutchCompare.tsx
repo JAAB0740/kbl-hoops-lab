@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import type { FilteredTeam } from "@/lib/data";
 import { TEAM_COLORS } from "@/lib/data";
-import clutchJson from "@/data/clutch.json";
-import gamesJson from "@/data/games.json";
+import clutchJson from "@/data/season/49/clutch.json";
+import gamesJson from "@/data/season/49/games.json";
 
 type RawGame = {
   status: string;

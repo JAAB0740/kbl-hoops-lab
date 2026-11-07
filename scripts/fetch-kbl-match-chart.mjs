@@ -23,6 +23,9 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { getSeasonDataDir } from "./kblSeason.mjs";
+const SEASON_DIR = getSeasonDataDir();
+mkdirSync(SEASON_DIR, { recursive: true });
 
 const HEADERS = {
   "User-Agent":
@@ -35,8 +38,8 @@ const HEADERS = {
   TeamCode: "",
 };
 
-const OUT_PATH = "data/match-charts.json";
-const GAMES_PATH = "data/games.json";
+const OUT_PATH = `${SEASON_DIR}/match-charts.json`;
+const GAMES_PATH = `${SEASON_DIR}/games.json`;
 const FORCE = process.env.FORCE === "1";
 
 if (!existsSync(GAMES_PATH)) {

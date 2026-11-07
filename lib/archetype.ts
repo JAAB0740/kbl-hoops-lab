@@ -21,7 +21,7 @@ import type { PlayerShotChart } from "./shotCharts";
 import { REGULAR_POPULATION } from "./playerProfiles";
 import { percentileOf } from "./percentile";
 import { getPlayerInfo } from "./playerInfo";
-import advJson from "../data/players-advanced.json";
+import advJson from "../data/season/49/players-advanced.json";
 
 // ─── 임계값 (UI에서 조절할 수 있도록 변수화) ─────────────
 

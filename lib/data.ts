@@ -4,12 +4,12 @@ import type {
   TeamCompareRow,
   TeamStanding,
 } from "./types";
-import playersJson from "../data/players.json";
-import playersDetailJson from "../data/players-detail.json";
-import gamesJson from "../data/games.json";
-import teamFilteredJson from "../data/team-filtered.json";
-import teamAdvancedJson from "../data/team-advanced.json";
-import playersAdvancedJson from "../data/players-advanced.json";
+import playersJson from "../data/season/49/players.json";
+import playersDetailJson from "../data/season/49/players-detail.json";
+import gamesJson from "../data/season/49/games.json";
+import teamFilteredJson from "../data/season/49/team-filtered.json";
+import teamAdvancedJson from "../data/season/49/team-advanced.json";
+import playersAdvancedJson from "../data/season/49/players-advanced.json";
 import type { PlayerAdvancedStats, TeamAdvancedStats } from "./types";
 
 /**

@@ -3,7 +3,7 @@
  */
 
 import { buildPlayoffBracket } from "./playoffs";
-import gamesJson from "../data/games.json";
+import gamesJson from "../data/season/49/games.json";
 import { STANDINGS } from "./data";
 import type { PlayoffSeries } from "./types";
 

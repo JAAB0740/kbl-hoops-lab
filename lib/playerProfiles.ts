@@ -11,11 +11,11 @@ import type {
   PlayerProfile,
   ShootingRange,
 } from "./types";
-import detailJson from "../data/players-detail.json";
-import advJson from "../data/players-advanced.json";
-import shootingJson from "../data/shooting.json";
-import clutchJson from "../data/clutch.json";
-import hustleJson from "../data/hustle.json";
+import detailJson from "../data/season/49/players-detail.json";
+import advJson from "../data/season/49/players-advanced.json";
+import shootingJson from "../data/season/49/shooting.json";
+import clutchJson from "../data/season/49/clutch.json";
+import hustleJson from "../data/season/49/hustle.json";
 
 // 영문/혼합 teamName4 → 한국어 약어 (TEAM_COLORS 키와 동일하게)
 const TEAM_NAME4_TO_SHORT: Record<string, string> = {

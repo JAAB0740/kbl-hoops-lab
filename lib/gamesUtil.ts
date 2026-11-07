@@ -1,4 +1,4 @@
-import gamesJson from "../data/games.json";
+import gamesJson from "../data/season/49/games.json";
 
 export type RawGame = {
   /** KBL 게임 식별자 (예: "S47G01N184") — 박스스코어 fetch 용. 옛 데이터엔 없을 수 있음 */

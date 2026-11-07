@@ -13,6 +13,7 @@ const NAV = [
   { href: "/games", label: "일정" },
   { href: "/compare", label: "비교" },
   { href: "/playoffs", label: "플레이오프" },
+  { href: "/archive", label: "아카이브" },
 ];
 
 function isActive(pathname: string, href: string) {

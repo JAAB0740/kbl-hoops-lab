@@ -11,7 +11,7 @@
  *   - 시즌 베스트 게임 (가장 큰 점수차, 오버타임 등)
  */
 
-import gamesJson from "../data/games.json";
+import gamesJson from "../data/season/49/games.json";
 import { ALL_PLAYERS, PLAYERS_PLAYOFF, STANDINGS } from "./data";
 import { getSeasonStatus, summarizeSeries } from "./seasonStatus";
 

@@ -20,6 +20,9 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { getSeasonDataDir } from "./kblSeason.mjs";
+const SEASON_DIR = getSeasonDataDir();
+mkdirSync(SEASON_DIR, { recursive: true });
 
 const HEADERS = {
   "User-Agent":
@@ -35,7 +38,7 @@ const HEADERS = {
 const BASE = "https://api.kbl.or.kr/match";
 
 // ─── games.json 로드 ─────────────────────────────────
-const gamesFile = "data/games.json";
+const gamesFile = `${SEASON_DIR}/games.json`;
 if (!existsSync(gamesFile)) {
   console.error(`✗ ${gamesFile} 없음 — npm run fetch:kbl-schedule 먼저`);
   process.exit(1);
@@ -51,7 +54,7 @@ if (finals.length === 0) {
 }
 
 // ─── 기존 boxscores 로드 (증분 처리) ────────────────
-const outFile = "data/boxscores.json";
+const outFile = `${SEASON_DIR}/boxscores.json`;
 let existing = { byGmkey: {} };
 if (existsSync(outFile)) {
   try {

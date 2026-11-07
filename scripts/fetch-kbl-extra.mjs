@@ -14,11 +14,13 @@
  */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { getCurrentSeason, logSeason } from "./kblSeason.mjs";
+import { getCurrentSeason, logSeason, getSeasonDataDir } from "./kblSeason.mjs";
 
 const SEASON_INFO = getCurrentSeason();
 logSeason(SEASON_INFO);
 const SEASON = SEASON_INFO.code;
+const SEASON_DIR = getSeasonDataDir(SEASON);
+mkdirSync(SEASON_DIR, { recursive: true });
 
 const HEADERS = {
   "User-Agent":
@@ -103,7 +105,7 @@ function normClutchPlayer(r) {
 }
 
 writeFileSync(
-  "data/clutch.json",
+  `${SEASON_DIR}/clutch.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),
@@ -145,7 +147,7 @@ function normHustlePlayer(r) {
 }
 
 writeFileSync(
-  "data/hustle.json",
+  `${SEASON_DIR}/hustle.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),
@@ -194,7 +196,7 @@ function normFFTeam(r) {
 }
 
 writeFileSync(
-  "data/four-factors.json",
+  `${SEASON_DIR}/four-factors.json`,
   JSON.stringify(
     {
       fetchedAt: new Date().toISOString(),

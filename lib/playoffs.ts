@@ -17,7 +17,7 @@ import type {
   PlayoffRoundKey,
   PlayoffSeries,
 } from "./types";
-import gamesJson from "../data/games.json";
+import gamesJson from "../data/season/49/games.json";
 import { STANDINGS as DATA_STANDINGS } from "./data";
 
 type RawGame = {
