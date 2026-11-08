@@ -45,6 +45,13 @@ interface Props {
   teamLogoSrc?: string | null;
   /** 게임 로그 노드 — 모바일에선 탭3 안, PC에선 페이지 끝에 자연스럽게 렌더 */
   gameLogNode?: ReactNode;
+  /** 지정 시즌 모집단 (percentile 계산용) — 생략 시 현재 시즌 기본값 사용 */
+  regularPopulation?: PlayerDetailRow[];
+  playoffPopulation?: PlayerDetailRow[];
+  /** 시즌 라벨 — 생략 시 현재 시즌 라벨 사용 */
+  seasonLabelText?: string;
+  /** 팀 동료 링크의 시즌 scope — "/players/season/{code}/{id}" 로 라우팅할 때 지정 */
+  linkSeasonCode?: string;
 }
 
 type ProfileTabKey = "overview" | "shooting" | "log";
@@ -72,7 +79,17 @@ export function PlayerProfileView({
   teammates,
   teamLogoSrc,
   gameLogNode,
+  regularPopulation,
+  playoffPopulation,
+  seasonLabelText,
+  linkSeasonCode,
 }: Props) {
+  const regularPop = regularPopulation ?? REGULAR_POPULATION;
+  const playoffPop = playoffPopulation ?? PLAYOFF_POPULATION;
+  const seasonLbl = seasonLabelText ?? seasonLabel();
+  const teammateLinkBase = linkSeasonCode
+    ? `/players/season/${linkSeasonCode}`
+    : "/players";
   const { season, playoff } = profile;
   const games = season?.games ?? 0;
   const archetype = classifyArchetype(profile);
@@ -199,6 +216,9 @@ export function PlayerProfileView({
                 playoff={playoff ?? null}
                 kname={profile.kname}
                 teamShort={profile.team.short}
+                regularPopulation={regularPop}
+                playoffPopulation={playoffPop}
+                seasonLabelText={seasonLbl}
               />
             ) : null,
           ].filter(Boolean) as React.ReactNode[]}
@@ -232,6 +252,7 @@ export function PlayerProfileView({
         <TeammatesPanel
           teammates={teammates}
           teamShort={profile.team.short}
+          linkBase={teammateLinkBase}
         />
       </section>
 
@@ -531,19 +552,25 @@ function PlayerSpiderPanel({
   playoff,
   kname,
   teamShort,
+  regularPopulation,
+  playoffPopulation,
+  seasonLabelText,
 }: {
   season: PlayerDetailRow;
   playoff: PlayerDetailRow | null;
   kname: string;
   teamShort: string;
+  regularPopulation: PlayerDetailRow[];
+  playoffPopulation: PlayerDetailRow[];
+  seasonLabelText: string;
 }) {
   // 정규시즌 percentile 계산
-  const regularPctls = percentilesOf(season, REGULAR_POPULATION, RADAR_KEYS);
+  const regularPctls = percentilesOf(season, regularPopulation, RADAR_KEYS);
 
   // PO 가 있고 모집단도 있을 때만 PO 시리즈 추가
   const playoffPctls =
-    playoff && PLAYOFF_POPULATION.length > 0
-      ? percentilesOf(playoff, PLAYOFF_POPULATION, RADAR_KEYS)
+    playoff && playoffPopulation.length > 0
+      ? percentilesOf(playoff, playoffPopulation, RADAR_KEYS)
       : null;
 
   // raw 값 라벨 (tooltip 용) — RADAR_KEYS 와 같은 순서
@@ -579,7 +606,7 @@ function PlayerSpiderPanel({
 
   // 캡처/공유 시 컨텍스트 보이게 — 선수 + 팀 + 시즌 제목에 포함
   const title = `${kname} · ${teamShort} · 8축 강점 비교`;
-  const seasonLbl = seasonLabel();
+  const seasonLbl = seasonLabelText;
   const subtitle = playoff
     ? `${seasonLbl} 시즌 · 정규시즌(주황) vs 플레이오프(시안) · 리그 분포 기준 percentile`
     : `${seasonLbl} 시즌 · 리그 분포 기준 percentile`;
@@ -1797,9 +1824,11 @@ function PostseasonPanel({
 function TeammatesPanel({
   teammates,
   teamShort,
+  linkBase,
 }: {
   teammates: PlayerDetailRow[];
   teamShort: string;
+  linkBase: string;
 }) {
   return (
     <div className="card p-5">
@@ -1815,7 +1844,7 @@ function TeammatesPanel({
         {teammates.map((t) => (
           <a
             key={t.playerNo}
-            href={`/players/${t.playerNo}`}
+            href={`${linkBase}/${t.playerNo}`}
             className="flex items-center justify-between py-2.5 text-[16px] transition hover:text-flame-400"
           >
             <span className="font-medium text-ink-50">{t.kname}</span>

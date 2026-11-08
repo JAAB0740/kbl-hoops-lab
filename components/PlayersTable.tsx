@@ -70,11 +70,17 @@ type RegistryRow = {
 export function PlayersTable({
   players,
   statMode = "traditional",
+  linkSeasonCode,
 }: {
   players: RawPlayer[];
   /** 외부에서 1차/2차/등록 토글 제어. 미지정 시 traditional */
   statMode?: StatMode;
+  /** 선수 상세 링크 scope — 지정 시 `/players/season/{code}/{id}` 로 라우팅 */
+  linkSeasonCode?: string;
 }) {
+  const linkBase = linkSeasonCode
+    ? `/players/season/${linkSeasonCode}`
+    : "/players";
   // 페이지 이동 후 뒤로 가기 시 정렬·필터·검색 상태 보존
   const [sortKey, setSortKey] = usePersistedState<string>("playersTable:sortKey", "points");
   const [sortDir, setSortDir] = usePersistedState<"desc" | "asc">("playersTable:sortDir", "desc");
@@ -319,6 +325,7 @@ export function PlayersTable({
             sortKey={validSort}
             sortDir={sortDir}
             onSort={handleSort}
+            linkBase={linkBase}
           />
         ) : (
           <StatTable
@@ -328,6 +335,7 @@ export function PlayersTable({
             sortKey={validSort}
             sortDir={sortDir}
             onSort={handleSort}
+            linkBase={linkBase}
           />
         )}
       </div>
@@ -436,6 +444,7 @@ function StatTable({
   sortKey,
   sortDir,
   onSort,
+  linkBase,
 }: {
   rows: { p: RawPlayer; info: ReturnType<typeof getPlayerInfo> }[];
   cols: { key: string; label: string; fmt?: (v: number) => string; hint?: string }[];
@@ -443,6 +452,7 @@ function StatTable({
   sortKey: string;
   sortDir: "desc" | "asc";
   onSort: (k: string) => void;
+  linkBase: string;
 }) {
   return (
     <table className="players-table w-full text-[14px]">
@@ -484,7 +494,7 @@ function StatTable({
                 <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-ink-50">
                   {p.playerNo ? (
                     <Link
-                      href={`/players/${p.playerNo}`}
+                      href={`${linkBase}/${p.playerNo}`}
                       className="transition hover:text-flame-400"
                     >
                       {p.name}
@@ -550,11 +560,13 @@ function RegistryTable({
   sortKey,
   sortDir,
   onSort,
+  linkBase,
 }: {
   rows: { p: RawPlayer; info: ReturnType<typeof getPlayerInfo> }[];
   sortKey: string;
   sortDir: "desc" | "asc";
   onSort: (k: string) => void;
+  linkBase: string;
 }) {
   const cols: { key: string; label: string }[] = [
     { key: "flag",    label: "구분" },
@@ -616,7 +628,7 @@ function RegistryTable({
                 <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-ink-50">
                   {p.playerNo ? (
                     <Link
-                      href={`/players/${p.playerNo}`}
+                      href={`${linkBase}/${p.playerNo}`}
                       className="transition hover:text-flame-400"
                     >
                       {p.name}

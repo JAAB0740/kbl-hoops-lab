@@ -47,21 +47,24 @@ interface MatchChartFile {
   >;
 }
 
-let CACHED: MatchChartFile | null = null;
-function loadMatchCharts(): MatchChartFile {
-  if (CACHED) return CACHED;
+const CACHED_BY_SEASON = new Map<string, MatchChartFile>();
+function loadMatchCharts(seasonCode: string): MatchChartFile {
+  const cached = CACHED_BY_SEASON.get(seasonCode);
+  if (cached) return cached;
+  let result: MatchChartFile;
   try {
-    const p = path.join(process.cwd(), "data", "season", getCurrentSeason().code, "match-charts.json");
+    const p = path.join(process.cwd(), "data", "season", seasonCode, "match-charts.json");
     if (!fs.existsSync(p)) {
-      CACHED = { byGmkey: {} };
-      return CACHED;
+      result = { byGmkey: {} };
+    } else {
+      const raw = fs.readFileSync(p, "utf-8");
+      result = JSON.parse(raw) as MatchChartFile;
     }
-    const raw = fs.readFileSync(p, "utf-8");
-    CACHED = JSON.parse(raw) as MatchChartFile;
   } catch {
-    CACHED = { byGmkey: {} };
+    result = { byGmkey: {} };
   }
-  return CACHED;
+  CACHED_BY_SEASON.set(seasonCode, result);
+  return result;
 }
 
 /** 시즌 통계에 포함되는 게임 tag (KBL 공식 누적 통계 기준).
@@ -73,29 +76,33 @@ const KBL_STAT_TAGS = new Set([
   "챔피언결정전",
 ]);
 
-let KBL_GMKEYS: Set<string> | null = null;
-function loadKblGmkeys(): Set<string> {
-  if (KBL_GMKEYS) return KBL_GMKEYS;
+const KBL_GMKEYS_BY_SEASON = new Map<string, Set<string>>();
+function loadKblGmkeys(seasonCode: string): Set<string> {
+  const cached = KBL_GMKEYS_BY_SEASON.get(seasonCode);
+  if (cached) return cached;
+  let result: Set<string>;
   try {
-    const p = path.join(process.cwd(), "data", "season", getCurrentSeason().code, "games.json");
+    const p = path.join(process.cwd(), "data", "season", seasonCode, "games.json");
     const raw = fs.readFileSync(p, "utf-8");
     const games = (JSON.parse(raw) as { games: Array<{ gmkey: string; tag: string; status: string }> }).games;
-    KBL_GMKEYS = new Set(
+    result = new Set(
       games
         .filter((g) => g.status === "final" && KBL_STAT_TAGS.has(g.tag))
         .map((g) => g.gmkey),
     );
   } catch {
-    KBL_GMKEYS = new Set();
+    result = new Set();
   }
-  return KBL_GMKEYS;
+  KBL_GMKEYS_BY_SEASON.set(seasonCode, result);
+  return result;
 }
 
-let PLAYER_CACHE: Map<string, PlayerShotChart> | null = null;
-function buildPlayerCache(): Map<string, PlayerShotChart> {
-  if (PLAYER_CACHE) return PLAYER_CACHE;
-  const file = loadMatchCharts();
-  const kblGmkeys = loadKblGmkeys();
+const PLAYER_CACHE_BY_SEASON = new Map<string, Map<string, PlayerShotChart>>();
+function buildPlayerCache(seasonCode: string): Map<string, PlayerShotChart> {
+  const cached = PLAYER_CACHE_BY_SEASON.get(seasonCode);
+  if (cached) return cached;
+  const file = loadMatchCharts(seasonCode);
+  const kblGmkeys = loadKblGmkeys(seasonCode);
   const byPcode = new Map<
     string,
     {
@@ -222,12 +229,21 @@ function buildPlayerCache(): Map<string, PlayerShotChart> {
       leagueZoneDetailedAvg,
     });
   }
-  PLAYER_CACHE = out;
-  return PLAYER_CACHE;
+  PLAYER_CACHE_BY_SEASON.set(seasonCode, out);
+  return out;
 }
 
-/** pcode → 시즌 누적 슛 차트. 없으면 null. */
+/** pcode → 현재 시즌 누적 슛 차트. 없으면 null. */
 export function getPlayerShotChart(pcode: string): PlayerShotChart | null {
   if (!pcode) return null;
-  return buildPlayerCache().get(pcode) ?? null;
+  return buildPlayerCache(getCurrentSeason().code).get(pcode) ?? null;
+}
+
+/** pcode → 지정 시즌 누적 슛 차트. 없으면 null. */
+export function getPlayerShotChartForSeason(
+  seasonCode: string,
+  pcode: string,
+): PlayerShotChart | null {
+  if (!pcode) return null;
+  return buildPlayerCache(seasonCode).get(pcode) ?? null;
 }

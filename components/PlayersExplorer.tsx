@@ -25,6 +25,8 @@ interface Props {
   perRound: Record<string, RawPlayer[]>;
   /** 홈/원정/쿼터/전후반별 RawPlayer (단일 차원 토글) */
   byKey?: Record<string, RawPlayer[]>;
+  /** 선수 상세 링크 scope — 지정 시 `/players/season/{code}/{id}` 로 라우팅 */
+  linkSeasonCode?: string;
 }
 
 type VenueKey = "home" | "away";
@@ -60,6 +62,7 @@ export function PlayersExplorer({
   playoffPlayers,
   perRound,
   byKey,
+  linkSeasonCode,
 }: Props) {
   // 페이지 이동 후 뒤로 가기 시 필터·정렬·스크롤 위치 복원
   useScrollRestoration();
@@ -427,7 +430,7 @@ export function PlayersExplorer({
 
       {/* 테이블 */}
       <section className="card p-5">
-        <PlayersTable players={players} statMode={statMode} />
+        <PlayersTable players={players} statMode={statMode} linkSeasonCode={linkSeasonCode} />
       </section>
     </div>
   );

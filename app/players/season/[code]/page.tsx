@@ -76,6 +76,7 @@ export default function PlayersSeasonPage({ params }: Params) {
             playoffPlayers={data.playersPlayoff}
             perRound={data.playersByRound}
             byKey={data.playersByKey}
+            linkSeasonCode={params.code}
           />
         )}
 
