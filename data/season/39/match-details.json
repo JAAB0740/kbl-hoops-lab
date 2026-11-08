@@ -1,1 +1,5540 @@
-{"fetchedAt":null,"byGmkey":{}}
+{
+  "fetchedAt": "2026-11-08T06:05:28.738Z",
+  "source": "https://api.kbl.or.kr/match/{gmkey}",
+  "total": 289,
+  "byGmkey": {
+    "S39G01N1": {
+      "home": [
+        21,
+        28,
+        19,
+        17
+      ],
+      "away": [
+        23,
+        17,
+        15,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1400",
+      "gameEnd": "1531"
+    },
+    "S39G01N2": {
+      "home": [
+        22,
+        22,
+        20,
+        23
+      ],
+      "away": [
+        23,
+        26,
+        30,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1400",
+      "gameEnd": "1544"
+    },
+    "S39G01N3": {
+      "home": [
+        18,
+        20,
+        24,
+        21
+      ],
+      "away": [
+        21,
+        24,
+        25,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 967,
+      "gameStart": "1800",
+      "gameEnd": "2008"
+    },
+    "S39G01N4": {
+      "home": [
+        13,
+        12,
+        20,
+        22
+      ],
+      "away": [
+        24,
+        9,
+        20,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1400",
+      "gameEnd": "1544"
+    },
+    "S39G01N5": {
+      "home": [
+        30,
+        24,
+        22,
+        24
+      ],
+      "away": [
+        17,
+        30,
+        28,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1600",
+      "gameEnd": "1802"
+    },
+    "S39G01N6": {
+      "home": [
+        17,
+        16,
+        25,
+        20
+      ],
+      "away": [
+        18,
+        21,
+        16,
+        30
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 785,
+      "gameStart": "1800",
+      "gameEnd": "1942"
+    },
+    "S39G01N7": {
+      "home": [
+        26,
+        20,
+        22,
+        20
+      ],
+      "away": [
+        14,
+        27,
+        18,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 727,
+      "gameStart": "1800",
+      "gameEnd": "1950"
+    },
+    "S39G01N8": {
+      "home": [
+        26,
+        14,
+        22,
+        19
+      ],
+      "away": [
+        11,
+        18,
+        21,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 757,
+      "gameStart": "1400",
+      "gameEnd": "1554"
+    },
+    "S39G01N9": {
+      "home": [
+        22,
+        15,
+        24,
+        26
+      ],
+      "away": [
+        13,
+        14,
+        25,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1800",
+      "gameEnd": "1952"
+    },
+    "S39G01N10": {
+      "home": [
+        27,
+        22,
+        12,
+        15
+      ],
+      "away": [
+        23,
+        21,
+        29,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1018,
+      "gameStart": "1800",
+      "gameEnd": "1947"
+    },
+    "S39G01N11": {
+      "home": [
+        26,
+        22,
+        21,
+        21
+      ],
+      "away": [
+        29,
+        15,
+        22,
+        24
+      ],
+      "homeEq": [
+        12
+      ],
+      "awayEq": [
+        8
+      ],
+      "crowds": 0,
+      "gameStart": "1900",
+      "gameEnd": "2109"
+    },
+    "S39G01N12": {
+      "home": [
+        25,
+        27,
+        17,
+        19
+      ],
+      "away": [
+        34,
+        13,
+        16,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1900",
+      "gameEnd": "2056"
+    },
+    "S39G01N13": {
+      "home": [
+        30,
+        26,
+        16,
+        23
+      ],
+      "away": [
+        18,
+        18,
+        17,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N14": {
+      "home": [
+        16,
+        25,
+        18,
+        12
+      ],
+      "away": [
+        24,
+        8,
+        25,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N15": {
+      "home": [
+        14,
+        15,
+        25,
+        20
+      ],
+      "away": [
+        13,
+        20,
+        21,
+        20
+      ],
+      "homeEq": [
+        11
+      ],
+      "awayEq": [
+        8
+      ],
+      "crowds": 800,
+      "gameStart": "1900",
+      "gameEnd": "2106"
+    },
+    "S39G01N16": {
+      "home": [
+        29,
+        19,
+        10,
+        28
+      ],
+      "away": [
+        25,
+        32,
+        18,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1400",
+      "gameEnd": "1550"
+    },
+    "S39G01N17": {
+      "home": [
+        19,
+        26,
+        22,
+        22
+      ],
+      "away": [
+        20,
+        18,
+        10,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1400",
+      "gameEnd": "1540"
+    },
+    "S39G01N18": {
+      "home": [
+        24,
+        17,
+        18,
+        21
+      ],
+      "away": [
+        30,
+        17,
+        27,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1800",
+      "gameEnd": "1946"
+    },
+    "S39G01N19": {
+      "home": [
+        19,
+        11,
+        23,
+        28
+      ],
+      "away": [
+        20,
+        27,
+        20,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 820,
+      "gameStart": "1400",
+      "gameEnd": "1554"
+    },
+    "S39G01N20": {
+      "home": [
+        23,
+        29,
+        18,
+        19
+      ],
+      "away": [
+        24,
+        20,
+        20,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1600",
+      "gameEnd": "1754"
+    },
+    "S39G01N21": {
+      "home": [
+        21,
+        11,
+        14,
+        17
+      ],
+      "away": [
+        18,
+        17,
+        20,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 800,
+      "gameStart": "1800",
+      "gameEnd": "1939"
+    },
+    "S39G01N22": {
+      "home": [
+        20,
+        13,
+        21,
+        18
+      ],
+      "away": [
+        16,
+        14,
+        20,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 0,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N23": {
+      "home": [
+        22,
+        22,
+        13,
+        19
+      ],
+      "away": [
+        23,
+        17,
+        20,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 540,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N24": {
+      "home": [
+        24,
+        7,
+        21,
+        21
+      ],
+      "away": [
+        23,
+        26,
+        22,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 737,
+      "gameStart": "1900",
+      "gameEnd": "2053"
+    },
+    "S39G01N25": {
+      "home": [
+        31,
+        28,
+        32,
+        13
+      ],
+      "away": [
+        26,
+        25,
+        20,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 319,
+      "gameStart": "1900",
+      "gameEnd": "2055"
+    },
+    "S39G01N26": {
+      "home": [
+        25,
+        18,
+        14,
+        18
+      ],
+      "away": [
+        21,
+        13,
+        20,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 820,
+      "gameStart": "1900",
+      "gameEnd": "2058"
+    },
+    "S39G01N27": {
+      "home": [
+        18,
+        18,
+        16,
+        15
+      ],
+      "away": [
+        16,
+        22,
+        16,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 681,
+      "gameStart": "1900",
+      "gameEnd": "2057"
+    },
+    "S39G01N28": {
+      "home": [
+        26,
+        23,
+        14,
+        18
+      ],
+      "away": [
+        25,
+        21,
+        19,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 719,
+      "gameStart": "1400",
+      "gameEnd": "1554"
+    },
+    "S39G01N29": {
+      "home": [
+        22,
+        16,
+        20,
+        18
+      ],
+      "away": [
+        19,
+        15,
+        19,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 322,
+      "gameStart": "1400",
+      "gameEnd": "1548"
+    },
+    "S39G01N30": {
+      "home": [
+        20,
+        17,
+        14,
+        16
+      ],
+      "away": [
+        23,
+        19,
+        28,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 711,
+      "gameStart": "1800",
+      "gameEnd": "1933"
+    },
+    "S39G01N31": {
+      "home": [
+        18,
+        30,
+        26,
+        21
+      ],
+      "away": [
+        19,
+        27,
+        16,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 765,
+      "gameStart": "1400",
+      "gameEnd": "1555"
+    },
+    "S39G01N32": {
+      "home": [
+        23,
+        32,
+        23,
+        17
+      ],
+      "away": [
+        19,
+        17,
+        17,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1005,
+      "gameStart": "1800",
+      "gameEnd": "1933"
+    },
+    "S39G01N33": {
+      "home": [
+        23,
+        16,
+        29,
+        21
+      ],
+      "away": [
+        18,
+        22,
+        31,
+        18
+      ],
+      "homeEq": [
+        13,
+        7
+      ],
+      "awayEq": [
+        13,
+        6
+      ],
+      "crowds": 800,
+      "gameStart": "1800",
+      "gameEnd": "2028"
+    },
+    "S39G01N34": {
+      "home": [
+        24,
+        21,
+        12,
+        16
+      ],
+      "away": [
+        21,
+        13,
+        14,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 349,
+      "gameStart": "1900",
+      "gameEnd": "2043"
+    },
+    "S39G01N35": {
+      "home": [
+        24,
+        16,
+        18,
+        20
+      ],
+      "away": [
+        15,
+        19,
+        20,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 343,
+      "gameStart": "1900",
+      "gameEnd": "2052"
+    },
+    "S39G01N36": {
+      "home": [
+        23,
+        18,
+        24,
+        17
+      ],
+      "away": [
+        28,
+        20,
+        17,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 800,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N37": {
+      "home": [
+        21,
+        20,
+        23,
+        34
+      ],
+      "away": [
+        27,
+        25,
+        19,
+        31
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 186,
+      "gameStart": "1900",
+      "gameEnd": "2101"
+    },
+    "S39G01N38": {
+      "home": [
+        20,
+        32,
+        23,
+        19
+      ],
+      "away": [
+        17,
+        23,
+        31,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 483,
+      "gameStart": "1900",
+      "gameEnd": "2039"
+    },
+    "S39G01N39": {
+      "home": [
+        17,
+        13,
+        13,
+        19
+      ],
+      "away": [
+        11,
+        26,
+        23,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 820,
+      "gameStart": "1900",
+      "gameEnd": "2038"
+    },
+    "S39G01N40": {
+      "home": [
+        24,
+        16,
+        16,
+        24
+      ],
+      "away": [
+        10,
+        26,
+        18,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 703,
+      "gameStart": "1400",
+      "gameEnd": "1552"
+    },
+    "S39G01N41": {
+      "home": [
+        20,
+        20,
+        18,
+        18
+      ],
+      "away": [
+        22,
+        21,
+        15,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 405,
+      "gameStart": "1400",
+      "gameEnd": "1548"
+    },
+    "S39G01N42": {
+      "home": [
+        21,
+        30,
+        21,
+        24
+      ],
+      "away": [
+        17,
+        20,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 382,
+      "gameStart": "1800",
+      "gameEnd": "1943"
+    },
+    "S39G01N43": {
+      "home": [
+        15,
+        16,
+        24,
+        21
+      ],
+      "away": [
+        16,
+        12,
+        31,
+        17
+      ],
+      "homeEq": [
+        9
+      ],
+      "awayEq": [
+        12
+      ],
+      "crowds": 894,
+      "gameStart": "1400",
+      "gameEnd": "1614"
+    },
+    "S39G01N44": {
+      "home": [
+        23,
+        14,
+        16,
+        15
+      ],
+      "away": [
+        14,
+        19,
+        20,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 820,
+      "gameStart": "1800",
+      "gameEnd": "1950"
+    },
+    "S39G01N45": {
+      "home": [
+        20,
+        26,
+        21,
+        19
+      ],
+      "away": [
+        15,
+        13,
+        18,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 387,
+      "gameStart": "1800",
+      "gameEnd": "1945"
+    },
+    "S39G01N46": {
+      "home": [
+        12,
+        18,
+        24,
+        16
+      ],
+      "away": [
+        20,
+        28,
+        13,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 644,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N47": {
+      "home": [
+        27,
+        16,
+        19,
+        24
+      ],
+      "away": [
+        26,
+        19,
+        19,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 804,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N48": {
+      "home": [
+        27,
+        23,
+        22,
+        24
+      ],
+      "away": [
+        17,
+        16,
+        22,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 382,
+      "gameStart": "1900",
+      "gameEnd": "2039"
+    },
+    "S39G01N49": {
+      "home": [
+        24,
+        17,
+        28,
+        17
+      ],
+      "away": [
+        12,
+        13,
+        12,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 799,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N50": {
+      "home": [
+        26,
+        18,
+        23,
+        24
+      ],
+      "away": [
+        13,
+        17,
+        14,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1567,
+      "gameStart": "1900",
+      "gameEnd": "2057"
+    },
+    "S39G01N51": {
+      "home": [
+        21,
+        15,
+        20,
+        23
+      ],
+      "away": [
+        23,
+        16,
+        18,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1054,
+      "gameStart": "1500",
+      "gameEnd": "1651"
+    },
+    "S39G01N52": {
+      "home": [
+        24,
+        18,
+        17,
+        16
+      ],
+      "away": [
+        12,
+        24,
+        22,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 806,
+      "gameStart": "1500",
+      "gameEnd": "1645"
+    },
+    "S39G01N53": {
+      "home": [
+        22,
+        22,
+        19,
+        29
+      ],
+      "away": [
+        12,
+        23,
+        23,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1063,
+      "gameStart": "1700",
+      "gameEnd": "1844"
+    },
+    "S39G01N54": {
+      "home": [
+        21,
+        17,
+        23,
+        19
+      ],
+      "away": [
+        27,
+        18,
+        11,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1591,
+      "gameStart": "1700",
+      "gameEnd": "1853"
+    },
+    "S39G01N55": {
+      "home": [
+        22,
+        15,
+        24,
+        19
+      ],
+      "away": [
+        15,
+        20,
+        24,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1098,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N56": {
+      "home": [
+        24,
+        13,
+        23,
+        17
+      ],
+      "away": [
+        26,
+        18,
+        15,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1774,
+      "gameStart": "1500",
+      "gameEnd": "1654"
+    },
+    "S39G01N57": {
+      "home": [
+        26,
+        17,
+        24,
+        26
+      ],
+      "away": [
+        20,
+        15,
+        26,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1438,
+      "gameStart": "1700",
+      "gameEnd": "1845"
+    },
+    "S39G01N58": {
+      "home": [
+        22,
+        14,
+        25,
+        17
+      ],
+      "away": [
+        13,
+        21,
+        14,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 825,
+      "gameStart": "1700",
+      "gameEnd": "1853"
+    },
+    "S39G01N59": {
+      "home": [
+        24,
+        17,
+        17,
+        23
+      ],
+      "away": [
+        17,
+        21,
+        12,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 508,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N60": {
+      "home": [
+        17,
+        20,
+        17,
+        26
+      ],
+      "away": [
+        22,
+        16,
+        31,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 501,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N61": {
+      "home": [
+        16,
+        13,
+        14,
+        24
+      ],
+      "away": [
+        10,
+        8,
+        17,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1142,
+      "gameStart": "1900",
+      "gameEnd": "2046"
+    },
+    "S39G01N62": {
+      "home": [
+        21,
+        21,
+        20,
+        13
+      ],
+      "away": [
+        24,
+        17,
+        17,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 814,
+      "gameStart": "1900",
+      "gameEnd": "2053"
+    },
+    "S39G01N63": {
+      "home": [
+        19,
+        19,
+        11,
+        12
+      ],
+      "away": [
+        21,
+        17,
+        23,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 668,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N64": {
+      "home": [
+        13,
+        24,
+        15,
+        18
+      ],
+      "away": [
+        13,
+        19,
+        25,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1622,
+      "gameStart": "1500",
+      "gameEnd": "1645"
+    },
+    "S39G01N65": {
+      "home": [
+        21,
+        26,
+        28,
+        21
+      ],
+      "away": [
+        28,
+        15,
+        18,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1281,
+      "gameStart": "1700",
+      "gameEnd": "1845"
+    },
+    "S39G01N66": {
+      "home": [
+        22,
+        17,
+        11,
+        17
+      ],
+      "away": [
+        15,
+        20,
+        21,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1506,
+      "gameStart": "1700",
+      "gameEnd": "1839"
+    },
+    "S39G01N67": {
+      "home": [
+        16,
+        15,
+        14,
+        19
+      ],
+      "away": [
+        19,
+        20,
+        15,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1152,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N68": {
+      "home": [
+        18,
+        31,
+        19,
+        21
+      ],
+      "away": [
+        17,
+        24,
+        23,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1070,
+      "gameStart": "1500",
+      "gameEnd": "1654"
+    },
+    "S39G01N69": {
+      "home": [
+        21,
+        20,
+        26,
+        25
+      ],
+      "away": [
+        25,
+        19,
+        18,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1322,
+      "gameStart": "1700",
+      "gameEnd": "1847"
+    },
+    "S39G01N70": {
+      "home": [
+        25,
+        16,
+        25,
+        23
+      ],
+      "away": [
+        13,
+        20,
+        22,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1282,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N71": {
+      "home": [
+        14,
+        23,
+        16,
+        17
+      ],
+      "away": [
+        22,
+        26,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 875,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N72": {
+      "home": [
+        24,
+        18,
+        25,
+        21
+      ],
+      "away": [
+        20,
+        15,
+        18,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1116,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N73": {
+      "home": [
+        23,
+        23,
+        40,
+        22
+      ],
+      "away": [
+        16,
+        19,
+        26,
+        31
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1028,
+      "gameStart": "1900",
+      "gameEnd": "2035"
+    },
+    "S39G01N74": {
+      "home": [
+        24,
+        12,
+        23,
+        26
+      ],
+      "away": [
+        13,
+        17,
+        18,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1050,
+      "gameStart": "1500",
+      "gameEnd": "1650"
+    },
+    "S39G01N75": {
+      "home": [
+        20,
+        13,
+        17,
+        8
+      ],
+      "away": [
+        22,
+        20,
+        18,
+        7
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1795,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N76": {
+      "home": [
+        13,
+        16,
+        23,
+        21
+      ],
+      "away": [
+        29,
+        27,
+        14,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1401,
+      "gameStart": "1700",
+      "gameEnd": "1838"
+    },
+    "S39G01N77": {
+      "home": [
+        26,
+        17,
+        18,
+        16
+      ],
+      "away": [
+        26,
+        9,
+        15,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1588,
+      "gameStart": "1500",
+      "gameEnd": "1644"
+    },
+    "S39G01N78": {
+      "home": [
+        22,
+        16,
+        32,
+        26
+      ],
+      "away": [
+        24,
+        27,
+        15,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2234,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N79": {
+      "home": [
+        13,
+        25,
+        30,
+        28
+      ],
+      "away": [
+        16,
+        22,
+        29,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1455,
+      "gameStart": "1700",
+      "gameEnd": "1839"
+    },
+    "S39G01N80": {
+      "home": [
+        24,
+        20,
+        24,
+        14
+      ],
+      "away": [
+        18,
+        24,
+        22,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1037,
+      "gameStart": "1900",
+      "gameEnd": "2100"
+    },
+    "S39G01N81": {
+      "home": [
+        24,
+        20,
+        23,
+        19
+      ],
+      "away": [
+        23,
+        28,
+        21,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 584,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N82": {
+      "home": [
+        24,
+        13,
+        18,
+        14
+      ],
+      "away": [
+        15,
+        21,
+        22,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1008,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N83": {
+      "home": [
+        32,
+        16,
+        27,
+        15
+      ],
+      "away": [
+        21,
+        30,
+        19,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2071,
+      "gameStart": "1500",
+      "gameEnd": "1647"
+    },
+    "S39G01N84": {
+      "home": [
+        21,
+        11,
+        14,
+        28
+      ],
+      "away": [
+        20,
+        19,
+        17,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 720,
+      "gameStart": "1500",
+      "gameEnd": "1651"
+    },
+    "S39G01N85": {
+      "home": [
+        21,
+        22,
+        18,
+        20
+      ],
+      "away": [
+        14,
+        22,
+        21,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 820,
+      "gameStart": "1700",
+      "gameEnd": "1847"
+    },
+    "S39G01N86": {
+      "home": [
+        18,
+        23,
+        15,
+        20
+      ],
+      "away": [
+        16,
+        18,
+        26,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1609,
+      "gameStart": "1700",
+      "gameEnd": "1846"
+    },
+    "S39G01N87": {
+      "home": [
+        12,
+        18,
+        25,
+        12
+      ],
+      "away": [
+        14,
+        19,
+        14,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 874,
+      "gameStart": "1500",
+      "gameEnd": "1653"
+    },
+    "S39G01N88": {
+      "home": [
+        24,
+        15,
+        18,
+        22
+      ],
+      "away": [
+        24,
+        26,
+        8,
+        21
+      ],
+      "homeEq": [
+        9,
+        2
+      ],
+      "awayEq": [
+        9,
+        8
+      ],
+      "crowds": 1735,
+      "gameStart": "1500",
+      "gameEnd": "1719"
+    },
+    "S39G01N89": {
+      "home": [
+        24,
+        14,
+        21,
+        14
+      ],
+      "away": [
+        16,
+        24,
+        16,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1038,
+      "gameStart": "1700",
+      "gameEnd": "1848"
+    },
+    "S39G01N90": {
+      "home": [
+        21,
+        28,
+        23,
+        16
+      ],
+      "away": [
+        27,
+        15,
+        26,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 988,
+      "gameStart": "1700",
+      "gameEnd": "1843"
+    },
+    "S39G01N91": {
+      "home": [
+        32,
+        13,
+        16,
+        11
+      ],
+      "away": [
+        14,
+        14,
+        24,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 804,
+      "gameStart": "1900",
+      "gameEnd": "2058"
+    },
+    "S39G01N92": {
+      "home": [
+        19,
+        12,
+        15,
+        27
+      ],
+      "away": [
+        20,
+        23,
+        28,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1338,
+      "gameStart": "1900",
+      "gameEnd": "2046"
+    },
+    "S39G01N93": {
+      "home": [
+        19,
+        24,
+        22,
+        24
+      ],
+      "away": [
+        13,
+        16,
+        22,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 558,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N94": {
+      "home": [
+        19,
+        26,
+        29,
+        24
+      ],
+      "away": [
+        32,
+        23,
+        21,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1096,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N95": {
+      "home": [
+        19,
+        19,
+        12,
+        21
+      ],
+      "away": [
+        18,
+        22,
+        24,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 651,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N96": {
+      "home": [
+        22,
+        19,
+        22,
+        24
+      ],
+      "away": [
+        13,
+        16,
+        23,
+        5
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 701,
+      "gameStart": "1500",
+      "gameEnd": "1646"
+    },
+    "S39G01N97": {
+      "home": [
+        22,
+        22,
+        15,
+        28
+      ],
+      "away": [
+        22,
+        19,
+        17,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1159,
+      "gameStart": "1500",
+      "gameEnd": "1643"
+    },
+    "S39G01N98": {
+      "home": [
+        22,
+        16,
+        22,
+        23
+      ],
+      "away": [
+        22,
+        24,
+        19,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 838,
+      "gameStart": "1700",
+      "gameEnd": "1848"
+    },
+    "S39G01N99": {
+      "home": [
+        15,
+        26,
+        13,
+        21
+      ],
+      "away": [
+        22,
+        28,
+        19,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2050,
+      "gameStart": "1700",
+      "gameEnd": "1841"
+    },
+    "S39G01N100": {
+      "home": [
+        32,
+        17,
+        31,
+        23
+      ],
+      "away": [
+        17,
+        21,
+        18,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 985,
+      "gameStart": "1500",
+      "gameEnd": "1642"
+    },
+    "S39G01N101": {
+      "home": [
+        19,
+        21,
+        20,
+        28
+      ],
+      "away": [
+        25,
+        15,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1876,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N102": {
+      "home": [
+        19,
+        17,
+        25,
+        21
+      ],
+      "away": [
+        29,
+        16,
+        18,
+        19
+      ],
+      "homeEq": [
+        6
+      ],
+      "awayEq": [
+        9
+      ],
+      "crowds": 886,
+      "gameStart": "1700",
+      "gameEnd": "1853"
+    },
+    "S39G01N103": {
+      "home": [
+        19,
+        18,
+        18,
+        18
+      ],
+      "away": [
+        26,
+        26,
+        15,
+        8
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1427,
+      "gameStart": "1700",
+      "gameEnd": "1849"
+    },
+    "S39G01N104": {
+      "home": [
+        21,
+        31,
+        20,
+        20
+      ],
+      "away": [
+        13,
+        18,
+        24,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1131,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N105": {
+      "home": [
+        16,
+        31,
+        16,
+        21
+      ],
+      "away": [
+        15,
+        13,
+        17,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 895,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N106": {
+      "home": [
+        11,
+        11,
+        20,
+        20
+      ],
+      "away": [
+        17,
+        19,
+        19,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 625,
+      "gameStart": "1900",
+      "gameEnd": "2041"
+    },
+    "S39G01N107": {
+      "home": [
+        23,
+        25,
+        29,
+        22
+      ],
+      "away": [
+        25,
+        33,
+        27,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1289,
+      "gameStart": "1900",
+      "gameEnd": "2047"
+    },
+    "S39G01N108": {
+      "home": [
+        15,
+        26,
+        18,
+        22
+      ],
+      "away": [
+        28,
+        24,
+        24,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 934,
+      "gameStart": "1900",
+      "gameEnd": "2037"
+    },
+    "S39G01N109": {
+      "home": [
+        22,
+        19,
+        15,
+        22
+      ],
+      "away": [
+        22,
+        14,
+        16,
+        6
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1689,
+      "gameStart": "1500",
+      "gameEnd": "1640"
+    },
+    "S39G01N110": {
+      "home": [
+        16,
+        21,
+        19,
+        27
+      ],
+      "away": [
+        16,
+        10,
+        26,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1241,
+      "gameStart": "1500",
+      "gameEnd": "1642"
+    },
+    "S39G01N111": {
+      "home": [
+        28,
+        18,
+        31,
+        25
+      ],
+      "away": [
+        26,
+        17,
+        17,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1553,
+      "gameStart": "1700",
+      "gameEnd": "1840"
+    },
+    "S39G01N112": {
+      "home": [
+        33,
+        24,
+        23,
+        16
+      ],
+      "away": [
+        14,
+        23,
+        18,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 942,
+      "gameStart": "1701",
+      "gameEnd": "1843"
+    },
+    "S39G01N113": {
+      "home": [
+        19,
+        17,
+        19,
+        23
+      ],
+      "away": [
+        18,
+        11,
+        20,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1704,
+      "gameStart": "1500",
+      "gameEnd": "1654"
+    },
+    "S39G01N114": {
+      "home": [
+        15,
+        21,
+        28,
+        24
+      ],
+      "away": [
+        22,
+        21,
+        21,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1543,
+      "gameStart": "1500",
+      "gameEnd": "1644"
+    },
+    "S39G01N115": {
+      "home": [
+        14,
+        7,
+        33,
+        15
+      ],
+      "away": [
+        22,
+        14,
+        16,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1290,
+      "gameStart": "1700",
+      "gameEnd": "1845"
+    },
+    "S39G01N116": {
+      "home": [
+        24,
+        21,
+        28,
+        10
+      ],
+      "away": [
+        32,
+        17,
+        24,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 853,
+      "gameStart": "1700",
+      "gameEnd": "1844"
+    },
+    "S39G01N117": {
+      "home": [
+        18,
+        25,
+        18,
+        20
+      ],
+      "away": [
+        18,
+        13,
+        20,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 718,
+      "gameStart": "1900",
+      "gameEnd": "2058"
+    },
+    "S39G01N118": {
+      "home": [
+        24,
+        27,
+        22,
+        11
+      ],
+      "away": [
+        19,
+        17,
+        24,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 819,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N119": {
+      "home": [
+        22,
+        19,
+        18,
+        13
+      ],
+      "away": [
+        23,
+        21,
+        24,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1156,
+      "gameStart": "1900",
+      "gameEnd": "2052"
+    },
+    "S39G01N120": {
+      "home": [
+        28,
+        23,
+        24,
+        25
+      ],
+      "away": [
+        20,
+        19,
+        18,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 998,
+      "gameStart": "1900",
+      "gameEnd": "2037"
+    },
+    "S39G01N121": {
+      "home": [
+        16,
+        25,
+        24,
+        14
+      ],
+      "away": [
+        21,
+        22,
+        20,
+        16
+      ],
+      "homeEq": [
+        9,
+        10
+      ],
+      "awayEq": [
+        9,
+        7
+      ],
+      "crowds": 693,
+      "gameStart": "1900",
+      "gameEnd": "2109"
+    },
+    "S39G01N122": {
+      "home": [
+        23,
+        12,
+        27,
+        22
+      ],
+      "away": [
+        17,
+        22,
+        11,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2580,
+      "gameStart": "1500",
+      "gameEnd": "1640"
+    },
+    "S39G01N123": {
+      "home": [
+        24,
+        21,
+        21,
+        18
+      ],
+      "away": [
+        21,
+        14,
+        22,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2701,
+      "gameStart": "1500",
+      "gameEnd": "1650"
+    },
+    "S39G01N124": {
+      "home": [
+        27,
+        23,
+        21,
+        25
+      ],
+      "away": [
+        28,
+        21,
+        18,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1822,
+      "gameStart": "1700",
+      "gameEnd": "1847"
+    },
+    "S39G01N125": {
+      "home": [
+        21,
+        6,
+        24,
+        14
+      ],
+      "away": [
+        24,
+        31,
+        24,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1405,
+      "gameStart": "1500",
+      "gameEnd": "1635"
+    },
+    "S39G01N126": {
+      "home": [
+        23,
+        24,
+        27,
+        12
+      ],
+      "away": [
+        17,
+        17,
+        22,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2483,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N127": {
+      "home": [
+        21,
+        18,
+        11,
+        16
+      ],
+      "away": [
+        10,
+        22,
+        15,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 964,
+      "gameStart": "1700",
+      "gameEnd": "1846"
+    },
+    "S39G01N128": {
+      "home": [
+        13,
+        18,
+        22,
+        27
+      ],
+      "away": [
+        26,
+        23,
+        13,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 840,
+      "gameStart": "1900",
+      "gameEnd": "2043"
+    },
+    "S39G01N129": {
+      "home": [
+        20,
+        18,
+        30,
+        24
+      ],
+      "away": [
+        28,
+        18,
+        13,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1048,
+      "gameStart": "1900",
+      "gameEnd": "2039"
+    },
+    "S39G01N130": {
+      "home": [
+        22,
+        16,
+        18,
+        18
+      ],
+      "away": [
+        24,
+        24,
+        28,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 967,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N131": {
+      "home": [
+        20,
+        14,
+        28,
+        15
+      ],
+      "away": [
+        21,
+        27,
+        27,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 754,
+      "gameStart": "1900",
+      "gameEnd": "2043"
+    },
+    "S39G01N132": {
+      "home": [
+        24,
+        17,
+        24,
+        15
+      ],
+      "away": [
+        22,
+        13,
+        27,
+        8
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 727,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N133": {
+      "home": [
+        35,
+        23,
+        16,
+        16
+      ],
+      "away": [
+        28,
+        22,
+        17,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2269,
+      "gameStart": "1900",
+      "gameEnd": "2059"
+    },
+    "S39G01N134": {
+      "home": [
+        13,
+        18,
+        21,
+        22
+      ],
+      "away": [
+        10,
+        11,
+        21,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1179,
+      "gameStart": "1500",
+      "gameEnd": "1640"
+    },
+    "S39G01N135": {
+      "home": [
+        22,
+        17,
+        17,
+        22
+      ],
+      "away": [
+        25,
+        24,
+        23,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1361,
+      "gameStart": "1500",
+      "gameEnd": "1654"
+    },
+    "S39G01N136": {
+      "home": [
+        25,
+        17,
+        20,
+        23
+      ],
+      "away": [
+        17,
+        22,
+        19,
+        10
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2011,
+      "gameStart": "1700",
+      "gameEnd": "1852"
+    },
+    "S39G01N137": {
+      "home": [
+        11,
+        22,
+        14,
+        22
+      ],
+      "away": [
+        18,
+        17,
+        18,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1536,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N138": {
+      "home": [
+        18,
+        14,
+        23,
+        18
+      ],
+      "away": [
+        15,
+        19,
+        26,
+        9
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 970,
+      "gameStart": "1500",
+      "gameEnd": "1639"
+    },
+    "S39G01N139": {
+      "home": [
+        14,
+        22,
+        22,
+        19
+      ],
+      "away": [
+        24,
+        25,
+        17,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1016,
+      "gameStart": "1700",
+      "gameEnd": "1840"
+    },
+    "S39G01N140": {
+      "home": [
+        17,
+        16,
+        15,
+        28
+      ],
+      "away": [
+        27,
+        26,
+        15,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2045,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N141": {
+      "home": [
+        21,
+        20,
+        24,
+        21
+      ],
+      "away": [
+        20,
+        30,
+        25,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 675,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N142": {
+      "home": [
+        22,
+        20,
+        29,
+        22
+      ],
+      "away": [
+        28,
+        17,
+        22,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 678,
+      "gameStart": "1900",
+      "gameEnd": "2046"
+    },
+    "S39G01N143": {
+      "home": [
+        26,
+        19,
+        18,
+        23
+      ],
+      "away": [
+        23,
+        20,
+        24,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 783,
+      "gameStart": "1900",
+      "gameEnd": "2054"
+    },
+    "S39G01N144": {
+      "home": [
+        15,
+        22,
+        17,
+        17
+      ],
+      "away": [
+        12,
+        10,
+        23,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 777,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N145": {
+      "home": [
+        29,
+        22,
+        14,
+        20
+      ],
+      "away": [
+        14,
+        24,
+        20,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 644,
+      "gameStart": "1900",
+      "gameEnd": "2047"
+    },
+    "S39G01N146": {
+      "home": [
+        17,
+        16,
+        24,
+        18
+      ],
+      "away": [
+        26,
+        19,
+        18,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1801,
+      "gameStart": "1500",
+      "gameEnd": "1648"
+    },
+    "S39G01N147": {
+      "home": [
+        12,
+        27,
+        19,
+        23
+      ],
+      "away": [
+        13,
+        17,
+        16,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1902,
+      "gameStart": "1500",
+      "gameEnd": "1639"
+    },
+    "S39G01N148": {
+      "home": [
+        21,
+        12,
+        18,
+        19
+      ],
+      "away": [
+        12,
+        22,
+        27,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1321,
+      "gameStart": "1700",
+      "gameEnd": "1850"
+    },
+    "S39G01N149": {
+      "home": [
+        19,
+        22,
+        24,
+        19
+      ],
+      "away": [
+        30,
+        22,
+        20,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1659,
+      "gameStart": "1700",
+      "gameEnd": "1838"
+    },
+    "S39G01N150": {
+      "home": [
+        8,
+        21,
+        12,
+        21
+      ],
+      "away": [
+        21,
+        26,
+        24,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2192,
+      "gameStart": "1500",
+      "gameEnd": "1637"
+    },
+    "S39G01N151": {
+      "home": [
+        16,
+        29,
+        8,
+        13
+      ],
+      "away": [
+        8,
+        11,
+        24,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2055,
+      "gameStart": "1500",
+      "gameEnd": "1652"
+    },
+    "S39G01N152": {
+      "home": [
+        16,
+        20,
+        24,
+        18
+      ],
+      "away": [
+        27,
+        22,
+        16,
+        13
+      ],
+      "homeEq": [
+        8
+      ],
+      "awayEq": [
+        12
+      ],
+      "crowds": 1518,
+      "gameStart": "1700",
+      "gameEnd": "1908"
+    },
+    "S39G01N153": {
+      "home": [
+        19,
+        18,
+        20,
+        18
+      ],
+      "away": [
+        20,
+        19,
+        22,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1165,
+      "gameStart": "1700",
+      "gameEnd": "1859"
+    },
+    "S39G01N154": {
+      "home": [
+        23,
+        26,
+        19,
+        21
+      ],
+      "away": [
+        19,
+        20,
+        20,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 904,
+      "gameStart": "1900",
+      "gameEnd": "2041"
+    },
+    "S39G01N155": {
+      "home": [
+        20,
+        16,
+        29,
+        19
+      ],
+      "away": [
+        18,
+        21,
+        15,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1320,
+      "gameStart": "1900",
+      "gameEnd": "2047"
+    },
+    "S39G01N156": {
+      "home": [
+        22,
+        13,
+        26,
+        21
+      ],
+      "away": [
+        14,
+        20,
+        18,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1139,
+      "gameStart": "1900",
+      "gameEnd": "2038"
+    },
+    "S39G01N157": {
+      "home": [
+        14,
+        13,
+        21,
+        8
+      ],
+      "away": [
+        15,
+        22,
+        23,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 513,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N158": {
+      "home": [
+        15,
+        20,
+        24,
+        20
+      ],
+      "away": [
+        25,
+        26,
+        11,
+        11
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 786,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G10N1": {
+      "home": [
+        29,
+        32,
+        33,
+        26
+      ],
+      "away": [
+        19,
+        41,
+        29,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3300,
+      "gameStart": "1500",
+      "gameEnd": "1717"
+    },
+    "S39G01N159": {
+      "home": [
+        24,
+        16,
+        24,
+        15
+      ],
+      "away": [
+        15,
+        20,
+        23,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 946,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N160": {
+      "home": [
+        18,
+        18,
+        29,
+        17
+      ],
+      "away": [
+        22,
+        17,
+        20,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1383,
+      "gameStart": "1900",
+      "gameEnd": "2053"
+    },
+    "S39G01N161": {
+      "home": [
+        20,
+        21,
+        26,
+        19
+      ],
+      "away": [
+        17,
+        13,
+        26,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 990,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N162": {
+      "home": [
+        22,
+        23,
+        32,
+        25
+      ],
+      "away": [
+        16,
+        30,
+        21,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1253,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N163": {
+      "home": [
+        20,
+        17,
+        20,
+        20
+      ],
+      "away": [
+        11,
+        12,
+        26,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 814,
+      "gameStart": "1900",
+      "gameEnd": "2052"
+    },
+    "S39G01N164": {
+      "home": [
+        25,
+        22,
+        24,
+        14
+      ],
+      "away": [
+        8,
+        12,
+        21,
+        29
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1600,
+      "gameStart": "1500",
+      "gameEnd": "1638"
+    },
+    "S39G01N165": {
+      "home": [
+        22,
+        13,
+        29,
+        23
+      ],
+      "away": [
+        20,
+        25,
+        23,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1069,
+      "gameStart": "1500",
+      "gameEnd": "1641"
+    },
+    "S39G01N166": {
+      "home": [
+        25,
+        33,
+        25,
+        18
+      ],
+      "away": [
+        17,
+        21,
+        26,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 4031,
+      "gameStart": "1700",
+      "gameEnd": "1832"
+    },
+    "S39G01N167": {
+      "home": [
+        19,
+        23,
+        16,
+        27
+      ],
+      "away": [
+        11,
+        17,
+        26,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2205,
+      "gameStart": "1700",
+      "gameEnd": "1845"
+    },
+    "S39G01N168": {
+      "home": [
+        22,
+        19,
+        23,
+        12
+      ],
+      "away": [
+        24,
+        17,
+        13,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 959,
+      "gameStart": "1500",
+      "gameEnd": "1653"
+    },
+    "S39G01N169": {
+      "home": [
+        22,
+        10,
+        29,
+        19
+      ],
+      "away": [
+        20,
+        23,
+        11,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1815,
+      "gameStart": "1500",
+      "gameEnd": "1645"
+    },
+    "S39G01N170": {
+      "home": [
+        28,
+        20,
+        18,
+        22
+      ],
+      "away": [
+        16,
+        16,
+        33,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1598,
+      "gameStart": "1700",
+      "gameEnd": "1849"
+    },
+    "S39G01N171": {
+      "home": [
+        15,
+        19,
+        26,
+        19
+      ],
+      "away": [
+        19,
+        18,
+        14,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1686,
+      "gameStart": "1700",
+      "gameEnd": "1858"
+    },
+    "S39G01N172": {
+      "home": [
+        25,
+        18,
+        32,
+        22
+      ],
+      "away": [
+        21,
+        18,
+        31,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1460,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N174": {
+      "home": [
+        22,
+        22,
+        20,
+        18
+      ],
+      "away": [
+        7,
+        24,
+        20,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1063,
+      "gameStart": "1900",
+      "gameEnd": "2039"
+    },
+    "S39G01N175": {
+      "home": [
+        16,
+        31,
+        18,
+        13
+      ],
+      "away": [
+        22,
+        11,
+        20,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 737,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N176": {
+      "home": [
+        21,
+        19,
+        25,
+        17
+      ],
+      "away": [
+        21,
+        17,
+        23,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 781,
+      "gameStart": "1900",
+      "gameEnd": "2041"
+    },
+    "S39G01N179": {
+      "home": [
+        15,
+        7,
+        28,
+        17
+      ],
+      "away": [
+        15,
+        26,
+        23,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2080,
+      "gameStart": "1700",
+      "gameEnd": "1851"
+    },
+    "S39G01N180": {
+      "home": [
+        22,
+        28,
+        17,
+        18
+      ],
+      "away": [
+        19,
+        18,
+        19,
+        9
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1217,
+      "gameStart": "1500",
+      "gameEnd": "1635"
+    },
+    "S39G01N181": {
+      "home": [
+        18,
+        18,
+        27,
+        28
+      ],
+      "away": [
+        18,
+        16,
+        22,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1224,
+      "gameStart": "1500",
+      "gameEnd": "1659"
+    },
+    "S39G01N182": {
+      "home": [
+        19,
+        27,
+        23,
+        31
+      ],
+      "away": [
+        22,
+        11,
+        30,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3016,
+      "gameStart": "1700",
+      "gameEnd": "1838"
+    },
+    "S39G01N185": {
+      "home": [
+        19,
+        2,
+        11,
+        9
+      ],
+      "away": [
+        9,
+        14,
+        12,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1291,
+      "gameStart": "1500",
+      "gameEnd": "1647"
+    },
+    "S39G01N186": {
+      "home": [
+        15,
+        20,
+        19,
+        23
+      ],
+      "away": [
+        11,
+        25,
+        13,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1031,
+      "gameStart": "1500",
+      "gameEnd": "1645"
+    },
+    "S39G01N188": {
+      "home": [
+        9,
+        20,
+        10,
+        24
+      ],
+      "away": [
+        23,
+        20,
+        24,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1570,
+      "gameStart": "1500",
+      "gameEnd": "1632"
+    },
+    "S39G01N190": {
+      "home": [
+        19,
+        27,
+        18,
+        22
+      ],
+      "away": [
+        27,
+        17,
+        11,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 758,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N191": {
+      "home": [
+        21,
+        20,
+        21,
+        10
+      ],
+      "away": [
+        24,
+        25,
+        27,
+        10
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1027,
+      "gameStart": "1900",
+      "gameEnd": "2034"
+    },
+    "S39G01N192": {
+      "home": [
+        22,
+        14,
+        17,
+        11
+      ],
+      "away": [
+        14,
+        23,
+        22,
+        9
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 906,
+      "gameStart": "1500",
+      "gameEnd": "1649"
+    },
+    "S39G01N193": {
+      "home": [
+        21,
+        22,
+        29,
+        24
+      ],
+      "away": [
+        13,
+        25,
+        25,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1419,
+      "gameStart": "1500",
+      "gameEnd": "1647"
+    },
+    "S39G01N194": {
+      "home": [
+        24,
+        17,
+        26,
+        27
+      ],
+      "away": [
+        19,
+        15,
+        11,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1302,
+      "gameStart": "1700",
+      "gameEnd": "1843"
+    },
+    "S39G01N195": {
+      "home": [
+        17,
+        17,
+        25,
+        21
+      ],
+      "away": [
+        16,
+        29,
+        13,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3602,
+      "gameStart": "1500",
+      "gameEnd": "1652"
+    },
+    "S39G01N196": {
+      "home": [
+        23,
+        22,
+        11,
+        23
+      ],
+      "away": [
+        17,
+        18,
+        18,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1296,
+      "gameStart": "1500",
+      "gameEnd": "1641"
+    },
+    "S39G01N197": {
+      "home": [
+        19,
+        31,
+        22,
+        27
+      ],
+      "away": [
+        21,
+        16,
+        19,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1143,
+      "gameStart": "1700",
+      "gameEnd": "1853"
+    },
+    "S39G01N199": {
+      "home": [
+        29,
+        17,
+        17,
+        21
+      ],
+      "away": [
+        15,
+        27,
+        24,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1900,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N200": {
+      "home": [
+        20,
+        16,
+        10,
+        18
+      ],
+      "away": [
+        21,
+        26,
+        7,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 616,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N201": {
+      "home": [
+        16,
+        11,
+        20,
+        22
+      ],
+      "away": [
+        17,
+        30,
+        23,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 334,
+      "gameStart": "1900",
+      "gameEnd": "2043"
+    },
+    "S39G01N202": {
+      "home": [
+        20,
+        26,
+        22,
+        21
+      ],
+      "away": [
+        18,
+        23,
+        22,
+        26
+      ],
+      "homeEq": [
+        11
+      ],
+      "awayEq": [
+        4
+      ],
+      "crowds": 604,
+      "gameStart": "1900",
+      "gameEnd": "2056"
+    },
+    "S39G01N203": {
+      "home": [
+        19,
+        18,
+        17,
+        14
+      ],
+      "away": [
+        9,
+        23,
+        18,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 942,
+      "gameStart": "1900",
+      "gameEnd": "2057"
+    },
+    "S39G01N204": {
+      "home": [
+        17,
+        18,
+        12,
+        14
+      ],
+      "away": [
+        19,
+        21,
+        19,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1000,
+      "gameStart": "1500",
+      "gameEnd": "1642"
+    },
+    "S39G01N205": {
+      "home": [
+        17,
+        14,
+        14,
+        28
+      ],
+      "away": [
+        17,
+        20,
+        11,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1333,
+      "gameStart": "1500",
+      "gameEnd": "1645"
+    },
+    "S39G01N206": {
+      "home": [
+        17,
+        17,
+        24,
+        18
+      ],
+      "away": [
+        20,
+        11,
+        20,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1410,
+      "gameStart": "1700",
+      "gameEnd": "1837"
+    },
+    "S39G01N207": {
+      "home": [
+        24,
+        18,
+        13,
+        22
+      ],
+      "away": [
+        20,
+        23,
+        27,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 877,
+      "gameStart": "1700",
+      "gameEnd": "1846"
+    },
+    "S39G01N208": {
+      "home": [
+        20,
+        27,
+        18,
+        18
+      ],
+      "away": [
+        21,
+        18,
+        31,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1587,
+      "gameStart": "1500",
+      "gameEnd": "1657"
+    },
+    "S39G01N209": {
+      "home": [
+        28,
+        18,
+        10,
+        11
+      ],
+      "away": [
+        22,
+        15,
+        26,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1247,
+      "gameStart": "1500",
+      "gameEnd": "1654"
+    },
+    "S39G01N210": {
+      "home": [
+        20,
+        19,
+        29,
+        23
+      ],
+      "away": [
+        20,
+        21,
+        25,
+        30
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 898,
+      "gameStart": "1700",
+      "gameEnd": "1845"
+    },
+    "S39G01N211": {
+      "home": [
+        13,
+        23,
+        23,
+        15
+      ],
+      "away": [
+        34,
+        22,
+        18,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1005,
+      "gameStart": "1700",
+      "gameEnd": "1840"
+    },
+    "S39G01N212": {
+      "home": [
+        23,
+        12,
+        24,
+        23
+      ],
+      "away": [
+        18,
+        14,
+        24,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1110,
+      "gameStart": "1900",
+      "gameEnd": "2053"
+    },
+    "S39G01N214": {
+      "home": [
+        16,
+        14,
+        21,
+        19
+      ],
+      "away": [
+        18,
+        23,
+        16,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 712,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N215": {
+      "home": [
+        24,
+        19,
+        22,
+        28
+      ],
+      "away": [
+        28,
+        14,
+        25,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 408,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N217": {
+      "home": [
+        17,
+        17,
+        21,
+        22
+      ],
+      "away": [
+        27,
+        20,
+        20,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 308,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N218": {
+      "home": [
+        9,
+        19,
+        23,
+        28
+      ],
+      "away": [
+        23,
+        22,
+        19,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1097,
+      "gameStart": "1900",
+      "gameEnd": "2058"
+    },
+    "S39G01N219": {
+      "home": [
+        15,
+        20,
+        26,
+        20
+      ],
+      "away": [
+        20,
+        16,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 571,
+      "gameStart": "1900",
+      "gameEnd": "2056"
+    },
+    "S39G01N221": {
+      "home": [
+        10,
+        29,
+        19,
+        18
+      ],
+      "away": [
+        27,
+        22,
+        19,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 845,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N222": {
+      "home": [
+        19,
+        24,
+        24,
+        25
+      ],
+      "away": [
+        17,
+        19,
+        26,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1030,
+      "gameStart": "1500",
+      "gameEnd": "1638"
+    },
+    "S39G01N223": {
+      "home": [
+        21,
+        18,
+        18,
+        17
+      ],
+      "away": [
+        18,
+        15,
+        15,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1588,
+      "gameStart": "1500",
+      "gameEnd": "1643"
+    },
+    "S39G01N225": {
+      "home": [
+        14,
+        13,
+        16,
+        24
+      ],
+      "away": [
+        19,
+        23,
+        20,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 847,
+      "gameStart": "1700",
+      "gameEnd": "1834"
+    },
+    "S39G01N226": {
+      "home": [
+        20,
+        15,
+        16,
+        20
+      ],
+      "away": [
+        26,
+        19,
+        21,
+        11
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1292,
+      "gameStart": "1500",
+      "gameEnd": "1637"
+    },
+    "S39G01N227": {
+      "home": [
+        17,
+        20,
+        16,
+        25
+      ],
+      "away": [
+        30,
+        17,
+        13,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 666,
+      "gameStart": "1500",
+      "gameEnd": "1659"
+    },
+    "S39G01N228": {
+      "home": [
+        20,
+        13,
+        21,
+        19
+      ],
+      "away": [
+        17,
+        18,
+        28,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1028,
+      "gameStart": "1700",
+      "gameEnd": "1840"
+    },
+    "S39G01N230": {
+      "home": [
+        20,
+        14,
+        17,
+        30
+      ],
+      "away": [
+        17,
+        14,
+        24,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 411,
+      "gameStart": "1900",
+      "gameEnd": "2046"
+    },
+    "S39G01N231": {
+      "home": [
+        13,
+        27,
+        17,
+        23
+      ],
+      "away": [
+        28,
+        24,
+        24,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 564,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N232": {
+      "home": [
+        23,
+        15,
+        22,
+        16
+      ],
+      "away": [
+        23,
+        19,
+        24,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1322,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G01N233": {
+      "home": [
+        14,
+        16,
+        25,
+        20
+      ],
+      "away": [
+        7,
+        18,
+        25,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 994,
+      "gameStart": "1900",
+      "gameEnd": "2055"
+    },
+    "S39G01N234": {
+      "home": [
+        21,
+        21,
+        33,
+        22
+      ],
+      "away": [
+        16,
+        17,
+        26,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 400,
+      "gameStart": "1900",
+      "gameEnd": "2035"
+    },
+    "S39G01N235": {
+      "home": [
+        15,
+        18,
+        24,
+        23
+      ],
+      "away": [
+        25,
+        27,
+        20,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 547,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G01N237": {
+      "home": [
+        20,
+        14,
+        18,
+        20
+      ],
+      "away": [
+        15,
+        28,
+        22,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1284,
+      "gameStart": "1800",
+      "gameEnd": "1946"
+    },
+    "S39G01N238": {
+      "home": [
+        20,
+        18,
+        27,
+        22
+      ],
+      "away": [
+        13,
+        16,
+        14,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1310,
+      "gameStart": "1800",
+      "gameEnd": "1935"
+    },
+    "S39G01N239": {
+      "home": [
+        28,
+        23,
+        28,
+        24
+      ],
+      "away": [
+        17,
+        24,
+        22,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1301,
+      "gameStart": "1400",
+      "gameEnd": "1552"
+    },
+    "S39G01N241": {
+      "home": [
+        17,
+        15,
+        26,
+        13
+      ],
+      "away": [
+        19,
+        14,
+        20,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 834,
+      "gameStart": "1800",
+      "gameEnd": "1954"
+    },
+    "S39G01N242": {
+      "home": [
+        18,
+        21,
+        12,
+        20
+      ],
+      "away": [
+        20,
+        16,
+        24,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1015,
+      "gameStart": "1900",
+      "gameEnd": "2042"
+    },
+    "S39G01N187": {
+      "home": [
+        25,
+        28,
+        17,
+        29
+      ],
+      "away": [
+        25,
+        14,
+        18,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 380,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N243": {
+      "home": [
+        13,
+        13,
+        17,
+        20
+      ],
+      "away": [
+        21,
+        18,
+        19,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 728,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N244": {
+      "home": [
+        28,
+        35,
+        25,
+        28
+      ],
+      "away": [
+        28,
+        14,
+        17,
+        29
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 500,
+      "gameStart": "1900",
+      "gameEnd": "2032"
+    },
+    "S39G01N245": {
+      "home": [
+        28,
+        24,
+        25,
+        16
+      ],
+      "away": [
+        22,
+        15,
+        26,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1046,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N246": {
+      "home": [
+        27,
+        16,
+        23,
+        22
+      ],
+      "away": [
+        16,
+        18,
+        21,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 711,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N247": {
+      "home": [
+        17,
+        24,
+        20,
+        18
+      ],
+      "away": [
+        14,
+        12,
+        21,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 500,
+      "gameStart": "1900",
+      "gameEnd": "2053"
+    },
+    "S39G01N248": {
+      "home": [
+        23,
+        18,
+        22,
+        12
+      ],
+      "away": [
+        21,
+        17,
+        13,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1287,
+      "gameStart": "1400",
+      "gameEnd": "1546"
+    },
+    "S39G01N249": {
+      "home": [
+        17,
+        24,
+        21,
+        25
+      ],
+      "away": [
+        13,
+        13,
+        22,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1694,
+      "gameStart": "1800",
+      "gameEnd": "1937"
+    },
+    "S39G01N250": {
+      "home": [
+        16,
+        17,
+        28,
+        19
+      ],
+      "away": [
+        17,
+        23,
+        29,
+        10
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 918,
+      "gameStart": "1800",
+      "gameEnd": "1944"
+    },
+    "S39G01N251": {
+      "home": [
+        17,
+        18,
+        27,
+        19
+      ],
+      "away": [
+        19,
+        18,
+        22,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1139,
+      "gameStart": "1400",
+      "gameEnd": "1557"
+    },
+    "S39G01N252": {
+      "home": [
+        25,
+        24,
+        31,
+        18
+      ],
+      "away": [
+        17,
+        10,
+        26,
+        30
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1183,
+      "gameStart": "1800",
+      "gameEnd": "1935"
+    },
+    "S39G01N253": {
+      "home": [
+        20,
+        17,
+        28,
+        23
+      ],
+      "away": [
+        22,
+        18,
+        26,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 830,
+      "gameStart": "1800",
+      "gameEnd": "1944"
+    },
+    "S39G01N254": {
+      "home": [
+        26,
+        14,
+        16,
+        23
+      ],
+      "away": [
+        18,
+        22,
+        21,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 881,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N184": {
+      "home": [
+        22,
+        18,
+        22,
+        20
+      ],
+      "away": [
+        13,
+        14,
+        11,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 447,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N177": {
+      "home": [
+        21,
+        16,
+        15,
+        23
+      ],
+      "away": [
+        16,
+        23,
+        22,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 867,
+      "gameStart": "1900",
+      "gameEnd": "2043"
+    },
+    "S39G01N256": {
+      "home": [
+        14,
+        19,
+        23,
+        16
+      ],
+      "away": [
+        22,
+        8,
+        13,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 435,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G01N257": {
+      "home": [
+        13,
+        14,
+        25,
+        15
+      ],
+      "away": [
+        21,
+        32,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 403,
+      "gameStart": "1900",
+      "gameEnd": "2056"
+    },
+    "S39G01N258": {
+      "home": [
+        24,
+        18,
+        22,
+        7
+      ],
+      "away": [
+        19,
+        18,
+        18,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 885,
+      "gameStart": "1900",
+      "gameEnd": "2047"
+    },
+    "S39G01N259": {
+      "home": [
+        24,
+        26,
+        25,
+        20
+      ],
+      "away": [
+        18,
+        25,
+        17,
+        11
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 995,
+      "gameStart": "1900",
+      "gameEnd": "2037"
+    },
+    "S39G01N260": {
+      "home": [
+        21,
+        15,
+        26,
+        18
+      ],
+      "away": [
+        18,
+        17,
+        18,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 930,
+      "gameStart": "1400",
+      "gameEnd": "1550"
+    },
+    "S39G01N261": {
+      "home": [
+        18,
+        21,
+        13,
+        13
+      ],
+      "away": [
+        18,
+        23,
+        20,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 935,
+      "gameStart": "1800",
+      "gameEnd": "1936"
+    },
+    "S39G01N262": {
+      "home": [
+        11,
+        19,
+        21,
+        24
+      ],
+      "away": [
+        22,
+        15,
+        19,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1903,
+      "gameStart": "1800",
+      "gameEnd": "1953"
+    },
+    "S39G01N264": {
+      "home": [
+        24,
+        24,
+        27,
+        13
+      ],
+      "away": [
+        22,
+        19,
+        20,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1221,
+      "gameStart": "1400",
+      "gameEnd": "1532"
+    },
+    "S39G01N263": {
+      "home": [
+        21,
+        18,
+        16,
+        16
+      ],
+      "away": [
+        21,
+        15,
+        25,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 680,
+      "gameStart": "1800",
+      "gameEnd": "1938"
+    },
+    "S39G01N265": {
+      "home": [
+        19,
+        26,
+        22,
+        21
+      ],
+      "away": [
+        15,
+        13,
+        31,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1233,
+      "gameStart": "1800",
+      "gameEnd": "1951"
+    },
+    "S39G01N198": {
+      "home": [
+        23,
+        21,
+        21,
+        15
+      ],
+      "away": [
+        16,
+        21,
+        18,
+        10
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 581,
+      "gameStart": "1900",
+      "gameEnd": "2036"
+    },
+    "S39G01N216": {
+      "home": [
+        20,
+        19,
+        16,
+        24
+      ],
+      "away": [
+        21,
+        18,
+        22,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 852,
+      "gameStart": "1900",
+      "gameEnd": "2030"
+    },
+    "S39G01N224": {
+      "home": [
+        22,
+        28,
+        17,
+        25
+      ],
+      "away": [
+        18,
+        17,
+        31,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 607,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G01N173": {
+      "home": [
+        18,
+        17,
+        27,
+        29
+      ],
+      "away": [
+        17,
+        18,
+        17,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 472,
+      "gameStart": "1900",
+      "gameEnd": "2048"
+    },
+    "S39G01N189": {
+      "home": [
+        21,
+        22,
+        19,
+        15
+      ],
+      "away": [
+        26,
+        27,
+        14,
+        25
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 559,
+      "gameStart": "1900",
+      "gameEnd": "2040"
+    },
+    "S39G01N213": {
+      "home": [
+        29,
+        27,
+        18,
+        32
+      ],
+      "away": [
+        22,
+        27,
+        19,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 833,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G01N220": {
+      "home": [
+        21,
+        20,
+        15,
+        20
+      ],
+      "away": [
+        21,
+        21,
+        24,
+        22
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1074,
+      "gameStart": "1900",
+      "gameEnd": "2035"
+    },
+    "S39G01N183": {
+      "home": [
+        14,
+        15,
+        22,
+        30
+      ],
+      "away": [
+        15,
+        22,
+        13,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1279,
+      "gameStart": "1600",
+      "gameEnd": "1736"
+    },
+    "S39G01N240": {
+      "home": [
+        18,
+        19,
+        17,
+        24
+      ],
+      "away": [
+        15,
+        12,
+        18,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1046,
+      "gameStart": "1800",
+      "gameEnd": "1929"
+    },
+    "S39G01N255": {
+      "home": [
+        14,
+        28,
+        26,
+        13
+      ],
+      "away": [
+        24,
+        18,
+        25,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3556,
+      "gameStart": "1600",
+      "gameEnd": "1746"
+    },
+    "S39G01N229": {
+      "home": [
+        31,
+        27,
+        25,
+        19
+      ],
+      "away": [
+        14,
+        32,
+        20,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1044,
+      "gameStart": "1800",
+      "gameEnd": "1927"
+    },
+    "S39G01N236": {
+      "home": [
+        16,
+        13,
+        17,
+        22
+      ],
+      "away": [
+        23,
+        22,
+        16,
+        13
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1100,
+      "gameStart": "1800",
+      "gameEnd": "1938"
+    },
+    "S39G01N178": {
+      "home": [
+        23,
+        10,
+        25,
+        15
+      ],
+      "away": [
+        24,
+        24,
+        29,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 540,
+      "gameStart": "1900",
+      "gameEnd": "2034"
+    },
+    "S39G01N266": {
+      "home": [
+        25,
+        24,
+        20,
+        22
+      ],
+      "away": [
+        26,
+        19,
+        21,
+        18
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 568,
+      "gameStart": "1900",
+      "gameEnd": "2023"
+    },
+    "S39G01N267": {
+      "home": [
+        21,
+        27,
+        29,
+        23
+      ],
+      "away": [
+        16,
+        31,
+        16,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1051,
+      "gameStart": "1900",
+      "gameEnd": "2028"
+    },
+    "S39G01N268": {
+      "home": [
+        10,
+        18,
+        17,
+        27
+      ],
+      "away": [
+        18,
+        26,
+        24,
+        33
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 422,
+      "gameStart": "1900",
+      "gameEnd": "2039"
+    },
+    "S39G01N269": {
+      "home": [
+        27,
+        21,
+        26,
+        15
+      ],
+      "away": [
+        27,
+        18,
+        9,
+        16
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 552,
+      "gameStart": "1900",
+      "gameEnd": "2029"
+    },
+    "S39G01N270": {
+      "home": [
+        14,
+        20,
+        18,
+        31
+      ],
+      "away": [
+        25,
+        10,
+        34,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 850,
+      "gameStart": "1900",
+      "gameEnd": "2032"
+    },
+    "S39G03N1": {
+      "home": [
+        18,
+        20,
+        30,
+        15
+      ],
+      "away": [
+        21,
+        22,
+        16,
+        28
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1036,
+      "gameStart": "1400",
+      "gameEnd": "1553"
+    },
+    "S39G03N2": {
+      "home": [
+        20,
+        24,
+        13,
+        21
+      ],
+      "away": [
+        20,
+        17,
+        21,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3621,
+      "gameStart": "1800",
+      "gameEnd": "2005"
+    },
+    "S39G03N3": {
+      "home": [
+        23,
+        18,
+        16,
+        13
+      ],
+      "away": [
+        24,
+        23,
+        11,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 926,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    },
+    "S39G03N4": {
+      "home": [
+        26,
+        16,
+        20,
+        17
+      ],
+      "away": [
+        18,
+        16,
+        15,
+        12
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1254,
+      "gameStart": "1900",
+      "gameEnd": "2049"
+    },
+    "S39G03N5": {
+      "home": [
+        24,
+        12,
+        30,
+        23
+      ],
+      "away": [
+        14,
+        17,
+        20,
+        30
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1404,
+      "gameStart": "1900",
+      "gameEnd": "2055"
+    },
+    "S39G03N6": {
+      "home": [
+        20,
+        17,
+        23,
+        26
+      ],
+      "away": [
+        18,
+        27,
+        25,
+        23
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 1075,
+      "gameStart": "1900",
+      "gameEnd": "2046"
+    },
+    "S39G03N11": {
+      "home": [
+        26,
+        28,
+        21,
+        26
+      ],
+      "away": [
+        19,
+        26,
+        11,
+        27
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2783,
+      "gameStart": "1900",
+      "gameEnd": "2044"
+    },
+    "S39G03N12": {
+      "home": [
+        30,
+        22,
+        26,
+        11
+      ],
+      "away": [
+        24,
+        23,
+        19,
+        20
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2207,
+      "gameStart": "1900",
+      "gameEnd": "2052"
+    },
+    "S39G03N13": {
+      "home": [
+        25,
+        24,
+        17,
+        25
+      ],
+      "away": [
+        20,
+        19,
+        23,
+        21
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3327,
+      "gameStart": "1900",
+      "gameEnd": "2047"
+    },
+    "S39G03N14": {
+      "home": [
+        23,
+        10,
+        26,
+        19
+      ],
+      "away": [
+        26,
+        24,
+        25,
+        15
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3339,
+      "gameStart": "1400",
+      "gameEnd": "1553"
+    },
+    "S39G03N15": {
+      "home": [
+        24,
+        21,
+        23,
+        13
+      ],
+      "away": [
+        26,
+        12,
+        31,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3153,
+      "gameStart": "1800",
+      "gameEnd": "1956"
+    },
+    "S39G03N16": {
+      "home": [
+        32,
+        16,
+        20,
+        15
+      ],
+      "away": [
+        18,
+        26,
+        19,
+        14
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3417,
+      "gameStart": "1900",
+      "gameEnd": "2101"
+    },
+    "S39G03N18": {
+      "home": [
+        20,
+        22,
+        16,
+        23
+      ],
+      "away": [
+        23,
+        16,
+        14,
+        26
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 3219,
+      "gameStart": "1900",
+      "gameEnd": "2057"
+    },
+    "S39G04N1": {
+      "home": [
+        22,
+        20,
+        27,
+        21
+      ],
+      "away": [
+        17,
+        24,
+        21,
+        17
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 5311,
+      "gameStart": "1900",
+      "gameEnd": "2050"
+    },
+    "S39G04N2": {
+      "home": [
+        17,
+        23,
+        26,
+        31
+      ],
+      "away": [
+        18,
+        17,
+        22,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 5303,
+      "gameStart": "1900",
+      "gameEnd": "2051"
+    },
+    "S39G04N3": {
+      "home": [
+        24,
+        14,
+        28,
+        15
+      ],
+      "away": [
+        17,
+        11,
+        26,
+        19
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 4445,
+      "gameStart": "1900",
+      "gameEnd": "2055"
+    },
+    "S39G04N4": {
+      "home": [
+        14,
+        17,
+        23,
+        25
+      ],
+      "away": [
+        18,
+        22,
+        24,
+        30
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 5200,
+      "gameStart": "1415",
+      "gameEnd": "1606"
+    },
+    "S39G04N5": {
+      "home": [
+        20,
+        12,
+        23,
+        31
+      ],
+      "away": [
+        19,
+        20,
+        13,
+        10
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 5308,
+      "gameStart": "1900",
+      "gameEnd": "2045"
+    }
+  }
+}

@@ -11,6 +11,7 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 
+import { getCurrentSeason } from "./kblSeason";
 import {
   classifyZone,
   classifyZoneDetailed,
@@ -50,7 +51,7 @@ let CACHED: MatchChartFile | null = null;
 function loadMatchCharts(): MatchChartFile {
   if (CACHED) return CACHED;
   try {
-    const p = path.join(process.cwd(), "data", "match-charts.json");
+    const p = path.join(process.cwd(), "data", "season", getCurrentSeason().code, "match-charts.json");
     if (!fs.existsSync(p)) {
       CACHED = { byGmkey: {} };
       return CACHED;
@@ -76,7 +77,7 @@ let KBL_GMKEYS: Set<string> | null = null;
 function loadKblGmkeys(): Set<string> {
   if (KBL_GMKEYS) return KBL_GMKEYS;
   try {
-    const p = path.join(process.cwd(), "data", "games.json");
+    const p = path.join(process.cwd(), "data", "season", getCurrentSeason().code, "games.json");
     const raw = fs.readFileSync(p, "utf-8");
     const games = (JSON.parse(raw) as { games: Array<{ gmkey: string; tag: string; status: string }> }).games;
     KBL_GMKEYS = new Set(

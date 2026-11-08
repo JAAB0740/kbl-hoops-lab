@@ -1,32 +1,21 @@
 /**
  * 과거 시즌 아카이브 — 간소화된 읽기 전용 뷰.
  *
- * 현재 시즌(49, 2026-27)은 lib/data.ts 가 처리.
+ * 현재 시즌(getCurrentSeason().code) 은 lib/data.ts 가 처리.
  * 과거 시즌은 이 모듈이 처리 — 핵심 통계만 (순위·리더·챔피언).
  *
- * 데이터 소스: data/season/{code}/*.json
- *   - team-filtered.json: 팀 순위 + 득실점
- *   - players-detail.json: 선수 PPG/APG/RPG (리더용)
- *   - games.json: 챔피언결정전 결과 (최종 우승팀)
+ * 디렉토리 자동 스캔: data/season/<code>/ 안에 유효한 세 파일
+ * (team-filtered / players-detail / games) 이 있으면 자동으로 아카이브에 등장.
+ * 내년 시즌 추가시 fetch 만 돌리면 끝.
  */
+import "server-only";
+import fs from "node:fs";
+import path from "node:path";
+import { getCurrentSeason } from "./kblSeason";
 
-import tf39 from "../data/season/39/team-filtered.json";
-import tf41 from "../data/season/41/team-filtered.json";
-import tf43 from "../data/season/43/team-filtered.json";
-import tf45 from "../data/season/45/team-filtered.json";
-import tf47 from "../data/season/47/team-filtered.json";
-
-import pd39 from "../data/season/39/players-detail.json";
-import pd41 from "../data/season/41/players-detail.json";
-import pd43 from "../data/season/43/players-detail.json";
-import pd45 from "../data/season/45/players-detail.json";
-import pd47 from "../data/season/47/players-detail.json";
-
-import g39 from "../data/season/39/games.json";
-import g41 from "../data/season/41/games.json";
-import g43 from "../data/season/43/games.json";
-import g45 from "../data/season/45/games.json";
-import g47 from "../data/season/47/games.json";
+const BASE_CODE = 47;
+const BASE_YEAR = 2025;
+const CODE_STEP = 2;
 
 type TeamFilteredRow = {
   rank: number;
@@ -76,27 +65,11 @@ type RawSet = {
   games: { games?: GameRow[] };
 };
 
-const RAW: Record<string, RawSet> = {
-  "39": { teamFiltered: tf39 as RawSet["teamFiltered"], playersDetail: pd39 as RawSet["playersDetail"], games: g39 as RawSet["games"] },
-  "41": { teamFiltered: tf41 as RawSet["teamFiltered"], playersDetail: pd41 as RawSet["playersDetail"], games: g41 as RawSet["games"] },
-  "43": { teamFiltered: tf43 as RawSet["teamFiltered"], playersDetail: pd43 as RawSet["playersDetail"], games: g43 as RawSet["games"] },
-  "45": { teamFiltered: tf45 as RawSet["teamFiltered"], playersDetail: pd45 as RawSet["playersDetail"], games: g45 as RawSet["games"] },
-  "47": { teamFiltered: tf47 as RawSet["teamFiltered"], playersDetail: pd47 as RawSet["playersDetail"], games: g47 as RawSet["games"] },
-};
-
 export type ArchiveSeasonMeta = {
   code: string;
   label: string;
   startYear: number;
 };
-
-export const ARCHIVE_SEASONS: ArchiveSeasonMeta[] = [
-  { code: "47", label: "2025-26", startYear: 2025 },
-  { code: "45", label: "2024-25", startYear: 2024 },
-  { code: "43", label: "2023-24", startYear: 2023 },
-  { code: "41", label: "2022-23", startYear: 2022 },
-  { code: "39", label: "2021-22", startYear: 2021 },
-];
 
 export type ArchiveStanding = {
   rank: number;
@@ -119,6 +92,24 @@ export type ArchiveLeader = {
   games: number;
 };
 
+export type ArchiveChampion = {
+  team: string;
+  wins: number;
+  losses: number;
+  seriesText: string;
+};
+
+export type ArchiveSeason = {
+  meta: ArchiveSeasonMeta;
+  standings: ArchiveStanding[];
+  regularChampion: string;
+  finalChampion: ArchiveChampion | null;
+  scoringLeaders: ArchiveLeader[];
+  assistLeaders: ArchiveLeader[];
+  reboundLeaders: ArchiveLeader[];
+  threePointLeaders: ArchiveLeader[];
+};
+
 // 과거 시즌 API 가 teamName4 에 영문을 섞어 반환 (예: "JUNG KWAN JANG", "HYUNDAI MOBIS").
 // 사이트 톤 일관성 위해 한글 축약으로 정규화.
 // 역사적 이름 (KGC → 정관장 리브랜딩 등) 은 그대로 둠 — 시즌 당시 호칭 보존.
@@ -139,23 +130,70 @@ function normalizeTeamShort(short: string): string {
   return TEAM_SHORT_NORMALIZE[short] ?? short;
 }
 
-export type ArchiveChampion = {
-  team: string;
-  wins: number;
-  losses: number;
-  seriesText: string;
-};
+function codeToStartYear(code: number): number {
+  return BASE_YEAR + (code - BASE_CODE) / CODE_STEP;
+}
 
-export type ArchiveSeason = {
-  meta: ArchiveSeasonMeta;
-  standings: ArchiveStanding[];
-  regularChampion: string;
-  finalChampion: ArchiveChampion | null;
-  scoringLeaders: ArchiveLeader[];
-  assistLeaders: ArchiveLeader[];
-  reboundLeaders: ArchiveLeader[];
-  threePointLeaders: ArchiveLeader[];
-};
+function makeMeta(code: string): ArchiveSeasonMeta {
+  const n = parseInt(code, 10);
+  const startYear = codeToStartYear(n);
+  return {
+    code,
+    label: `${startYear}-${String(startYear + 1).slice(-2)}`,
+    startYear,
+  };
+}
+
+// ─── 디렉토리 스캔 & 캐시 ─────────────────────────────
+const DATA_ROOT = path.join(process.cwd(), "data", "season");
+
+let CACHE: { metas: ArchiveSeasonMeta[]; raw: Map<string, RawSet> } | null = null;
+
+function loadAll() {
+  if (CACHE) return CACHE;
+  const currentCode = getCurrentSeason().code;
+  const metas: ArchiveSeasonMeta[] = [];
+  const raw = new Map<string, RawSet>();
+
+  let names: string[] = [];
+  try {
+    names = fs
+      .readdirSync(DATA_ROOT)
+      .filter((n) => /^\d+$/.test(n) && n !== currentCode);
+  } catch {
+    names = [];
+  }
+
+  for (const name of names) {
+    const base = path.join(DATA_ROOT, name);
+    try {
+      const teamFiltered = JSON.parse(
+        fs.readFileSync(path.join(base, "team-filtered.json"), "utf-8"),
+      );
+      // 플레이스홀더 (필터 없는 빈 파일) 은 skip — 아직 fetch 안 된 시즌.
+      if (!teamFiltered?.filters?.all?.length) continue;
+      const playersDetail = JSON.parse(
+        fs.readFileSync(path.join(base, "players-detail.json"), "utf-8"),
+      );
+      const games = JSON.parse(
+        fs.readFileSync(path.join(base, "games.json"), "utf-8"),
+      );
+      raw.set(name, { teamFiltered, playersDetail, games });
+      metas.push(makeMeta(name));
+    } catch {
+      // 파일 누락 / JSON 깨짐 → 해당 시즌 skip
+    }
+  }
+
+  // 최신 시즌 먼저
+  metas.sort((a, b) => parseInt(b.code, 10) - parseInt(a.code, 10));
+  CACHE = { metas, raw };
+  return CACHE;
+}
+
+export const ARCHIVE_SEASONS: ArchiveSeasonMeta[] = loadAll().metas;
+
+// ─── 변환 ─────────────────────────────────────────────
 
 function buildStandings(filteredAll: TeamFilteredRow[]): ArchiveStanding[] {
   return filteredAll.map((t) => {
@@ -177,7 +215,9 @@ function buildStandings(filteredAll: TeamFilteredRow[]): ArchiveStanding[] {
 }
 
 function extractFinalChampion(games: GameRow[]): ArchiveChampion | null {
-  const finals = games.filter((g) => g.tag === "챔피언결정전" && g.status === "final");
+  const finals = games.filter(
+    (g) => g.tag === "챔피언결정전" && g.status === "final",
+  );
   if (finals.length === 0) return null;
   const winCount: Record<string, number> = {};
   for (const g of finals) {
@@ -195,7 +235,7 @@ function extractFinalChampion(games: GameRow[]): ArchiveChampion | null {
   };
 }
 
-// 최소 경기수 — 정규리그 54경기 기준 절반 이상
+// 최소 경기수 — 리그 평균의 40%
 const LEADER_MIN_GAMES_RATIO = 0.4;
 
 function buildLeader(
@@ -204,8 +244,8 @@ function buildLeader(
   topN: number,
 ): ArchiveLeader[] {
   if (!players || players.length === 0) return [];
-  // 리그 평균 경기수의 40% 를 최소 기준으로
-  const avgGames = players.reduce((s, p) => s + p.games, 0) / players.length;
+  const avgGames =
+    players.reduce((s, p) => s + p.games, 0) / players.length;
   const minGames = Math.max(10, Math.ceil(avgGames * LEADER_MIN_GAMES_RATIO));
   const filtered = players.filter((p) => p.games >= minGames);
   filtered.sort((a, b) => (Number(b[field]) || 0) - (Number(a[field]) || 0));
@@ -219,18 +259,19 @@ function buildLeader(
 }
 
 export function getArchiveSeason(code: string): ArchiveSeason | null {
-  const meta = ARCHIVE_SEASONS.find((s) => s.code === code);
-  const raw = RAW[code];
-  if (!meta || !raw) return null;
+  const { metas, raw } = loadAll();
+  const meta = metas.find((s) => s.code === code);
+  const r = raw.get(code);
+  if (!meta || !r) return null;
 
-  const filteredAll = raw.teamFiltered.filters?.all ?? [];
+  const filteredAll = r.teamFiltered.filters?.all ?? [];
   const standings = buildStandings(filteredAll);
   const regularChampion = standings[0]?.name ?? "";
 
-  const games = raw.games.games ?? [];
+  const games = r.games.games ?? [];
   const finalChampion = extractFinalChampion(games);
 
-  const players = raw.playersDetail.splits?.regularSeason ?? [];
+  const players = r.playersDetail.splits?.regularSeason ?? [];
   const scoringLeaders = buildLeader(players, "points", 10);
   const assistLeaders = buildLeader(players, "assists", 10);
   const reboundLeaders = buildLeader(players, "rebounds", 10);
