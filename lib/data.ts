@@ -171,7 +171,7 @@ export type RawPlayer = {
 };
 
 // 우선순위: players-detail.json (KBL 공식 API, playerNo 포함) > players.json (HTML 파싱)
-type DetailRow = {
+export type DetailRow = {
   rank: number;
   playerNo: string;
   kname: string;
@@ -221,13 +221,13 @@ const TEAM_NAME4_TO_SHORT: Record<string, string> = {
   SS: "삼성",
 };
 
-function normalizeTeamShort(raw: string): string {
+export function normalizeTeamShort(raw: string): string {
   if (!raw) return raw;
   const trimmed = raw.trim();
   return TEAM_NAME4_TO_SHORT[trimmed] ?? trimmed;
 }
 
-function detailRowToRaw(p: DetailRow): RawPlayer {
+export function detailRowToRaw(p: DetailRow): RawPlayer {
   return {
     rank: p.rank,
     name: p.kname,
@@ -274,7 +274,7 @@ const detailSplits = (playersDetailJson as unknown as {
 }).splits;
 
 // Advanced (선수) — playerNo로 매칭해서 RawPlayer.advanced에 병합
-type PlayerAdvRow = {
+export type PlayerAdvRow = {
   playerNo: string;
   advanced: PlayerAdvancedStats;
 };
@@ -289,7 +289,7 @@ const playersAdvSplits = (
   }
 ).splits;
 
-function buildAdvMap(arr?: PlayerAdvRow[]): Map<string, PlayerAdvancedStats> {
+export function buildAdvMap(arr?: PlayerAdvRow[]): Map<string, PlayerAdvancedStats> {
   const map = new Map<string, PlayerAdvancedStats>();
   for (const r of arr ?? []) {
     if (r?.playerNo && r.advanced) map.set(String(r.playerNo), r.advanced);
@@ -297,7 +297,7 @@ function buildAdvMap(arr?: PlayerAdvRow[]): Map<string, PlayerAdvancedStats> {
   return map;
 }
 
-function detailToRawWithAdv(
+export function detailToRawWithAdv(
   rows: DetailRow[] | undefined,
   advMap: Map<string, PlayerAdvancedStats>,
 ): RawPlayer[] {
