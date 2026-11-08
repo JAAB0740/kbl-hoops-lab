@@ -29,6 +29,20 @@ type TeamFilteredRow = {
   stats: { points?: number; margin?: number };
 };
 
+type TeamAdvancedRow = {
+  rank: number;
+  code: string;
+  name: string;
+  shortName: string;
+  advanced: {
+    offRtg?: number;
+    defRtg?: number;
+    netRtg?: number;
+    efgPct?: number;
+    tsPct?: number;
+  };
+};
+
 type PlayerDetailRow = {
   rank: number;
   playerNo: string;
@@ -61,6 +75,7 @@ type GameRow = {
 
 type RawSet = {
   teamFiltered: { filters?: { all?: TeamFilteredRow[] } };
+  teamAdvanced: { filters?: { all?: TeamAdvancedRow[] } } | null;
   playersDetail: { splits?: { regularSeason?: PlayerDetailRow[] } };
   games: { games?: GameRow[] };
 };
@@ -82,6 +97,31 @@ export type ArchiveStanding = {
   ppg: number;
   oppPpg: number;
   margin: number;
+  offRtg: number | null;
+  defRtg: number | null;
+  netRtg: number | null;
+};
+
+export type ArchivePlayoffGame = {
+  date: string;
+  home: string;
+  away: string;
+  homeScore: number;
+  awayScore: number;
+};
+
+export type ArchivePlayoffSeries = {
+  winner: string;
+  loser: string;
+  winnerWins: number;
+  loserWins: number;
+  games: ArchivePlayoffGame[];
+};
+
+export type ArchivePlayoffRound = {
+  tag: string;
+  label: string;
+  series: ArchivePlayoffSeries[];
 };
 
 export type ArchiveLeader = {
@@ -104,10 +144,13 @@ export type ArchiveSeason = {
   standings: ArchiveStanding[];
   regularChampion: string;
   finalChampion: ArchiveChampion | null;
+  playoffRounds: ArchivePlayoffRound[];
   scoringLeaders: ArchiveLeader[];
   assistLeaders: ArchiveLeader[];
   reboundLeaders: ArchiveLeader[];
   threePointLeaders: ArchiveLeader[];
+  stealLeaders: ArchiveLeader[];
+  blockLeaders: ArchiveLeader[];
 };
 
 // 과거 시즌 API 가 teamName4 에 영문을 섞어 반환 (예: "JUNG KWAN JANG", "HYUNDAI MOBIS").
@@ -178,7 +221,16 @@ function loadAll() {
       const games = JSON.parse(
         fs.readFileSync(path.join(base, "games.json"), "utf-8"),
       );
-      raw.set(name, { teamFiltered, playersDetail, games });
+      // team-advanced 는 optional — 없어도 archive 는 동작, 레이팅 열만 비움.
+      let teamAdvanced: RawSet["teamAdvanced"] = null;
+      try {
+        teamAdvanced = JSON.parse(
+          fs.readFileSync(path.join(base, "team-advanced.json"), "utf-8"),
+        );
+      } catch {
+        teamAdvanced = null;
+      }
+      raw.set(name, { teamFiltered, teamAdvanced, playersDetail, games });
       metas.push(makeMeta(name));
     } catch {
       // 파일 누락 / JSON 깨짐 → 해당 시즌 skip
@@ -195,10 +247,19 @@ export const ARCHIVE_SEASONS: ArchiveSeasonMeta[] = loadAll().metas;
 
 // ─── 변환 ─────────────────────────────────────────────
 
-function buildStandings(filteredAll: TeamFilteredRow[]): ArchiveStanding[] {
+function buildStandings(
+  filteredAll: TeamFilteredRow[],
+  advancedAll: TeamAdvancedRow[] | null,
+): ArchiveStanding[] {
+  // 팀 코드별 어드밴스드 매핑 (shortName 보다 code 가 안전)
+  const advByCode = new Map<string, TeamAdvancedRow["advanced"]>();
+  if (advancedAll) {
+    for (const row of advancedAll) advByCode.set(row.code, row.advanced ?? {});
+  }
   return filteredAll.map((t) => {
     const ppg = t.stats?.points ?? 0;
     const margin = t.stats?.margin ?? 0;
+    const adv = advByCode.get(t.code);
     return {
       rank: t.rank,
       shortName: t.shortName,
@@ -210,8 +271,75 @@ function buildStandings(filteredAll: TeamFilteredRow[]): ArchiveStanding[] {
       ppg,
       oppPpg: Math.max(0, ppg - margin),
       margin,
+      offRtg: adv?.offRtg ?? null,
+      defRtg: adv?.defRtg ?? null,
+      netRtg: adv?.netRtg ?? null,
     };
   });
+}
+
+// ─── 플레이오프 series 추출 ──────────────────────────────
+const PLAYOFF_TAGS: { tag: string; label: string }[] = [
+  { tag: "6강 PO", label: "6강 플레이오프" },
+  { tag: "4강 PO", label: "4강 플레이오프" },
+  { tag: "챔피언결정전", label: "챔피언결정전" },
+];
+
+function extractPlayoffRounds(games: GameRow[]): ArchivePlayoffRound[] {
+  const rounds: ArchivePlayoffRound[] = [];
+  for (const { tag, label } of PLAYOFF_TAGS) {
+    const matches = games.filter(
+      (g) => g.tag === tag && g.status === "final",
+    );
+    if (matches.length === 0) continue;
+
+    // 같은 두 팀이 나오는 경기 묶음 = 하나의 series
+    const seriesMap = new Map<string, GameRow[]>();
+    for (const g of matches) {
+      const pair = [g.homeShort, g.awayShort].sort().join("|");
+      const list = seriesMap.get(pair) ?? [];
+      list.push(g);
+      seriesMap.set(pair, list);
+    }
+
+    const series: ArchivePlayoffSeries[] = [];
+    for (const [pair, list] of seriesMap) {
+      list.sort((a, b) => a.date.localeCompare(b.date));
+      const [teamA, teamB] = pair.split("|");
+      let aWins = 0;
+      let bWins = 0;
+      for (const g of list) {
+        const winner = g.homeScore > g.awayScore ? g.homeShort : g.awayShort;
+        if (winner === teamA) aWins++;
+        else bWins++;
+      }
+      const winnerTeam = aWins >= bWins ? teamA : teamB;
+      const loserTeam = winnerTeam === teamA ? teamB : teamA;
+      const winnerWins = Math.max(aWins, bWins);
+      const loserWins = Math.min(aWins, bWins);
+      series.push({
+        winner: winnerTeam,
+        loser: loserTeam,
+        winnerWins,
+        loserWins,
+        games: list.map((g) => ({
+          date: g.date,
+          home: g.homeShort,
+          away: g.awayShort,
+          homeScore: g.homeScore,
+          awayScore: g.awayScore,
+        })),
+      });
+    }
+    // 끝 경기가 늦은 series 를 뒤로 — 챔프결은 보통 하나뿐이지만 4강/6강은 복수
+    series.sort((a, b) => {
+      const aLast = a.games[a.games.length - 1].date;
+      const bLast = b.games[b.games.length - 1].date;
+      return aLast.localeCompare(bLast);
+    });
+    rounds.push({ tag, label, series });
+  }
+  return rounds;
 }
 
 function extractFinalChampion(games: GameRow[]): ArchiveChampion | null {
@@ -265,26 +393,33 @@ export function getArchiveSeason(code: string): ArchiveSeason | null {
   if (!meta || !r) return null;
 
   const filteredAll = r.teamFiltered.filters?.all ?? [];
-  const standings = buildStandings(filteredAll);
+  const advancedAll = r.teamAdvanced?.filters?.all ?? null;
+  const standings = buildStandings(filteredAll, advancedAll);
   const regularChampion = standings[0]?.name ?? "";
 
   const games = r.games.games ?? [];
   const finalChampion = extractFinalChampion(games);
+  const playoffRounds = extractPlayoffRounds(games);
 
   const players = r.playersDetail.splits?.regularSeason ?? [];
   const scoringLeaders = buildLeader(players, "points", 10);
   const assistLeaders = buildLeader(players, "assists", 10);
   const reboundLeaders = buildLeader(players, "rebounds", 10);
   const threePointLeaders = buildLeader(players, "threeMade", 10);
+  const stealLeaders = buildLeader(players, "steals", 10);
+  const blockLeaders = buildLeader(players, "blocks", 10);
 
   return {
     meta,
     standings,
     regularChampion,
     finalChampion,
+    playoffRounds,
     scoringLeaders,
     assistLeaders,
     reboundLeaders,
     threePointLeaders,
+    stealLeaders,
+    blockLeaders,
   };
 }

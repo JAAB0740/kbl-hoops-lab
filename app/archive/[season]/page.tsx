@@ -4,6 +4,8 @@ import {
   ARCHIVE_SEASONS,
   getArchiveSeason,
   type ArchiveLeader,
+  type ArchivePlayoffRound,
+  type ArchivePlayoffSeries,
   type ArchiveSeason,
 } from "@/lib/archiveData";
 
@@ -85,7 +87,14 @@ export default function ArchiveSeasonPage({ params }: Params) {
         <ArchiveStandingsTable data={data} />
       </section>
 
-      {/* 리더 4종 */}
+      {/* 플레이오프 — 6강/4강/챔프결 */}
+      {data.playoffRounds.length > 0 && (
+        <section className="mb-8">
+          <PlayoffBracket rounds={data.playoffRounds} champion={data.finalChampion?.team ?? null} />
+        </section>
+      )}
+
+      {/* 리더 6종 */}
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <ArchiveLeadersCard
           title="득점 리더"
@@ -115,6 +124,20 @@ export default function ArchiveSeasonPage({ params }: Params) {
           unit="3P"
           accent="neon"
         />
+        <ArchiveLeadersCard
+          title="스틸 리더"
+          subtitle="정규시즌 SPG TOP 10"
+          leaders={data.stealLeaders}
+          unit="스틸"
+          accent="hoop"
+        />
+        <ArchiveLeadersCard
+          title="블락 리더"
+          subtitle="정규시즌 BPG TOP 10"
+          leaders={data.blockLeaders}
+          unit="블락"
+          accent="flame"
+        />
       </section>
     </main>
   );
@@ -143,8 +166,8 @@ function ArchiveStandingsTable({ data }: { data: ArchiveSeason }) {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-lg border border-court-700/70">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-lg border border-court-700/70">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="bg-court-900/70 text-[13px] uppercase tracking-[0.1em] text-ink-500">
               <th className="py-2.5 pl-3 text-left font-medium">#</th>
@@ -153,7 +176,10 @@ function ArchiveStandingsTable({ data }: { data: ArchiveSeason }) {
               <th className="py-2.5 text-right font-medium">패</th>
               <th className="py-2.5 text-right font-medium">승률</th>
               <th className="py-2.5 text-right font-medium">득점</th>
-              <th className="py-2.5 pr-3 text-right font-medium">실점</th>
+              <th className="py-2.5 text-right font-medium">실점</th>
+              <th className="py-2.5 text-right font-medium">ORtg</th>
+              <th className="py-2.5 text-right font-medium">DRtg</th>
+              <th className="py-2.5 pr-3 text-right font-medium">NetRtg</th>
             </tr>
           </thead>
           <tbody>
@@ -175,8 +201,27 @@ function ArchiveStandingsTable({ data }: { data: ArchiveSeason }) {
                 <td className="stat-num py-2.5 text-right text-ink-100">
                   {t.ppg.toFixed(1)}
                 </td>
-                <td className="stat-num py-2.5 pr-3 text-right text-ink-300">
+                <td className="stat-num py-2.5 text-right text-ink-300">
                   {t.oppPpg.toFixed(1)}
+                </td>
+                <td className="stat-num py-2.5 text-right text-ink-100">
+                  {t.offRtg != null ? t.offRtg.toFixed(1) : "—"}
+                </td>
+                <td className="stat-num py-2.5 text-right text-ink-300">
+                  {t.defRtg != null ? t.defRtg.toFixed(1) : "—"}
+                </td>
+                <td
+                  className={`stat-num py-2.5 pr-3 text-right font-medium ${
+                    t.netRtg == null
+                      ? "text-ink-500"
+                      : t.netRtg > 0
+                      ? "text-neon-400"
+                      : "text-buzzer-500"
+                  }`}
+                >
+                  {t.netRtg != null
+                    ? (t.netRtg > 0 ? "+" : "") + t.netRtg.toFixed(1)
+                    : "—"}
                 </td>
               </tr>
             ))}
@@ -184,6 +229,128 @@ function ArchiveStandingsTable({ data }: { data: ArchiveSeason }) {
         </table>
       </div>
     </div>
+  );
+}
+
+function PlayoffBracket({
+  rounds,
+  champion,
+}: {
+  rounds: ArchivePlayoffRound[];
+  champion: string | null;
+}) {
+  return (
+    <div className="card p-5">
+      <div className="mb-4">
+        <h3 className="text-sm font-semibold text-ink-50">플레이오프</h3>
+        <p className="mt-0.5 text-[14px] text-ink-500">
+          라운드별 시리즈 결과
+          {champion && (
+            <>
+              {" · 최종 챔피언 "}
+              <span className="font-medium text-flame-400">{champion}</span>
+            </>
+          )}
+        </p>
+      </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {rounds.map((r) => (
+          <PlayoffRoundCard key={r.tag} round={r} champion={champion} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PlayoffRoundCard({
+  round,
+  champion,
+}: {
+  round: ArchivePlayoffRound;
+  champion: string | null;
+}) {
+  const isFinals = round.tag === "챔피언결정전";
+  return (
+    <div className="rounded-lg border border-court-700/60 bg-court-900/40 p-3.5">
+      <div className="mb-3 flex items-center justify-between">
+        <span
+          className={[
+            "text-[13px] font-medium",
+            isFinals ? "text-flame-400" : "text-ink-300",
+          ].join(" ")}
+        >
+          {round.label}
+        </span>
+        <span className="text-[12px] text-ink-500">
+          {round.series.length} 시리즈
+        </span>
+      </div>
+      <ul className="space-y-3">
+        {round.series.map((s, i) => (
+          <PlayoffSeriesItem
+            key={`${s.winner}-${s.loser}-${i}`}
+            series={s}
+            champion={champion}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function PlayoffSeriesItem({
+  series,
+  champion,
+}: {
+  series: ArchivePlayoffSeries;
+  champion: string | null;
+}) {
+  const isChamp = series.winner === champion;
+  return (
+    <li>
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="min-w-0 truncate text-[14px] font-medium text-ink-50">
+          <span className={isChamp ? "text-flame-400" : "text-ink-50"}>
+            {series.winner}
+          </span>
+          <span className="mx-1.5 text-ink-500">vs</span>
+          <span className="text-ink-300">{series.loser}</span>
+        </span>
+        <span className="stat-num shrink-0 text-[14px] font-semibold text-ink-100">
+          {series.winnerWins}-{series.loserWins}
+        </span>
+      </div>
+      <ul className="mt-1.5 space-y-0.5">
+        {series.games.map((g, i) => {
+          const winnerSide = g.homeScore > g.awayScore ? "home" : "away";
+          return (
+            <li
+              key={`${g.date}-${i}`}
+              className="flex items-center justify-between text-[12px] text-ink-500"
+            >
+              <span className="stat-num text-ink-500">G{i + 1}</span>
+              <span className="stat-num text-ink-300">
+                <span
+                  className={
+                    winnerSide === "home" ? "text-ink-100 font-medium" : ""
+                  }
+                >
+                  {g.home} {g.homeScore}
+                </span>
+                <span className="mx-1 text-ink-500">·</span>
+                <span
+                  className={
+                    winnerSide === "away" ? "text-ink-100 font-medium" : ""
+                  }
+                >
+                  {g.awayScore} {g.away}
+                </span>
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </li>
   );
 }
 
