@@ -123,9 +123,10 @@ export function teamRecentForm(
   n = 5,
   beforeDate?: string,
   beforeTime?: string,
+  games: RawGame[] = ALL_GAMES,
 ): ("W" | "L")[] {
   const cutoff = beforeDate ? beforeDate + (beforeTime ?? "99:99") : null;
-  const recent = ALL_GAMES.filter(
+  const recent = games.filter(
     (g) =>
       g.status === "final" &&
       (g.homeShort === short || g.awayShort === short) &&
@@ -151,13 +152,14 @@ export function headToHead(
   b: string,
   beforeDate?: string,
   beforeTime?: string,
+  source: RawGame[] = ALL_GAMES,
 ): {
   aWins: number;
   bWins: number;
   games: RawGame[];
 } {
   const cutoff = beforeDate ? beforeDate + (beforeTime ?? "99:99") : null;
-  const games = ALL_GAMES.filter(
+  const games = source.filter(
     (g) =>
       g.status === "final" &&
       ((g.homeShort === a && g.awayShort === b) ||
@@ -177,9 +179,9 @@ export function headToHead(
 }
 
 /** 모든 게임에서 사용된 태그 집합 */
-export function allTags(): string[] {
+export function allTags(games: RawGame[] = ALL_GAMES): string[] {
   const set = new Set<string>();
-  for (const g of ALL_GAMES) set.add(g.tag);
+  for (const g of games) set.add(g.tag);
   return [...set];
 }
 
@@ -329,24 +331,27 @@ export function standingsAsOf(
   return sorted.map((r, i) => ({ ...r, rank: i + 1 }));
 }
 
-/** 시즌에 경기가 있는 월 집합 (YYYY-MM, 정렬) */
-export function seasonMonths(): string[] {
+/** 시즌에 경기가 있는 월 집합 (YYYY-MM, 정렬). games 생략 시 현재 시즌. */
+export function seasonMonths(games: RawGame[] = ALL_GAMES): string[] {
   const set = new Set<string>();
-  for (const g of ALL_GAMES) set.add(g.date.slice(0, 7));
+  for (const g of games) set.add(g.date.slice(0, 7));
   return [...set].sort();
 }
 
-/** 특정 월(YYYY-MM)의 첫 경기 날짜 */
-export function firstGameDateInMonth(ym: string): string | null {
-  const dates = ALL_GAMES.filter((g) => g.date.startsWith(ym)).map((g) => g.date);
+/** 특정 월(YYYY-MM)의 첫 경기 날짜. games 생략 시 현재 시즌. */
+export function firstGameDateInMonth(ym: string, games: RawGame[] = ALL_GAMES): string | null {
+  const dates = games.filter((g) => g.date.startsWith(ym)).map((g) => g.date);
   if (dates.length === 0) return null;
   return dates.sort()[0];
 }
 
-/** 모든 게임에서 사용된 팀 short 이름 집합 */
-export function allTeamShorts(opts?: { kblOnly?: boolean }): string[] {
+/** 모든 게임에서 사용된 팀 short 이름 집합. games 생략 시 현재 시즌. */
+export function allTeamShorts(
+  opts?: { kblOnly?: boolean },
+  games: RawGame[] = ALL_GAMES,
+): string[] {
   const set = new Set<string>();
-  for (const g of ALL_GAMES) {
+  for (const g of games) {
     set.add(g.homeShort);
     set.add(g.awayShort);
   }

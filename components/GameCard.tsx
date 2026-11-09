@@ -66,7 +66,17 @@ function FormPill({ form }: { form: ("W" | "L")[] }) {
   );
 }
 
-export function GameCard({ game }: { game: RawGame }) {
+export function GameCard({
+  game,
+  seasonGames,
+  detailBase,
+}: {
+  game: RawGame;
+  /** 과거 시즌 뷰에서 전달 — 폼/H2H 가 그 시즌 안에서 집계되도록. */
+  seasonGames?: RawGame[];
+  /** 경기 상세 링크 접두사 — 생략 시 "/games". 과거 시즌: "/games/season/{code}" */
+  detailBase?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   const homeColor = TEAM_COLORS[game.homeShort] ?? "#94a3b8";
@@ -81,9 +91,9 @@ export function GameCard({ game }: { game: RawGame }) {
   const tagToneClass = TAG_TONES[game.tag] ?? TAG_TONES["정규리그"];
 
   // expanded 정보 — 이 경기 시점 이전의 폼/H2H 만 집계 (시즌 개막 경기 등에서 미래 경기 끌어오지 않게)
-  const homeForm = teamRecentForm(game.homeShort, 5, game.date, game.time);
-  const awayForm = teamRecentForm(game.awayShort, 5, game.date, game.time);
-  const h2h = headToHead(game.homeShort, game.awayShort, game.date, game.time);
+  const homeForm = teamRecentForm(game.homeShort, 5, game.date, game.time, seasonGames);
+  const awayForm = teamRecentForm(game.awayShort, 5, game.date, game.time, seasonGames);
+  const h2h = headToHead(game.homeShort, game.awayShort, game.date, game.time, seasonGames);
 
   return (
     <div className="card overflow-hidden">
@@ -227,7 +237,7 @@ export function GameCard({ game }: { game: RawGame }) {
           {/* 상세 페이지 링크 */}
           <div className="mt-4 flex justify-end">
             <Link
-              href={`/games/${gameToId(game)}`}
+              href={`${detailBase ?? "/games"}/${gameToId(game)}`}
               className="rounded-md border border-flame-500/40 bg-flame-500/10 px-3 py-1.5 text-[15px] font-medium text-flame-400 hover:bg-flame-500/20"
             >
               경기 상세 →

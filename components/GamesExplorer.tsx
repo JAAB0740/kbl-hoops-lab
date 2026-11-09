@@ -33,106 +33,114 @@ function dateKey(d: Date): string {
 const TODAY_KEY = dateKey(new Date());
 
 /** 오늘 ≥ 가장 가까운 미래/오늘 게임 날짜 또는 가장 최근 과거 게임 날짜 */
-function pickInitialDate(): string {
-  // 우선 오늘에 경기 있으면 오늘
-  if (ALL_GAMES.some((g) => g.date === TODAY_KEY)) return TODAY_KEY;
-  // 가장 가까운 미래 (예정/진행 중)
-  const future = ALL_GAMES
+function pickInitialDate(games: RawGame[]): string {
+  if (games.some((g) => g.date === TODAY_KEY)) return TODAY_KEY;
+  const future = games
     .filter((g) => g.date >= TODAY_KEY && g.status !== "final")
     .map((g) => g.date)
     .sort();
   if (future[0]) return future[0];
-  // 그것도 없으면 가장 최근 과거
-  const past = ALL_GAMES
+  const past = games
     .filter((g) => g.date <= TODAY_KEY)
     .map((g) => g.date)
     .sort();
   return past[past.length - 1] ?? TODAY_KEY;
 }
 
-export function GamesExplorer() {
+export function GamesExplorer({
+  games,
+  storageKeyPrefix = "gamesExplorer",
+  detailBase,
+}: {
+  games?: RawGame[];
+  storageKeyPrefix?: string;
+  /** 경기 상세 링크 접두사 — 과거 시즌 뷰: "/games/season/{code}" */
+  detailBase?: string;
+} = {}) {
   // 페이지 이동 후 뒤로 가기 시 모드·선택일·필터 보존
   useScrollRestoration();
 
-  const [mode, setMode] = usePersistedState<Mode>("gamesExplorer:mode", "byday");
+  const gamesData: RawGame[] = games ?? ALL_GAMES;
+
+  const [mode, setMode] = usePersistedState<Mode>(`${storageKeyPrefix}:mode`, "byday");
   const [selectedDate, setSelectedDate] = usePersistedState<string>(
-    "gamesExplorer:selectedDate",
-    pickInitialDate,
+    `${storageKeyPrefix}:selectedDate`,
+    () => pickInitialDate(gamesData),
   );
   // 월별 모드용 — 기본은 selectedDate의 월
   const [selectedMonth, setSelectedMonth] = usePersistedState<string>(
-    "gamesExplorer:selectedMonth",
-    () => pickInitialDate().slice(0, 7),
+    `${storageKeyPrefix}:selectedMonth`,
+    () => pickInitialDate(gamesData).slice(0, 7),
   );
-  const [team, setTeam] = usePersistedState<string | null>("gamesExplorer:team", null);
-  const [tag, setTag] = usePersistedState<string | null>("gamesExplorer:tag", null);
+  const [team, setTeam] = usePersistedState<string | null>(`${storageKeyPrefix}:team`, null);
+  const [tag, setTag] = usePersistedState<string | null>(`${storageKeyPrefix}:tag`, null);
 
-  const teams = useMemo(() => allTeamShorts({ kblOnly: true }), []);
-  const tags = useMemo(() => allTags(), []);
-  const months = useMemo(() => getSeasonMonths(), []);
+  const teams = useMemo(() => allTeamShorts({ kblOnly: true }, gamesData), [gamesData]);
+  const tags = useMemo(() => allTags(gamesData), [gamesData]);
+  const months = useMemo(() => getSeasonMonths(gamesData), [gamesData]);
 
   // 날짜별 게임 수 (DateStrip 도트용)
   const gameCountByDate = useMemo(() => {
     const map = new Map<string, number>();
-    for (const g of ALL_GAMES) {
+    for (const g of gamesData) {
       // 팀/태그 필터 반영해서 카운트
       if (team && g.homeShort !== team && g.awayShort !== team) continue;
       if (tag && g.tag !== tag) continue;
       map.set(g.date, (map.get(g.date) ?? 0) + 1);
     }
     return map;
-  }, [team, tag]);
+  }, [gamesData, team, tag]);
 
   // 월별 게임 수 (MonthPicker 보조)
   const gameCountByMonth = useMemo(() => {
     const map = new Map<string, number>();
-    for (const g of ALL_GAMES) {
+    for (const g of gamesData) {
       if (team && g.homeShort !== team && g.awayShort !== team) continue;
       if (tag && g.tag !== tag) continue;
       const ym = g.date.slice(0, 7);
       map.set(ym, (map.get(ym) ?? 0) + 1);
     }
     return map;
-  }, [team, tag]);
+  }, [gamesData, team, tag]);
 
   // 빠른 점프 — 가장 최근 종료 게임 / 다음 예정 게임
   const lastFinalDate = useMemo(() => {
-    const finals = ALL_GAMES.filter((g) => g.status === "final" && g.date <= TODAY_KEY);
+    const finals = gamesData.filter((g) => g.status === "final" && g.date <= TODAY_KEY);
     finals.sort((a, b) => b.date.localeCompare(a.date));
     return finals[0]?.date ?? null;
-  }, []);
+  }, [gamesData]);
   const nextScheduledDate = useMemo(() => {
-    const sched = ALL_GAMES.filter((g) => g.date >= TODAY_KEY && g.status !== "final");
+    const sched = gamesData.filter((g) => g.date >= TODAY_KEY && g.status !== "final");
     sched.sort((a, b) => a.date.localeCompare(b.date));
     return sched[0]?.date ?? null;
-  }, []);
+  }, [gamesData]);
 
   // 월 점프: 클릭한 월의 첫 경기일 (없으면 1일)
   function monthJump(ym: string): string {
-    return firstGameDateInMonth(ym) ?? `${ym}-01`;
+    return firstGameDateInMonth(ym, gamesData) ?? `${ym}-01`;
   }
 
   // 일자별 모드 — selectedDate 의 게임만
   const bydayGames: RawGame[] = useMemo(() => {
-    let arr = ALL_GAMES.filter((g) => g.date === selectedDate);
+    let arr = gamesData.filter((g) => g.date === selectedDate);
     if (team) {
       arr = arr.filter((g) => g.homeShort === team || g.awayShort === team);
     }
     if (tag) arr = arr.filter((g) => g.tag === tag);
     arr.sort((a, b) => a.time.localeCompare(b.time));
     return arr;
-  }, [selectedDate, team, tag]);
+  }, [gamesData, selectedDate, team, tag]);
 
   // 월별 모드 — selectedMonth 의 게임만
   const monthGames: RawGame[] = useMemo(() => {
-    let arr = ALL_GAMES.filter((g) => g.date.startsWith(selectedMonth));
+    let arr = gamesData.filter((g) => g.date.startsWith(selectedMonth));
     if (team) {
       arr = arr.filter((g) => g.homeShort === team || g.awayShort === team);
     }
     if (tag) arr = arr.filter((g) => g.tag === tag);
     arr.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
     return arr;
-  }, [selectedMonth, team, tag]);
+  }, [gamesData, selectedMonth, team, tag]);
 
   const monthGrouped = useMemo(() => {
     const map = groupByDate(monthGames);
@@ -142,13 +150,13 @@ export function GamesExplorer() {
 
   // 달력 모드 — 필터만 적용 (전체 시즌)
   const allFilteredGames: RawGame[] = useMemo(() => {
-    let arr = ALL_GAMES.slice();
+    let arr = gamesData.slice();
     if (team) {
       arr = arr.filter((g) => g.homeShort === team || g.awayShort === team);
     }
     if (tag) arr = arr.filter((g) => g.tag === tag);
     return arr;
-  }, [team, tag]);
+  }, [gamesData, team, tag]);
 
   return (
     <>
@@ -308,7 +316,7 @@ export function GamesExplorer() {
 
       {/* 팀 선택 시 — 팀 시즌 요약 (월별/달력 모드) */}
       {team && (mode === "month" || mode === "calendar") && (
-        <TeamScheduleSummary teamShort={team} />
+        <TeamScheduleSummary teamShort={team} games={gamesData} />
       )}
 
       {/* 모드별 본문 */}
@@ -330,7 +338,7 @@ export function GamesExplorer() {
         ) : (
           <div className="space-y-2">
             {bydayGames.map((g, i) => (
-              <GameCard key={`byday-${i}`} game={g} />
+              <GameCard key={`byday-${i}`} game={g} seasonGames={gamesData} detailBase={detailBase} />
             ))}
           </div>
         )
@@ -375,7 +383,7 @@ export function GamesExplorer() {
                   </div>
                   <div className="space-y-2">
                     {games.map((g, i) => (
-                      <GameCard key={`${g.date}-${g.time}-${i}`} game={g} />
+                      <GameCard key={`${g.date}-${g.time}-${i}`} game={g} seasonGames={gamesData} detailBase={detailBase} />
                     ))}
                   </div>
                 </section>

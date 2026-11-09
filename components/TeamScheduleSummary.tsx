@@ -6,8 +6,16 @@ import { ALL_GAMES, gameToId, type RawGame } from "@/lib/gamesUtil";
  * 한 팀의 시즌 전체 일정 요약 — 가로 W/L 시퀀스 + 주요 통계.
  * GamesExplorer 에서 팀 필터 + (전체/달력) 모드일 때 표시.
  */
-export function TeamScheduleSummary({ teamShort }: { teamShort: string }) {
-  const games = ALL_GAMES.filter(
+export function TeamScheduleSummary({
+  teamShort,
+  games: gamesInput,
+}: {
+  teamShort: string;
+  /** 생략 시 현재 시즌 ALL_GAMES. 과거 시즌 뷰에서 전달. */
+  games?: RawGame[];
+}) {
+  const source = gamesInput ?? ALL_GAMES;
+  const games = source.filter(
     (g) => g.homeShort === teamShort || g.awayShort === teamShort,
   ).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
