@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import type { FilteredTeam } from "@/lib/data";
 import { TEAM_COLORS } from "@/lib/data";
-import clutchJson from "@/data/season/49/clutch.json";
-import gamesJson from "@/data/season/49/games.json";
+import clutchJsonDefault from "@/data/season/49/clutch.json";
+import gamesJsonDefault from "@/data/season/49/games.json";
 
 type RawGame = {
   status: string;
@@ -13,16 +13,19 @@ type RawGame = {
   homeScore: number | null;
   awayScore: number | null;
 };
-const ALL_GAMES: RawGame[] = (gamesJson as { games: RawGame[] }).games ?? [];
+const DEFAULT_GAMES: RawGame[] = (gamesJsonDefault as { games: RawGame[] }).games ?? [];
 
 /**
  * 종료 점수차 ≤5 경기에서 각 팀의 wins/losses 재계산.
  * clutch.json 의 player-level games/wins/losses 는 "그 선수가 뛴 경기 전체" 라서
  * 팀으로 집계해도 사실상 시즌 전체와 같아짐 — 반드시 game-level 필터링해야 함.
  */
-function computeClutchWinLoss(teamShort: string): { games: number; wins: number; losses: number } {
+function computeClutchWinLoss(
+  teamShort: string,
+  games: RawGame[],
+): { games: number; wins: number; losses: number } {
   let wins = 0, losses = 0;
-  for (const g of ALL_GAMES) {
+  for (const g of games) {
     if (g.status !== "final" || g.homeScore == null || g.awayScore == null) continue;
     if (Math.abs(g.homeScore - g.awayScore) > 5) continue; // ≤5점차만
     const isHome = g.homeShort === teamShort;
@@ -73,7 +76,7 @@ type TeamClutch = {
   tov: number;
 };
 
-function aggregatePerTeam(players: ClutchPlayer[]): Map<string, TeamClutch> {
+function aggregatePerTeam(players: ClutchPlayer[], games: RawGame[]): Map<string, TeamClutch> {
   const byTeam = new Map<string, ClutchPlayer[]>();
   for (const p of players) {
     if (!p.teamName4) continue;
@@ -85,7 +88,7 @@ function aggregatePerTeam(players: ClutchPlayer[]): Map<string, TeamClutch> {
     if (rows.length === 0) continue;
     // ★ wins/losses 는 games.json 의 ≤5점차 경기에서 재계산 (팀 레벨 game-filtering).
     //   clutch.json 의 player-level wins 는 선수 출전 경기 전체라 팀 집계가 시즌과 동일.
-    const wl = computeClutchWinLoss(team);
+    const wl = computeClutchWinLoss(team, games);
     if (wl.games === 0) continue;
     // 슛/카운팅 stats 는 선수 집계 (per-game × games = 합산)
     const sum = (pick: (r: ClutchPlayer) => number) =>
@@ -119,16 +122,24 @@ function aggregatePerTeam(players: ClutchPlayer[]): Map<string, TeamClutch> {
 export function TeamClutchCompare({
   baseline,
   title = "클러치 vs 시즌 평균 비교",
+  clutchOverride,
+  gamesOverride,
 }: {
   /** 기준이 되는 시즌 평균 (정규시즌 전체) */
   baseline: FilteredTeam[];
   title?: string;
+  /** 과거 시즌 뷰에서 전달 — 생략 시 현재 시즌 clutch.json. */
+  clutchOverride?: { players?: { regular?: ClutchPlayer[] } };
+  /** 과거 시즌 뷰에서 전달 — 생략 시 현재 시즌 games.json. */
+  gamesOverride?: RawGame[];
 }) {
   const clutchByTeam = useMemo(() => {
     type Json = { players?: { regular?: ClutchPlayer[] } };
-    const arr = (clutchJson as Json).players?.regular ?? [];
-    return aggregatePerTeam(arr);
-  }, []);
+    const src = (clutchOverride ?? clutchJsonDefault) as Json;
+    const arr = src.players?.regular ?? [];
+    const games = gamesOverride ?? DEFAULT_GAMES;
+    return aggregatePerTeam(arr, games);
+  }, [clutchOverride, gamesOverride]);
 
   const rows = useMemo(() => {
     return baseline

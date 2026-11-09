@@ -43,8 +43,13 @@ function roundsLabel(set: Set<number>): string {
 
 export function TeamAnalytics({
   filters,
+  clutchOverride,
+  gamesOverride,
 }: {
   filters: Record<FilterKey, FilteredTeam[]>;
+  /** 과거 시즌 뷰 — TeamClutchCompare 로 전달. 생략 시 현재 시즌. */
+  clutchOverride?: Parameters<typeof TeamClutchCompare>[0]["clutchOverride"];
+  gamesOverride?: Parameters<typeof TeamClutchCompare>[0]["gamesOverride"];
 }) {
   // 스코프 (정규/PO/전체)
   const [scope, setScope] = useState<Scope>("regular");
@@ -623,7 +628,11 @@ export function TeamAnalytics({
           {/* 클러치 vs 시즌 비교 — 정규시즌 전체 baseline 사용 (필터에 영향 안 받음) */}
           {scope === "regular" && (filters.all?.length ?? 0) > 0 && (
             <CollapsibleSection title="클러치 vs 시즌 비교">
-              <TeamClutchCompare baseline={filters.all} />
+              <TeamClutchCompare
+                baseline={filters.all}
+                clutchOverride={clutchOverride}
+                gamesOverride={gamesOverride}
+              />
             </CollapsibleSection>
           )}
         </div>
