@@ -82,8 +82,10 @@ for (const p of reg) {
   });
 }
 
-// 등록선수 pcode 셋
+// 등록선수 pcode 셋 + 현재 시즌 활동 중 팀 코드 셋 (sports2i 로스터 기준).
+// sports2i 는 신규 외국선수 등록에 랙이 있으므로 api-stats 쪽에서 currentTeams 팀 + inSeason>0 인 선수도 흡수.
 const regSet = new Set(reg.map((p) => String(p.playerNo)));
+const currentTeams = new Set(reg.map((p) => String(p.teamCode)).filter(Boolean));
 
 // ─── 3) playerFlagCode 매핑 추정 ────────────────────
 // sports2i 응답 sample: 강상재(국내) → playerFlagCode2: "0"
@@ -118,7 +120,10 @@ let countByFlag = { "국내": 0, "아시아쿼터": 0, "외국선수": 0 };
 
 for (const p of allPlayers) {
   const pcode = String(p.playerNo);
-  if (!regSet.has(pcode)) continue; // 등록선수만
+  // sports2i 등록선수이거나, 현재 시즌 팀 코드에 소속된 활약 선수 (sports2i 랙 보완).
+  const onCurrentRoster =
+    currentTeams.has(String(p.teamCode ?? "")) && Number(p.inSeason) > 0;
+  if (!regSet.has(pcode) && !onCurrentRoster) continue;
 
   const draft = draftByPcode.get(pcode);
   const flag = classifyPlayer(p, draft?.flagCode);
