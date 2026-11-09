@@ -8,6 +8,7 @@ import {
   type ArchivePlayoffSeries,
   type ArchiveSeason,
 } from "@/lib/archiveData";
+import { seasonLabel } from "@/lib/kblSeason";
 
 type Params = { params: { season: string } };
 
@@ -62,8 +63,15 @@ export default function ArchiveSeasonPage({ params }: Params) {
             </p>
           </div>
 
-          {/* 시즌 전환 — 다른 아카이브 시즌 바로가기 */}
+          {/* 시즌 전환 — 현재 시즌(홈) + 다른 아카이브 시즌 */}
           <nav className="flex flex-wrap gap-1.5">
+            <Link
+              href="/"
+              className="rounded-md border border-court-700 px-2.5 py-1 text-[14px] font-medium text-ink-300 transition-colors hover:bg-court-700/40 hover:text-ink-50"
+            >
+              {seasonLabel()}
+              <span className="ml-1 text-[11px] text-ink-500">· 진행 중</span>
+            </Link>
             {ARCHIVE_SEASONS.map((s) => (
               <Link
                 key={s.code}

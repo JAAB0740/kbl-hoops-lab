@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { HAS_REAL_TEAM_STATS, TEAM_STATS } from "@/lib/data";
-import type { RawPlayer } from "@/lib/data";
+import type { RawPlayer, TeamFullStats } from "@/lib/data";
 import type { TeamStanding } from "@/lib/types";
 import { StatRadar, type RadarSeries } from "@/components/StatRadar";
 import { percentilesOf } from "@/lib/percentile";
@@ -13,6 +13,12 @@ type Mode = "team" | "player";
 interface Props {
   standings: TeamStanding[];
   players: RawPlayer[];
+  /** 과거 시즌 뷰 — 생략 시 현재 시즌 TEAM_STATS. */
+  teamStatsOverride?: Record<string, TeamFullStats>;
+  /** 과거 시즌 뷰 — radar baseline 재조정 등을 위해 override. */
+  hasRealTeamStatsOverride?: boolean;
+  /** 과거 시즌 뷰 — 레이더 subtitle 에 쓰일 시즌 라벨. 생략 시 현재 시즌. */
+  seasonLabelText?: string;
 }
 
 /**
@@ -46,9 +52,13 @@ const COLOR_A = "#f59e0b"; // flame
 const COLOR_B = "#38bdf8"; // neon
 
 // ─── 팀 스탯 조회 ───────────────────────────────────────
-// 실데이터(TEAM_STATS)가 있으면 사용, 없으면 선수 주전 5인 합산으로 근사.
-function teamStatsFrom(players: RawPlayer[], teamShort: string): Stats {
-  const real = TEAM_STATS[teamShort];
+// 실데이터가 있으면 사용, 없으면 선수 주전 5인 합산으로 근사.
+function teamStatsFrom(
+  players: RawPlayer[],
+  teamShort: string,
+  teamStats: Record<string, TeamFullStats>,
+): Stats {
+  const real = teamStats[teamShort];
   if (real) {
     return {
       points:   real.points,
@@ -82,7 +92,16 @@ function teamStatsFrom(players: RawPlayer[], teamShort: string): Stats {
   };
 }
 
-export function CompareClient({ standings, players }: Props) {
+export function CompareClient({
+  standings,
+  players,
+  teamStatsOverride,
+  hasRealTeamStatsOverride,
+  seasonLabelText,
+}: Props) {
+  const teamStats = teamStatsOverride ?? TEAM_STATS;
+  const hasRealTeamStats = hasRealTeamStatsOverride ?? HAS_REAL_TEAM_STATS;
+  const seasonLbl = seasonLabelText ?? seasonLabel();
   const [mode, setMode] = useState<Mode>("team");
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -122,19 +141,19 @@ export function CompareClient({ standings, players }: Props) {
 
   const aStats: Stats | null = useMemo(() => {
     if (mode === "team") {
-      return teamA ? teamStatsFrom(players, teamA) : null;
+      return teamA ? teamStatsFrom(players, teamA, teamStats) : null;
     }
     const p = playerOptions.find((o) => o.id === playerA);
     return p ? playerToStats(p.ref) : null;
-  }, [mode, teamA, playerA, players, playerOptions]);
+  }, [mode, teamA, playerA, players, playerOptions, teamStats]);
 
   const bStats: Stats | null = useMemo(() => {
     if (mode === "team") {
-      return teamB ? teamStatsFrom(players, teamB) : null;
+      return teamB ? teamStatsFrom(players, teamB, teamStats) : null;
     }
     const p = playerOptions.find((o) => o.id === playerB);
     return p ? playerToStats(p.ref) : null;
-  }, [mode, teamB, playerB, players, playerOptions]);
+  }, [mode, teamB, playerB, players, playerOptions, teamStats]);
 
   const aLabel =
     mode === "team"
@@ -148,10 +167,10 @@ export function CompareClient({ standings, players }: Props) {
   // ─── percentile 정규화 — 모집단(전체 선수/팀) 분포 대비 위치 ─────────
   const population: Stats[] = useMemo(() => {
     if (mode === "team") {
-      return teamOptions.map((t) => teamStatsFrom(players, t.id));
+      return teamOptions.map((t) => teamStatsFrom(players, t.id, teamStats));
     }
     return players.map(playerToStats);
-  }, [mode, teamOptions, players]);
+  }, [mode, teamOptions, players, teamStats]);
 
   const RADAR_KEYS = AXES.map((a) => a.key);
 
@@ -237,7 +256,7 @@ export function CompareClient({ standings, players }: Props) {
       {mounted && series.length > 0 && (
         <StatRadar
           title={`${aLabel}  vs  ${bLabel}`}
-          subtitle={`${seasonLabel()} 시즌 · ${mode === "team" ? "팀" : "선수"} 비교 · 리그 분포 기준 percentile (바깥쪽 = 강함)`}
+          subtitle={`${seasonLbl} 시즌 · ${mode === "team" ? "팀" : "선수"} 비교 · 리그 분포 기준 percentile (바깥쪽 = 강함)`}
           axes={AXES.map((a) => a.label)}
           series={series}
           height={420}
@@ -246,7 +265,7 @@ export function CompareClient({ standings, players }: Props) {
 
       {mode === "team" && (
         <p className="mt-3 text-[14px] text-ink-500">
-          {HAS_REAL_TEAM_STATS
+          {hasRealTeamStats
             ? "* KBL 공식 API 의 팀 평균 실데이터."
             : "* 팀 스탯은 출장시간 상위 5인의 개인 스탯을 합산한 근사치."}
         </p>

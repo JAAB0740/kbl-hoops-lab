@@ -106,7 +106,10 @@ export default function PlayoffsSeasonPage({ params }: Params) {
             </section>
 
             <section className="mb-8">
-              <PlayoffBracketView bracket={bracket} />
+              <PlayoffBracketView
+                bracket={bracket}
+                gameLinkBase={isCurrent ? "/games" : `/games/season/${params.code}`}
+              />
             </section>
           </>
         ) : (

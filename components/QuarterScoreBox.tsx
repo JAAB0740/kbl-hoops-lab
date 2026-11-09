@@ -1,11 +1,12 @@
 import { TEAM_COLORS } from "@/lib/data";
-import { getMatchDetail } from "@/lib/matchDetails";
+import { getMatchDetail, type MatchDetail } from "@/lib/matchDetails";
 
 /**
  * 쿼터별 스코어 박스 — 1Q/2Q/3Q/4Q (+ EQ) + Total
  *
  * KBL 공식 박스스코어 화면과 동일한 가로 레이아웃.
  * gmkey 가 없거나 데이터 없는 게임은 null 반환.
+ * matchDetail 이 주어지면 그걸 쓰고, 없으면 현재 시즌 getMatchDetail(gmkey).
  */
 export function QuarterScoreBox({
   gmkey,
@@ -14,6 +15,7 @@ export function QuarterScoreBox({
   homeFull,
   awayFull,
   size = "md",
+  matchDetail,
 }: {
   gmkey: string | undefined;
   homeShort: string;
@@ -23,8 +25,10 @@ export function QuarterScoreBox({
   awayFull?: string;
   /** "sm"=카드 펼침용 컴팩트, "md"=상세 페이지 */
   size?: "sm" | "md";
+  /** 과거 시즌 뷰 — 미리 fetch 한 MatchDetail. */
+  matchDetail?: MatchDetail | null;
 }) {
-  const detail = getMatchDetail(gmkey);
+  const detail = matchDetail ?? getMatchDetail(gmkey);
   if (!detail) return null;
 
   const homeColor = TEAM_COLORS[homeShort] ?? "#94a3b8";

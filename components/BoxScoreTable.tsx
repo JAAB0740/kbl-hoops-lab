@@ -146,13 +146,17 @@ export function BoxScoreTable({
   awayShort,
   homeFull,
   awayFull,
+  playerLinkBase,
 }: {
   box: BoxScore;
   homeShort: string;
   awayShort: string;
   homeFull: string;
   awayFull: string;
+  /** 선수 상세 링크 접두사 — 과거 시즌: "/players/season/{code}" 지정. 생략 시 "/players". */
+  playerLinkBase?: string;
 }) {
+  const linkBase = playerLinkBase ?? "/players";
   const [mode, setMode] = useState<Mode>("basic");
 
   // KBL 응답: homeAway "1" = 홈, "2" = 원정
@@ -197,6 +201,7 @@ export function BoxScoreTable({
         teamRecord={homeTeam}
         side="home"
         mode={mode}
+        linkBase={linkBase}
       />
       <TeamBoxTable
         title={awayFull}
@@ -206,6 +211,7 @@ export function BoxScoreTable({
         teamRecord={awayTeam}
         side="away"
         mode={mode}
+        linkBase={linkBase}
       />
     </div>
   );
@@ -219,6 +225,7 @@ function TeamBoxTable({
   teamRecord,
   side,
   mode,
+  linkBase,
 }: {
   title: string;
   short: string;
@@ -227,6 +234,7 @@ function TeamBoxTable({
   teamRecord?: { tcode: string; records: BoxRecords };
   side: "home" | "away";
   mode: Mode;
+  linkBase: string;
 }) {
   const [sort, setSort] = useState<{ key: string; dir: SortDir } | null>(null);
 
@@ -345,7 +353,7 @@ function TeamBoxTable({
                       </span>
                       <span className="min-w-0 flex-1 truncate">
                         <Link
-                          href={`/players/${p.player.pcode}`}
+                          href={`${linkBase}/${p.player.pcode}`}
                           className={[
                             "hover:text-flame-400",
                             isStarter ? "font-medium text-ink-50" : "text-ink-200",

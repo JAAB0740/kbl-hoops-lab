@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CreatorCard } from "@/components/CreatorCard";
 import { FinalsMatchupCard } from "@/components/FinalsMatchupCard";
 import { Headlines } from "@/components/Headlines";
@@ -16,9 +17,25 @@ import { generateHeadlines } from "@/lib/autoHeadlines";
 import { buildHeroCards } from "@/lib/heroCards";
 import { getHeroCopy, getSeasonStatus } from "@/lib/seasonStatus";
 import { recentPlayerStandouts } from "@/lib/standout";
+import { getCurrentSeason } from "@/lib/kblSeason";
+import { listPlayersSeasons } from "@/lib/playersSeasonData";
 import gamesJson from "../data/season/49/games.json";
 
 export default function DashboardPage() {
+  const current = getCurrentSeason();
+  const seasons = listPlayersSeasons(current.code);
+  const seasonTabs = [...seasons];
+  // listPlayersSeasons 는 player 데이터 기준 — current 가 포함되어 있지 않으면 수동으로 prepend.
+  if (!seasonTabs.some((s) => s.code === current.code)) {
+    const n = parseInt(current.code, 10);
+    const startYear = 2025 + (n - 47) / 2;
+    seasonTabs.unshift({
+      code: current.code,
+      label: `${startYear}-${String(startYear + 1).slice(-2)}`,
+      startYear,
+      isCurrent: true,
+    });
+  }
   const status = getSeasonStatus();
   const hero = getHeroCopy(status);
 
@@ -54,6 +71,27 @@ export default function DashboardPage() {
                 {hero.title}
               </h1>
               <p className="mt-1.5 text-sm text-ink-300">{hero.subtitle}</p>
+              {seasonTabs.length > 1 && (
+                <nav className="mt-4 -mx-1 flex flex-wrap gap-1.5">
+                  {seasonTabs.map((s) => (
+                    <Link
+                      key={s.code}
+                      href={s.code === current.code ? "/" : `/archive/${s.code}`}
+                      className={[
+                        "rounded-md px-2.5 py-1 text-[14px] font-medium transition-colors",
+                        s.code === current.code
+                          ? "bg-flame-500/15 text-flame-400 ring-1 ring-flame-500/30"
+                          : "border border-court-700 text-ink-300 hover:bg-court-700/40 hover:text-ink-50",
+                      ].join(" ")}
+                    >
+                      {s.label}
+                      {s.code === current.code && (
+                        <span className="ml-1 text-[11px] text-ink-500">· 진행 중</span>
+                      )}
+                    </Link>
+                  ))}
+                </nav>
+              )}
             </div>
             <div className="flex items-center gap-2 text-[14px] text-ink-500">
               <span className="inline-flex items-center gap-1.5">

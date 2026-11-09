@@ -187,7 +187,7 @@ export default function GamesSeasonPage({ params }: Params) {
           <GamesExplorer
             games={games}
             storageKeyPrefix={`gamesExplorer:season:${params.code}`}
-            detailBase={isCurrent ? "/games" : undefined}
+            detailBase={isCurrent ? "/games" : `/games/season/${params.code}`}
           />
         ) : (
           <section className="card p-8 text-center">

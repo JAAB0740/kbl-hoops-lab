@@ -50,7 +50,10 @@ export function gameToId(g: RawGame): string {
   return `${d}-${t}-${encodeURIComponent(g.homeShort)}-${encodeURIComponent(g.awayShort)}`;
 }
 
-export function findGameById(id: string): RawGame | null {
+export function findGameById(
+  id: string,
+  games: RawGame[] = ALL_GAMES,
+): RawGame | null {
   const decoded = decodeURIComponent(id);
   // 1차: gameToId() 형식 "YYYYMMDD-HHMM-home-away" 매칭
   const m = decoded.match(/^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})-(.+?)-(.+)$/);
@@ -58,7 +61,7 @@ export function findGameById(id: string): RawGame | null {
     const [, y, mo, d, h, mi, home, away] = m;
     const date = `${y}-${mo}-${d}`;
     const time = `${h}:${mi}`;
-    const hit = ALL_GAMES.find(
+    const hit = games.find(
       (g) =>
         g.date === date &&
         g.time === time &&
@@ -68,7 +71,7 @@ export function findGameById(id: string): RawGame | null {
     if (hit) return hit;
   }
   // 2차 fallback: gmkey 로 직접 매칭 (RecentStandoutsHighlight 등에서 gmkey 를 URL 로 보내는 케이스)
-  return ALL_GAMES.find((g) => g.gmkey === decoded) ?? null;
+  return games.find((g) => g.gmkey === decoded) ?? null;
 }
 
 /** YYYY-MM-DD 비교 */
@@ -193,11 +196,12 @@ export function regularSeasonRecordBefore(
   short: string,
   beforeDate: string,
   beforeTime?: string,
+  source: RawGame[] = ALL_GAMES,
 ): { wins: number; losses: number; games: number; winPct: number } {
   const cutoff = beforeDate + (beforeTime ?? "99:99");
   let wins = 0;
   let losses = 0;
-  for (const g of ALL_GAMES) {
+  for (const g of source) {
     if (g.tag !== "정규리그") continue;
     if (g.status !== "final") continue;
     if (g.homeShort !== short && g.awayShort !== short) continue;
@@ -209,8 +213,8 @@ export function regularSeasonRecordBefore(
     if (my > opp) wins++;
     else losses++;
   }
-  const games = wins + losses;
-  return { wins, losses, games, winPct: games > 0 ? wins / games : 0 };
+  const total = wins + losses;
+  return { wins, losses, games: total, winPct: total > 0 ? wins / total : 0 };
 }
 
 /**
@@ -223,6 +227,7 @@ export function teamScoringBefore(
   beforeDate: string,
   beforeTime?: string,
   opts?: { regularOnly?: boolean; lastN?: number },
+  source: RawGame[] = ALL_GAMES,
 ): {
   games: number;
   ppg: number;
@@ -230,7 +235,7 @@ export function teamScoringBefore(
   margin: number;
 } {
   const cutoff = beforeDate + (beforeTime ?? "99:99");
-  let games = ALL_GAMES.filter((g) => {
+  let games = source.filter((g) => {
     if (g.status !== "final") return false;
     if (g.homeShort !== short && g.awayShort !== short) return false;
     if (g.date + g.time >= cutoff) return false;
@@ -274,12 +279,13 @@ function h2hRegularBefore(
   b: string,
   beforeDate: string,
   beforeTime?: string,
+  games: RawGame[] = ALL_GAMES,
 ): { aWins: number; bWins: number; aMargin: number } {
   const cutoff = beforeDate + (beforeTime ?? "99:99");
   let aWins = 0;
   let bWins = 0;
   let aMargin = 0;
-  for (const g of ALL_GAMES) {
+  for (const g of games) {
     if (g.tag !== "정규리그") continue;
     if (g.status !== "final") continue;
     if (g.date + g.time >= cutoff) continue;
@@ -304,9 +310,10 @@ function h2hRegularBefore(
 export function standingsAsOf(
   beforeDate: string,
   beforeTime?: string,
+  games: RawGame[] = ALL_GAMES,
 ): { team: string; wins: number; losses: number; winPct: number; rank: number | null }[] {
   const records = KBL_TEAMS.map((t) => {
-    const r = regularSeasonRecordBefore(t, beforeDate, beforeTime);
+    const r = regularSeasonRecordBefore(t, beforeDate, beforeTime, games);
     return { team: t, ...r };
   });
   const totalGames = records.reduce((n, r) => n + r.games, 0);
@@ -323,7 +330,7 @@ export function standingsAsOf(
   const sorted = [...records].sort((a, b) => {
     if (b.winPct !== a.winPct) return b.winPct - a.winPct;
     if (b.wins !== a.wins) return b.wins - a.wins;
-    const h2h = h2hRegularBefore(a.team, b.team, beforeDate, beforeTime);
+    const h2h = h2hRegularBefore(a.team, b.team, beforeDate, beforeTime, games);
     if (h2h.aWins !== h2h.bWins) return h2h.bWins - h2h.aWins;
     if (h2h.aMargin !== 0) return -h2h.aMargin; // a 입장 마진 +이면 a가 위
     return a.team.localeCompare(b.team);

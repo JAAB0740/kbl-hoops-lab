@@ -11,6 +11,8 @@ import { gameToId } from "@/lib/gamesUtil";
 
 interface Props {
   bracket: PlayoffBracket;
+  /** 경기 상세 링크 접두사 — 과거 시즌: "/games/season/{code}". 생략 시 "/games". */
+  gameLinkBase?: string;
 }
 
 /**
@@ -25,7 +27,8 @@ interface Props {
  *           ├──[1 vs (4vs5)] ─┘
  *   [4vs5] ─┘
  */
-export function PlayoffBracketView({ bracket }: Props) {
+export function PlayoffBracketView({ bracket, gameLinkBase }: Props) {
+  const gameLinkPrefix = gameLinkBase ?? "/games";
   // 기본 선택: 진행 중 시리즈 → 마지막으로 종결된 시리즈 → 첫 번째 6강
   const allSeries = useMemo(
     () =>
@@ -91,7 +94,7 @@ export function PlayoffBracketView({ bracket }: Props) {
       </div>
 
       {/* 시리즈 디테일 */}
-      {selectedSeries && <SeriesDetail series={selectedSeries} />}
+      {selectedSeries && <SeriesDetail series={selectedSeries} gameLinkPrefix={gameLinkPrefix} />}
     </div>
   );
 }
@@ -492,7 +495,13 @@ function TeamRow({
 
 // ─── 시리즈 디테일 패널 ─────────────────────────────
 
-function SeriesDetail({ series }: { series: PlayoffSeries }) {
+function SeriesDetail({
+  series,
+  gameLinkPrefix,
+}: {
+  series: PlayoffSeries;
+  gameLinkPrefix: string;
+}) {
   const need = Math.ceil(series.bestOf / 2);
 
   return (
@@ -526,7 +535,7 @@ function SeriesDetail({ series }: { series: PlayoffSeries }) {
       ) : (
         <div className="divide-y divide-court-700/50">
           {series.games.map((g) => (
-            <GameRow key={g.no} game={g} series={series} />
+            <GameRow key={g.no} game={g} series={series} gameLinkPrefix={gameLinkPrefix} />
           ))}
         </div>
       )}
@@ -579,9 +588,11 @@ function SeriesScoreBadge({ series }: { series: PlayoffSeries }) {
 function GameRow({
   game,
   series,
+  gameLinkPrefix,
 }: {
   game: PlayoffGame;
   series: PlayoffSeries;
+  gameLinkPrefix: string;
 }) {
   const dateLabel = formatDate(game.date);
   const isFinal = game.status === "final" && game.homeScore != null;
@@ -607,7 +618,7 @@ function GameRow({
 
   return (
     <Link
-      href={`/games/${gameLinkId}`}
+      href={`${gameLinkPrefix}/${gameLinkId}`}
       className="grid grid-cols-[60px_1fr_auto_24px] items-center gap-3 px-5 py-3 transition hover:bg-court-700/20"
     >
       <div className="flex flex-col">
