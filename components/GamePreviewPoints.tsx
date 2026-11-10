@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { PlayerInfo, PlayerSeasonAvg } from "@/lib/boxscores";
-import type { TeamStyle } from "@/lib/teamStyle";
+import type { TeamStyle, TeamSplits } from "@/lib/teamStyle";
 
 type PlayerEntry = { player: PlayerInfo; avg: PlayerSeasonAvg };
 
@@ -17,6 +17,7 @@ export function GamePreviewPoints({
   homeShort, awayShort, homeColor, awayColor,
   homeSeason, awaySeason, homeRecent, awayRecent,
   homeStyle, awayStyle, leagueRange,
+  homeSplits, awaySplits,
 }: {
   homeShort: string; awayShort: string;
   homeColor: string; awayColor: string;
@@ -24,6 +25,7 @@ export function GamePreviewPoints({
   homeRecent: PlayerEntry[]; awayRecent: PlayerEntry[];
   homeStyle: TeamStyle | null; awayStyle: TeamStyle | null;
   leagueRange: Record<keyof TeamStyle, { min: number; max: number }>;
+  homeSplits: TeamSplits; awaySplits: TeamSplits;
 }) {
   const homePick = pickHotCold(homeSeason, homeRecent);
   const awayPick = pickHotCold(awaySeason, awayRecent);
@@ -99,7 +101,107 @@ export function GamePreviewPoints({
           </div>
         )}
       </div>
+
+      {/* 3) 분할 약점 — 이 경기 상황별 (홈/원정/Q4) 성적. 양 팀 색 대비로 "어느 쪽 유리"가 즉시 보임. */}
+      <SplitsBlock
+        homeShort={homeShort} awayShort={awayShort}
+        homeColor={homeColor} awayColor={awayColor}
+        homeSplits={homeSplits} awaySplits={awaySplits}
+      />
     </section>
+  );
+}
+
+function SplitsBlock({
+  homeShort, awayShort, homeColor, awayColor, homeSplits, awaySplits,
+}: {
+  homeShort: string; awayShort: string;
+  homeColor: string; awayColor: string;
+  homeSplits: TeamSplits; awaySplits: TeamSplits;
+}) {
+  const rows: {
+    label: string;
+    home: number | null;
+    away: number | null;
+    fmt: (v: number) => string;
+    note?: string;
+  }[] = [
+    // 이 경기에서 home 팀은 홈, away 팀은 원정 — 각각 그 역할 승률.
+    {
+      label: "역할별 승률",
+      home: homeSplits.homeWinPct, away: awaySplits.awayWinPct,
+      fmt: (v) => `${v.toFixed(0)}%`,
+      note: `${homeShort} 홈 · ${awayShort} 원정`,
+    },
+    {
+      label: "Q4 평균 마진",
+      home: homeSplits.q4Margin, away: awaySplits.q4Margin,
+      fmt: (v) => `${v >= 0 ? "+" : ""}${v.toFixed(1)}`,
+      note: "4쿼터 득실차 평균",
+    },
+  ];
+  const hasAny = rows.some((r) => r.home != null || r.away != null);
+  if (!hasAny) return null;
+
+  return (
+    <div className="mt-5 border-t border-court-700/50 pt-4">
+      <div className="mb-2 text-[13px] uppercase tracking-wider text-ink-500">
+        분할 약점 — 경기 상황별
+      </div>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {rows.map((r) => (
+          <SplitRow
+            key={r.label} label={r.label} note={r.note}
+            home={r.home} away={r.away}
+            homeColor={homeColor} awayColor={awayColor}
+            homeShort={homeShort} awayShort={awayShort}
+            fmt={r.fmt}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SplitRow({
+  label, note, home, away, homeColor, awayColor, homeShort, awayShort, fmt,
+}: {
+  label: string; note?: string;
+  home: number | null; away: number | null;
+  homeColor: string; awayColor: string;
+  homeShort: string; awayShort: string;
+  fmt: (v: number) => string;
+}) {
+  const homeBetter = home != null && away != null && home > away;
+  const awayBetter = home != null && away != null && away > home;
+  return (
+    <div className="rounded-md border border-court-700/60 bg-court-800/40 p-3">
+      <div className="mb-1.5 flex items-baseline justify-between gap-2">
+        <span className="text-[13px] font-medium text-ink-200">{label}</span>
+        {note && <span className="text-[11px] text-ink-500">{note}</span>}
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="min-w-0 flex-1">
+          <div className="truncate text-[11px]" style={{ color: homeColor }}>{homeShort}</div>
+          <div
+            className={`stat-num text-xl font-bold ${homeBetter ? "" : "text-ink-400"}`}
+            style={{ color: homeBetter ? homeColor : undefined }}
+          >
+            {home != null ? fmt(home) : "—"}
+          </div>
+        </div>
+        <span className="text-[11px] text-ink-600">vs</span>
+        <div className="min-w-0 flex-1 text-right">
+          <div className="truncate text-[11px]" style={{ color: awayColor }}>{awayShort}</div>
+          <div
+            className={`stat-num text-xl font-bold ${awayBetter ? "" : "text-ink-400"}`}
+            style={{ color: awayBetter ? awayColor : undefined }}
+          >
+            {away != null ? fmt(away) : "—"}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

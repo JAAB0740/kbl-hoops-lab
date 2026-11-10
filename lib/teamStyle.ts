@@ -21,17 +21,22 @@ interface AdvancedRow {
 }
 interface FilteredRow {
   shortName: string;
+  winPct?: number;
   stats: {
     fgAtt: number;
     threeAtt: number;
     points: number;
+    margin?: number;
   };
 }
 
 const ADV: AdvancedRow[] =
   ((teamAdvancedJson as { filters?: { all?: AdvancedRow[] } }).filters?.all) ?? [];
-const FIL: FilteredRow[] =
-  ((teamFilteredJson as { filters?: { all?: FilteredRow[] } }).filters?.all) ?? [];
+type Filters = {
+  all?: FilteredRow[]; home?: FilteredRow[]; away?: FilteredRow[]; q4?: FilteredRow[];
+};
+const FIL_BY_KEY = (teamFilteredJson as { filters?: Filters }).filters ?? {};
+const FIL: FilteredRow[] = FIL_BY_KEY.all ?? [];
 
 export interface TeamStyle {
   pace: number;         // poss / 48min (team-advanced 가 48 기준)
@@ -53,6 +58,24 @@ export function getTeamStyle(shortName: string): TeamStyle | null {
     defRtg: a?.advanced.defRtg ?? 0,
     threeRate,
     orebPct: a?.advanced.orebPct ?? 0,
+  };
+}
+
+/** 분할 (홈/원정/Q4) 승률·마진 — "경기 성격별 약점" 표시용. */
+export interface TeamSplits {
+  homeWinPct: number | null;   // 이 팀이 홈일 때 승률
+  awayWinPct: number | null;   // 이 팀이 원정일 때 승률
+  q4Margin: number | null;     // Q4 득실 평균 마진 (+ 리드 확장 / − 줄어듦)
+}
+
+export function getTeamSplits(shortName: string): TeamSplits {
+  const home = FIL_BY_KEY.home?.find((r) => r.shortName === shortName);
+  const away = FIL_BY_KEY.away?.find((r) => r.shortName === shortName);
+  const q4   = FIL_BY_KEY.q4?.find((r) => r.shortName === shortName);
+  return {
+    homeWinPct: home && home.winPct != null ? home.winPct * 100 : null,
+    awayWinPct: away && away.winPct != null ? away.winPct * 100 : null,
+    q4Margin:   q4 && q4.stats.margin != null ? q4.stats.margin : null,
   };
 }
 
