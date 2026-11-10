@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T03:26:46.071Z",
+  "fetchedAt": "2026-11-10T12:49:54.271Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -922,9 +922,9 @@
       "homeShort": "현대모비스",
       "awayTeam": "고양 소노 스카이거너스",
       "awayShort": "소노",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 79,
+      "awayScore": 86,
+      "status": "final",
       "stadium": "울산동천체육관"
     },
     {
