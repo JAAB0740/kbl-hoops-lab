@@ -15,6 +15,7 @@ import {
 import {
   getBoxScore,
   teamPlayersBefore,
+  teamPlayersRecentBefore,
   type PlayerInfo,
   type PlayerSeasonAvg,
 } from "@/lib/boxscores";
@@ -24,6 +25,8 @@ import { getMatchDetail, fmtKblTime } from "@/lib/matchDetails";
 import { StandoutCards } from "@/components/StandoutCards";
 import { PlayerStandoutCards } from "@/components/PlayerStandoutCards";
 import { detectStandouts, detectPlayerStandouts } from "@/lib/standout";
+import { GamePreviewPoints } from "@/components/GamePreviewPoints";
+import { getTeamStyle, leagueStyleRange } from "@/lib/teamStyle";
 
 /** "서울 SK 나이츠" → "서울 SK" — 3단어 이상일 때만 마지막 토큰(별명) 제거.
  *  외국팀(1~2단어, EASL 등) 은 그대로 두어 의미 손실 방지. */
@@ -263,6 +266,25 @@ export default function GameDetailPage({ params }: Props) {
             />
           </div>
         </header>
+
+        {/* 관전 포인트 — 예정/진행 중 게임에만 (종료 게임은 아래 StandoutCards 로 대체) */}
+        {!isFinal && (() => {
+          const homeSeasonAll = teamPlayersBefore(game.homeShort, game.date, game.time, 3);
+          const awaySeasonAll = teamPlayersBefore(game.awayShort, game.date, game.time, 3);
+          const homeRecent3   = teamPlayersRecentBefore(game.homeShort, game.date, game.time, 3, 2);
+          const awayRecent3   = teamPlayersRecentBefore(game.awayShort, game.date, game.time, 3, 2);
+          return (
+            <GamePreviewPoints
+              homeShort={game.homeShort} awayShort={game.awayShort}
+              homeColor={homeColor}     awayColor={awayColor}
+              homeSeason={homeSeasonAll} awaySeason={awaySeasonAll}
+              homeRecent={homeRecent3}   awayRecent={awayRecent3}
+              homeStyle={getTeamStyle(game.homeShort)}
+              awayStyle={getTeamStyle(game.awayShort)}
+              leagueRange={leagueStyleRange()}
+            />
+          );
+        })()}
 
         {/* 쿼터별 스코어 + 관중 (final 게임만, 데이터 있을 때만) */}
         {isFinal && getMatchDetail(game.gmkey) && (

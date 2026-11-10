@@ -271,13 +271,21 @@ export function PlayerProfileView({
         <ShootingPanel row={season} />
       </section>
 
-      {/* 영역별 야투 — 방사형 14존 (KBL 경기 차트 raw 슛 로그 → 좌표 분류) */}
+      {/* 영역별 야투 (방사형 14존) + 헥스빈 차트 — 데스크탑에선 좌우 2열, 모바일은 세로 스택.
+          둘 다 landscape 코트 viewBox (360×395) 라서 폭 절반에도 균형이 맞음. */}
       {profile.shotChart && profile.shotChart.totalShots > 0 && (
-        <AreaShotChart
-          chart={profile.shotChart}
-          title="영역별 야투 — 방사형 14존"
-          subtitle="3pt 5존 · 미드 5존 · 페인트 3존 · 림 · 색상은 zone 별 리그 평균 대비 ±%p"
-        />
+        <div className="grid gap-6 lg:grid-cols-2">
+          <AreaShotChart
+            chart={profile.shotChart}
+            title="영역별 야투 — 방사형 14존"
+            subtitle="3pt 5존 · 미드 5존 · 페인트 3존 · 림 · 색상은 zone 별 리그 평균 대비 ±%p"
+          />
+          <HexShotMap
+            chart={profile.shotChart}
+            title="헥스빈 차트 — 시도량 × 효율"
+            subtitle="크기 = 시도수, 색 = 리그 zone 평균 대비 FG%"
+          />
+        </div>
       )}
 
       {/* 슛 차트 — KBL 경기차트의 raw 슛 로그를 좌표 정규화 후 점으로 표시.
@@ -287,15 +295,6 @@ export function PlayerProfileView({
           chart={profile.shotChart}
           title="슛 차트 — 실제 슛 위치"
           subtitle="정규시즌 + 플레이오프 (올스타·EASL 제외) · KBL 경기 차트 API 좌표 직접 활용"
-        />
-      )}
-
-      {/* 헥스빈 차트 — Kirk Goldsberry 스타일. 시도수(크기) × 리그 효율 대비(색상) 이중 인코딩 */}
-      {profile.shotChart && profile.shotChart.totalShots > 0 && (
-        <HexShotMap
-          chart={profile.shotChart}
-          title="헥스빈 차트 — 시도량 × 효율"
-          subtitle="크기 = 시도수, 색 = 리그 zone 평균 대비 FG%"
         />
       )}
 

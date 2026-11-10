@@ -371,3 +371,99 @@ export function teamPlayersBefore(
   }
   return out;
 }
+
+/**
+ * 특정 시점 직전 N경기만 slice — 핫/콜드 감지용.
+ * 반환 shape 은 teamPlayersBefore 와 동일 (player + avg) + recentGames (실제 집계된 경기 수).
+ * 반드시 선수가 해당 N경기 중 minGames 경기 이상 출전해야 포함.
+ */
+export function teamPlayersRecentBefore(
+  teamShort: string,
+  beforeDate: string,
+  beforeTime: string | undefined,
+  lastN = 3,
+  minGames = 2,
+): { player: PlayerInfo; avg: PlayerSeasonAvg }[] {
+  const cutoff = beforeDate + (beforeTime ?? "99:99");
+
+  // 1) 이 팀이 cutoff 이전에 출전한 모든 gmkey 를 시간 역순으로 수집
+  //    (어느 선수든 하나라도 뛰었으면 그 경기는 "팀 경기"로 간주)
+  const teamGmkeys: { gmkey: string; dt: string }[] = [];
+  for (const [gmkey, box] of Object.entries(RAW_BOX)) {
+    const dt = GMKEY_DATE.get(gmkey);
+    if (!dt || dt >= cutoff) continue;
+    const played = (box.players ?? []).some(
+      (ps) => ps.player.tname.includes(teamShort) || ps.player.tname === teamShort,
+    );
+    if (played) teamGmkeys.push({ gmkey, dt });
+  }
+  teamGmkeys.sort((a, b) => b.dt.localeCompare(a.dt));
+  const slice = teamGmkeys.slice(0, lastN).map((x) => x.gmkey);
+  const sliceSet = new Set(slice);
+
+  // 2) 그 N경기 안에서만 선수별 cum 집계
+  type Slot = {
+    info: PlayerInfo;
+    g: number;
+    pts: number; reb: number; oReb: number; dReb: number;
+    ast: number; stl: number; blk: number; to: number; foul: number;
+    secs: number;
+    fgM: number; fgA: number; tpM: number; tpA: number; ftM: number; ftA: number;
+  };
+  const byPcode = new Map<string, Slot>();
+
+  for (const gmkey of sliceSet) {
+    const box = RAW_BOX[gmkey];
+    if (!box) continue;
+    for (const ps of box.players ?? []) {
+      if (!ps.player.tname.includes(teamShort) && ps.player.tname !== teamShort) continue;
+      const sec = totalSeconds(ps.records);
+      if (sec <= 0) continue;
+      const pcode = ps.player.pcode;
+      const slot =
+        byPcode.get(pcode) ??
+        {
+          info: ps.player, g: 0,
+          pts: 0, reb: 0, oReb: 0, dReb: 0, ast: 0, stl: 0, blk: 0, to: 0, foul: 0, secs: 0,
+          fgM: 0, fgA: 0, tpM: 0, tpA: 0, ftM: 0, ftA: 0,
+        };
+      slot.g++;
+      slot.pts  += ps.records.score ?? 0;
+      slot.reb  += ps.records.rb ?? 0;
+      slot.oReb += ps.records.offr ?? 0;
+      slot.dReb += ps.records.defr ?? 0;
+      slot.ast  += ps.records.ast ?? 0;
+      slot.stl  += ps.records.stl ?? 0;
+      slot.blk  += ps.records.bs ?? 0;
+      slot.to   += ps.records.to ?? 0;
+      slot.foul += ps.records.foul ?? 0;
+      slot.secs += sec;
+      slot.fgM  += ps.records.fgt ?? 0;
+      slot.fgA  += ps.records.fgtA ?? 0;
+      slot.tpM  += ps.records.threep ?? 0;
+      slot.tpA  += ps.records.threepA ?? 0;
+      slot.ftM  += ps.records.ft ?? 0;
+      slot.ftA  += ps.records.ftA ?? 0;
+      byPcode.set(pcode, slot);
+    }
+  }
+
+  const out: { player: PlayerInfo; avg: PlayerSeasonAvg }[] = [];
+  for (const [, slot] of byPcode) {
+    if (slot.g < minGames) continue;
+    const g = slot.g;
+    out.push({
+      player: slot.info,
+      avg: {
+        games: g,
+        ppg: slot.pts / g, rpg: slot.reb / g, oRpg: slot.oReb / g, dRpg: slot.dReb / g,
+        apg: slot.ast / g, spg: slot.stl / g, bpg: slot.blk / g, topg: slot.to / g, fpg: slot.foul / g,
+        mpg: slot.secs / 60 / g,
+        fgPct: slot.fgA > 0 ? (slot.fgM / slot.fgA) * 100 : 0,
+        threePct: slot.tpA > 0 ? (slot.tpM / slot.tpA) * 100 : 0,
+        ftPct: slot.ftA > 0 ? (slot.ftM / slot.ftA) * 100 : 0,
+      },
+    });
+  }
+  return out;
+}
