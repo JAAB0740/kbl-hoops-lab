@@ -35,6 +35,8 @@ export interface PlayerLeader {
   team: string;
   value: number;
   unit: string; // "PPG" | "RPG" | "APG" | "SPG" | "BPG"
+  /** KBL 선수 식별자 — 있으면 LeadersCard 가 프로필 링크로 감쌈. mock 데이터엔 없음. */
+  pcode?: string;
 }
 
 export interface GameEvent {

@@ -113,7 +113,12 @@ function HighlightCard({ standout: s }: { standout: PlayerStandoutWithGame }) {
 
       {/* 선수 이름 + 게임 컨텍스트 */}
       <div className="mt-2">
-        <div className="text-[18px] font-bold text-ink-50">{s.pname}</div>
+        <Link
+          href={`/players/${s.playerNo}`}
+          className="text-[18px] font-bold text-ink-50 hover:text-flame-400"
+        >
+          {s.pname}
+        </Link>
         <div className="mt-0.5 text-[12px] text-ink-500">
           {fmtDate(s.gameContext.date)} · {s.gameContext.tag} ·{" "}
           {s.gameContext.isHome ? "vs" : "@"} {s.gameContext.opponent}

@@ -56,7 +56,16 @@ export function LeadersCard({ title, subtitle, leaders, accent = "flame" }: Prop
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="truncate text-[16px] font-medium text-ink-50">
-                    {p.name}
+                    {p.pcode ? (
+                      <Link
+                        href={`/players/${p.pcode}`}
+                        className="hover:text-flame-400"
+                      >
+                        {p.name}
+                      </Link>
+                    ) : (
+                      p.name
+                    )}
                     <span className="text-[14px] font-normal text-ink-500"> · {p.team}</span>
                   </span>
                   <span className="stat-num text-[16px] font-semibold text-ink-50">

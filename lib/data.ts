@@ -616,6 +616,7 @@ function topByStat(stat: StatKey, unit: string, count = 5): PlayerLeader[] {
       team: p.team,
       value: p.stats[stat],
       unit,
+      pcode: p.playerNo,
     }));
 }
 
