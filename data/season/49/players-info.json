@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-11-11T01:14:36.841Z",
+  "fetchedAt": "2026-11-11T19:51:19.304Z",
   "seasonCode": "49",
-  "totalRegistered": 217,
+  "totalRegistered": 218,
   "countByFlag": {
     "국내": 185,
     "아시아쿼터": 9,
-    "외국선수": 23
+    "외국선수": 24
   },
   "byPcode": {
     "290284": {
@@ -2607,7 +2607,7 @@
       "country": "미국",
       "birthday": "1997-07-21",
       "pHeight": 206,
-      "pWeight": null,
+      "pWeight": 135,
       "schools": {
         "primary": null,
         "middle": null,
@@ -5841,6 +5841,30 @@
         "middle": null,
         "high": null,
         "university": "University of Miami",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 49
+    },
+    "291889": {
+      "pcode": "291889",
+      "kname": "올루페미 올루조비",
+      "ename": "Olufemi Olujobi",
+      "teamCode": "66",
+      "pos": "C",
+      "backNum": "5",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1996-03-05",
+      "pHeight": 207,
+      "pWeight": 113,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "DePaul University",
         "graduate": null
       },
       "gradYear": null,
