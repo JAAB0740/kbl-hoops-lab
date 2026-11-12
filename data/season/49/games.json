@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-12T02:13:03.390Z",
+  "fetchedAt": "2026-11-12T20:16:56.155Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -964,9 +964,9 @@
       "homeShort": "가스공사",
       "awayTeam": "고양 소노 스카이거너스",
       "awayShort": "소노",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 87,
+      "awayScore": 88,
+      "status": "final",
       "stadium": "대구체육관"
     },
     {
