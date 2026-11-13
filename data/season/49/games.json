@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-13T01:46:47.993Z",
+  "fetchedAt": "2026-11-13T12:48:39.085Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -978,9 +978,9 @@
       "homeShort": "DB",
       "awayTeam": "수원 KT 소닉붐",
       "awayShort": "KT",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 94,
+      "awayScore": 83,
+      "status": "final",
       "stadium": "원주DB프로미아레나"
     },
     {

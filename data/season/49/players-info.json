@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-11-13T01:50:00.677Z",
+  "fetchedAt": "2026-11-13T12:52:14.827Z",
   "seasonCode": "49",
-  "totalRegistered": 218,
+  "totalRegistered": 219,
   "countByFlag": {
     "국내": 185,
     "아시아쿼터": 9,
-    "외국선수": 24
+    "외국선수": 25
   },
   "byPcode": {
     "290284": {
@@ -3571,6 +3571,30 @@
       },
       "photoUrl": null,
       "inSeason": 41
+    },
+    "291626": {
+      "pcode": "291626",
+      "kname": "제로드 존스",
+      "ename": "Jarrod Jones",
+      "teamCode": "10",
+      "pos": "FD",
+      "backNum": "45",
+      "flag": "외국선수",
+      "country": "미국",
+      "birthday": "1990-05-27",
+      "pHeight": 206,
+      "pWeight": 107,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "Ball State University",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 43
     },
     "291639": {
       "pcode": "291639",
