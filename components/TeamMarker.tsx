@@ -26,11 +26,12 @@ export function TeamDot({
         stroke={m.stroke} strokeWidth={m.strokeWidth}
       />
       {m.hStripe && (
+        // 세로 띠 — 폭 r*heightRatio, 길이 r*1.6 (원 안에 시각적으로 수납)
         <rect
-          x={cx - r * 0.8}
-          y={cy - (r * m.hStripe.heightRatio) / 2}
-          width={r * 1.6}
-          height={r * m.hStripe.heightRatio}
+          x={cx - (r * m.hStripe.heightRatio) / 2}
+          y={cy - r * 0.8}
+          width={r * m.hStripe.heightRatio}
+          height={r * 1.6}
           fill={m.hStripe.color}
         />
       )}

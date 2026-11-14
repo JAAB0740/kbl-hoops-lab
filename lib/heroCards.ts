@@ -138,6 +138,42 @@ function leaderMinGames(): number {
   return Math.max(5, Math.ceil(maxTeamGames / 2));
 }
 
+/** 팀 short → winPct (0~1). 모르면 0.5. */
+function teamWinPct(short: string): number {
+  const row = STANDINGS.find((s) => s.shortName === short);
+  return row?.winPct ?? 0.5;
+}
+
+/**
+ * MVP 종합 지수 — 효율 + 카운팅 + 팀 성적 + 출장 신뢰도 합산.
+ * PER 단일 지표 대신 아래 4축 가중합:
+ *   - 효율: PER × 0.35 (일반 평균 PER 10 기준)
+ *   - 카운팅: (PPG + 0.7·RPG + 0.7·APG + SPG + 0.7·BPG) × 0.4
+ *   - 팀 성적: winPct × 100 × 0.15
+ *   - 출장 신뢰도: min(games/leaderGames, 1) × 100 × 0.10
+ */
+function mvpScore(
+  per: number,
+  detail: PlayerDetailRow | undefined,
+  games: number,
+  leaderGames: number,
+  short: string,
+): number {
+  const ppg = Number(detail?.points ?? 0);
+  const rpg = Number(detail?.rebounds ?? 0);
+  const apg = Number(detail?.assists ?? 0);
+  const spg = Number(detail?.steals ?? 0);
+  const bpg = Number(detail?.blocks ?? 0);
+  const counting = ppg + 0.7 * rpg + 0.7 * apg + spg + 0.7 * bpg;
+  const avail = leaderGames > 0 ? Math.min(games / leaderGames, 1) : 0;
+  return (
+    per * 0.35 +
+    counting * 0.4 +
+    teamWinPct(short) * 100 * 0.15 +
+    avail * 100 * 0.10
+  );
+}
+
 // ─── 헬퍼 ─────────────────────────────────────
 
 /** Hollinger GameScore — 한 경기 활약 종합 지표 */
@@ -349,19 +385,24 @@ function buildMvpTracker(status: SeasonStatus): HeroCard {
     const detailByPN = new Map(
       detailPlayoff.map((d) => [String(d.playerNo), d]),
     );
+    const poLeaderG = Math.max(...advPO.map((e) => e.games), 1);
     const pool = advPO
       .filter((e) => e.games >= 1)
+      .filter((e) => PLAYER_INFO[String(e.playerNo)]?.flag !== "외국선수")
       .map((e) => {
         const d = detailByPN.get(String(e.playerNo));
         const teamShort = teamToShort(d?.teamName1 ?? e.teamName1);
-        return { entry: e, detail: d, teamShort };
+        return {
+          entry: e, detail: d, teamShort,
+          score: mvpScore(e.advanced.per, d, e.games, poLeaderG, teamShort),
+        };
       })
       .filter((x) =>
         survivors == null ? true : survivors.has(x.teamShort),
       );
 
     if (pool.length > 0) {
-      pool.sort((a, b) => b.entry.advanced.per - a.entry.advanced.per);
+      pool.sort((a, b) => b.score - a.score);
       const top = pool[0];
       const isChamp = status.stage === "final-done";
       const isFinal =
@@ -378,11 +419,11 @@ function buildMvpTracker(status: SeasonStatus): HeroCard {
         title: isChamp ? "PO 봄 농구의 지배자" : "현재 PO MVP",
         icon: isChamp ? "🏆" : "👑",
         main: `${top.entry.kname} · ${top.teamShort}`,
-        value: top.entry.advanced.per.toFixed(1),
-        unit: "PER",
+        value: top.score.toFixed(1),
+        unit: "MVP",
         caption: top.detail
-          ? `${top.detail.points.toFixed(1)} PPG · ${top.detail.rebounds.toFixed(1)} RPG · ${top.detail.assists.toFixed(1)} APG (PO ${top.detail.games}G)`
-          : `PO 누적 PER ${top.entry.advanced.per.toFixed(1)}`,
+          ? `${top.detail.points.toFixed(1)}P · ${top.detail.rebounds.toFixed(1)}R · ${top.detail.assists.toFixed(1)}A · PER ${top.entry.advanced.per.toFixed(1)} (PO ${top.detail.games}G)`
+          : `종합 ${top.score.toFixed(1)}`,
         badge,
         href: `/players/${top.entry.playerNo}`,
         teamShort: top.teamShort,
@@ -392,10 +433,26 @@ function buildMvpTracker(status: SeasonStatus): HeroCard {
   }
 
   // 정규시즌 — 리그 진행도 기반 자격 (leader-team 경기 수의 절반, 최소 5)
+  // 국내 + 아시아쿼터만 (외국선수는 별도 Foreign MVP 카드).
   const minG = leaderMinGames();
-  const pool = advRegular.filter((e) => e.games >= minG);
-  pool.sort((a, b) => b.advanced.per - a.advanced.per);
-  const top = pool[0];
+  const leaderG = Math.max(...STANDINGS.map((s) => s.games), minG);
+  const scored = advRegular
+    .filter((e) => e.games >= minG)
+    .filter((e) => PLAYER_INFO[String(e.playerNo)]?.flag !== "외국선수")
+    .map((e) => {
+      const detail = detailRegular.find(
+        (d) => String(d.playerNo) === String(e.playerNo),
+      );
+      const short = teamToShort(detail?.teamName1 ?? e.teamName1);
+      return {
+        entry: e,
+        detail,
+        short,
+        score: mvpScore(e.advanced.per, detail, e.games, leaderG, short),
+      };
+    });
+  scored.sort((a, b) => b.score - a.score);
+  const top = scored[0];
   if (!top) {
     return {
       kind: "mvp-tracker",
@@ -406,22 +463,20 @@ function buildMvpTracker(status: SeasonStatus): HeroCard {
       tone: "ink",
     };
   }
-  const detail = detailRegular.find(
-    (d) => String(d.playerNo) === String(top.playerNo),
-  );
-  const teamShort = teamToShort(detail?.teamName1 ?? top.teamName1);
+  const detail = top.detail;
+  const teamShort = top.short;
   return {
     kind: "mvp-tracker",
     title: "현재 MVP 레이스",
     icon: "👑",
-    main: `${top.kname} · ${teamShort}`,
-    value: top.advanced.per.toFixed(1),
-    unit: "PER",
+    main: `${top.entry.kname} · ${teamShort}`,
+    value: top.score.toFixed(1),
+    unit: "MVP",
     caption: detail
-      ? `${detail.points.toFixed(1)} PPG · ${detail.rebounds.toFixed(1)} RPG · ${detail.assists.toFixed(1)} APG`
-      : `정규 PER ${top.advanced.per.toFixed(1)}`,
+      ? `${detail.points.toFixed(1)}P · ${detail.rebounds.toFixed(1)}R · ${detail.assists.toFixed(1)}A · PER ${top.entry.advanced.per.toFixed(1)} · 팀승률 ${(teamWinPct(teamShort) * 100).toFixed(0)}%`
+      : `종합 ${top.score.toFixed(1)}`,
     badge: "1위",
-    href: `/players/${top.playerNo}`,
+    href: `/players/${top.entry.playerNo}`,
     teamShort,
     tone: "gold",
   };
@@ -530,11 +585,22 @@ function buildForeignMvp(status: SeasonStatus): HeroCard {
   const detailSrc = inPo && advPO.length > 0 ? detailPlayoff : detailRegular;
   const minG = inPo ? 1 : leaderMinGames();
 
-  const pool = source
+  const leaderG = inPo
+    ? Math.max(...source.map((e) => e.games), 1)
+    : Math.max(...STANDINGS.map((s) => s.games), minG);
+  const scored = source
     .filter((e) => e.games >= minG)
-    .filter((e) => PLAYER_INFO[String(e.playerNo)]?.flag === "외국선수");
-  pool.sort((a, b) => b.advanced.per - a.advanced.per);
-  const top = pool[0];
+    .filter((e) => PLAYER_INFO[String(e.playerNo)]?.flag === "외국선수")
+    .map((e) => {
+      const detail = detailSrc.find((d) => String(d.playerNo) === String(e.playerNo));
+      const short = teamToShort(detail?.teamName1 ?? e.teamName1);
+      return {
+        entry: e, detail, short,
+        score: mvpScore(e.advanced.per, detail, e.games, leaderG, short),
+      };
+    });
+  scored.sort((a, b) => b.score - a.score);
+  const top = scored[0];
   if (!top) {
     return {
       kind: "mvp-tracker",
@@ -545,20 +611,20 @@ function buildForeignMvp(status: SeasonStatus): HeroCard {
       tone: "ink",
     };
   }
-  const detail = detailSrc.find((d) => String(d.playerNo) === String(top.playerNo));
-  const teamShort = teamToShort(detail?.teamName1 ?? top.teamName1);
+  const detail = top.detail;
+  const teamShort = top.short;
   return {
     kind: "mvp-tracker",
     title: inPo ? "외국선수 PO MVP" : "외국선수 MVP 레이스",
     icon: "🌍",
-    main: `${top.kname} · ${teamShort}`,
-    value: top.advanced.per.toFixed(1),
-    unit: "PER",
+    main: `${top.entry.kname} · ${teamShort}`,
+    value: top.score.toFixed(1),
+    unit: "MVP",
     caption: detail
-      ? `${detail.points.toFixed(1)} PPG · ${detail.rebounds.toFixed(1)} RPG · ${detail.assists.toFixed(1)} APG`
-      : `PER ${top.advanced.per.toFixed(1)}`,
+      ? `${detail.points.toFixed(1)}P · ${detail.rebounds.toFixed(1)}R · ${detail.assists.toFixed(1)}A · PER ${top.entry.advanced.per.toFixed(1)} · 팀승률 ${(teamWinPct(teamShort) * 100).toFixed(0)}%`
+      : `종합 ${top.score.toFixed(1)}`,
     badge: "외국선수 1위",
-    href: `/players/${top.playerNo}`,
+    href: `/players/${top.entry.playerNo}`,
     teamShort,
     tone: "neon",
   };
