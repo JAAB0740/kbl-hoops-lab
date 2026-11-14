@@ -97,36 +97,55 @@ function Shield({ fill, stroke, fillOpacity }: ShapeProps) {
 }
 
 function SharpWing({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 날카로운 날개 (LG Sakers 독수리) — 각진 셰브론
+  // 날카로운 혜성 꼬리형 날개 (LG) — 우상단 돔 + 좌측 아래로 뻗은 톱니 깃털
+  const c = COMMON(fill, stroke, fillOpacity);
   return (
-    <polygon
-      points="-10,-6 2,-8 10,0 2,8 -10,6 -3,0"
-      {...COMMON(fill, stroke, fillOpacity)}
+    <path
+      d="M 9,-9 Q 2,-10 -8,-4 L -3,-2 L -9,0 L -2,2 L -9,5 L -1,6 L -8,9 Q 4,5 9,-2 Z"
+      {...c}
     />
   );
 }
 
 function RoundWing({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 둥근 날개 (가스공사 Pegasus) — 베지에 곡선
+  // 둥근 날개 + 소용돌이 꼬리 (가스공사 Pegasus 느낌)
+  const c = COMMON(fill, stroke, fillOpacity);
   return (
-    <path
-      d="M -10,0 C -8,-8 -2,-9 2,-5 C 6,-9 10,-6 10,0 C 10,6 6,9 2,5 C -2,9 -8,8 -10,0 Z"
-      {...COMMON(fill, stroke, fillOpacity)}
-    />
+    <g>
+      {/* 메인 날개 — 좌상단 포물선 → 우하단 두툼 */}
+      <path
+        d="M -9,-7 Q -2,-10 5,-5 Q 9,-1 8,5 Q 4,9 -1,7 Q -5,5 -7,0 Q -8,-4 -9,-7 Z"
+        {...c}
+      />
+      {/* 꼬리 소용돌이 — 작은 원형 궤적 */}
+      <path
+        d="M 6,5 Q 9,6 8,8 Q 6,9 5,7"
+        fill="none" stroke={stroke} strokeWidth={1.2}
+        vectorEffect="non-scaling-stroke"
+      />
+    </g>
   );
 }
 
 function KnightHelmet({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 기사 투구 — 돔 + 수평 슬릿 (서울 SK Knights)
+  // 기사 투구 — 플룸 + 돔 + 바이저 + 턱받침 (서울 SK Knights)
   const c = COMMON(fill, stroke, fillOpacity);
   return (
     <g>
+      {/* 플룸 — 우상단 뒤 깃털 */}
       <path
-        d="M -8,0 Q -8,-9 0,-9 Q 8,-9 8,0 L 8,7 Q 8,10 5,10 L -5,10 Q -8,10 -8,7 Z"
-        {...c}
+        d="M 4,-10 Q 10,-9 9,-3 Q 6,-6 4,-10 Z"
+        fill={stroke} fillOpacity={fillOpacity ?? 0.85}
       />
-      {/* 슬릿 — 배경색이 아닌 stroke 색 어둡게 */}
-      <rect x={-7} y={-1} width={14} height={2} fill={stroke} opacity={0.7} />
+      {/* 돔 */}
+      <path d="M -7,-1 Q -7,-9 0,-9 Q 7,-9 7,-1 L 7,2 L -7,2 Z" {...c} />
+      {/* 바이저 블록 */}
+      <rect
+        x={-7} y={-1} width={14} height={3.5}
+        fill={stroke} opacity={0.55}
+      />
+      {/* 턱받침 — 아래 사다리꼴 */}
+      <path d="M -6,2 L 6,2 L 4,8 L 0,10 L -4,8 Z" {...c} />
     </g>
   );
 }
