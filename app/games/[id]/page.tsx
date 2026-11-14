@@ -27,6 +27,7 @@ import { PlayerStandoutCards } from "@/components/PlayerStandoutCards";
 import { detectStandouts, detectPlayerStandouts } from "@/lib/standout";
 import { GamePreviewPoints } from "@/components/GamePreviewPoints";
 import { getTeamStyle, getTeamSplits, leagueStyleRange } from "@/lib/teamStyle";
+import { buildGameNarratives } from "@/lib/gameNarrative";
 
 /** "서울 SK 나이츠" → "서울 SK" — 3단어 이상일 때만 마지막 토큰(별명) 제거.
  *  외국팀(1~2단어, EASL 등) 은 그대로 두어 의미 손실 방지. */
@@ -284,6 +285,7 @@ export default function GameDetailPage({ params }: Props) {
               leagueRange={leagueStyleRange()}
               homeSplits={getTeamSplits(game.homeShort)}
               awaySplits={getTeamSplits(game.awayShort)}
+              narratives={buildGameNarratives(game.homeShort, game.awayShort, game.date, game.time)}
             />
           );
         })()}

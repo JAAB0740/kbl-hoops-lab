@@ -10,46 +10,28 @@ export interface TeamMarker {
   fill: string;
   stroke: string;
   strokeWidth: number;
-  /** 범례(legend)에 쓸 색 — 어두운 배경에서 안 보이는 fill(검정) 등 보정용 */
+  /** 범례 텍스트 + 아이콘 색 */
   legend: string;
-  /** 점 중앙 작은 dot — 보조 식별자 */
-  innerDot?: { color: string; rRatio: number };
-  /** 점 위 가로 띠 — 보조 식별자 */
-  hStripe?: { color: string; heightRatio: number };
 }
 
+/**
+ * 산점도 전용 팀 색 — TEAM_COLORS 글로벌과 분리.
+ * shape 로 1차 식별, 색으로 2차 식별. 범례 텍스트 색도 이 값 사용.
+ */
+const SCATTER_COLOR: Record<string, string> = {
+  KT:        "#FFFFFF", // 흰색 (별)
+  DB:        "#10B981", // 초록 (D)
+  삼성:      "#3B82F6", // 파랑 (번개)
+  소노:      "#7DD3FC", // 하늘색 (구름)
+  현대모비스: "#9CA3AF", // 회색 (태양)
+  KCC:       "#1E3A8A", // 짙은 네이비 (방패)
+  정관장:    "#A21CAF", // 자주색 (방패)
+  LG:        "#FACC15", // 노랑 (날카로운 날개)
+  가스공사:  "#3B82F6", // 파랑 (둥근 날개) — 삼성과 같은 hue, shape 로 구분
+  SK:        "#EF4444", // 빨강 (기사 투구)
+};
+
 export function getTeamMarker(short: string): TeamMarker {
-  switch (short) {
-    case "KT":
-      // 흰 테두리 + 검정 fill — 어두운 배경에서 역상 식별
-      return { fill: "#000000", stroke: "#FFFFFF", strokeWidth: 1.5, legend: "#FFFFFF" };
-    case "소노":
-      // 더 밝은 하늘색 (sky-300)
-      return { fill: "#7DD3FC", stroke: "#7DD3FC", strokeWidth: 1.5, legend: "#7DD3FC" };
-    case "KCC":
-      // 더 어두운 네이비 (blue-900)
-      return { fill: "#1E3A8A", stroke: "#1E3A8A", strokeWidth: 1.5, legend: "#1E3A8A" };
-    case "가스공사":
-      // 기존 시안 + 하얀 가로 줄무늬
-      return {
-        fill: "#06B6D4", stroke: "#06B6D4", strokeWidth: 1.5, legend: "#06B6D4",
-        hStripe: { color: "#FFFFFF", heightRatio: 0.2 },
-      };
-    case "SK":
-      // 기존 살몬 + 하얀 중앙점
-      return {
-        fill: "#F87171", stroke: "#F87171", strokeWidth: 1.5, legend: "#F87171",
-        innerDot: { color: "#FFFFFF", rRatio: 0.35 },
-      };
-    case "정관장":
-      // 기존 빨강 + 검정 중앙점
-      return {
-        fill: "#DC2626", stroke: "#DC2626", strokeWidth: 1.5, legend: "#DC2626",
-        innerDot: { color: "#000000", rRatio: 0.35 },
-      };
-    default: {
-      const c = TEAM_COLORS[short] ?? "#94a3b8";
-      return { fill: c, stroke: c, strokeWidth: 1.5, legend: c };
-    }
-  }
+  const c = SCATTER_COLOR[short] ?? TEAM_COLORS[short] ?? "#94a3b8";
+  return { fill: c, stroke: c, strokeWidth: 1.5, legend: c };
 }

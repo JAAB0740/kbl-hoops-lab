@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { PlayerInfo, PlayerSeasonAvg } from "@/lib/boxscores";
 import type { TeamStyle, TeamSplits } from "@/lib/teamStyle";
+import type { Narrative } from "@/lib/gameNarrative";
 
 type PlayerEntry = { player: PlayerInfo; avg: PlayerSeasonAvg };
 
@@ -18,6 +19,7 @@ export function GamePreviewPoints({
   homeSeason, awaySeason, homeRecent, awayRecent,
   homeStyle, awayStyle, leagueRange,
   homeSplits, awaySplits,
+  narratives,
 }: {
   homeShort: string; awayShort: string;
   homeColor: string; awayColor: string;
@@ -26,6 +28,7 @@ export function GamePreviewPoints({
   homeStyle: TeamStyle | null; awayStyle: TeamStyle | null;
   leagueRange: Record<keyof TeamStyle, { min: number; max: number }>;
   homeSplits: TeamSplits; awaySplits: TeamSplits;
+  narratives: Narrative[];
 }) {
   const homePick = pickHotCold(homeSeason, homeRecent);
   const awayPick = pickHotCold(awaySeason, awayRecent);
@@ -40,6 +43,26 @@ export function GamePreviewPoints({
         <h3 className="text-sm font-semibold text-ink-50">관전 포인트</h3>
         <span className="text-[12px] text-ink-500">경기 직전까지의 데이터</span>
       </div>
+
+      {narratives.length > 0 && (
+        <div className="mb-5 rounded-md border border-court-700/60 bg-court-800/40 p-3">
+          <div className="mb-1.5 text-[11px] uppercase tracking-wider text-ink-500">주요 포인트</div>
+          <ul className="space-y-1.5">
+            {narratives.map((n, i) => {
+              const dot = {
+                flame: "bg-flame-500", neon: "bg-neon-500", hoop: "bg-hoop-500",
+                buzzer: "bg-buzzer-500", ink: "bg-ink-500",
+              }[n.tone];
+              return (
+                <li key={i} className="flex items-start gap-2 text-[13px] text-ink-100">
+                  <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${dot}`} />
+                  <span>{n.text}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* 1) 핫/콜드 선수 */}

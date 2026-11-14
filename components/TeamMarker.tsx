@@ -1,12 +1,13 @@
 import { getTeamMarker } from "@/lib/teamMarker";
+import { TeamShape } from "@/components/TeamShapes";
 
 /**
- * 산점도용 팀 식별 마커 — 원 + 선택적 중앙 dot / 가로 띠.
+ * 산점도용 팀 마커 — 팀별 고유 shape (TeamShapes.tsx).
  *
- *   - CustomScatter (Recharts): `shape={(p) => <TeamDot team={t} cx={p.cx} cy={p.cy} r={...} />}`
- *   - TeamEfficiencyScatter (hand SVG): `<TeamDot team={t.shortName} cx={cx} cy={cy} r={r} />`
+ *   - CustomScatter (Recharts): `shape={(p) => <TeamDot team=... cx=... cy=... r=... />}`
+ *   - TeamEfficiencyScatter (hand SVG): `<TeamDot team=... cx=... cy=... r=... />`
  *
- * 띠는 r * 1.6 폭의 사각형을 원 위에 올려 clip 없이도 시각적으로 원 안에 들어감 (r ≤ 15px 가정).
+ * 모든 팀 shape 는 -10..+10 좌표계에 그려져 있으므로 `scale(r/10)` 로 리사이즈.
  */
 export function TeamDot({
   team, cx, cy, r, fillOpacity = 0.85,
@@ -19,29 +20,8 @@ export function TeamDot({
 }) {
   const m = getTeamMarker(team);
   return (
-    <g>
-      <circle
-        cx={cx} cy={cy} r={r}
-        fill={m.fill} fillOpacity={fillOpacity}
-        stroke={m.stroke} strokeWidth={m.strokeWidth}
-      />
-      {m.hStripe && (
-        // 세로 띠 — 폭 r*heightRatio, 길이 r*1.6 (원 안에 시각적으로 수납)
-        <rect
-          x={cx - (r * m.hStripe.heightRatio) / 2}
-          y={cy - r * 0.8}
-          width={r * m.hStripe.heightRatio}
-          height={r * 1.6}
-          fill={m.hStripe.color}
-        />
-      )}
-      {m.innerDot && (
-        <circle
-          cx={cx} cy={cy}
-          r={r * m.innerDot.rRatio}
-          fill={m.innerDot.color}
-        />
-      )}
+    <g transform={`translate(${cx},${cy}) scale(${r / 10})`}>
+      <TeamShape team={team} fill={m.fill} stroke={m.stroke} fillOpacity={fillOpacity} />
     </g>
   );
 }

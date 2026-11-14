@@ -15,6 +15,7 @@ import {
 import { type RawPlayer } from "@/lib/data";
 import { getTeamMarker } from "@/lib/teamMarker";
 import { TeamDot } from "@/components/TeamMarker";
+import { TeamShape } from "@/components/TeamShapes";
 
 // 선택 가능한 스탯 목록 (1차 스탯)
 type StatKey =
@@ -217,9 +218,25 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
               }}
             />
             <Legend
-              wrapperStyle={{ fontSize: 12, color: "#a1a1aa", paddingTop: 8 }}
-              iconType="circle"
-              iconSize={10}
+              wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
+              content={({ payload }) => (
+                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 pt-2">
+                  {(payload ?? []).map((p, i) => {
+                    const team = String(p.value);
+                    const m = getTeamMarker(team);
+                    return (
+                      <span key={`${team}-${i}`} className="inline-flex items-center gap-1">
+                        <svg width={14} height={14} viewBox="-10 -10 20 20">
+                          <TeamShape team={team} fill={m.fill} stroke={m.stroke} fillOpacity={0.85} />
+                        </svg>
+                        <span style={{ color: m.legend, fontSize: 12, fontWeight: 500 }}>
+                          {team}
+                        </span>
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
             />
             {[...byTeam.entries()].map(([team, items]) => {
               const marker = getTeamMarker(team);
