@@ -97,12 +97,11 @@ function Shield({ fill, stroke, fillOpacity }: ShapeProps) {
 }
 
 function SharpWing({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 날카로운 혜성 꼬리형 날개 (LG) — 우상단 돔 + 좌측 아래로 뻗은 톱니 깃털
-  const c = COMMON(fill, stroke, fillOpacity);
+  // 날카로운 셰브론 (LG Sakers) — 위쪽 뾰족, 초안에서 반시계 90° 회전한 형태
   return (
-    <path
-      d="M 9,-9 Q 2,-10 -8,-4 L -3,-2 L -9,0 L -2,2 L -9,5 L -1,6 L -8,9 Q 4,5 9,-2 Z"
-      {...c}
+    <polygon
+      points="-6,10 -8,-2 0,-10 8,-2 6,10 0,3"
+      {...COMMON(fill, stroke, fillOpacity)}
     />
   );
 }
@@ -128,24 +127,16 @@ function RoundWing({ fill, stroke, fillOpacity }: ShapeProps) {
 }
 
 function KnightHelmet({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 기사 투구 — 플룸 + 돔 + 바이저 + 턱받침 (서울 SK Knights)
+  // 기사 투구 (SK Knights) — 돔 + 역사다리꼴 턱받침 + 수평 슬릿
   const c = COMMON(fill, stroke, fillOpacity);
   return (
     <g>
-      {/* 플룸 — 우상단 뒤 깃털 */}
-      <path
-        d="M 4,-10 Q 10,-9 9,-3 Q 6,-6 4,-10 Z"
-        fill={stroke} fillOpacity={fillOpacity ?? 0.85}
-      />
-      {/* 돔 */}
-      <path d="M -7,-1 Q -7,-9 0,-9 Q 7,-9 7,-1 L 7,2 L -7,2 Z" {...c} />
-      {/* 바이저 블록 */}
-      <rect
-        x={-7} y={-1} width={14} height={3.5}
-        fill={stroke} opacity={0.55}
-      />
-      {/* 턱받침 — 아래 사다리꼴 */}
-      <path d="M -6,2 L 6,2 L 4,8 L 0,10 L -4,8 Z" {...c} />
+      {/* 돔 (반원) */}
+      <path d="M -8,2 Q -8,-9 0,-9 Q 8,-9 8,2 Z" {...c} />
+      {/* 턱받침 — 역사다리꼴 (위 넓고 아래 좁음) */}
+      <path d="M -8,2 L 8,2 L 3,10 L -3,10 Z" {...c} />
+      {/* 슬릿 — stroke 색으로 수평 밴드 */}
+      <rect x={-7} y={0} width={14} height={2.5} fill={stroke} opacity={0.7} />
     </g>
   );
 }
