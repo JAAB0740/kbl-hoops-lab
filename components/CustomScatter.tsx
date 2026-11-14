@@ -12,7 +12,9 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { TEAM_COLORS, type RawPlayer } from "@/lib/data";
+import { type RawPlayer } from "@/lib/data";
+import { getTeamMarker } from "@/lib/teamMarker";
+import { TeamDot } from "@/components/TeamMarker";
 
 // 선택 가능한 스탯 목록 (1차 스탯)
 type StatKey =
@@ -219,15 +221,27 @@ export function CustomScatter({ players }: { players: RawPlayer[] }) {
               iconType="circle"
               iconSize={10}
             />
-            {[...byTeam.entries()].map(([team, items]) => (
-              <Scatter
-                key={team}
-                name={team}
-                data={items}
-                fill={TEAM_COLORS[team] ?? "#94a3b8"}
-                fillOpacity={0.85}
-              />
-            ))}
+            {[...byTeam.entries()].map(([team, items]) => {
+              const marker = getTeamMarker(team);
+              return (
+                <Scatter
+                  key={team}
+                  name={team}
+                  data={items}
+                  // Scatter 의 fill 은 범례 아이콘 색으로만 사용 — 실제 점은 TeamDot 이 그림
+                  fill={marker.legend}
+                  fillOpacity={0.85}
+                  shape={(props: unknown) => {
+                    const p = props as { cx?: number; cy?: number; size?: number; node?: { r?: number } };
+                    const cx = p.cx ?? 0;
+                    const cy = p.cy ?? 0;
+                    // Recharts 는 버전에 따라 node.r (반경) 또는 size (픽셀²) 로 전달
+                    const r = p.node?.r ?? (p.size != null ? Math.sqrt(p.size / Math.PI) : 4);
+                    return <TeamDot team={team} cx={cx} cy={cy} r={r} />;
+                  }}
+                />
+              );
+            })}
           </ScatterChart>
         </ResponsiveContainer>
       </div>

@@ -1,5 +1,5 @@
 import type { FilteredTeam } from "@/lib/data";
-import { TEAM_COLORS } from "@/lib/data";
+import { TeamDot } from "@/components/TeamMarker";
 
 /**
  * Off Rtg × Def Rtg 산점도.
@@ -177,10 +177,9 @@ export function TeamEfficiencyScatter({
             {withAdv.map((t) => {
               const cx = x2px(t.advanced!.offRtg);
               const cy = y2px(t.advanced!.defRtg);
-              const color = TEAM_COLORS[t.shortName] ?? "#94a3b8";
               return (
                 <g key={t.code}>
-                  <circle cx={cx} cy={cy} r={r(t.wins)} fill={color} fillOpacity="0.55" stroke={color} strokeWidth="2" />
+                  <TeamDot team={t.shortName} cx={cx} cy={cy} r={r(t.wins)} fillOpacity={0.55} />
                   <text
                     x={cx}
                     y={cy - r(t.wins) - 6}
