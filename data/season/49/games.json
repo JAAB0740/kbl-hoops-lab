@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-15T07:30:04.545Z",
+  "fetchedAt": "2026-11-16T22:13:22.532Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -1048,9 +1048,9 @@
       "homeShort": "LG",
       "awayTeam": "수원 KT 소닉붐",
       "awayShort": "KT",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 83,
+      "awayScore": 81,
+      "status": "final",
       "stadium": "창원체육관"
     },
     {
@@ -1062,9 +1062,9 @@
       "homeShort": "KCC",
       "awayTeam": "대구 한국가스공사 페가수스",
       "awayShort": "가스공사",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 80,
+      "awayScore": 77,
+      "status": "final",
       "stadium": "부산사직체육관"
     },
     {
@@ -1076,9 +1076,9 @@
       "homeShort": "SK",
       "awayTeam": "울산 현대모비스 피버스",
       "awayShort": "현대모비스",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 92,
+      "awayScore": 76,
+      "status": "final",
       "stadium": "잠실학생체육관"
     },
     {
@@ -1602,7 +1602,7 @@
     {
       "gmkey": "S49G01N108",
       "date": "2026-12-20",
-      "time": "14:00",
+      "time": "16:30",
       "tag": "정규리그",
       "homeTeam": "고양 소노 스카이거너스",
       "homeShort": "소노",
