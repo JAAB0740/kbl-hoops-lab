@@ -107,22 +107,12 @@ function SharpWing({ fill, stroke, fillOpacity }: ShapeProps) {
 }
 
 function RoundWing({ fill, stroke, fillOpacity }: ShapeProps) {
-  // 둥근 날개 + 소용돌이 꼬리 (가스공사 Pegasus 느낌)
-  const c = COMMON(fill, stroke, fillOpacity);
+  // 둥근 날개 (가스공사 Pegasus) — 좌상단 포물선 → 우하단 두툼
   return (
-    <g>
-      {/* 메인 날개 — 좌상단 포물선 → 우하단 두툼 */}
-      <path
-        d="M -9,-7 Q -2,-10 5,-5 Q 9,-1 8,5 Q 4,9 -1,7 Q -5,5 -7,0 Q -8,-4 -9,-7 Z"
-        {...c}
-      />
-      {/* 꼬리 소용돌이 — 작은 원형 궤적 */}
-      <path
-        d="M 6,5 Q 9,6 8,8 Q 6,9 5,7"
-        fill="none" stroke={stroke} strokeWidth={1.2}
-        vectorEffect="non-scaling-stroke"
-      />
-    </g>
+    <path
+      d="M -9,-7 Q -2,-10 5,-5 Q 9,-1 8,5 Q 4,9 -1,7 Q -5,5 -7,0 Q -8,-4 -9,-7 Z"
+      {...COMMON(fill, stroke, fillOpacity)}
+    />
   );
 }
 
