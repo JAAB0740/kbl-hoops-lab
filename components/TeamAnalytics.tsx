@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   aggregateTeamRoundSet,
@@ -525,10 +526,13 @@ export function TeamAnalytics({
                               className="h-2 w-2 shrink-0 rounded-full"
                               style={{ backgroundColor: color }}
                             />
-                            <span className="truncate text-[16px] font-medium text-ink-50">
+                            <Link
+                              href={`/team/${encodeURIComponent(t.shortName)}`}
+                              className="truncate text-[16px] font-medium text-ink-50 hover:text-flame-400"
+                            >
                               <span className="md:hidden">{t.shortName}</span>
                               <span className="hidden md:inline">{t.name}</span>
-                            </span>
+                            </Link>
                           </div>
                         </td>
                         <td className="stat-num py-2.5 text-right text-ink-300">{t.games}</td>

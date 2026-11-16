@@ -512,7 +512,13 @@ function StatTable({
               </div>
             </td>
             <td className="w-[72px] max-w-[72px] py-2">
-              <span className="chip">{p.team || "-"}</span>
+              {p.team ? (
+                <Link href={`/team/${encodeURIComponent(p.team)}`} className="chip hover:border-flame-400 hover:text-flame-400">
+                  {p.team}
+                </Link>
+              ) : (
+                <span className="chip">-</span>
+              )}
             </td>
             {cols.map((c) => {
               const v =
@@ -640,7 +646,13 @@ function RegistryTable({
               </div>
             </td>
             <td className="w-[72px] max-w-[72px] py-2">
-              <span className="chip">{p.team || "-"}</span>
+              {p.team ? (
+                <Link href={`/team/${encodeURIComponent(p.team)}`} className="chip hover:border-flame-400 hover:text-flame-400">
+                  {p.team}
+                </Link>
+              ) : (
+                <span className="chip">-</span>
+              )}
             </td>
             {/* 구분 */}
             <td className="py-2">
