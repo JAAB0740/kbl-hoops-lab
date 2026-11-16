@@ -861,31 +861,34 @@ function TeamHeader({
       <div className="whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.1em] text-ink-500">
         {role}
       </div>
-      {/* 팀 로고 — 메인 식별 요소. 없으면 컬러 도트 폴백 */}
-      <div className="flex h-10 w-10 items-center justify-center md:h-12 md:w-12">
-        {logoSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={logoSrc}
-            alt={short}
-            className="h-full w-full object-contain"
-          />
-        ) : (
-          <div
-            className="h-full w-full rounded-full opacity-70"
-            style={{ backgroundColor: color }}
-          />
-        )}
-      </div>
-      {/* 팀명 — 지역 포함 풀네임(별명 제외). 모바일은 작게, 긴 이름은 공백 기준 wrap.
-          break-keep (word-break: keep-all) 로 한글이 글자 중간에서 끊기지 않게 →
-          "대구 한국가스공사" 는 공백 기준 "대구 / 한국가스공사" 두 줄로 분리. */}
-      <div
-        className="break-keep text-center text-[12px] font-bold leading-tight md:text-[15px]"
-        style={{ color }}
+      {/* 팀 로고 + 이름 — 팀 상세 페이지로 링크 */}
+      <Link
+        href={`/team/${encodeURIComponent(short)}`}
+        className="flex flex-col items-center gap-1 transition hover:opacity-80"
       >
-        {full}
-      </div>
+        <div className="flex h-10 w-10 items-center justify-center md:h-12 md:w-12">
+          {logoSrc ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={logoSrc}
+              alt={short}
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            <div
+              className="h-full w-full rounded-full opacity-70"
+              style={{ backgroundColor: color }}
+            />
+          )}
+        </div>
+        {/* 팀명 — 지역 포함 풀네임(별명 제외). break-keep 으로 한글 글자 중간에서 안 끊김. */}
+        <div
+          className="break-keep text-center text-[12px] font-bold leading-tight md:text-[15px]"
+          style={{ color }}
+        >
+          {full}
+        </div>
+      </Link>
       {/* 시즌 성적 — nowrap, 작게(#94a3b8). 압축 포맷: "9위 · 2승 7패" (승률 .222 생략) */}
       {standing && standing.rank != null && (
         <div

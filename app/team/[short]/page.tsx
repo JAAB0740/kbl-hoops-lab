@@ -4,6 +4,7 @@ import { STANDINGS, TEAM_COLORS } from "@/lib/data";
 import { ALL_GAMES, teamRecentForm, headToHead, fmtDate, gameToId } from "@/lib/gamesUtil";
 import { teamPlayersBefore } from "@/lib/boxscores";
 import { teamLogoSrc } from "@/lib/teamLogos";
+import { detectPlayerStandouts } from "@/lib/standout";
 import teamAdvJson from "../../../data/season/49/team-advanced.json";
 import teamFilteredJson from "../../../data/season/49/team-filtered.json";
 
@@ -84,6 +85,45 @@ export default function TeamDetailPage({ params }: Params) {
     .filter((g) => g.status === "final" && (g.homeShort === short || g.awayShort === short))
     .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time))
     .slice(0, 5);
+
+  // 다가오는 경기 top 3
+  const now = new Date().toISOString().slice(0, 10);
+  const upcoming = ALL_GAMES
+    .filter((g) => g.status !== "final" && g.date >= now && (g.homeShort === short || g.awayShort === short))
+    .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time))
+    .slice(0, 3);
+
+  // 지난 10경기 중 이 팀 선수의 standout 수집, intensity 상위 5개
+  const recent10Gmkeys = ALL_GAMES
+    .filter((g) => g.status === "final" && (g.homeShort === short || g.awayShort === short) && g.gmkey)
+    .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time))
+    .slice(0, 10);
+  const teamStandouts = recent10Gmkeys
+    .flatMap((g) => {
+      const items = detectPlayerStandouts(g.gmkey, 9).filter((s) => s.teamShort === short);
+      return items.map((s) => ({ ...s, date: g.date, oppShort: g.homeShort === short ? g.awayShort : g.homeShort, gmkey: g.gmkey! }));
+    })
+    .sort((a, b) => b.intensity - a.intensity)
+    .slice(0, 5);
+
+  // 리그 내 지표 순위
+  function leagueRank(valueFn: (r: AdvRow) => number, lowerBetter = false): number | null {
+    if (!adv) return null;
+    const sorted = [...ADV].sort((a, b) => lowerBetter ? valueFn(a) - valueFn(b) : valueFn(b) - valueFn(a));
+    return sorted.findIndex((r) => r.shortName === short) + 1 || null;
+  }
+  const rankOffRtg = leagueRank((r) => r.advanced.offRtg);
+  const rankDefRtg = leagueRank((r) => r.advanced.defRtg, true);
+  const rankNetRtg = leagueRank((r) => r.advanced.netRtg);
+  const rankPace = leagueRank((r) => r.advanced.pace);
+  const rankEfg = leagueRank((r) => r.advanced.efgPct);
+  const rankTov = leagueRank((r) => r.advanced.tovPct, true);
+
+  // 팀 리더 — PPG/APG/RPG 1위 (출장 5경기 이상)
+  const eligibleForLeader = roster.filter((p) => p.avg.games >= 5);
+  const topScorer = [...eligibleForLeader].sort((a, b) => b.avg.ppg - a.avg.ppg)[0];
+  const topAssist = [...eligibleForLeader].sort((a, b) => b.avg.apg - a.avg.apg)[0];
+  const topReb = [...eligibleForLeader].sort((a, b) => b.avg.rpg - a.avg.rpg)[0];
 
   const wins = row.wins, losses = row.losses, games = wins + losses;
   const winPct = games > 0 ? (wins / games) * 100 : 0;
@@ -188,22 +228,110 @@ export default function TeamDetailPage({ params }: Params) {
           {/* 어드밴스드 */}
           <section className="card p-5">
             <h3 className="mb-4 text-sm font-semibold text-ink-50">
-              어드밴스드 지표
+              어드밴스드 지표 <span className="ml-2 text-[11px] font-normal text-ink-500">리그 N위 표시</span>
             </h3>
             {adv ? (
               <div className="grid grid-cols-2 gap-3 text-[14px]">
-                <AdvStat label="ORtg" value={adv.advanced.offRtg.toFixed(1)} caption="공격 효율" />
-                <AdvStat label="DRtg" value={adv.advanced.defRtg.toFixed(1)} caption="수비 효율 (↓ 좋음)" />
-                <AdvStat label="eFG%" value={`${adv.advanced.efgPct.toFixed(1)}%`} caption="유효 야투율" />
-                <AdvStat label="TS%" value={`${adv.advanced.tsPct.toFixed(1)}%`} caption="진정 야투율" />
-                <AdvStat label="OReb%" value={`${adv.advanced.orebPct.toFixed(1)}%`} caption="공격 리바 점유율" />
-                <AdvStat label="TOV%" value={`${adv.advanced.tovPct.toFixed(1)}%`} caption="턴오버율 (↓ 좋음)" />
+                <AdvStat label="ORtg" value={adv.advanced.offRtg.toFixed(1)} caption="공격 효율" rank={rankOffRtg} />
+                <AdvStat label="DRtg" value={adv.advanced.defRtg.toFixed(1)} caption="수비 효율 (↓ 좋음)" rank={rankDefRtg} />
+                <AdvStat label="Net"  value={`${adv.advanced.netRtg >= 0 ? "+" : ""}${adv.advanced.netRtg.toFixed(1)}`} caption="순위 지표" rank={rankNetRtg} />
+                <AdvStat label="Pace" value={adv.advanced.pace.toFixed(1)} caption="경기 속도" rank={rankPace} />
+                <AdvStat label="eFG%" value={`${adv.advanced.efgPct.toFixed(1)}%`} caption="유효 야투율" rank={rankEfg} />
+                <AdvStat label="TOV%" value={`${adv.advanced.tovPct.toFixed(1)}%`} caption="턴오버율 (↓ 좋음)" rank={rankTov} />
               </div>
             ) : (
               <p className="text-[14px] text-ink-500">데이터 없음</p>
             )}
           </section>
         </div>
+
+        {/* 팀 리더 + 다가오는 경기 */}
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {(topScorer || topAssist || topReb) && (
+            <section className="card p-5">
+              <h3 className="mb-3 text-sm font-semibold text-ink-50">팀 리더</h3>
+              <div className="space-y-2">
+                <LeaderRow label="득점" tone="text-flame-400" entry={topScorer} key1="ppg" unit="PPG" />
+                <LeaderRow label="어시스트" tone="text-hoop-400" entry={topAssist} key1="apg" unit="APG" />
+                <LeaderRow label="리바운드" tone="text-neon-400" entry={topReb} key1="rpg" unit="RPG" />
+              </div>
+            </section>
+          )}
+
+          {upcoming.length > 0 && (
+            <section className="card p-5">
+              <h3 className="mb-3 text-sm font-semibold text-ink-50">다가오는 경기</h3>
+              <div className="space-y-1.5">
+                {upcoming.map((g) => {
+                  const isHome = g.homeShort === short;
+                  const oppShort = isHome ? g.awayShort : g.homeShort;
+                  const oppColor = TEAM_COLORS[oppShort] ?? "#94a3b8";
+                  return (
+                    <Link
+                      key={gameToId(g)}
+                      href={`/games/${gameToId(g)}`}
+                      className="flex items-center justify-between rounded-md border border-court-700 bg-court-800/40 px-3 py-2 text-[14px] transition hover:border-court-600"
+                    >
+                      <span className="text-ink-400">
+                        {fmtDate(g.date)} · {g.time} · {isHome ? "홈" : "원정"}
+                      </span>
+                      <span>
+                        <span className="text-ink-500">vs </span>
+                        <span className="font-semibold" style={{ color: oppColor }}>{oppShort}</span>
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+        </div>
+
+        {/* 지난 10경기 중 폭발적 활약 */}
+        {teamStandouts.length > 0 && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">최근 폭발적 활약</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                지난 10경기 · 시즌 평균 대비 Δ 큰 순
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+              {teamStandouts.map((s, i) => {
+                const deltaColor = s.goodOrBad === "good" ? "text-hoop-400" : "text-buzzer-400";
+                const arrow = s.direction === "up" ? "↑" : "↓";
+                return (
+                  <div
+                    key={`${s.playerNo}-${i}`}
+                    className="rounded-md border border-court-700/60 bg-court-800/40 p-3"
+                  >
+                    <div className="flex items-baseline justify-between gap-2">
+                      <Link
+                        href={`/players/${s.playerNo}`}
+                        className="text-[15px] font-semibold text-ink-50 hover:text-flame-400"
+                      >
+                        {s.pname}
+                      </Link>
+                      <Link
+                        href={`/games/${encodeURIComponent(s.gmkey)}`}
+                        className="text-[11px] text-ink-500 hover:text-ink-300"
+                      >
+                        {fmtDate(s.date)} vs {s.oppShort} →
+                      </Link>
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-2">
+                      <span className="stat-num text-xl font-bold text-ink-50">{s.fmtValue(s.gameValue)}</span>
+                      <span className={`stat-num text-[13px] font-semibold ${deltaColor}`}>
+                        {arrow} {s.fmtValue(Math.abs(s.delta))}
+                      </span>
+                      <span className="text-[11px] text-ink-500">{s.stat}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* 로스터 — 평균 */}
         {roster.length > 0 && (
@@ -349,12 +477,50 @@ function SplitRow({ label, row, color }: { label: string; row?: FilRow; color: s
   );
 }
 
-function AdvStat({ label, value, caption }: { label: string; value: string; caption: string }) {
+function AdvStat({ label, value, caption, rank }: { label: string; value: string; caption: string; rank?: number | null }) {
+  const rankChip = rank != null ? (rank <= 3 ? "text-flame-400" : rank >= 8 ? "text-buzzer-400" : "text-ink-400") : "text-ink-500";
   return (
     <div className="rounded-md border border-court-700/60 bg-court-800/40 p-3">
-      <div className="text-[12px] uppercase tracking-wider text-ink-500">{label}</div>
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[12px] uppercase tracking-wider text-ink-500">{label}</span>
+        {rank != null && (
+          <span className={`stat-num text-[11px] font-semibold ${rankChip}`}>리그 {rank}위</span>
+        )}
+      </div>
       <div className="stat-num mt-1 text-xl font-bold text-ink-50">{value}</div>
       <div className="mt-0.5 text-[11px] text-ink-500">{caption}</div>
+    </div>
+  );
+}
+
+function LeaderRow({
+  label, tone, entry, key1, unit,
+}: {
+  label: string;
+  tone: string;
+  entry?: { player: { pcode: string; pname: string }; avg: { ppg: number; apg: number; rpg: number; games: number } };
+  key1: "ppg" | "apg" | "rpg";
+  unit: string;
+}) {
+  if (!entry) {
+    return (
+      <div className="flex items-baseline justify-between text-[14px]">
+        <span className="w-20 text-ink-500">{label}</span>
+        <span className="text-ink-500">—</span>
+      </div>
+    );
+  }
+  return (
+    <div className="flex items-baseline justify-between gap-2 text-[14px]">
+      <span className="w-20 shrink-0 text-[12px] uppercase tracking-wider text-ink-500">{label}</span>
+      <Link href={`/players/${entry.player.pcode}`} className="flex-1 truncate text-ink-100 hover:text-flame-400">
+        {entry.player.pname}
+      </Link>
+      <span className="stat-num">
+        <span className={`font-semibold ${tone}`}>{entry.avg[key1].toFixed(1)}</span>
+        <span className="ml-0.5 text-[12px] text-ink-500">{unit}</span>
+        <span className="ml-1.5 text-[12px] text-ink-600">({entry.avg.games}G)</span>
+      </span>
     </div>
   );
 }

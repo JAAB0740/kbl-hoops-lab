@@ -375,11 +375,14 @@ function SeriesBox({
   })();
 
   return (
-    <button
-      type="button"
+    // 시리즈 카드 — div role="button" 로 변경 (내부 팀명 Link 중첩 가능하게)
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onSelect}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect?.(); } }}
       className={[
-        "group flex w-full flex-col gap-2 rounded-xl border bg-court-800/60 p-3 text-left transition-all",
+        "group flex w-full flex-col gap-2 rounded-xl border bg-court-800/60 p-3 text-left transition-all cursor-pointer",
         selected
           ? "border-flame-500/50 shadow-court-glow"
           : "border-court-700/80 hover:border-court-500 hover:bg-court-700/40",
@@ -420,7 +423,7 @@ function SeriesBox({
           🏆 {champion} 우승
         </div>
       )}
-    </button>
+    </div>
   );
 }
 
@@ -464,18 +467,20 @@ function TeamRow({
             ·
           </span>
         )}
-        <span
-          className={[
-            "truncate text-[16px]",
-            isTBD
-              ? "italic text-ink-500"
-              : isWinner
-                ? "font-semibold text-ink-50"
-                : "text-ink-300",
-          ].join(" ")}
-        >
-          {isTBD ? name : name}
-        </span>
+        {isTBD ? (
+          <span className="truncate text-[16px] italic text-ink-500">{name}</span>
+        ) : (
+          <Link
+            href={`/team/${encodeURIComponent(short)}`}
+            onClick={(e) => e.stopPropagation()}
+            className={[
+              "truncate text-[16px] hover:text-flame-400",
+              isWinner ? "font-semibold text-ink-50" : "text-ink-300",
+            ].join(" ")}
+          >
+            {name}
+          </Link>
+        )}
       </div>
       <span
         className={[
