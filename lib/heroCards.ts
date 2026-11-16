@@ -535,7 +535,7 @@ function buildTeamOnFire(status: SeasonStatus): HeroCard {
         ? `시즌 마무리 시점 ${lastN}경기 연속 승리`
         : `최근 ${lastN}경기 무패 — 모멘텀 최고조`,
       badge: isHistorical ? "시즌 종료" : "ACTIVE",
-      href: `/team?short=${encodeURIComponent(top.short)}`,
+      href: `/team/${encodeURIComponent(top.short)}`,
       teamShort: top.short,
       tone: "buzzer",
     };
@@ -557,7 +557,7 @@ function buildTeamOnFire(status: SeasonStatus): HeroCard {
       unit: "NetRtg",
       caption: `ORtg ${top.advanced.offRtg.toFixed(1)} · DRtg ${top.advanced.defRtg.toFixed(1)}`,
       badge: "효율",
-      href: `/team?short=${encodeURIComponent(top.shortName)}`,
+      href: `/team/${encodeURIComponent(top.shortName)}`,
       teamShort: top.shortName,
       tone: "flame",
     };
