@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T03:42:45.433Z",
+  "fetchedAt": "2026-11-17T21:13:55.562Z",
   "sourceFile": "https://api.kbl.or.kr/match/list?seasonCode=49&fromDate=20261001&toDate=20270630",
   "totalGames": 282,
   "games": [
@@ -1090,9 +1090,9 @@
       "homeShort": "DB",
       "awayTeam": "안양 정관장 레드부스터스",
       "awayShort": "정관장",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "scheduled",
+      "homeScore": 77,
+      "awayScore": 82,
+      "status": "final",
       "stadium": "원주DB프로미아레나"
     },
     {
