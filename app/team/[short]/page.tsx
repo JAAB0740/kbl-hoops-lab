@@ -8,6 +8,14 @@ import { detectPlayerStandouts } from "@/lib/standout";
 import { getTeamShotChart } from "@/lib/shotChartsServer";
 import { AreaShotChart } from "@/components/AreaShotChart";
 import { HexShotMap } from "@/components/HexShotMap";
+import { TeamFourFactors } from "@/components/TeamFourFactors";
+import { TeamReboundBars } from "@/components/TeamReboundBars";
+import { TeamShotProfile } from "@/components/TeamShotProfile";
+import { TeamRoundTrend } from "@/components/TeamRoundTrend";
+import { TeamClutchCompare } from "@/components/TeamClutchCompare";
+import { CollapsibleSection } from "@/components/CollapsibleSection";
+import { getTeamSeasonData } from "@/lib/teamSeasonData";
+import { getCurrentSeason } from "@/lib/kblSeason";
 import teamAdvJson from "../../../data/season/49/team-advanced.json";
 import teamFilteredJson from "../../../data/season/49/team-filtered.json";
 
@@ -122,6 +130,48 @@ export default function TeamDetailPage({ params }: Params) {
   const rankEfg = leagueRank((r) => r.advanced.efgPct);
   const rankTov = leagueRank((r) => r.advanced.tovPct, true);
 
+  // 3점 의존도 랭킹 — filAll.stats 의 threeAtt / fgAtt 비율
+  const threeRateRank = (() => {
+    if (!filAll) return null;
+    const rows = FIL_ALL
+      .filter((r) => r.stats && (r.stats as unknown as { fgAtt: number }).fgAtt > 0)
+      .map((r) => {
+        const s = r.stats as unknown as { threeAtt: number; fgAtt: number };
+        return { short: r.shortName, rate: s.threeAtt / s.fgAtt };
+      })
+      .sort((a, b) => b.rate - a.rate);
+    const idx = rows.findIndex((r) => r.short === short);
+    return idx >= 0 ? { rank: idx + 1, rate: rows[idx].rate } : null;
+  })();
+
+  // ─ 팀 identity 한 줄 ─ ORtg/DRtg/Pace/3점 비중 랭킹을 조합
+  function identityLine(): string | null {
+    if (!adv) return null;
+    const parts: string[] = [];
+    const oTop = rankOffRtg != null && rankOffRtg <= 3;
+    const dTop = rankDefRtg != null && rankDefRtg <= 3;
+    const oBot = rankOffRtg != null && rankOffRtg >= 8;
+    const dBot = rankDefRtg != null && rankDefRtg >= 8;
+    if (oTop && dTop) parts.push("리그 정상급 양면 팀");
+    else if (oTop) parts.push("공격 특화");
+    else if (dTop) parts.push("수비 특화");
+    else if (oBot && dBot) parts.push("재건기 하위권");
+    else if (adv.advanced.netRtg >= 0) parts.push("밸런스 상위권");
+    else parts.push("성장통 중위권");
+    if (rankPace != null && rankPace <= 3) parts.push("빠른 템포");
+    else if (rankPace != null && rankPace >= 8) parts.push("느린 템포");
+    if (threeRateRank && threeRateRank.rank <= 3) {
+      parts.push(`3점 의존 (${(threeRateRank.rate * 100).toFixed(0)}%)`);
+    } else if (threeRateRank && threeRateRank.rank >= 8) {
+      parts.push("페인트 집중");
+    }
+    return parts.join(" · ");
+  }
+  const identity = identityLine();
+
+  // 팀 탭 재사용 — 정규시즌 전체 filters (분석 섹션에 그대로 공급)
+  const seasonFilters = getTeamSeasonData(getCurrentSeason().code).filters;
+
   // 팀 슛 차트 — 로스터 pcode 합산
   const teamShotChart = getTeamShotChart(roster.map((p) => p.player.pcode), short);
 
@@ -179,6 +229,11 @@ export default function TeamDetailPage({ params }: Params) {
                   </>
                 )}
               </div>
+              {identity && (
+                <p className="mt-2 text-[14px] font-medium" style={{ color }}>
+                  {identity}
+                </p>
+              )}
             </div>
             {/* 최근 10경기 폼 */}
             <div className="flex flex-col items-end gap-1">
@@ -306,6 +361,31 @@ export default function TeamDetailPage({ params }: Params) {
               title="팀 헥스빈 — 시도량 × 효율"
               subtitle="크기 = 시도수, 색 = 리그 zone 평균 대비 FG%"
             />
+          </div>
+        )}
+
+        {/* 슛 프로필 — 2P/3P/FT 비중 (리그 10팀 비교) */}
+        {seasonFilters.all.length > 0 && (
+          <CollapsibleSection title="슛 프로필 (리그 비교)">
+            <TeamShotProfile teams={seasonFilters.all} />
+          </CollapsibleSection>
+        )}
+
+        {/* 팀 탭 재사용 — 4팩터 / 리바운드 / 라운드 추이 / 클러치 */}
+        {seasonFilters.all.length > 0 && (
+          <div className="mt-6 space-y-6">
+            <CollapsibleSection title="4팩터 분석 (리그 비교)" defaultOpen>
+              <TeamFourFactors teams={seasonFilters.all} />
+            </CollapsibleSection>
+            <CollapsibleSection title="리바운드 분해 (리그 비교)">
+              <TeamReboundBars teams={seasonFilters.all} />
+            </CollapsibleSection>
+            <CollapsibleSection title="라운드별 팀 추이">
+              <TeamRoundTrend filters={seasonFilters} />
+            </CollapsibleSection>
+            <CollapsibleSection title="클러치 vs 시즌 비교">
+              <TeamClutchCompare baseline={seasonFilters.all} />
+            </CollapsibleSection>
           </div>
         )}
 
