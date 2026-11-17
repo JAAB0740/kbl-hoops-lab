@@ -247,3 +247,67 @@ export function getPlayerShotChartForSeason(
   if (!pcode) return null;
   return buildPlayerCache(seasonCode).get(pcode) ?? null;
 }
+
+/** 로스터 pcode 묶음 → 팀 누적 슛 차트. 선수 차트의 shots 를 합쳐 재집계. */
+export function getTeamShotChart(
+  pcodes: string[],
+  teamKey = "team",
+): PlayerShotChart | null {
+  if (!pcodes.length) return null;
+  const cache = buildPlayerCache(getCurrentSeason().code);
+  const parts = pcodes.map((p) => cache.get(p)).filter((x): x is PlayerShotChart => !!x);
+  if (!parts.length) return null;
+
+  const leagueZoneAvg = parts[0].leagueZoneAvg;
+  const leagueZoneDetailedAvg = parts[0].leagueZoneDetailedAvg;
+
+  const allShots: Shot[] = parts.flatMap((p) => p.shots);
+  if (!allShots.length) return null;
+
+  const byZone: Record<ShotZone, { zone: ShotZone; made: number; att: number; pct: number }> = {
+    at_rim:   { zone: "at_rim",   made: 0, att: 0, pct: 0 },
+    paint:    { zone: "paint",    made: 0, att: 0, pct: 0 },
+    midrange: { zone: "midrange", made: 0, att: 0, pct: 0 },
+    corner_3: { zone: "corner_3", made: 0, att: 0, pct: 0 },
+    wing_3:   { zone: "wing_3",   made: 0, att: 0, pct: 0 },
+    top_3:    { zone: "top_3",    made: 0, att: 0, pct: 0 },
+  };
+  const byZoneDetailed = Object.fromEntries(
+    ZONE_DETAILED_ORDER.map((z) => [z, { zone: z, made: 0, att: 0, pct: 0 }]),
+  ) as Record<ShotZoneDetailed, { zone: ShotZoneDetailed; made: number; att: number; pct: number }>;
+  let totalMade = 0;
+  const gameSet = new Set<string>();
+  for (const s of allShots) {
+    byZone[s.zone].att++;
+    const zd = classifyZoneDetailed(s.x, s.y);
+    byZoneDetailed[zd].att++;
+    gameSet.add(s.gmkey);
+    if (s.made) {
+      byZone[s.zone].made++;
+      byZoneDetailed[zd].made++;
+      totalMade++;
+    }
+  }
+  for (const z of Object.keys(byZone) as ShotZone[]) {
+    const zs = byZone[z];
+    zs.pct = zs.att > 0 ? (zs.made / zs.att) * 100 : 0;
+  }
+  for (const z of Object.keys(byZoneDetailed) as ShotZoneDetailed[]) {
+    const zs = byZoneDetailed[z];
+    zs.pct = zs.att > 0 ? (zs.made / zs.att) * 100 : 0;
+  }
+  const hexBins = computeHexBins(allShots, leagueZoneAvg);
+  return {
+    pcode: `team:${teamKey}`,
+    totalShots: allShots.length,
+    totalMade,
+    fgPct: (totalMade / allShots.length) * 100,
+    byZone,
+    byZoneDetailed,
+    gamesWithShots: gameSet.size,
+    shots: allShots,
+    hexBins,
+    leagueZoneAvg,
+    leagueZoneDetailedAvg,
+  };
+}

@@ -5,6 +5,9 @@ import { ALL_GAMES, teamRecentForm, headToHead, fmtDate, gameToId } from "@/lib/
 import { teamPlayersBefore } from "@/lib/boxscores";
 import { teamLogoSrc } from "@/lib/teamLogos";
 import { detectPlayerStandouts } from "@/lib/standout";
+import { getTeamShotChart } from "@/lib/shotChartsServer";
+import { AreaShotChart } from "@/components/AreaShotChart";
+import { HexShotMap } from "@/components/HexShotMap";
 import teamAdvJson from "../../../data/season/49/team-advanced.json";
 import teamFilteredJson from "../../../data/season/49/team-filtered.json";
 
@@ -118,6 +121,9 @@ export default function TeamDetailPage({ params }: Params) {
   const rankPace = leagueRank((r) => r.advanced.pace);
   const rankEfg = leagueRank((r) => r.advanced.efgPct);
   const rankTov = leagueRank((r) => r.advanced.tovPct, true);
+
+  // 팀 슛 차트 — 로스터 pcode 합산
+  const teamShotChart = getTeamShotChart(roster.map((p) => p.player.pcode), short);
 
   // 팀 리더 — PPG/APG/RPG 1위 (출장 5경기 이상)
   const eligibleForLeader = roster.filter((p) => p.avg.games >= 5);
@@ -287,11 +293,27 @@ export default function TeamDetailPage({ params }: Params) {
           )}
         </div>
 
-        {/* 지난 10경기 중 폭발적 활약 */}
+        {/* 팀 슛 차트 — 로스터 합산 */}
+        {teamShotChart && teamShotChart.totalShots > 0 && (
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            <AreaShotChart
+              chart={teamShotChart}
+              title="팀 슛 차트 — 방사형 14존"
+              subtitle="로스터 합산 · 색은 zone 별 리그 평균 대비 ±%p"
+            />
+            <HexShotMap
+              chart={teamShotChart}
+              title="팀 헥스빈 — 시도량 × 효율"
+              subtitle="크기 = 시도수, 색 = 리그 zone 평균 대비 FG%"
+            />
+          </div>
+        )}
+
+        {/* 최근 눈에 띄는 선수 */}
         {teamStandouts.length > 0 && (
           <section className="card mt-6 p-5">
             <div className="mb-3">
-              <h3 className="text-sm font-semibold text-ink-50">최근 폭발적 활약</h3>
+              <h3 className="text-sm font-semibold text-ink-50">최근 눈에 띄는 선수</h3>
               <p className="mt-0.5 text-[13px] text-ink-500">
                 지난 10경기 · 시즌 평균 대비 Δ 큰 순
               </p>
