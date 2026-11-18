@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-11-18T02:54:43.368Z",
+  "fetchedAt": "2026-11-18T15:41:58.071Z",
   "source": "https://api.kbl.or.kr/match/{gmkey}",
-  "total": 364,
+  "total": 365,
   "byGmkey": {
     "S47G01N1": {
       "home": [
@@ -6980,6 +6980,25 @@
       "crowds": 3118,
       "gameStart": "1900",
       "gameEnd": "2102"
+    },
+    "S49G01N75": {
+      "home": [
+        22,
+        28,
+        23,
+        21
+      ],
+      "away": [
+        23,
+        20,
+        21,
+        24
+      ],
+      "homeEq": [],
+      "awayEq": [],
+      "crowds": 2617,
+      "gameStart": "1900",
+      "gameEnd": "2107"
     }
   }
 }
