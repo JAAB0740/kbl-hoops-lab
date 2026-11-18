@@ -8,16 +8,9 @@ import { detectPlayerStandouts } from "@/lib/standout";
 import { getTeamShotChart } from "@/lib/shotChartsServer";
 import { AreaShotChart } from "@/components/AreaShotChart";
 import { HexShotMap } from "@/components/HexShotMap";
-import { TeamFourFactors } from "@/components/TeamFourFactors";
-import { TeamReboundBars } from "@/components/TeamReboundBars";
-import { TeamShotProfile } from "@/components/TeamShotProfile";
-import { TeamRoundTrend } from "@/components/TeamRoundTrend";
-import { TeamClutchCompare } from "@/components/TeamClutchCompare";
-import { CollapsibleSection } from "@/components/CollapsibleSection";
-import { getTeamSeasonData } from "@/lib/teamSeasonData";
-import { getCurrentSeason } from "@/lib/kblSeason";
 import teamAdvJson from "../../../data/season/49/team-advanced.json";
 import teamFilteredJson from "../../../data/season/49/team-filtered.json";
+import clutchJson from "../../../data/season/49/clutch.json";
 
 interface AdvRow {
   shortName: string;
@@ -38,7 +31,14 @@ interface FilRow {
   wins: number;
   losses: number;
   winPct?: number;
-  stats: { points: number; margin?: number };
+  stats: {
+    points: number; margin?: number;
+    fgMade?: number; fgAtt?: number; fgPct?: number;
+    threeMade?: number; threeAtt?: number; threePct?: number;
+    ftMade?: number; ftAtt?: number; ftPct?: number;
+    oReb?: number; dReb?: number; rebounds?: number;
+    turnovers?: number; assists?: number;
+  };
 }
 
 const ADV: AdvRow[] = (teamAdvJson as { filters?: { all?: AdvRow[] } }).filters?.all ?? [];
@@ -46,6 +46,38 @@ const FIL_ALL: FilRow[] = (teamFilteredJson as { filters?: { all?: FilRow[] } })
 const FIL_HOME: FilRow[] = (teamFilteredJson as { filters?: { home?: FilRow[] } }).filters?.home ?? [];
 const FIL_AWAY: FilRow[] = (teamFilteredJson as { filters?: { away?: FilRow[] } }).filters?.away ?? [];
 const FIL_Q4: FilRow[] = (teamFilteredJson as { filters?: { q4?: FilRow[] } }).filters?.q4 ?? [];
+
+// ─ 라운드별 데이터 (팀 자체 추이용) ─
+interface RoundRow {
+  shortName: string;
+  games: number;
+  wins: number;
+  losses: number;
+  winPct: number;
+  stats: {
+    points: number; fgPct: number; threePct: number;
+    fgMade: number; fgAtt: number; threeMade: number; threeAtt: number;
+  };
+  advanced?: { offRtg: number; defRtg: number; netRtg: number; efgPct: number };
+}
+const ROUND_KEYS = ["r1", "r2", "r3", "r4", "r5", "r6"] as const;
+const FIL_ROUNDS: Record<(typeof ROUND_KEYS)[number], RoundRow[]> = Object.fromEntries(
+  ROUND_KEYS.map((k) => [
+    k,
+    ((teamFilteredJson as { filters?: Partial<Record<string, RoundRow[]>> }).filters?.[k] ?? []),
+  ]),
+) as Record<(typeof ROUND_KEYS)[number], RoundRow[]>;
+
+// ─ 클러치 (선수 단위) ─
+interface ClutchPlayer {
+  teamName4: string; games: number; wins: number; losses: number;
+  points: number;
+  fgMade: number; fgAtt: number; threeMade: number; threeAtt: number;
+  ftMade: number; ftAtt: number;
+  turnovers: number;
+}
+const CLUTCH_PLAYERS: ClutchPlayer[] =
+  (clutchJson as { players?: { regular?: ClutchPlayer[] } }).players?.regular ?? [];
 
 interface Params { params: { short: string } }
 
@@ -169,11 +201,145 @@ export default function TeamDetailPage({ params }: Params) {
   }
   const identity = identityLine();
 
-  // 팀 탭 재사용 — 정규시즌 전체 filters (분석 섹션에 그대로 공급)
-  const seasonFilters = getTeamSeasonData(getCurrentSeason().code).filters;
-
   // 팀 슛 차트 — 로스터 pcode 합산
   const teamShotChart = getTeamShotChart(roster.map((p) => p.player.pcode), short);
+
+  // ─── 팀 내 세부 지표 랭킹 헬퍼 ───
+  function filRank(valueFn: (r: FilRow) => number, lowerBetter = false): number | null {
+    if (!filAll) return null;
+    const sorted = [...FIL_ALL].sort((a, b) => lowerBetter ? valueFn(a) - valueFn(b) : valueFn(b) - valueFn(a));
+    const idx = sorted.findIndex((r) => r.shortName === short);
+    return idx >= 0 ? idx + 1 : null;
+  }
+
+  // ─ 슛 프로필 (team-specific) ─
+  const shotProfile = (() => {
+    if (!filAll?.stats) return null;
+    const s = filAll.stats;
+    const fgAtt = s.fgAtt ?? 0;
+    const threeAtt = s.threeAtt ?? 0;
+    const ftAtt = s.ftAtt ?? 0;
+    const twoAtt = Math.max(0, fgAtt - threeAtt);
+    const total = twoAtt + threeAtt + ftAtt;
+    if (total <= 0) return null;
+    const pctAttRate = (fn: (r: FilRow) => number) => {
+      const sorted = [...FIL_ALL]
+        .filter((r) => (r.stats.fgAtt ?? 0) > 0)
+        .sort((a, b) => fn(b) - fn(a));
+      const idx = sorted.findIndex((r) => r.shortName === short);
+      return idx >= 0 ? idx + 1 : null;
+    };
+    const twoShare  = (twoAtt / total) * 100;
+    const threeShare = (threeAtt / total) * 100;
+    const ftShare   = (ftAtt / total) * 100;
+    const rankTwo = pctAttRate((r) => {
+      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
+      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
+      return total > 0 ? ((a - t) / total) : 0;
+    });
+    const rankThree = pctAttRate((r) => {
+      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
+      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
+      return total > 0 ? (t / total) : 0;
+    });
+    const rankFt = pctAttRate((r) => {
+      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
+      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
+      return total > 0 ? (f / total) : 0;
+    });
+    return { twoShare, threeShare, ftShare, total, rankTwo, rankThree, rankFt, fgAtt, threeAtt, ftAtt };
+  })();
+
+  // ─ 4팩터 (team-specific) ─
+  const fourFactors = (() => {
+    if (!adv || !filAll?.stats) return null;
+    const fga = filAll.stats.fgAtt ?? 0;
+    const fta = filAll.stats.ftAtt ?? 0;
+    const ftaRate = fga > 0 ? (fta / fga) * 100 : 0;
+    return {
+      efg: adv.advanced.efgPct,  rankEfg: leagueRank((r) => r.advanced.efgPct),
+      tov: adv.advanced.tovPct,  rankTov: leagueRank((r) => r.advanced.tovPct, true),
+      oreb: adv.advanced.orebPct, rankOreb: leagueRank((r) => r.advanced.orebPct),
+      ftaRate, rankFta: filRank((r) => {
+        const a = r.stats.fgAtt ?? 0; const f = r.stats.ftAtt ?? 0;
+        return a > 0 ? (f / a) : 0;
+      }),
+    };
+  })();
+
+  // ─ 리바운드 (team-specific) ─
+  const rebBlock = (() => {
+    if (!filAll?.stats) return null;
+    const s = filAll.stats;
+    const oReb = s.oReb ?? 0;
+    const dReb = s.dReb ?? 0;
+    const total = oReb + dReb;
+    return {
+      oReb, dReb, total,
+      rankO: filRank((r) => r.stats.oReb ?? 0),
+      rankD: filRank((r) => r.stats.dReb ?? 0),
+      rankT: filRank((r) => (r.stats.oReb ?? 0) + (r.stats.dReb ?? 0)),
+      orebPct: adv?.advanced.orebPct, drebPct: adv?.advanced.drebPct, rebPct: adv?.advanced.rebPct,
+    };
+  })();
+
+  // ─ 클러치 (team-specific) ─ 승률 ≤5점차 game-level + 선수 slash 합산
+  const clutchBlock = (() => {
+    if (!filAll) return null;
+    let cWins = 0, cLosses = 0;
+    for (const g of ALL_GAMES) {
+      if (g.status !== "final" || g.homeScore == null || g.awayScore == null) continue;
+      if (Math.abs(g.homeScore - g.awayScore) > 5) continue;
+      const isHome = g.homeShort === short, isAway = g.awayShort === short;
+      if (!isHome && !isAway) continue;
+      const homeWon = g.homeScore > g.awayScore;
+      const teamWon = (isHome && homeWon) || (isAway && !homeWon);
+      if (teamWon) cWins++; else cLosses++;
+    }
+    const cGames = cWins + cLosses;
+    if (cGames === 0) return null;
+    const rows = CLUTCH_PLAYERS.filter((p) => p.teamName4 === short);
+    const sum = (pick: (r: ClutchPlayer) => number) => rows.reduce((n, r) => n + pick(r) * r.games, 0);
+    const totFgMade = sum((r) => r.fgMade);
+    const totFgAtt  = sum((r) => r.fgAtt);
+    const tot3Made  = sum((r) => r.threeMade);
+    const tot3Att   = sum((r) => r.threeAtt);
+    const totFtMade = sum((r) => r.ftMade);
+    const totFtAtt  = sum((r) => r.ftAtt);
+    const totPts    = sum((r) => r.points);
+    const realMade = totFgMade + tot3Made;
+    const realAtt  = totFgAtt + tot3Att;
+    const clutchWinPct = cWins / cGames;
+    const clutchFgPct = realAtt > 0 ? (realMade / realAtt) * 100 : 0;
+    const clutch3Pct = tot3Att > 0 ? (tot3Made / tot3Att) * 100 : 0;
+    const clutchFtPct = totFtAtt > 0 ? (totFtMade / totFtAtt) * 100 : 0;
+    const clutchPPG = totPts / cGames;
+    const regWinPct = filAll.winPct ?? (filAll.games > 0 ? filAll.wins / filAll.games : 0);
+    return {
+      cGames, cWins, cLosses,
+      clutchWinPct, dWinPct: clutchWinPct - regWinPct,
+      clutchFgPct, dFgPct: clutchFgPct - (filAll.stats.fgPct ?? 0),
+      clutch3Pct,  d3Pct:  clutch3Pct  - (filAll.stats.threePct ?? 0),
+      clutchFtPct, dFtPct: clutchFtPct - (filAll.stats.ftPct ?? 0),
+      clutchPPG,   dPPG:   clutchPPG   - (filAll.stats.points ?? 0),
+    };
+  })();
+
+  // ─ 라운드별 추이 (team-specific) ─ r1~r6 그 팀 row 만
+  const roundTrend = ROUND_KEYS.map((k, i) => {
+    const row = FIL_ROUNDS[k].find((r) => r.shortName === short);
+    if (!row || row.games === 0) return { round: i + 1, has: false as const };
+    return {
+      round: i + 1, has: true as const,
+      games: row.games, wins: row.wins, losses: row.losses,
+      winPct: row.winPct,
+      netRtg: row.advanced?.netRtg ?? null,
+      offRtg: row.advanced?.offRtg ?? null,
+      defRtg: row.advanced?.defRtg ?? null,
+      efgPct: row.advanced?.efgPct ?? row.stats.fgPct,
+      points: row.stats.points,
+    };
+  });
 
   // 팀 리더 — PPG/APG/RPG 1위 (출장 5경기 이상)
   const eligibleForLeader = roster.filter((p) => p.avg.games >= 5);
@@ -348,6 +514,31 @@ export default function TeamDetailPage({ params }: Params) {
           )}
         </div>
 
+        {/* 슛 프로필 — 이 팀의 2P/3P/FT 시도 비중 + 각 리그 랭킹 */}
+        {shotProfile && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">슛 프로필</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                시도 비중 · 경기당 총 {shotProfile.total.toFixed(1)}회 · 괄호는 리그 N위
+              </p>
+            </div>
+            {/* 100% stacked bar */}
+            <div className="mb-3 h-4 w-full overflow-hidden rounded bg-court-700/40">
+              <div className="flex h-full w-full">
+                <div className="h-full bg-neon-500/80"   style={{ width: `${shotProfile.twoShare}%` }}   title={`2점 ${shotProfile.twoShare.toFixed(1)}%`} />
+                <div className="h-full bg-buzzer-500/80" style={{ width: `${shotProfile.threeShare}%` }} title={`3점 ${shotProfile.threeShare.toFixed(1)}%`} />
+                <div className="h-full bg-flame-400/80"  style={{ width: `${shotProfile.ftShare}%` }}    title={`FT ${shotProfile.ftShare.toFixed(1)}%`} />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-[14px]">
+              <ProfileTile label="2점 비중"   value={`${shotProfile.twoShare.toFixed(1)}%`}   rank={shotProfile.rankTwo}   tone="text-neon-400"   sub={`${shotProfile.fgAtt - shotProfile.threeAtt < 0 ? 0 : (shotProfile.fgAtt - shotProfile.threeAtt).toFixed(1)}회`} />
+              <ProfileTile label="3점 의존도" value={`${shotProfile.threeShare.toFixed(1)}%`} rank={shotProfile.rankThree} tone="text-buzzer-400" sub={`${shotProfile.threeAtt.toFixed(1)}회`} />
+              <ProfileTile label="자유투 의존" value={`${shotProfile.ftShare.toFixed(1)}%`}  rank={shotProfile.rankFt}    tone="text-flame-400"  sub={`${shotProfile.ftAtt.toFixed(1)}회`} />
+            </div>
+          </section>
+        )}
+
         {/* 팀 슛 차트 — 로스터 합산 */}
         {teamShotChart && teamShotChart.totalShots > 0 && (
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
@@ -364,29 +555,142 @@ export default function TeamDetailPage({ params }: Params) {
           </div>
         )}
 
-        {/* 슛 프로필 — 2P/3P/FT 비중 (리그 10팀 비교) */}
-        {seasonFilters.all.length > 0 && (
-          <CollapsibleSection title="슛 프로필 (리그 비교)">
-            <TeamShotProfile teams={seasonFilters.all} />
-          </CollapsibleSection>
+        {/* 4팩터 — 이 팀만 + 각 리그 랭킹 + 간단 설명 */}
+        {fourFactors && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">4팩터 분석</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                Dean Oliver 4팩터 · 괄호는 리그 N위
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <FactorTile label="eFG%"     value={`${fourFactors.efg.toFixed(1)}%`}     rank={fourFactors.rankEfg}  caption="슈팅 효율 (3점 가중)" />
+              <FactorTile label="TOV%"     value={`${fourFactors.tov.toFixed(1)}%`}     rank={fourFactors.rankTov}  caption="턴오버 비율 (↓ 좋음)" />
+              <FactorTile label="OREB%"    value={`${fourFactors.oreb.toFixed(1)}%`}    rank={fourFactors.rankOreb} caption="공격 리바운드 획득률" />
+              <FactorTile label="FTA Rate" value={`${fourFactors.ftaRate.toFixed(1)}%`} rank={fourFactors.rankFta}  caption="FT/FG 자유투 의존도" />
+            </div>
+          </section>
         )}
 
-        {/* 팀 탭 재사용 — 4팩터 / 리바운드 / 라운드 추이 / 클러치 */}
-        {seasonFilters.all.length > 0 && (
-          <div className="mt-6 space-y-6">
-            <CollapsibleSection title="4팩터 분석 (리그 비교)" defaultOpen>
-              <TeamFourFactors teams={seasonFilters.all} />
-            </CollapsibleSection>
-            <CollapsibleSection title="리바운드 분해 (리그 비교)">
-              <TeamReboundBars teams={seasonFilters.all} />
-            </CollapsibleSection>
-            <CollapsibleSection title="라운드별 팀 추이">
-              <TeamRoundTrend filters={seasonFilters} />
-            </CollapsibleSection>
-            <CollapsibleSection title="클러치 vs 시즌 비교">
-              <TeamClutchCompare baseline={seasonFilters.all} />
-            </CollapsibleSection>
-          </div>
+        {/* 리바운드 — 이 팀만 + 각 리그 랭킹 */}
+        {rebBlock && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">리바운드 분해</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                경기당 평균 · 괄호는 리그 N위
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-[14px]">
+              <ProfileTile label="공격 리바"
+                value={rebBlock.oReb.toFixed(1)}
+                rank={rebBlock.rankO}
+                tone="text-flame-400"
+                sub={rebBlock.orebPct != null ? `OREB% ${rebBlock.orebPct.toFixed(1)}` : undefined}
+              />
+              <ProfileTile label="수비 리바"
+                value={rebBlock.dReb.toFixed(1)}
+                rank={rebBlock.rankD}
+                tone="text-neon-400"
+                sub={rebBlock.drebPct != null ? `DREB% ${rebBlock.drebPct.toFixed(1)}` : undefined}
+              />
+              <ProfileTile label="총 리바"
+                value={rebBlock.total.toFixed(1)}
+                rank={rebBlock.rankT}
+                tone="text-ink-100"
+                sub={rebBlock.rebPct != null ? `REB% ${rebBlock.rebPct.toFixed(1)}` : undefined}
+              />
+            </div>
+          </section>
+        )}
+
+        {/* 클러치 — 그 팀의 ≤5점차 경기 성과 + 시즌 대비 Δ */}
+        {clutchBlock && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">클러치 (≤5점차 경기)</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                4쿼터 마지막 5분이 아닌 game-level · {clutchBlock.cGames}경기 · 괄호 Δ = 클러치 − 시즌
+              </p>
+            </div>
+            <div className="mb-3 flex flex-wrap items-baseline gap-3 text-[14px]">
+              <span className="stat-num">
+                <span className="font-bold text-ink-50">{clutchBlock.cWins}승 {clutchBlock.cLosses}패</span>
+                <span className="mx-2 text-ink-600">·</span>
+                <span className="font-semibold" style={{ color }}>승률 {(clutchBlock.clutchWinPct * 100).toFixed(1)}%</span>
+                <span className={`ml-1 ${clutchBlock.dWinPct >= 0 ? "text-hoop-400" : "text-buzzer-400"}`}>
+                  ({clutchBlock.dWinPct >= 0 ? "+" : ""}{(clutchBlock.dWinPct * 100).toFixed(1)}%p)
+                </span>
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <ClutchTile label="FG%"  value={`${clutchBlock.clutchFgPct.toFixed(1)}%`} delta={clutchBlock.dFgPct} suffix="%p" />
+              <ClutchTile label="3P%"  value={`${clutchBlock.clutch3Pct.toFixed(1)}%`}  delta={clutchBlock.d3Pct}  suffix="%p" />
+              <ClutchTile label="FT%"  value={`${clutchBlock.clutchFtPct.toFixed(1)}%`} delta={clutchBlock.dFtPct} suffix="%p" />
+              <ClutchTile label="PPG"  value={clutchBlock.clutchPPG.toFixed(1)}        delta={clutchBlock.dPPG}   suffix=""  caption="게임당 득점은 클러치 시간 짧아 시즌보다 작음" />
+            </div>
+          </section>
+        )}
+
+        {/* 라운드별 추이 — 이 팀의 1~6R 아크 */}
+        {roundTrend.some((r) => r.has) && (
+          <section className="card mt-6 p-5">
+            <div className="mb-3">
+              <h3 className="text-sm font-semibold text-ink-50">라운드별 추이</h3>
+              <p className="mt-0.5 text-[13px] text-ink-500">
+                정규시즌 라운드 단위 · NetRtg = ORtg − DRtg
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[520px] text-left text-[13px]">
+                <thead>
+                  <tr className="border-b border-court-700/60 text-[12px] uppercase tracking-wider text-ink-500">
+                    <th className="py-2 pr-2 font-medium">R</th>
+                    <th className="py-2 pr-2 text-right font-medium">G</th>
+                    <th className="py-2 pr-2 text-right font-medium">W-L</th>
+                    <th className="py-2 pr-2 text-right font-medium">승률</th>
+                    <th className="py-2 pr-2 text-right font-medium">PPG</th>
+                    <th className="py-2 pr-2 text-right font-medium">eFG%</th>
+                    <th className="py-2 pr-2 text-right font-medium">ORtg</th>
+                    <th className="py-2 pr-2 text-right font-medium">DRtg</th>
+                    <th className="py-2 pr-2 text-right font-medium">NetRtg</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {roundTrend.map((r) => {
+                    if (!r.has) {
+                      return (
+                        <tr key={r.round} className="border-b border-court-800/50 text-ink-600">
+                          <td className="py-2 pr-2">{r.round}R</td>
+                          <td colSpan={8} className="py-2 pr-2 text-right text-[12px]">미진행</td>
+                        </tr>
+                      );
+                    }
+                    const netTone =
+                      r.netRtg != null
+                        ? r.netRtg > 0 ? "text-hoop-400" : r.netRtg < 0 ? "text-buzzer-400" : "text-ink-300"
+                        : "text-ink-500";
+                    return (
+                      <tr key={r.round} className="border-b border-court-800/50">
+                        <td className="py-2 pr-2 font-semibold text-ink-100">{r.round}R</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-300">{r.games}</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-100">{r.wins}-{r.losses}</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-200">{(r.winPct * 100).toFixed(1)}%</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-300">{r.points.toFixed(1)}</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-300">{r.efgPct.toFixed(1)}</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-300">{r.offRtg != null ? r.offRtg.toFixed(1) : "—"}</td>
+                        <td className="stat-num py-2 pr-2 text-right text-ink-300">{r.defRtg != null ? r.defRtg.toFixed(1) : "—"}</td>
+                        <td className={`stat-num py-2 pr-2 text-right font-semibold ${netTone}`}>
+                          {r.netRtg != null ? `${r.netRtg >= 0 ? "+" : ""}${r.netRtg.toFixed(1)}` : "—"}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
         )}
 
         {/* 최근 눈에 띄는 선수 */}
@@ -591,6 +895,56 @@ function AdvStat({ label, value, caption, rank }: { label: string; value: string
       </div>
       <div className="stat-num mt-1 text-xl font-bold text-ink-50">{value}</div>
       <div className="mt-0.5 text-[11px] text-ink-500">{caption}</div>
+    </div>
+  );
+}
+
+function ProfileTile({
+  label, value, rank, tone, sub,
+}: { label: string; value: string; rank: number | null; tone: string; sub?: string }) {
+  const rankTone = rank != null ? (rank <= 3 ? "text-flame-400" : rank >= 8 ? "text-buzzer-400" : "text-ink-400") : "text-ink-500";
+  return (
+    <div className="rounded-md border border-court-700/60 bg-court-800/40 p-3">
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[12px] uppercase tracking-wider text-ink-500">{label}</span>
+        {rank != null && <span className={`stat-num text-[11px] font-semibold ${rankTone}`}>리그 {rank}위</span>}
+      </div>
+      <div className={`stat-num mt-1 text-xl font-bold ${tone}`}>{value}</div>
+      {sub && <div className="mt-0.5 text-[11px] text-ink-500">{sub}</div>}
+    </div>
+  );
+}
+
+function FactorTile({
+  label, value, rank, caption,
+}: { label: string; value: string; rank: number | null; caption: string }) {
+  const rankTone = rank != null ? (rank <= 3 ? "text-flame-400" : rank >= 8 ? "text-buzzer-400" : "text-ink-400") : "text-ink-500";
+  return (
+    <div className="rounded-md border border-court-700/60 bg-court-800/40 p-3">
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[12px] uppercase tracking-wider text-ink-500">{label}</span>
+        {rank != null && <span className={`stat-num text-[11px] font-semibold ${rankTone}`}>리그 {rank}위</span>}
+      </div>
+      <div className="stat-num mt-1 text-xl font-bold text-ink-50">{value}</div>
+      <div className="mt-0.5 text-[11px] text-ink-500">{caption}</div>
+    </div>
+  );
+}
+
+function ClutchTile({
+  label, value, delta, suffix, caption,
+}: { label: string; value: string; delta: number; suffix: string; caption?: string }) {
+  const tone = delta > 0 ? "text-hoop-400" : delta < 0 ? "text-buzzer-400" : "text-ink-400";
+  return (
+    <div className="rounded-md border border-court-700/60 bg-court-800/40 p-3">
+      <div className="text-[12px] uppercase tracking-wider text-ink-500">{label}</div>
+      <div className="mt-1 flex items-baseline gap-2">
+        <span className="stat-num text-xl font-bold text-ink-50">{value}</span>
+        <span className={`stat-num text-[13px] font-semibold ${tone}`}>
+          {delta >= 0 ? "+" : ""}{delta.toFixed(1)}{suffix}
+        </span>
+      </div>
+      {caption && <div className="mt-0.5 text-[11px] text-ink-500">{caption}</div>}
     </div>
   );
 }
