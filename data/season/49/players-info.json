@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-19T02:32:07.749Z",
+  "fetchedAt": "2026-11-19T16:22:05.487Z",
   "seasonCode": "49",
-  "totalRegistered": 219,
+  "totalRegistered": 222,
   "countByFlag": {
-    "국내": 185,
+    "국내": 188,
     "아시아쿼터": 9,
     "외국선수": 25
   },
@@ -2240,6 +2240,34 @@
       "photoUrl": null,
       "inSeason": 37
     },
+    "291362": {
+      "pcode": "291362",
+      "kname": "차민석",
+      "ename": "CHA MIN SEOK",
+      "teamCode": "66",
+      "pos": "FD",
+      "backNum": "2",
+      "flag": "국내",
+      "country": "대한민국",
+      "birthday": "2001-09-16",
+      "pHeight": 200,
+      "pWeight": 101,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": "제물포고",
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2020,
+        "round": 1,
+        "rank": 1
+      },
+      "photoUrl": null,
+      "inSeason": 37
+    },
     "291363": {
       "pcode": "291363",
       "kname": "윤원상",
@@ -2944,6 +2972,34 @@
       "photoUrl": null,
       "inSeason": 39
     },
+    "291493": {
+      "pcode": "291493",
+      "kname": "신민석",
+      "ename": "SHIN MIN SUK",
+      "teamCode": "10",
+      "pos": "FD",
+      "backNum": "2",
+      "flag": "국내",
+      "country": "대한민국",
+      "birthday": "1999-08-31",
+      "pHeight": 197,
+      "pWeight": 87,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "고려대",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2021,
+        "round": 1,
+        "rank": 4
+      },
+      "photoUrl": null,
+      "inSeason": 39
+    },
     "291494": {
       "pcode": "291494",
       "kname": "김동준",
@@ -3439,6 +3495,34 @@
       "draft": {
         "year": 2022,
         "round": 1,
+        "rank": 8
+      },
+      "photoUrl": null,
+      "inSeason": 41
+    },
+    "291600": {
+      "pcode": "291600",
+      "kname": "안세영",
+      "ename": "AHN SE YEONG",
+      "teamCode": "64",
+      "pos": "GD",
+      "backNum": "77",
+      "flag": "국내",
+      "country": "대한민국",
+      "birthday": "2000-11-03",
+      "pHeight": 180,
+      "pWeight": 86,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": "성균관대",
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": {
+        "year": 2022,
+        "round": 3,
         "rank": 8
       },
       "photoUrl": null,
