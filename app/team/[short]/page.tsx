@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { STANDINGS, TEAM_COLORS } from "@/lib/data";
+import { STANDINGS, STANDINGS_FILTERS, TEAM_COLORS, type FilteredTeam } from "@/lib/data";
 import { ALL_GAMES, teamRecentForm, headToHead, fmtDate, gameToId } from "@/lib/gamesUtil";
 import { teamPlayersBefore } from "@/lib/boxscores";
 import { teamLogoSrc } from "@/lib/teamLogos";
@@ -9,7 +9,6 @@ import { getTeamShotChart } from "@/lib/shotChartsServer";
 import { AreaShotChart } from "@/components/AreaShotChart";
 import { HexShotMap } from "@/components/HexShotMap";
 import teamAdvJson from "../../../data/season/49/team-advanced.json";
-import teamFilteredJson from "../../../data/season/49/team-filtered.json";
 import clutchJson from "../../../data/season/49/clutch.json";
 
 interface AdvRow {
@@ -25,48 +24,19 @@ interface AdvRow {
     astPct: number; tovPct: number;
   };
 }
-interface FilRow {
-  shortName: string;
-  games: number;
-  wins: number;
-  losses: number;
-  winPct?: number;
-  stats: {
-    points: number; margin?: number;
-    fgMade?: number; fgAtt?: number; fgPct?: number;
-    threeMade?: number; threeAtt?: number; threePct?: number;
-    ftMade?: number; ftAtt?: number; ftPct?: number;
-    oReb?: number; dReb?: number; rebounds?: number;
-    turnovers?: number; assists?: number;
-  };
-}
 
+// FilteredTeam (lib/data 정규화) — fgAtt 는 total (2pt + 3pt). raw json 직접 읽지 말 것.
 const ADV: AdvRow[] = (teamAdvJson as { filters?: { all?: AdvRow[] } }).filters?.all ?? [];
-const FIL_ALL: FilRow[] = (teamFilteredJson as { filters?: { all?: FilRow[] } }).filters?.all ?? [];
-const FIL_HOME: FilRow[] = (teamFilteredJson as { filters?: { home?: FilRow[] } }).filters?.home ?? [];
-const FIL_AWAY: FilRow[] = (teamFilteredJson as { filters?: { away?: FilRow[] } }).filters?.away ?? [];
-const FIL_Q4: FilRow[] = (teamFilteredJson as { filters?: { q4?: FilRow[] } }).filters?.q4 ?? [];
+const FIL_ALL  = STANDINGS_FILTERS.all;
+const FIL_HOME = STANDINGS_FILTERS.home;
+const FIL_AWAY = STANDINGS_FILTERS.away;
+const FIL_Q4   = STANDINGS_FILTERS.q4;
 
-// ─ 라운드별 데이터 (팀 자체 추이용) ─
-interface RoundRow {
-  shortName: string;
-  games: number;
-  wins: number;
-  losses: number;
-  winPct: number;
-  stats: {
-    points: number; fgPct: number; threePct: number;
-    fgMade: number; fgAtt: number; threeMade: number; threeAtt: number;
-  };
-  advanced?: { offRtg: number; defRtg: number; netRtg: number; efgPct: number };
-}
 const ROUND_KEYS = ["r1", "r2", "r3", "r4", "r5", "r6"] as const;
-const FIL_ROUNDS: Record<(typeof ROUND_KEYS)[number], RoundRow[]> = Object.fromEntries(
-  ROUND_KEYS.map((k) => [
-    k,
-    ((teamFilteredJson as { filters?: Partial<Record<string, RoundRow[]>> }).filters?.[k] ?? []),
-  ]),
-) as Record<(typeof ROUND_KEYS)[number], RoundRow[]>;
+const FIL_ROUNDS: Record<(typeof ROUND_KEYS)[number], FilteredTeam[]> = {
+  r1: STANDINGS_FILTERS.r1, r2: STANDINGS_FILTERS.r2, r3: STANDINGS_FILTERS.r3,
+  r4: STANDINGS_FILTERS.r4, r5: STANDINGS_FILTERS.r5, r6: STANDINGS_FILTERS.r6,
+};
 
 // ─ 클러치 (선수 단위) ─
 interface ClutchPlayer {
@@ -205,80 +175,75 @@ export default function TeamDetailPage({ params }: Params) {
   const teamShotChart = getTeamShotChart(roster.map((p) => p.player.pcode), short);
 
   // ─── 팀 내 세부 지표 랭킹 헬퍼 ───
-  function filRank(valueFn: (r: FilRow) => number, lowerBetter = false): number | null {
+  function filRank(valueFn: (r: FilteredTeam) => number, lowerBetter = false): number | null {
     if (!filAll) return null;
     const sorted = [...FIL_ALL].sort((a, b) => lowerBetter ? valueFn(a) - valueFn(b) : valueFn(b) - valueFn(a));
     const idx = sorted.findIndex((r) => r.shortName === short);
     return idx >= 0 ? idx + 1 : null;
   }
 
-  // ─ 슛 프로필 (team-specific) ─
+  // ─ 슛 프로필 (team-specific) ─ fgAtt 는 total (2pt+3pt), threeAtt 는 3pt only
   const shotProfile = (() => {
-    if (!filAll?.stats) return null;
+    if (!filAll) return null;
     const s = filAll.stats;
-    const fgAtt = s.fgAtt ?? 0;
-    const threeAtt = s.threeAtt ?? 0;
-    const ftAtt = s.ftAtt ?? 0;
+    const fgAtt = s.fgAtt;
+    const threeAtt = s.threeAtt;
+    const ftAtt = s.ftAtt;
     const twoAtt = Math.max(0, fgAtt - threeAtt);
     const total = twoAtt + threeAtt + ftAtt;
     if (total <= 0) return null;
-    const pctAttRate = (fn: (r: FilRow) => number) => {
-      const sorted = [...FIL_ALL]
-        .filter((r) => (r.stats.fgAtt ?? 0) > 0)
-        .sort((a, b) => fn(b) - fn(a));
+    const shareRank = (fn: (r: FilteredTeam) => number) => {
+      const sorted = [...FIL_ALL].filter((r) => r.stats.fgAtt > 0).sort((a, b) => fn(b) - fn(a));
       const idx = sorted.findIndex((r) => r.shortName === short);
       return idx >= 0 ? idx + 1 : null;
     };
-    const twoShare  = (twoAtt / total) * 100;
+    const twoShare   = (twoAtt / total) * 100;
     const threeShare = (threeAtt / total) * 100;
-    const ftShare   = (ftAtt / total) * 100;
-    const rankTwo = pctAttRate((r) => {
-      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
-      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
-      return total > 0 ? ((a - t) / total) : 0;
+    const ftShare    = (ftAtt / total) * 100;
+    const rankTwo = shareRank((r) => {
+      const a = r.stats.fgAtt, t = r.stats.threeAtt, f = r.stats.ftAtt;
+      const tot = Math.max(0, a - t) + t + f;
+      return tot > 0 ? (Math.max(0, a - t) / tot) : 0;
     });
-    const rankThree = pctAttRate((r) => {
-      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
-      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
-      return total > 0 ? (t / total) : 0;
+    const rankThree = shareRank((r) => {
+      const a = r.stats.fgAtt, t = r.stats.threeAtt, f = r.stats.ftAtt;
+      const tot = Math.max(0, a - t) + t + f;
+      return tot > 0 ? (t / tot) : 0;
     });
-    const rankFt = pctAttRate((r) => {
-      const a = r.stats.fgAtt ?? 0; const t = r.stats.threeAtt ?? 0;
-      const f = r.stats.ftAtt ?? 0; const total = Math.max(0, a - t) + t + f;
-      return total > 0 ? (f / total) : 0;
+    const rankFt = shareRank((r) => {
+      const a = r.stats.fgAtt, t = r.stats.threeAtt, f = r.stats.ftAtt;
+      const tot = Math.max(0, a - t) + t + f;
+      return tot > 0 ? (f / tot) : 0;
     });
-    return { twoShare, threeShare, ftShare, total, rankTwo, rankThree, rankFt, fgAtt, threeAtt, ftAtt };
+    return { twoShare, threeShare, ftShare, total, rankTwo, rankThree, rankFt, twoAtt, threeAtt, ftAtt };
   })();
 
   // ─ 4팩터 (team-specific) ─
   const fourFactors = (() => {
-    if (!adv || !filAll?.stats) return null;
-    const fga = filAll.stats.fgAtt ?? 0;
-    const fta = filAll.stats.ftAtt ?? 0;
+    if (!adv || !filAll) return null;
+    const fga = filAll.stats.fgAtt;
+    const fta = filAll.stats.ftAtt;
     const ftaRate = fga > 0 ? (fta / fga) * 100 : 0;
     return {
       efg: adv.advanced.efgPct,  rankEfg: leagueRank((r) => r.advanced.efgPct),
       tov: adv.advanced.tovPct,  rankTov: leagueRank((r) => r.advanced.tovPct, true),
       oreb: adv.advanced.orebPct, rankOreb: leagueRank((r) => r.advanced.orebPct),
-      ftaRate, rankFta: filRank((r) => {
-        const a = r.stats.fgAtt ?? 0; const f = r.stats.ftAtt ?? 0;
-        return a > 0 ? (f / a) : 0;
-      }),
+      ftaRate, rankFta: filRank((r) => (r.stats.fgAtt > 0 ? r.stats.ftAtt / r.stats.fgAtt : 0)),
     };
   })();
 
   // ─ 리바운드 (team-specific) ─
   const rebBlock = (() => {
-    if (!filAll?.stats) return null;
+    if (!filAll) return null;
     const s = filAll.stats;
-    const oReb = s.oReb ?? 0;
-    const dReb = s.dReb ?? 0;
+    const oReb = s.oReb;
+    const dReb = s.dReb;
     const total = oReb + dReb;
     return {
       oReb, dReb, total,
-      rankO: filRank((r) => r.stats.oReb ?? 0),
-      rankD: filRank((r) => r.stats.dReb ?? 0),
-      rankT: filRank((r) => (r.stats.oReb ?? 0) + (r.stats.dReb ?? 0)),
+      rankO: filRank((r) => r.stats.oReb),
+      rankD: filRank((r) => r.stats.dReb),
+      rankT: filRank((r) => r.stats.oReb + r.stats.dReb),
       orebPct: adv?.advanced.orebPct, drebPct: adv?.advanced.drebPct, rebPct: adv?.advanced.rebPct,
     };
   })();
@@ -532,7 +497,7 @@ export default function TeamDetailPage({ params }: Params) {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-3 text-[14px]">
-              <ProfileTile label="2점 비중"   value={`${shotProfile.twoShare.toFixed(1)}%`}   rank={shotProfile.rankTwo}   tone="text-neon-400"   sub={`${shotProfile.fgAtt - shotProfile.threeAtt < 0 ? 0 : (shotProfile.fgAtt - shotProfile.threeAtt).toFixed(1)}회`} />
+              <ProfileTile label="2점 비중"   value={`${shotProfile.twoShare.toFixed(1)}%`}   rank={shotProfile.rankTwo}   tone="text-neon-400"   sub={`${shotProfile.twoAtt.toFixed(1)}회`} />
               <ProfileTile label="3점 의존도" value={`${shotProfile.threeShare.toFixed(1)}%`} rank={shotProfile.rankThree} tone="text-buzzer-400" sub={`${shotProfile.threeAtt.toFixed(1)}회`} />
               <ProfileTile label="자유투 의존" value={`${shotProfile.ftShare.toFixed(1)}%`}  rank={shotProfile.rankFt}    tone="text-flame-400"  sub={`${shotProfile.ftAtt.toFixed(1)}회`} />
             </div>
@@ -862,7 +827,7 @@ export default function TeamDetailPage({ params }: Params) {
   );
 }
 
-function SplitRow({ label, row, color }: { label: string; row?: FilRow; color: string }) {
+function SplitRow({ label, row, color }: { label: string; row?: FilteredTeam; color: string }) {
   if (!row) {
     return (
       <div className="flex items-baseline justify-between text-[14px]">
@@ -871,7 +836,7 @@ function SplitRow({ label, row, color }: { label: string; row?: FilRow; color: s
       </div>
     );
   }
-  const pct = row.winPct != null ? (row.winPct * 100).toFixed(1) : "—";
+  const pct = (row.winPct * 100).toFixed(1);
   return (
     <div className="flex items-baseline justify-between text-[14px]">
       <span className="text-ink-300">{label}</span>
