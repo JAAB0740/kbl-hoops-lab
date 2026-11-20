@@ -116,11 +116,19 @@ export function PlayerProfileView({
         <PlayerArchetypeCard archetype={archetype} />
       </section>
 
-      {/* Sticky 섹션 탭 — 카드형 + flame accent border 로 시각 강조. active 탭만 페이지 표시. */}
+      {/* Sticky 섹션 탭 — 식별 스트립(선수명·팀) + 탭 버튼 */}
+      <div className="sticky top-14 z-40 -mx-6 bg-court-900/95 shadow-court-glow backdrop-blur md:mx-0 md:rounded-lg md:border md:border-flame-500/30">
+        <div className="flex items-center gap-2 border-y border-flame-500/20 px-3 py-1.5 text-[13px] md:border-y-0 md:border-b md:px-4 md:text-[14px]">
+          <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">
+            {profile.team.short}
+          </span>
+          <span className="truncate font-bold text-ink-50">{profile.kname}</span>
+          <span className="truncate text-ink-500">· {profile.team.name}</span>
+        </div>
       <nav
         role="tablist"
         aria-label="선수 상세 섹션"
-        className="sticky top-14 z-40 -mx-6 flex border-y border-flame-500/30 bg-court-900/95 shadow-court-glow backdrop-blur md:mx-0 md:rounded-lg md:border"
+        className="flex border-y border-flame-500/30 md:border-y-0"
       >
         {PROFILE_TABS.map((t) => {
           const isActive = tab === t.key;
@@ -160,6 +168,7 @@ export function PlayerProfileView({
           );
         })}
       </nav>
+      </div>
 
       {/* ─── 탭 1 : 시즌 요약 ─────────────────────── */}
       <div id="section-overview" className={["scroll-mt-24 space-y-6", tabShow("overview")].join(" ")}>

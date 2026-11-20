@@ -326,6 +326,24 @@ export default function TeamDetailPage({ params }: Params) {
           ← 팀 스탯 탐색
         </Link>
 
+        {/* Sticky 식별 스트립 — 스크롤 시에도 어느 팀 페이지인지 인지 */}
+        <div className="sticky top-14 z-40 -mx-3 mb-4 flex items-center gap-2 border-y border-court-700/60 bg-court-900/95 px-3 py-2 backdrop-blur md:-mx-6 md:px-6">
+          {logo && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logo} alt="" className="h-6 w-6 shrink-0 object-contain" />
+          )}
+          <span className="text-[13px] font-bold uppercase tracking-wider" style={{ color }}>{short}</span>
+          <span className="truncate text-[14px] font-semibold text-ink-100">{row.name}</span>
+          <span className="ml-auto stat-num text-[13px] text-ink-400">
+            {wins}-{losses}
+            {adv && (
+              <span className={`ml-2 ${adv.advanced.netRtg >= 0 ? "text-hoop-400" : "text-buzzer-400"}`}>
+                Net {adv.advanced.netRtg >= 0 ? "+" : ""}{adv.advanced.netRtg.toFixed(1)}
+              </span>
+            )}
+          </span>
+        </div>
+
         {/* 헤더 */}
         <header className="mb-8 card p-6">
           <div className="flex flex-wrap items-center gap-5">
