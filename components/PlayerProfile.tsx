@@ -117,7 +117,7 @@ export function PlayerProfileView({
       </section>
 
       {/* Sticky 섹션 탭 — 식별 스트립(선수명·팀) + 탭 버튼 */}
-      <div className="sticky top-[96px] md:top-14 z-40 -mx-6 bg-court-900/95 shadow-court-glow backdrop-blur md:mx-0 md:rounded-lg md:border md:border-flame-500/30">
+      <div className="sticky top-[104px] md:top-14 z-40 -mx-6 bg-court-900/95 shadow-court-glow backdrop-blur md:mx-0 md:rounded-lg md:border md:border-flame-500/30">
         <div className="flex items-center gap-2 border-y border-flame-500/20 px-3 py-1.5 text-[13px] md:border-y-0 md:border-b md:px-4 md:text-[14px]">
           <span className="chip border-flame-500/30 bg-flame-500/10 text-flame-400">
             {profile.team.short}
