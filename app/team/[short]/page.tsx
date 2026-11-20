@@ -327,7 +327,7 @@ export default function TeamDetailPage({ params }: Params) {
         </Link>
 
         {/* Sticky 식별 스트립 — 스크롤 시에도 어느 팀 페이지인지 인지 */}
-        <div className="sticky top-14 z-40 -mx-3 mb-4 flex items-center gap-2 border-y border-court-700/60 bg-court-900/95 px-3 py-2 backdrop-blur md:-mx-6 md:px-6">
+        <div className="sticky top-[96px] md:top-14 z-40 -mx-3 mb-4 flex items-center gap-2 border-y border-court-700/60 bg-court-900/95 px-3 py-2 backdrop-blur md:-mx-6 md:px-6">
           {logo && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={logo} alt="" className="h-6 w-6 shrink-0 object-contain" />
