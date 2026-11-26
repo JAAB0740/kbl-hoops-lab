@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-26T03:31:23.718Z",
+  "fetchedAt": "2026-11-26T21:52:12.376Z",
   "seasonCode": "49",
   "totalRegistered": 251,
   "countByFlag": {
@@ -416,11 +416,7 @@
         "graduate": null
       },
       "gradYear": null,
-      "draft": {
-        "year": 2012,
-        "round": 2,
-        "rank": 5
-      },
+      "draft": null,
       "photoUrl": null,
       "inSeason": 21
     },
