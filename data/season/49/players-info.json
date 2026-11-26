@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-11-25T23:07:08.898Z",
+  "fetchedAt": "2026-11-26T03:31:23.718Z",
   "seasonCode": "49",
-  "totalRegistered": 250,
+  "totalRegistered": 251,
   "countByFlag": {
-    "국내": 216,
+    "국내": 217,
     "아시아쿼터": 9,
     "외국선수": 25
   },
@@ -6641,6 +6641,30 @@
       "backNum": "24",
       "flag": "국내",
       "country": "",
+      "birthday": "",
+      "pHeight": null,
+      "pWeight": null,
+      "schools": {
+        "primary": null,
+        "middle": null,
+        "high": null,
+        "university": null,
+        "graduate": null
+      },
+      "gradYear": null,
+      "draft": null,
+      "photoUrl": null,
+      "inSeason": 49
+    },
+    "291961": {
+      "pcode": "291961",
+      "kname": "홍상민",
+      "ename": "",
+      "teamCode": "50",
+      "pos": "C",
+      "backNum": "18",
+      "flag": "국내",
+      "country": "대한민국",
       "birthday": "",
       "pHeight": null,
       "pWeight": null,
